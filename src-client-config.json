@@ -1,5 +1,5 @@
 {
-  "packageName": "MyApiClient",
+  "packageName": "NofrixionApiClient",
   "invokerPackage": "Nofrixion\\Client",
   "composerProjectName": "nofrixion/client",
   "gitUserId": "DarkSide666",
