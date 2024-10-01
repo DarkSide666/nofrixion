@@ -1,9 +1,9 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-// config
-$clientID = 'sortmybooks';
-$clientSecret = '8djQUtFa9hffBkQz288CbZwrd4XjCTnz2dA6UVGncxwwfY7R';
+// config - fill these with your credentials
+$clientID = '***';
+$clientSecret = '***';
 $callbackURI = 'https://oauthdebugger.com/debug'; // for testing
 
 use Nofrixion\Environment\Environment;
