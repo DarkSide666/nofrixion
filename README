@@ -1,0 +1,11 @@
+### Install NPM
+npm install @openapitools/openapi-generator-cli -g
+
+### Generate Nofrixion\Client code
+openapi-generator-cli generate -i https://api.nofrixion.com/swagger/v1/swagger.json -g php -o ./src-client -c src-client-config.json
+openapi-generator-cli generate -i https://api-dev.nofrixion.com/swagger/v1/swagger.json -g php -o ./src-client -c src-client-config.json
+
+### Link to Client documentation
+[**Client Documentation**](src-client/README)
+
+
