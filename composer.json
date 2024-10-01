@@ -1,4 +1,23 @@
 {
+    "name": "DarkSide666/nofrixion-api-client",
+    "description": "Nofrixion API client in PHP",
+    "keywords": [
+        "nofrixion",
+        "client",
+        "openapi",
+        "php",
+        "sdk",
+        "rest",
+        "api"
+    ],
+    "homepage": "https://github.com/DarkSide666",
+    "license": "unlicense",
+    "authors": [
+        {
+            "name": "Imants Horsts",
+            "homepage": "https://github.com/DarkSide666"
+        }
+    ],
     "require": {
         "php": ">=7.4",
         "league/oauth2-client": "^2.7"
