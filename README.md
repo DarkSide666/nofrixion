@@ -2,7 +2,7 @@
 
 ### Installing
 
-`composer require DarkSide666/nofrixion`
+`composer require DarkSide666/nofrixion-api-client`
 
 ### Usage examples
 

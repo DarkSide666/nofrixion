@@ -2,6 +2,6 @@
   "packageName": "MyApiClient",
   "invokerPackage": "Nofrixion\\Client",
   "composerProjectName": "nofrixion/client",
-  "gitUserId": "myusername",
-  "gitRepoId": "my-api-client"
+  "gitUserId": "DarkSide666",
+  "gitRepoId": "nofrixion-api-client"
 }

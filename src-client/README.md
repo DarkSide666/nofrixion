@@ -19,11 +19,11 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
   "repositories": [
     {
       "type": "vcs",
-      "url": "https://github.com/myusername/my-api-client.git"
+      "url": "https://github.com/DarkSide666/nofrixion-api-client.git"
     }
   ],
   "require": {
-    "myusername/my-api-client": "*@dev"
+    "DarkSide666/nofrixion-api-client": "*@dev"
   }
 }
 ```
