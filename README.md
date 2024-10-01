@@ -1,22 +1,41 @@
-## Nofrixion API client
 
-### Installing
+# Nofrixion API Client (Beta)
 
-`composer require DarkSide666/nofrixion-api-client`
+> ⚠️ **Note:** This is a **beta version** of the Nofrixion API client library. Features and functionality may change in future updates.
 
-### Usage examples
+## Installation
 
-See in `/example` folder how to implement authorization (`auth.php`) and use Nofrixion API client (`test.php`).
+To install the Nofrixion API client library, use Composer:
 
-### How to update client API code
+```bash
+composer require darkside666/nofrixion-api-client
+```
 
-Normally you shouldn't do this, but if you really want to manually re-generate client API classes, then you can act as follows.
+## Usage Examples
 
-* Install NPM
-    `npm install @openapitools/openapi-generator-cli -g`
+You can find usage examples in the `/example` folder:
 
-* Generate Nofrixion\Client code
-    `openapi-generator-cli generate -i https://api.nofrixion.com/swagger/v1/swagger.json -g php -o ./src-client -c src-client-config.json`
+- **Authorization Example**: See `auth.php` for implementing authorization.
+- **API Client Example**: See `test.php` for using the Nofrixion API client.
 
-### Link to Client documentation
-[**Client Documentation**](src-client/README.md)
+## Updating Client API Code
+
+While it's generally not necessary to manually update the client API code, if you need to re-generate the API classes, you can follow the steps below:
+
+1. **Install OpenAPI Generator**
+   Ensure you have [NPM](https://www.npmjs.com/get-npm) installed, then install the OpenAPI Generator CLI globally:
+
+   ```bash
+   npm install @openapitools/openapi-generator-cli -g
+   ```
+
+2. **Generate the Nofrixion\Client Code**
+   Use the OpenAPI Generator to generate the client code from the Nofrixion API Swagger definition:
+
+   ```bash
+   openapi-generator-cli generate -i https://api.nofrixion.com/swagger/v1/swagger.json -g php -o ./src-client -c src-client-config.json
+   ```
+
+## Client Documentation
+
+For more detailed information on using the generated client, refer to the [**Client Documentation**](src-client/README.md).
