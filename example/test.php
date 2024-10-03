@@ -65,15 +65,15 @@ $result = $apiInstance->apiV1AccountsAccountIDPayoutsGet($account_id, $page_numb
 */
 
 try {
-    $accounts = $apiAccounts->apiV1AccountsGet();
+    $accounts = $apiAccounts->getAccounts();
     //print_r($accounts);
     foreach ($accounts as $account) {
         var_dump($account->valid(), $account->getId());
 
-        //$transactions = $apiAccounts->apiV1AccountsAccountIDTransactionsGet($account->getId());
+        //$transactions = $apiAccounts->getAccountTransactions($account->getId());
         //print_r($transactions);
 
-        $payouts = $apiAccounts->apiV1AccountsAccountIDPayoutsGet($account->getId());
+        $payouts = $apiAccounts->getAccountPayouts($account->getId());
         print_r($payouts);
 
         echo '<hr>';
@@ -138,7 +138,7 @@ if ($_GET['create_payout'] ?? null) {
     ]);
 
     try {
-        $response = $apiPayouts->apiV1PayoutsPost($payoutCreate);
+        $response = $apiPayouts->createPayout($payoutCreate);
         print_r($response);
 
      } catch (Client\ApiException $e) {
