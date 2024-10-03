@@ -4,18 +4,18 @@ All URIs are relative to https://api-sandbox.nofrixion.com, except if the operat
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**apiV1MetadataHeightGet()**](MetadataApi.md#apiV1MetadataHeightGet) | **GET** /api/v1/metadata/height | Gets the current Bitcoin blockchain height. In sandbox the testnet height is returned. |
-| [**apiV1MetadataProblemGet()**](MetadataApi.md#apiV1MetadataProblemGet) | **GET** /api/v1/metadata/problem | Returns an example problem response. |
-| [**apiV1MetadataProblemnotificationGet()**](MetadataApi.md#apiV1MetadataProblemnotificationGet) | **GET** /api/v1/metadata/problemnotification | Triggers a webhook with the problem details in the payload. |
-| [**apiV1MetadataVersionGet()**](MetadataApi.md#apiV1MetadataVersionGet) | **GET** /api/v1/metadata/version | Gets the current version of the MoneyMoov API. |
-| [**apiV1MetadataWhoamiGet()**](MetadataApi.md#apiV1MetadataWhoamiGet) | **GET** /api/v1/metadata/whoami | Returns the profile of the requesting user. |
-| [**apiV1MetadataWhoamimerchantGet()**](MetadataApi.md#apiV1MetadataWhoamimerchantGet) | **GET** /api/v1/metadata/whoamimerchant | Returns the name of the merchant that authentication token was issued for. |
+| [**getBitcoinBlockHeight()**](MetadataApi.md#getBitcoinBlockHeight) | **GET** /api/v1/metadata/height | Gets the current Bitcoin blockchain height. In sandbox the testnet height is returned. |
+| [**problem()**](MetadataApi.md#problem) | **GET** /api/v1/metadata/problem | Returns an example problem response. |
+| [**problemNotification()**](MetadataApi.md#problemNotification) | **GET** /api/v1/metadata/problemnotification | Triggers a webhook with the problem details in the payload. |
+| [**version()**](MetadataApi.md#version) | **GET** /api/v1/metadata/version | Gets the current version of the MoneyMoov API. |
+| [**whoAmI()**](MetadataApi.md#whoAmI) | **GET** /api/v1/metadata/whoami | Returns the profile of the requesting user. |
+| [**whoAmIMerchant()**](MetadataApi.md#whoAmIMerchant) | **GET** /api/v1/metadata/whoamimerchant | Returns the name of the merchant that authentication token was issued for. |
 
 
-## `apiV1MetadataHeightGet()`
+## `getBitcoinBlockHeight()`
 
 ```php
-apiV1MetadataHeightGet(): int
+getBitcoinBlockHeight(): int
 ```
 
 Gets the current Bitcoin blockchain height. In sandbox the testnet height is returned.
@@ -41,10 +41,10 @@ $apiInstance = new Nofrixion\Client\Api\MetadataApi(
 );
 
 try {
-    $result = $apiInstance->apiV1MetadataHeightGet();
+    $result = $apiInstance->getBitcoinBlockHeight();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling MetadataApi->apiV1MetadataHeightGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MetadataApi->getBitcoinBlockHeight: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -69,10 +69,10 @@ This endpoint does not need any parameter.
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `apiV1MetadataProblemGet()`
+## `problem()`
 
 ```php
-apiV1MetadataProblemGet()
+problem()
 ```
 
 Returns an example problem response.
@@ -100,9 +100,9 @@ $apiInstance = new Nofrixion\Client\Api\MetadataApi(
 );
 
 try {
-    $apiInstance->apiV1MetadataProblemGet();
+    $apiInstance->problem();
 } catch (Exception $e) {
-    echo 'Exception when calling MetadataApi->apiV1MetadataProblemGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MetadataApi->problem: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -127,10 +127,10 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `apiV1MetadataProblemnotificationGet()`
+## `problemNotification()`
 
 ```php
-apiV1MetadataProblemnotificationGet($url, $id, $secret)
+problemNotification($url, $id, $secret)
 ```
 
 Triggers a webhook with the problem details in the payload.
@@ -161,9 +161,9 @@ $id = 'id_example'; // string | Optional. If the id and secret are set the notif
 $secret = 'secret_example'; // string | Optional. If the id and secret are set the notification request will have the              HMAC HTTP authentication headers added.
 
 try {
-    $apiInstance->apiV1MetadataProblemnotificationGet($url, $id, $secret);
+    $apiInstance->problemNotification($url, $id, $secret);
 } catch (Exception $e) {
-    echo 'Exception when calling MetadataApi->apiV1MetadataProblemnotificationGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MetadataApi->problemNotification: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -192,10 +192,10 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `apiV1MetadataVersionGet()`
+## `version()`
 
 ```php
-apiV1MetadataVersionGet(): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsNoFrixionVersion
+version(): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsNoFrixionVersion
 ```
 
 Gets the current version of the MoneyMoov API.
@@ -221,10 +221,10 @@ $apiInstance = new Nofrixion\Client\Api\MetadataApi(
 );
 
 try {
-    $result = $apiInstance->apiV1MetadataVersionGet();
+    $result = $apiInstance->version();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling MetadataApi->apiV1MetadataVersionGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MetadataApi->version: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -249,10 +249,10 @@ This endpoint does not need any parameter.
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `apiV1MetadataWhoamiGet()`
+## `whoAmI()`
 
 ```php
-apiV1MetadataWhoamiGet(): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser
+whoAmI(): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser
 ```
 
 Returns the profile of the requesting user.
@@ -278,10 +278,10 @@ $apiInstance = new Nofrixion\Client\Api\MetadataApi(
 );
 
 try {
-    $result = $apiInstance->apiV1MetadataWhoamiGet();
+    $result = $apiInstance->whoAmI();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling MetadataApi->apiV1MetadataWhoamiGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MetadataApi->whoAmI: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -306,10 +306,10 @@ This endpoint does not need any parameter.
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `apiV1MetadataWhoamimerchantGet()`
+## `whoAmIMerchant()`
 
 ```php
-apiV1MetadataWhoamimerchantGet(): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMerchant
+whoAmIMerchant(): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMerchant
 ```
 
 Returns the name of the merchant that authentication token was issued for.
@@ -335,10 +335,10 @@ $apiInstance = new Nofrixion\Client\Api\MetadataApi(
 );
 
 try {
-    $result = $apiInstance->apiV1MetadataWhoamimerchantGet();
+    $result = $apiInstance->whoAmIMerchant();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling MetadataApi->apiV1MetadataWhoamimerchantGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MetadataApi->whoAmIMerchant: ', $e->getMessage(), PHP_EOL;
 }
 ```
 

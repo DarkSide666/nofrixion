@@ -72,24 +72,24 @@ class TransactionsApiTest extends TestCase
     }
 
     /**
-     * Test case for apiV1TransactionsAccountIDGet
+     * Test case for getTransactionsForAccountPaged
      *
      * Get a list of the transactions for a single payment account..
      *
      */
-    public function testApiV1TransactionsAccountIDGet()
+    public function testGetTransactionsForAccountPaged()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1TransactionsGet
+     * Test case for getTransactionsPaged
      *
      * Get a list of the transactions for all payment accounts a user has access to..
      *
      */
-    public function testApiV1TransactionsGet()
+    public function testGetTransactionsPaged()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

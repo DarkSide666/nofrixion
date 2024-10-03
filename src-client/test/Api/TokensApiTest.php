@@ -72,24 +72,24 @@ class TokensApiTest extends TestCase
     }
 
     /**
-     * Test case for apiV1TokensIdDelete
+     * Test case for createMerchantToken
      *
-     * Deletes a merchant API token..
+     * Creates a new merchant API token..
      *
      */
-    public function testApiV1TokensIdDelete()
+    public function testCreateMerchantToken()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1TokensPost
+     * Test case for deleteToken
      *
-     * Creates a new merchant API token..
+     * Deletes a merchant API token..
      *
      */
-    public function testApiV1TokensPost()
+    public function testDeleteToken()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

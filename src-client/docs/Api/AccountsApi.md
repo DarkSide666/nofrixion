@@ -4,26 +4,323 @@ All URIs are relative to https://api-sandbox.nofrixion.com, except if the operat
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**apiV1AccountsAccountIDPayoutsGet()**](AccountsApi.md#apiV1AccountsAccountIDPayoutsGet) | **GET** /api/v1/accounts/{accountID}/payouts | Gets a list of all payouts for a specific account. |
-| [**apiV1AccountsAccountIDStatementsIdGet()**](AccountsApi.md#apiV1AccountsAccountIDStatementsIdGet) | **GET** /api/v1/accounts/{accountID}/statements/{id} | Gets the specified statement from the user&#39;s cache. |
-| [**apiV1AccountsAccountIDStatementsPost()**](AccountsApi.md#apiV1AccountsAccountIDStatementsPost) | **POST** /api/v1/accounts/{accountID}/statements | Sends a message to the transaction statement queue to generate a statement with the supplied parameters. |
-| [**apiV1AccountsAccountIDTransactionsGet()**](AccountsApi.md#apiV1AccountsAccountIDTransactionsGet) | **GET** /api/v1/accounts/{accountID}/transactions | Get a list of the transactions for a single payment account. |
-| [**apiV1AccountsAccountIDTransactionsIdGet()**](AccountsApi.md#apiV1AccountsAccountIDTransactionsIdGet) | **GET** /api/v1/accounts/{accountID}/transactions/{id} | Get a transaction. |
-| [**apiV1AccountsArchiveIdDelete()**](AccountsApi.md#apiV1AccountsArchiveIdDelete) | **DELETE** /api/v1/accounts/archive/{id} | Sets the specified account as archived. |
-| [**apiV1AccountsGet()**](AccountsApi.md#apiV1AccountsGet) | **GET** /api/v1/accounts | Get a list of all payment accounts the user has access to. |
-| [**apiV1AccountsIdPut()**](AccountsApi.md#apiV1AccountsIdPut) | **PUT** /api/v1/accounts/{id} | Updates an account record. |
-| [**apiV1AccountsPagedGet()**](AccountsApi.md#apiV1AccountsPagedGet) | **GET** /api/v1/accounts/paged | Get a paged list of all payment accounts the user has access to for a specific merchant. |
-| [**apiV1AccountsPost()**](AccountsApi.md#apiV1AccountsPost) | **POST** /api/v1/accounts | Creates a new merchant payment account. |
-| [**apiV1AccountsStatementsDelete()**](AccountsApi.md#apiV1AccountsStatementsDelete) | **DELETE** /api/v1/accounts/statements | Clears the cached user statements for a user. |
-| [**apiV1AccountsStatementsGet()**](AccountsApi.md#apiV1AccountsStatementsGet) | **GET** /api/v1/accounts/statements | Gets all active statement generation requests for the user. |
-| [**apiV1AccountsUnarchiveIdPut()**](AccountsApi.md#apiV1AccountsUnarchiveIdPut) | **PUT** /api/v1/accounts/unarchive/{id} | Sets the specified account as unarchived / active. |
-| [**getAccountAsync()**](AccountsApi.md#getAccountAsync) | **GET** /api/v1/accounts/{accountID} | Get an account. |
+| [**archiveAccount()**](AccountsApi.md#archiveAccount) | **DELETE** /api/v1/accounts/archive/{id} | Sets the specified account as archived. |
+| [**clearAccountStatements()**](AccountsApi.md#clearAccountStatements) | **DELETE** /api/v1/accounts/statements | Clears the cached user statements for a user. |
+| [**createAccount()**](AccountsApi.md#createAccount) | **POST** /api/v1/accounts | Creates a new merchant payment account. |
+| [**generateAccountStatement()**](AccountsApi.md#generateAccountStatement) | **POST** /api/v1/accounts/{accountID}/statements | Sends a message to the transaction statement queue to generate a statement with the supplied parameters. |
+| [**getAccount()**](AccountsApi.md#getAccount) | **GET** /api/v1/accounts/{accountID} | Get an account. |
+| [**getAccountPayouts()**](AccountsApi.md#getAccountPayouts) | **GET** /api/v1/accounts/{accountID}/payouts | Gets a list of all payouts for a specific account. |
+| [**getAccountStatement()**](AccountsApi.md#getAccountStatement) | **GET** /api/v1/accounts/{accountID}/statements/{id} | Gets the specified statement from the user&#39;s cache. |
+| [**getAccountTransactionsPaged()**](AccountsApi.md#getAccountTransactionsPaged) | **GET** /api/v1/accounts/{accountID}/transactions | Get a list of the transactions for a single payment account. |
+| [**getAccounts()**](AccountsApi.md#getAccounts) | **GET** /api/v1/accounts | Get a list of all payment accounts the user has access to. |
+| [**getAccountsPaged()**](AccountsApi.md#getAccountsPaged) | **GET** /api/v1/accounts/paged | Get a paged list of all payment accounts the user has access to for a specific merchant. |
+| [**getAllAccountStatements()**](AccountsApi.md#getAllAccountStatements) | **GET** /api/v1/accounts/statements | Gets all active statement generation requests for the user. |
+| [**getTransactionForAccount()**](AccountsApi.md#getTransactionForAccount) | **GET** /api/v1/accounts/{accountID}/transactions/{id} | Get a transaction. |
+| [**topupAccount()**](AccountsApi.md#topupAccount) | **PUT** /api/v1/accounts/{accountID}/topup/{amount} | SANDBOX ONLY. Top-ups a payment account with the amount provided. |
+| [**unarchiveAccount()**](AccountsApi.md#unarchiveAccount) | **PUT** /api/v1/accounts/unarchive/{id} | Sets the specified account as unarchived / active. |
+| [**updateAccount()**](AccountsApi.md#updateAccount) | **PUT** /api/v1/accounts/{id} | Updates an account record. |
 
 
-## `apiV1AccountsAccountIDPayoutsGet()`
+## `archiveAccount()`
 
 ```php
-apiV1AccountsAccountIDPayoutsGet($account_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort): \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPayoutPageResponse
+archiveAccount($id)
+```
+
+Sets the specified account as archived.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Nofrixion\Client\Api\AccountsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | The id of the account to archive.
+
+try {
+    $apiInstance->archiveAccount($id);
+} catch (Exception $e) {
+    echo 'Exception when calling AccountsApi->archiveAccount: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| The id of the account to archive. | |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `clearAccountStatements()`
+
+```php
+clearAccountStatements()
+```
+
+Clears the cached user statements for a user.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Nofrixion\Client\Api\AccountsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $apiInstance->clearAccountStatements();
+} catch (Exception $e) {
+    echo 'Exception when calling AccountsApi->clearAccountStatements: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `createAccount()`
+
+```php
+createAccount($no_frixion_money_moov_models_payment_account_create): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount
+```
+
+Creates a new merchant payment account.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Nofrixion\Client\Api\AccountsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$no_frixion_money_moov_models_payment_account_create = new \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountCreate(); // \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountCreate | The details of the payment account to create.
+
+try {
+    $result = $apiInstance->createAccount($no_frixion_money_moov_models_payment_account_create);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AccountsApi->createAccount: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **no_frixion_money_moov_models_payment_account_create** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountCreate**](../Model/NoFrixionMoneyMoovModelsPaymentAccountCreate.md)| The details of the payment account to create. | [optional] |
+
+### Return type
+
+[**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount**](../Model/NoFrixionMoneyMoovModelsPaymentAccount.md)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `generateAccountStatement()`
+
+```php
+generateAccountStatement($account_id, $no_frixion_money_moov_models_generate_statement_request)
+```
+
+Sends a message to the transaction statement queue to generate a statement with the supplied parameters.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Nofrixion\Client\Api\AccountsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$account_id = 'account_id_example'; // string | The account id
+$no_frixion_money_moov_models_generate_statement_request = new \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsGenerateStatementRequest(); // \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsGenerateStatementRequest | Request object containing the parameters for the statement generation.
+
+try {
+    $apiInstance->generateAccountStatement($account_id, $no_frixion_money_moov_models_generate_statement_request);
+} catch (Exception $e) {
+    echo 'Exception when calling AccountsApi->generateAccountStatement: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **account_id** | **string**| The account id | |
+| **no_frixion_money_moov_models_generate_statement_request** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsGenerateStatementRequest**](../Model/NoFrixionMoneyMoovModelsGenerateStatementRequest.md)| Request object containing the parameters for the statement generation. | [optional] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json-patch+json`, `application/json`, `text/json`, `application/*+json`
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getAccount()`
+
+```php
+getAccount($account_id): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount
+```
+
+Get an account.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Nofrixion\Client\Api\AccountsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$account_id = 'account_id_example'; // string | The accountID of the account to retrieve.
+
+try {
+    $result = $apiInstance->getAccount($account_id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AccountsApi->getAccount: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **account_id** | **string**| The accountID of the account to retrieve. | |
+
+### Return type
+
+[**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount**](../Model/NoFrixionMoneyMoovModelsPaymentAccount.md)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getAccountPayouts()`
+
+```php
+getAccountPayouts($account_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort): \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPayoutPageResponse
 ```
 
 Gets a list of all payouts for a specific account.
@@ -61,10 +358,10 @@ $tags = array('tags_example'); // string[] | The tag filter to apply to retrieve
 $sort = 'sort_example'; // string | Optional expression to sort the order of the payouts.
 
 try {
-    $result = $apiInstance->apiV1AccountsAccountIDPayoutsGet($account_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort);
+    $result = $apiInstance->getAccountPayouts($account_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AccountsApi->apiV1AccountsAccountIDPayoutsGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AccountsApi->getAccountPayouts: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -102,10 +399,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `apiV1AccountsAccountIDStatementsIdGet()`
+## `getAccountStatement()`
 
 ```php
-apiV1AccountsAccountIDStatementsIdGet($account_id, $id)
+getAccountStatement($account_id, $id)
 ```
 
 Gets the specified statement from the user's cache.
@@ -133,9 +430,9 @@ $account_id = 'account_id_example'; // string | The account id
 $id = 'id_example'; // string | ID of the requested statement.
 
 try {
-    $apiInstance->apiV1AccountsAccountIDStatementsIdGet($account_id, $id);
+    $apiInstance->getAccountStatement($account_id, $id);
 } catch (Exception $e) {
-    echo 'Exception when calling AccountsApi->apiV1AccountsAccountIDStatementsIdGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AccountsApi->getAccountStatement: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -163,71 +460,10 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `apiV1AccountsAccountIDStatementsPost()`
+## `getAccountTransactionsPaged()`
 
 ```php
-apiV1AccountsAccountIDStatementsPost($account_id, $no_frixion_money_moov_models_generate_statement_request)
-```
-
-Sends a message to the transaction statement queue to generate a statement with the supplied parameters.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: Bearer
-$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new Nofrixion\Client\Api\AccountsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$account_id = 'account_id_example'; // string | The account id
-$no_frixion_money_moov_models_generate_statement_request = new \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsGenerateStatementRequest(); // \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsGenerateStatementRequest | Request object containing the parameters for the statement generation.
-
-try {
-    $apiInstance->apiV1AccountsAccountIDStatementsPost($account_id, $no_frixion_money_moov_models_generate_statement_request);
-} catch (Exception $e) {
-    echo 'Exception when calling AccountsApi->apiV1AccountsAccountIDStatementsPost: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **account_id** | **string**| The account id | |
-| **no_frixion_money_moov_models_generate_statement_request** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsGenerateStatementRequest**](../Model/NoFrixionMoneyMoovModelsGenerateStatementRequest.md)| Request object containing the parameters for the statement generation. | [optional] |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[Bearer](../../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json-patch+json`, `application/json`, `text/json`, `application/*+json`
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `apiV1AccountsAccountIDTransactionsGet()`
-
-```php
-apiV1AccountsAccountIDTransactionsGet($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransactionPageResponse
+getAccountTransactionsPaged($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransactionPageResponse
 ```
 
 Get a list of the transactions for a single payment account.
@@ -261,10 +497,10 @@ $search = 'search_example'; // string | The text filter to apply to retrieve tra
 $sort = 'sort_example'; // string | Optional expression to sort the order of the transactions. Example \"Amount desc,Inserted asc\".
 
 try {
-    $result = $apiInstance->apiV1AccountsAccountIDTransactionsGet($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort);
+    $result = $apiInstance->getAccountTransactionsPaged($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AccountsApi->apiV1AccountsAccountIDTransactionsGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AccountsApi->getAccountTransactionsPaged: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -298,131 +534,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `apiV1AccountsAccountIDTransactionsIdGet()`
+## `getAccounts()`
 
 ```php
-apiV1AccountsAccountIDTransactionsIdGet($account_id, $id): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction
-```
-
-Get a transaction.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: Bearer
-$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new Nofrixion\Client\Api\AccountsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$account_id = 'account_id_example'; // string | The ID of the account to retrieve transactions for.
-$id = 'id_example'; // string | The transaction ID
-
-try {
-    $result = $apiInstance->apiV1AccountsAccountIDTransactionsIdGet($account_id, $id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AccountsApi->apiV1AccountsAccountIDTransactionsIdGet: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **account_id** | **string**| The ID of the account to retrieve transactions for. | |
-| **id** | **string**| The transaction ID | |
-
-### Return type
-
-[**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction**](../Model/NoFrixionMoneyMoovModelsTransaction.md)
-
-### Authorization
-
-[Bearer](../../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `text/plain`, `application/json`, `text/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `apiV1AccountsArchiveIdDelete()`
-
-```php
-apiV1AccountsArchiveIdDelete($id)
-```
-
-Sets the specified account as archived.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: Bearer
-$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new Nofrixion\Client\Api\AccountsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$id = 'id_example'; // string | The id of the account to archive.
-
-try {
-    $apiInstance->apiV1AccountsArchiveIdDelete($id);
-} catch (Exception $e) {
-    echo 'Exception when calling AccountsApi->apiV1AccountsArchiveIdDelete: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| The id of the account to archive. | |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[Bearer](../../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `apiV1AccountsGet()`
-
-```php
-apiV1AccountsGet($merchant_id, $connected_accounts, $only_connect_accounts): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount[]
+getAccounts($merchant_id, $connected_accounts, $only_connect_accounts): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount[]
 ```
 
 Get a list of all payment accounts the user has access to.
@@ -451,10 +566,10 @@ $connected_accounts = false; // bool | Optional include connected accounts along
 $only_connect_accounts = false; // bool | Only return connected accounts
 
 try {
-    $result = $apiInstance->apiV1AccountsGet($merchant_id, $connected_accounts, $only_connect_accounts);
+    $result = $apiInstance->getAccounts($merchant_id, $connected_accounts, $only_connect_accounts);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AccountsApi->apiV1AccountsGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AccountsApi->getAccounts: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -483,72 +598,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `apiV1AccountsIdPut()`
+## `getAccountsPaged()`
 
 ```php
-apiV1AccountsIdPut($id, $no_frixion_money_moov_models_account_update): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount
-```
-
-Updates an account record.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: Bearer
-$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new Nofrixion\Client\Api\AccountsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$id = 'id_example'; // string | The ID of the account to update.
-$no_frixion_money_moov_models_account_update = new \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsAccountUpdate(); // \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsAccountUpdate | The object containing the details of account to update (only name is editable).
-
-try {
-    $result = $apiInstance->apiV1AccountsIdPut($id, $no_frixion_money_moov_models_account_update);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AccountsApi->apiV1AccountsIdPut: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| The ID of the account to update. | |
-| **no_frixion_money_moov_models_account_update** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsAccountUpdate**](../Model/NoFrixionMoneyMoovModelsAccountUpdate.md)| The object containing the details of account to update (only name is editable). | [optional] |
-
-### Return type
-
-[**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount**](../Model/NoFrixionMoneyMoovModelsPaymentAccount.md)
-
-### Authorization
-
-[Bearer](../../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `text/plain`, `application/json`, `text/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `apiV1AccountsPagedGet()`
-
-```php
-apiV1AccountsPagedGet($merchant_id, $connected_accounts, $page_number, $page_size, $currency, $search, $sort, $only_connect_accounts): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountPageResponse
+getAccountsPaged($merchant_id, $connected_accounts, $page_number, $page_size, $currency, $search, $sort, $only_connect_accounts, $only_archived): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountPageResponse
 ```
 
 Get a paged list of all payment accounts the user has access to for a specific merchant.
@@ -580,12 +633,13 @@ $currency = 'currency_example'; // string | Optional. If specified will only ret
 $search = 'search_example'; // string | The text filter to apply to retrieve accounts with a similar account name, IBAN etc.
 $sort = 'sort_example'; // string | Optional expression to sort the order of the accounts. Example \"AvailableBalance desc,Inserted asc\".
 $only_connect_accounts = false; // bool | Only return connected accounts
+$only_archived = false; // bool | Flag that indicates whether to fetch only archived accounts or not.
 
 try {
-    $result = $apiInstance->apiV1AccountsPagedGet($merchant_id, $connected_accounts, $page_number, $page_size, $currency, $search, $sort, $only_connect_accounts);
+    $result = $apiInstance->getAccountsPaged($merchant_id, $connected_accounts, $page_number, $page_size, $currency, $search, $sort, $only_connect_accounts, $only_archived);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AccountsApi->apiV1AccountsPagedGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AccountsApi->getAccountsPaged: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -601,6 +655,7 @@ try {
 | **search** | **string**| The text filter to apply to retrieve accounts with a similar account name, IBAN etc. | [optional] |
 | **sort** | **string**| Optional expression to sort the order of the accounts. Example \&quot;AvailableBalance desc,Inserted asc\&quot;. | [optional] |
 | **only_connect_accounts** | **bool**| Only return connected accounts | [optional] [default to false] |
+| **only_archived** | **bool**| Flag that indicates whether to fetch only archived accounts or not. | [optional] [default to false] |
 
 ### Return type
 
@@ -619,126 +674,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `apiV1AccountsPost()`
+## `getAllAccountStatements()`
 
 ```php
-apiV1AccountsPost($no_frixion_money_moov_models_payment_account_create): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount
-```
-
-Creates a new merchant payment account.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: Bearer
-$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new Nofrixion\Client\Api\AccountsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$no_frixion_money_moov_models_payment_account_create = new \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountCreate(); // \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountCreate | The details of the payment account to create.
-
-try {
-    $result = $apiInstance->apiV1AccountsPost($no_frixion_money_moov_models_payment_account_create);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AccountsApi->apiV1AccountsPost: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **no_frixion_money_moov_models_payment_account_create** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountCreate**](../Model/NoFrixionMoneyMoovModelsPaymentAccountCreate.md)| The details of the payment account to create. | [optional] |
-
-### Return type
-
-[**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount**](../Model/NoFrixionMoneyMoovModelsPaymentAccount.md)
-
-### Authorization
-
-[Bearer](../../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
-- **Accept**: `text/plain`, `application/json`, `text/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `apiV1AccountsStatementsDelete()`
-
-```php
-apiV1AccountsStatementsDelete()
-```
-
-Clears the cached user statements for a user.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: Bearer
-$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new Nofrixion\Client\Api\AccountsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-
-try {
-    $apiInstance->apiV1AccountsStatementsDelete();
-} catch (Exception $e) {
-    echo 'Exception when calling AccountsApi->apiV1AccountsStatementsDelete: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[Bearer](../../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `apiV1AccountsStatementsGet()`
-
-```php
-apiV1AccountsStatementsGet()
+getAllAccountStatements()
 ```
 
 Gets all active statement generation requests for the user.
@@ -764,9 +703,9 @@ $apiInstance = new Nofrixion\Client\Api\AccountsApi(
 );
 
 try {
-    $apiInstance->apiV1AccountsStatementsGet();
+    $apiInstance->getAllAccountStatements();
 } catch (Exception $e) {
-    echo 'Exception when calling AccountsApi->apiV1AccountsStatementsGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AccountsApi->getAllAccountStatements: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -791,10 +730,133 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `apiV1AccountsUnarchiveIdPut()`
+## `getTransactionForAccount()`
 
 ```php
-apiV1AccountsUnarchiveIdPut($id)
+getTransactionForAccount($account_id, $id): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction
+```
+
+Get a transaction.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Nofrixion\Client\Api\AccountsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$account_id = 'account_id_example'; // string | The ID of the account to retrieve transactions for.
+$id = 'id_example'; // string | The transaction ID
+
+try {
+    $result = $apiInstance->getTransactionForAccount($account_id, $id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AccountsApi->getTransactionForAccount: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **account_id** | **string**| The ID of the account to retrieve transactions for. | |
+| **id** | **string**| The transaction ID | |
+
+### Return type
+
+[**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction**](../Model/NoFrixionMoneyMoovModelsTransaction.md)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `topupAccount()`
+
+```php
+topupAccount($account_id, $amount)
+```
+
+SANDBOX ONLY. Top-ups a payment account with the amount provided.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Nofrixion\Client\Api\AccountsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$account_id = 'account_id_example'; // string | The ID of the payment account.
+$amount = 3.4; // float | The amount to top-up on the payment account.
+
+try {
+    $apiInstance->topupAccount($account_id, $amount);
+} catch (Exception $e) {
+    echo 'Exception when calling AccountsApi->topupAccount: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **account_id** | **string**| The ID of the payment account. | |
+| **amount** | **float**| The amount to top-up on the payment account. | |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `unarchiveAccount()`
+
+```php
+unarchiveAccount($id)
 ```
 
 Sets the specified account as unarchived / active.
@@ -821,9 +883,9 @@ $apiInstance = new Nofrixion\Client\Api\AccountsApi(
 $id = 'id_example'; // string | The id of the account to unarchive.
 
 try {
-    $apiInstance->apiV1AccountsUnarchiveIdPut($id);
+    $apiInstance->unarchiveAccount($id);
 } catch (Exception $e) {
-    echo 'Exception when calling AccountsApi->apiV1AccountsUnarchiveIdPut: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AccountsApi->unarchiveAccount: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -850,13 +912,13 @@ void (empty response body)
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getAccountAsync()`
+## `updateAccount()`
 
 ```php
-getAccountAsync($account_id): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount
+updateAccount($id, $no_frixion_money_moov_models_account_update): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount
 ```
 
-Get an account.
+Updates an account record.
 
 ### Example
 
@@ -877,13 +939,14 @@ $apiInstance = new Nofrixion\Client\Api\AccountsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$account_id = 'account_id_example'; // string | The accountID of the account to retrieve.
+$id = 'id_example'; // string | The ID of the account to update.
+$no_frixion_money_moov_models_account_update = new \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsAccountUpdate(); // \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsAccountUpdate | The object containing the details of account to update (only name is editable).
 
 try {
-    $result = $apiInstance->getAccountAsync($account_id);
+    $result = $apiInstance->updateAccount($id, $no_frixion_money_moov_models_account_update);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AccountsApi->getAccountAsync: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AccountsApi->updateAccount: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -891,7 +954,8 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **account_id** | **string**| The accountID of the account to retrieve. | |
+| **id** | **string**| The ID of the account to update. | |
+| **no_frixion_money_moov_models_account_update** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsAccountUpdate**](../Model/NoFrixionMoneyMoovModelsAccountUpdate.md)| The object containing the details of account to update (only name is editable). | [optional] |
 
 ### Return type
 
@@ -903,7 +967,7 @@ try {
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: `application/json`
 - **Accept**: `text/plain`, `application/json`, `text/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

@@ -72,120 +72,120 @@ class OpenBankingApiTest extends TestCase
     }
 
     /**
-     * Test case for apiV1OpenbankingAccountAccountIDDelete
-     *
-     * Deletes the specified connected account and all associated transactions..
-     *
-     */
-    public function testApiV1OpenbankingAccountAccountIDDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1OpenbankingAccountAccountIDSynchronisePost
-     *
-     * Attempts to synchronise the balance and transactions of a connected account..
-     *
-     */
-    public function testApiV1OpenbankingAccountAccountIDSynchronisePost()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1OpenbankingAccountsConsentIDGet
-     *
-     * Retrieves list of accounts from financial institution..
-     *
-     */
-    public function testApiV1OpenbankingAccountsConsentIDGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1OpenbankingConsentsConsentIDDelete
-     *
-     * Deletes a single open banking consent..
-     *
-     */
-    public function testApiV1OpenbankingConsentsConsentIDDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1OpenbankingConsentsConsentIDGet
-     *
-     * Retrieve a single open banking consent..
-     *
-     */
-    public function testApiV1OpenbankingConsentsConsentIDGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1OpenbankingConsentsConsentIDPatch
-     *
-     * Creates a new authorisation to a financial institution based on a consent that has   already been authorised..
-     *
-     */
-    public function testApiV1OpenbankingConsentsConsentIDPatch()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1OpenbankingConsentsMerchantIDEmailDelete
-     *
-     * Delete all the open banking consents for a single user..
-     *
-     */
-    public function testApiV1OpenbankingConsentsMerchantIDEmailDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1OpenbankingConsentsMerchantIDEmailGet
-     *
-     * Retrieve all the open banking consents for a single user..
-     *
-     */
-    public function testApiV1OpenbankingConsentsMerchantIDEmailGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1OpenbankingConsentsPost
+     * Test case for createConsent
      *
      * Creates a consent thats used to initiate an authorisation to a financial institution..
      *
      */
-    public function testApiV1OpenbankingConsentsPost()
+    public function testCreateConsent()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1OpenbankingTransactionsConsentIDAccountIDGet
+     * Test case for deleteAllConsents
+     *
+     * Delete all the open banking consents for a single user..
+     *
+     */
+    public function testDeleteAllConsents()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteConnectedAccount
+     *
+     * Deletes the specified connected account and all associated transactions..
+     *
+     */
+    public function testDeleteConnectedAccount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteConsent
+     *
+     * Deletes a single open banking consent..
+     *
+     */
+    public function testDeleteConsent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getConnectedAccountTransactions
      *
      * Retrieves transactions from financial institution..
      *
      */
-    public function testApiV1OpenbankingTransactionsConsentIDAccountIDGet()
+    public function testGetConnectedAccountTransactions()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getConnectedAccounts
+     *
+     * Retrieves list of accounts from financial institution..
+     *
+     */
+    public function testGetConnectedAccounts()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getConsent
+     *
+     * Retrieve a single open banking consent..
+     *
+     */
+    public function testGetConsent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getConsents
+     *
+     * Retrieve all the open banking consents for a single user..
+     *
+     */
+    public function testGetConsents()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for reauthoriseConsent
+     *
+     * Creates a new authorisation to a financial institution based on a consent that has   already been authorised..
+     *
+     */
+    public function testReauthoriseConsent()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for synchroniseConnectedAccount
+     *
+     * Attempts to synchronise the balance and transactions of a connected account..
+     *
+     */
+    public function testSynchroniseConnectedAccount()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

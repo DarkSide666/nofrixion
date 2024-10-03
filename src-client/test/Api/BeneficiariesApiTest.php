@@ -72,96 +72,96 @@ class BeneficiariesApiTest extends TestCase
     }
 
     /**
-     * Test case for apiV1BeneficiariesAuthoriseIdPost
+     * Test case for authoriseBeneficiary
      *
      * Authorises a beneficiary..
      *
      */
-    public function testApiV1BeneficiariesAuthoriseIdPost()
+    public function testAuthoriseBeneficiary()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1BeneficiariesDisableIdPut
-     *
-     * Attempts to disable a beneficiary. If successful the beneficiary will be disabled..
-     *
-     */
-    public function testApiV1BeneficiariesDisableIdPut()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1BeneficiariesEnableIdPut
-     *
-     * Attempts to enable a beneficiary. If successful the beneficiary will be enabled..
-     *
-     */
-    public function testApiV1BeneficiariesEnableIdPut()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1BeneficiariesGet
-     *
-     * Gets a list of all beneficiaries..
-     *
-     */
-    public function testApiV1BeneficiariesGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1BeneficiariesIdDelete
-     *
-     * Deletes a beneficiary.
-     *
-     */
-    public function testApiV1BeneficiariesIdDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1BeneficiariesIdPut
-     *
-     * Updates a beneficiary..
-     *
-     */
-    public function testApiV1BeneficiariesIdPut()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1BeneficiariesPost
+     * Test case for createBeneficiary
      *
      * Creates a new beneficiary..
      *
      */
-    public function testApiV1BeneficiariesPost()
+    public function testCreateBeneficiary()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getBeneficiaryAsync
+     * Test case for deleteBeneficiary
+     *
+     * Deletes a beneficiary.
+     *
+     */
+    public function testDeleteBeneficiary()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for disableBeneficiary
+     *
+     * Attempts to disable a beneficiary. If successful the beneficiary will be disabled..
+     *
+     */
+    public function testDisableBeneficiary()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for enableBeneficiary
+     *
+     * Attempts to enable a beneficiary. If successful the beneficiary will be enabled..
+     *
+     */
+    public function testEnableBeneficiary()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getBeneficiaries
+     *
+     * Gets a list of all beneficiaries..
+     *
+     */
+    public function testGetBeneficiaries()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getBeneficiary
      *
      * Get's a beneficiary by beneficiary ID..
      *
      */
-    public function testGetBeneficiaryAsync()
+    public function testGetBeneficiary()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateBeneficiary
+     *
+     * Updates a beneficiary..
+     *
+     */
+    public function testUpdateBeneficiary()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

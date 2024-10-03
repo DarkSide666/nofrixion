@@ -1,6 +1,6 @@
 <?php
 /**
- * NoFrixionDataModelsCountryEntity
+ * NoFrixionMoneyMoovModelsLightningInvoice
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Nofrixion\Client\ObjectSerializer;
 
 /**
- * NoFrixionDataModelsCountryEntity Class Doc Comment
+ * NoFrixionMoneyMoovModelsLightningInvoice Class Doc Comment
  *
  * @category Class
  * @package  Nofrixion\Client
@@ -40,7 +40,7 @@ use \Nofrixion\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class NoFrixionDataModelsCountryEntity implements ModelInterface, ArrayAccess, \JsonSerializable
+class NoFrixionMoneyMoovModelsLightningInvoice implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class NoFrixionDataModelsCountryEntity implements ModelInterface, ArrayAccess, \
       *
       * @var string
       */
-    protected static $openAPIModelName = 'NoFrixion.DataModels.CountryEntity';
+    protected static $openAPIModelName = 'NoFrixion.MoneyMoov.Models.LightningInvoice';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,10 @@ class NoFrixionDataModelsCountryEntity implements ModelInterface, ArrayAccess, \
       * @var string[]
       */
     protected static $openAPITypes = [
-        'code' => 'string',
-        'name' => 'string',
-        'bank_countries' => '\Nofrixion\Client\Model\NoFrixionDataAccessDataModelsBankCountriesEntity[]'
+        'description' => 'string',
+        'payment_request' => 'string',
+        'r_hash' => 'string',
+        'expires_at' => '\DateTime'
     ];
 
     /**
@@ -70,9 +71,10 @@ class NoFrixionDataModelsCountryEntity implements ModelInterface, ArrayAccess, \
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'code' => null,
-        'name' => null,
-        'bank_countries' => null
+        'description' => null,
+        'payment_request' => null,
+        'r_hash' => null,
+        'expires_at' => 'date-time'
     ];
 
     /**
@@ -81,9 +83,10 @@ class NoFrixionDataModelsCountryEntity implements ModelInterface, ArrayAccess, \
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'code' => true,
-        'name' => true,
-        'bank_countries' => true
+        'description' => true,
+        'payment_request' => true,
+        'r_hash' => true,
+        'expires_at' => false
     ];
 
     /**
@@ -172,9 +175,10 @@ class NoFrixionDataModelsCountryEntity implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $attributeMap = [
-        'code' => 'code',
-        'name' => 'name',
-        'bank_countries' => 'bankCountries'
+        'description' => 'description',
+        'payment_request' => 'paymentRequest',
+        'r_hash' => 'rHash',
+        'expires_at' => 'expiresAt'
     ];
 
     /**
@@ -183,9 +187,10 @@ class NoFrixionDataModelsCountryEntity implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $setters = [
-        'code' => 'setCode',
-        'name' => 'setName',
-        'bank_countries' => 'setBankCountries'
+        'description' => 'setDescription',
+        'payment_request' => 'setPaymentRequest',
+        'r_hash' => 'setRHash',
+        'expires_at' => 'setExpiresAt'
     ];
 
     /**
@@ -194,9 +199,10 @@ class NoFrixionDataModelsCountryEntity implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $getters = [
-        'code' => 'getCode',
-        'name' => 'getName',
-        'bank_countries' => 'getBankCountries'
+        'description' => 'getDescription',
+        'payment_request' => 'getPaymentRequest',
+        'r_hash' => 'getRHash',
+        'expires_at' => 'getExpiresAt'
     ];
 
     /**
@@ -256,9 +262,10 @@ class NoFrixionDataModelsCountryEntity implements ModelInterface, ArrayAccess, \
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('code', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('bank_countries', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('payment_request', $data ?? [], null);
+        $this->setIfExists('r_hash', $data ?? [], null);
+        $this->setIfExists('expires_at', $data ?? [], null);
     }
 
     /**
@@ -304,103 +311,130 @@ class NoFrixionDataModelsCountryEntity implements ModelInterface, ArrayAccess, \
 
 
     /**
-     * Gets code
+     * Gets description
      *
      * @return string|null
      */
-    public function getCode()
+    public function getDescription()
     {
-        return $this->container['code'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets code
+     * Sets description
      *
-     * @param string|null $code code
+     * @param string|null $description description
      *
      * @return self
      */
-    public function setCode($code)
+    public function setDescription($description)
     {
-        if (is_null($code)) {
-            array_push($this->openAPINullablesSetToNull, 'code');
+        if (is_null($description)) {
+            array_push($this->openAPINullablesSetToNull, 'description');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('code', $nullablesSetToNull);
+            $index = array_search('description', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['code'] = $code;
+        $this->container['description'] = $description;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets payment_request
      *
      * @return string|null
      */
-    public function getName()
+    public function getPaymentRequest()
     {
-        return $this->container['name'];
+        return $this->container['payment_request'];
     }
 
     /**
-     * Sets name
+     * Sets payment_request
      *
-     * @param string|null $name name
+     * @param string|null $payment_request payment_request
      *
      * @return self
      */
-    public function setName($name)
+    public function setPaymentRequest($payment_request)
     {
-        if (is_null($name)) {
-            array_push($this->openAPINullablesSetToNull, 'name');
+        if (is_null($payment_request)) {
+            array_push($this->openAPINullablesSetToNull, 'payment_request');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
+            $index = array_search('payment_request', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['name'] = $name;
+        $this->container['payment_request'] = $payment_request;
 
         return $this;
     }
 
     /**
-     * Gets bank_countries
+     * Gets r_hash
      *
-     * @return \Nofrixion\Client\Model\NoFrixionDataAccessDataModelsBankCountriesEntity[]|null
+     * @return string|null
      */
-    public function getBankCountries()
+    public function getRHash()
     {
-        return $this->container['bank_countries'];
+        return $this->container['r_hash'];
     }
 
     /**
-     * Sets bank_countries
+     * Sets r_hash
      *
-     * @param \Nofrixion\Client\Model\NoFrixionDataAccessDataModelsBankCountriesEntity[]|null $bank_countries bank_countries
+     * @param string|null $r_hash r_hash
      *
      * @return self
      */
-    public function setBankCountries($bank_countries)
+    public function setRHash($r_hash)
     {
-        if (is_null($bank_countries)) {
-            array_push($this->openAPINullablesSetToNull, 'bank_countries');
+        if (is_null($r_hash)) {
+            array_push($this->openAPINullablesSetToNull, 'r_hash');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('bank_countries', $nullablesSetToNull);
+            $index = array_search('r_hash', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['bank_countries'] = $bank_countries;
+        $this->container['r_hash'] = $r_hash;
+
+        return $this;
+    }
+
+    /**
+     * Gets expires_at
+     *
+     * @return \DateTime|null
+     */
+    public function getExpiresAt()
+    {
+        return $this->container['expires_at'];
+    }
+
+    /**
+     * Sets expires_at
+     *
+     * @param \DateTime|null $expires_at expires_at
+     *
+     * @return self
+     */
+    public function setExpiresAt($expires_at)
+    {
+        if (is_null($expires_at)) {
+            throw new \InvalidArgumentException('non-nullable expires_at cannot be null');
+        }
+        $this->container['expires_at'] = $expires_at;
 
         return $this;
     }

@@ -4,15 +4,135 @@ All URIs are relative to https://api-sandbox.nofrixion.com, except if the operat
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**apiV1MandatesGet()**](MandatesApi.md#apiV1MandatesGet) | **GET** /api/v1/mandates | Gets all mandates from a specific merchant with the supplied parameters. |
-| [**apiV1MandatesIdGet()**](MandatesApi.md#apiV1MandatesIdGet) | **GET** /api/v1/mandates/{id} | Gets a specific mandate&#39;s information. |
-| [**apiV1MandatesPost()**](MandatesApi.md#apiV1MandatesPost) | **POST** /api/v1/mandates | Creates a Direct Debit mandate. |
+| [**createMandate()**](MandatesApi.md#createMandate) | **POST** /api/v1/mandates | Creates a Direct Debit mandate. |
+| [**getMandate()**](MandatesApi.md#getMandate) | **GET** /api/v1/mandates/{id} | Gets a specific mandate&#39;s information. |
+| [**getMandatesPaged()**](MandatesApi.md#getMandatesPaged) | **GET** /api/v1/mandates | Gets all mandates from a specific merchant with the supplied parameters. |
 
 
-## `apiV1MandatesGet()`
+## `createMandate()`
 
 ```php
-apiV1MandatesGet($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $sort): \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingMerchantDirectDebitMandatePageResponse
+createMandate($no_frixion_money_moov_models_mandates_mandate_create): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate
+```
+
+Creates a Direct Debit mandate.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Nofrixion\Client\Api\MandatesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$no_frixion_money_moov_models_mandates_mandate_create = new \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandateCreate(); // \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandateCreate | Mandate, customer and bank account information model.
+
+try {
+    $result = $apiInstance->createMandate($no_frixion_money_moov_models_mandates_mandate_create);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling MandatesApi->createMandate: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **no_frixion_money_moov_models_mandates_mandate_create** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandateCreate**](../Model/NoFrixionMoneyMoovModelsMandatesMandateCreate.md)| Mandate, customer and bank account information model. | [optional] |
+
+### Return type
+
+[**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate**](../Model/NoFrixionMoneyMoovModelsMandatesMandate.md)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getMandate()`
+
+```php
+getMandate($id): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate
+```
+
+Gets a specific mandate's information.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Nofrixion\Client\Api\MandatesApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID of the mandate to retrieve information from.
+
+try {
+    $result = $apiInstance->getMandate($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling MandatesApi->getMandate: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID of the mandate to retrieve information from. | |
+
+### Return type
+
+[**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate**](../Model/NoFrixionMoneyMoovModelsMandatesMandate.md)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `getMandatesPaged()`
+
+```php
+getMandatesPaged($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $sort): \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingMerchantDirectDebitMandatePageResponse
 ```
 
 Gets all mandates from a specific merchant with the supplied parameters.
@@ -49,10 +169,10 @@ $max_amount = 3.4; // float | The amount filter to apply to retrieve mandates th
 $sort = 'sort_example'; // string | Optional expression to sort the order of the mandates. Example \"Amount desc,Inserted asc\".
 
 try {
-    $result = $apiInstance->apiV1MandatesGet($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $sort);
+    $result = $apiInstance->getMandatesPaged($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $sort);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling MandatesApi->apiV1MandatesGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling MandatesApi->getMandatesPaged: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -83,126 +203,6 @@ try {
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: `text/plain`, `application/json`, `text/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `apiV1MandatesIdGet()`
-
-```php
-apiV1MandatesIdGet($id): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate
-```
-
-Gets a specific mandate's information.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: Bearer
-$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new Nofrixion\Client\Api\MandatesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$id = 'id_example'; // string | ID of the mandate to retrieve information from.
-
-try {
-    $result = $apiInstance->apiV1MandatesIdGet($id);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling MandatesApi->apiV1MandatesIdGet: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| ID of the mandate to retrieve information from. | |
-
-### Return type
-
-[**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate**](../Model/NoFrixionMoneyMoovModelsMandatesMandate.md)
-
-### Authorization
-
-[Bearer](../../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: `text/plain`, `application/json`, `text/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `apiV1MandatesPost()`
-
-```php
-apiV1MandatesPost($no_frixion_money_moov_models_mandates_mandate_create): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate
-```
-
-Creates a Direct Debit mandate.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: Bearer
-$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new Nofrixion\Client\Api\MandatesApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$no_frixion_money_moov_models_mandates_mandate_create = new \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandateCreate(); // \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandateCreate | Mandate, customer and bank account information model.
-
-try {
-    $result = $apiInstance->apiV1MandatesPost($no_frixion_money_moov_models_mandates_mandate_create);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling MandatesApi->apiV1MandatesPost: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **no_frixion_money_moov_models_mandates_mandate_create** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandateCreate**](../Model/NoFrixionMoneyMoovModelsMandatesMandateCreate.md)| Mandate, customer and bank account information model. | [optional] |
-
-### Return type
-
-[**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate**](../Model/NoFrixionMoneyMoovModelsMandatesMandate.md)
-
-### Authorization
-
-[Bearer](../../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: `application/json`
 - **Accept**: `text/plain`, `application/json`, `text/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

@@ -4,14 +4,14 @@ All URIs are relative to https://api-sandbox.nofrixion.com, except if the operat
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**apiV1TransactionsAccountIDGet()**](TransactionsApi.md#apiV1TransactionsAccountIDGet) | **GET** /api/v1/transactions/{accountID} | Get a list of the transactions for a single payment account. |
-| [**apiV1TransactionsGet()**](TransactionsApi.md#apiV1TransactionsGet) | **GET** /api/v1/transactions | Get a list of the transactions for all payment accounts a user has access to. |
+| [**getTransactionsForAccountPaged()**](TransactionsApi.md#getTransactionsForAccountPaged) | **GET** /api/v1/transactions/{accountID} | Get a list of the transactions for a single payment account. |
+| [**getTransactionsPaged()**](TransactionsApi.md#getTransactionsPaged) | **GET** /api/v1/transactions | Get a list of the transactions for all payment accounts a user has access to. |
 
 
-## `apiV1TransactionsAccountIDGet()`
+## `getTransactionsForAccountPaged()`
 
 ```php
-apiV1TransactionsAccountIDGet($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransactionPageResponse
+getTransactionsForAccountPaged($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransactionPageResponse
 ```
 
 Get a list of the transactions for a single payment account.
@@ -45,10 +45,10 @@ $search = 'search_example'; // string | The text filter to apply to retrieve tra
 $sort = 'sort_example'; // string | Optional expression to sort the order of the transactions. Example \"Amount desc,Inserted asc\".
 
 try {
-    $result = $apiInstance->apiV1TransactionsAccountIDGet($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort);
+    $result = $apiInstance->getTransactionsForAccountPaged($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling TransactionsApi->apiV1TransactionsAccountIDGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling TransactionsApi->getTransactionsForAccountPaged: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -82,10 +82,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `apiV1TransactionsGet()`
+## `getTransactionsPaged()`
 
 ```php
-apiV1TransactionsGet($from_date, $page_number, $page_size, $to_date, $credit_type): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransactionPageResponse
+getTransactionsPaged($from_date, $page_number, $page_size, $to_date, $credit_type): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransactionPageResponse
 ```
 
 Get a list of the transactions for all payment accounts a user has access to.
@@ -116,10 +116,10 @@ $to_date = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | The end da
 $credit_type = 'credit_type_example'; // string | A credit filter to apply to the transactions to retrieve.
 
 try {
-    $result = $apiInstance->apiV1TransactionsGet($from_date, $page_number, $page_size, $to_date, $credit_type);
+    $result = $apiInstance->getTransactionsPaged($from_date, $page_number, $page_size, $to_date, $credit_type);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling TransactionsApi->apiV1TransactionsGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling TransactionsApi->getTransactionsPaged: ', $e->getMessage(), PHP_EOL;
 }
 ```
 

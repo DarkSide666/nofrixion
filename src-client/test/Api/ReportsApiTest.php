@@ -72,24 +72,24 @@ class ReportsApiTest extends TestCase
     }
 
     /**
-     * Test case for apiV1ReportsIdInitiatePut
+     * Test case for getReportResult
      *
-     * Initiates the execution of a merchant report..
+     * Attempts to get the aggregated results of report execution. If the   report is still in progress an accepted response will be returned..
      *
      */
-    public function testApiV1ReportsIdInitiatePut()
+    public function testGetReportResult()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1ReportsIdResultStatementNumberGet
+     * Test case for initiateReport
      *
-     * Attempts to get the aggregated results of report execution. If the   report is still in progress an accepted response will be returned..
+     * Initiates the execution of a merchant report..
      *
      */
-    public function testApiV1ReportsIdResultStatementNumberGet()
+    public function testInitiateReport()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

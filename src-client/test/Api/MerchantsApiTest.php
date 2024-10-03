@@ -72,252 +72,252 @@ class MerchantsApiTest extends TestCase
     }
 
     /**
-     * Test case for apiV1MerchantsGet
-     *
-     * Get's a list of merchants the caller has access to..
-     *
-     */
-    public function testApiV1MerchantsGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsMerchantIDAccountsAccountIDGet
-     *
-     * Get an account..
-     *
-     */
-    public function testApiV1MerchantsMerchantIDAccountsAccountIDGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsMerchantIDAccountsGet
-     *
-     * Get a list of merchant's payment accounts..
-     *
-     */
-    public function testApiV1MerchantsMerchantIDAccountsGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsMerchantIDBanksettingsGet
-     *
-     * Gets a list of the banks configured for a merchant's pay by bank requests,.
-     *
-     */
-    public function testApiV1MerchantsMerchantIDBanksettingsGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsMerchantIDBeneficiariesGet
-     *
-     * Gets a list of all beneficiaries..
-     *
-     */
-    public function testApiV1MerchantsMerchantIDBeneficiariesGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsMerchantIDBeneficiariesIdGet
-     *
-     * Get's a beneficiary by beneficiary ID..
-     *
-     */
-    public function testApiV1MerchantsMerchantIDBeneficiariesIdGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsMerchantIDBeneficiarygroupsGet
-     *
-     * Gets a list of all beneficiary groups..
-     *
-     */
-    public function testApiV1MerchantsMerchantIDBeneficiarygroupsGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsMerchantIDGet
-     *
-     * Get's a merchant..
-     *
-     */
-    public function testApiV1MerchantsMerchantIDGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsMerchantIDPayoutsGet
-     *
-     * Gets a list of all payouts for a specific merchant..
-     *
-     */
-    public function testApiV1MerchantsMerchantIDPayoutsGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsMerchantIDTagsGet
-     *
-     * Get a list of merchant tags.
-     *
-     */
-    public function testApiV1MerchantsMerchantIDTagsGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsMerchantIDTagsPost
+     * Test case for createMerchantTag
      *
      * Adds a tag to a merchant..
      *
      */
-    public function testApiV1MerchantsMerchantIDTagsPost()
+    public function testCreateMerchantTag()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1MerchantsMerchantIDTagsTagIDDelete
-     *
-     * Deletes a tag from a merchant.
-     *
-     */
-    public function testApiV1MerchantsMerchantIDTagsTagIDDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsMerchantIDTokensGet
-     *
-     * Gets a list of a merchant's issued API tokens..
-     *
-     */
-    public function testApiV1MerchantsMerchantIDTokensGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsMerchantIDTransactionsGet
-     *
-     * Gets a list of transactions for all a merchant's accounts..
-     *
-     */
-    public function testApiV1MerchantsMerchantIDTransactionsGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsMerchantIDUserinvitesGet
-     *
-     * Gets user invites associated with merchant..
-     *
-     */
-    public function testApiV1MerchantsMerchantIDUserinvitesGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsMerchantIDUserrolesGet
-     *
-     * Gets user roles associated with merchant..
-     *
-     */
-    public function testApiV1MerchantsMerchantIDUserrolesGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsMerchantIDUsersGet
-     *
-     * Gets all users including invitees for a merchant..
-     *
-     */
-    public function testApiV1MerchantsMerchantIDUsersGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsMerchantIDWebhooksGet
-     *
-     * Get all configured webhooks for a merchant..
-     *
-     */
-    public function testApiV1MerchantsMerchantIDWebhooksGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsPagedGet
-     *
-     * Get a paged list of all the merchants the caller has access to..
-     *
-     */
-    public function testApiV1MerchantsPagedGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsUserrolesIdDelete
-     *
-     * Deletes user role..
-     *
-     */
-    public function testApiV1MerchantsUserrolesIdDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MerchantsUserrolesPost
+     * Test case for createMerchantUserRole
      *
      * Assigns role to user..
      *
      */
-    public function testApiV1MerchantsUserrolesPost()
+    public function testCreateMerchantUserRole()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteMerchantTag
+     *
+     * Deletes a tag from a merchant.
+     *
+     */
+    public function testDeleteMerchantTag()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteMerchantUserRole
+     *
+     * Deletes user role..
+     *
+     */
+    public function testDeleteMerchantUserRole()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMerchant
+     *
+     * Get's a merchant..
+     *
+     */
+    public function testGetMerchant()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMerchantAccount
+     *
+     * Get an account..
+     *
+     */
+    public function testGetMerchantAccount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMerchantAccounts
+     *
+     * Get a list of merchant's payment accounts..
+     *
+     */
+    public function testGetMerchantAccounts()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMerchantBankSettings
+     *
+     * Gets a list of the banks configured for a merchant's pay by bank requests,.
+     *
+     */
+    public function testGetMerchantBankSettings()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMerchantBeneficiaries
+     *
+     * Gets a list of all beneficiaries..
+     *
+     */
+    public function testGetMerchantBeneficiaries()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMerchantBeneficiary
+     *
+     * Get's a beneficiary by beneficiary ID..
+     *
+     */
+    public function testGetMerchantBeneficiary()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMerchantBeneficiaryGroups
+     *
+     * Gets a list of all beneficiary groups..
+     *
+     */
+    public function testGetMerchantBeneficiaryGroups()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMerchantPayoutsPaged
+     *
+     * Gets a list of all payouts for a specific merchant..
+     *
+     */
+    public function testGetMerchantPayoutsPaged()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMerchantTags
+     *
+     * Get a list of merchant tags.
+     *
+     */
+    public function testGetMerchantTags()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMerchantTokens
+     *
+     * Gets a list of a merchant's issued API tokens..
+     *
+     */
+    public function testGetMerchantTokens()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMerchantTransactionsPaged
+     *
+     * Gets a list of transactions for all a merchant's accounts..
+     *
+     */
+    public function testGetMerchantTransactionsPaged()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMerchantUserInvites
+     *
+     * Gets user invites associated with merchant..
+     *
+     */
+    public function testGetMerchantUserInvites()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMerchantUserRoles
+     *
+     * Gets user roles associated with merchant..
+     *
+     */
+    public function testGetMerchantUserRoles()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMerchantUsers
+     *
+     * Gets all users including invitees for a merchant..
+     *
+     */
+    public function testGetMerchantUsers()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMerchantWebhooks
+     *
+     * Get all configured webhooks for a merchant..
+     *
+     */
+    public function testGetMerchantWebhooks()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMerchants
+     *
+     * Get's a list of merchants the caller has access to..
+     *
+     */
+    public function testGetMerchants()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMerchantsPaged
+     *
+     * Get a paged list of all the merchants the caller has access to..
+     *
+     */
+    public function testGetMerchantsPaged()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

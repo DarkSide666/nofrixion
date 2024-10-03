@@ -72,48 +72,48 @@ class WebhooksApiTest extends TestCase
     }
 
     /**
-     * Test case for apiV1WebhooksIdDelete
-     *
-     * Deletes a webhook..
-     *
-     */
-    public function testApiV1WebhooksIdDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1WebhooksIdPut
-     *
-     * Updates a webhook for the given merchant..
-     *
-     */
-    public function testApiV1WebhooksIdPut()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1WebhooksMerchantIDGet
-     *
-     * Get all configured webhooks for a merchant..
-     *
-     */
-    public function testApiV1WebhooksMerchantIDGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1WebhooksPost
+     * Test case for createWebhook
      *
      * Creates a webhook for the given merchant..
      *
      */
-    public function testApiV1WebhooksPost()
+    public function testCreateWebhook()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteWebhook
+     *
+     * Deletes a webhook..
+     *
+     */
+    public function testDeleteWebhook()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getWebhooks
+     *
+     * Get all configured webhooks for a merchant..
+     *
+     */
+    public function testGetWebhooks()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateWebhook
+     *
+     * Updates a webhook for the given merchant..
+     *
+     */
+    public function testUpdateWebhook()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

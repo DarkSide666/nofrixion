@@ -71,49 +71,52 @@ class AccountsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiV1AccountsAccountIDPayoutsGet' => [
+        'archiveAccount' => [
             'application/json',
         ],
-        'apiV1AccountsAccountIDStatementsIdGet' => [
+        'clearAccountStatements' => [
             'application/json',
         ],
-        'apiV1AccountsAccountIDStatementsPost' => [
+        'createAccount' => [
+            'application/json',
+        ],
+        'generateAccountStatement' => [
             'application/json-patch+json',
             'application/json',
             'text/json',
             'application/*+json',
         ],
-        'apiV1AccountsAccountIDTransactionsGet' => [
+        'getAccount' => [
             'application/json',
         ],
-        'apiV1AccountsAccountIDTransactionsIdGet' => [
+        'getAccountPayouts' => [
             'application/json',
         ],
-        'apiV1AccountsArchiveIdDelete' => [
+        'getAccountStatement' => [
             'application/json',
         ],
-        'apiV1AccountsGet' => [
+        'getAccountTransactionsPaged' => [
             'application/json',
         ],
-        'apiV1AccountsIdPut' => [
+        'getAccounts' => [
             'application/json',
         ],
-        'apiV1AccountsPagedGet' => [
+        'getAccountsPaged' => [
             'application/json',
         ],
-        'apiV1AccountsPost' => [
+        'getAllAccountStatements' => [
             'application/json',
         ],
-        'apiV1AccountsStatementsDelete' => [
+        'getTransactionForAccount' => [
             'application/json',
         ],
-        'apiV1AccountsStatementsGet' => [
+        'topupAccount' => [
             'application/json',
         ],
-        'apiV1AccountsUnarchiveIdPut' => [
+        'unarchiveAccount' => [
             'application/json',
         ],
-        'getAccountAsync' => [
+        'updateAccount' => [
             'application/json',
         ],
     ];
@@ -165,7 +168,1319 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsAccountIDPayoutsGet
+     * Operation archiveAccount
+     *
+     * Sets the specified account as archived.
+     *
+     * @param  string $id The id of the account to archive. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['archiveAccount'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function archiveAccount($id, string $contentType = self::contentTypes['archiveAccount'][0])
+    {
+        $this->archiveAccountWithHttpInfo($id, $contentType);
+    }
+
+    /**
+     * Operation archiveAccountWithHttpInfo
+     *
+     * Sets the specified account as archived.
+     *
+     * @param  string $id The id of the account to archive. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['archiveAccount'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function archiveAccountWithHttpInfo($id, string $contentType = self::contentTypes['archiveAccount'][0])
+    {
+        $request = $this->archiveAccountRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation archiveAccountAsync
+     *
+     * Sets the specified account as archived.
+     *
+     * @param  string $id The id of the account to archive. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['archiveAccount'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function archiveAccountAsync($id, string $contentType = self::contentTypes['archiveAccount'][0])
+    {
+        return $this->archiveAccountAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation archiveAccountAsyncWithHttpInfo
+     *
+     * Sets the specified account as archived.
+     *
+     * @param  string $id The id of the account to archive. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['archiveAccount'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function archiveAccountAsyncWithHttpInfo($id, string $contentType = self::contentTypes['archiveAccount'][0])
+    {
+        $returnType = '';
+        $request = $this->archiveAccountRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'archiveAccount'
+     *
+     * @param  string $id The id of the account to archive. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['archiveAccount'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function archiveAccountRequest($id, string $contentType = self::contentTypes['archiveAccount'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling archiveAccount'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/accounts/archive/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            [],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation clearAccountStatements
+     *
+     * Clears the cached user statements for a user.
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['clearAccountStatements'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function clearAccountStatements(string $contentType = self::contentTypes['clearAccountStatements'][0])
+    {
+        $this->clearAccountStatementsWithHttpInfo($contentType);
+    }
+
+    /**
+     * Operation clearAccountStatementsWithHttpInfo
+     *
+     * Clears the cached user statements for a user.
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['clearAccountStatements'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function clearAccountStatementsWithHttpInfo(string $contentType = self::contentTypes['clearAccountStatements'][0])
+    {
+        $request = $this->clearAccountStatementsRequest($contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation clearAccountStatementsAsync
+     *
+     * Clears the cached user statements for a user.
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['clearAccountStatements'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function clearAccountStatementsAsync(string $contentType = self::contentTypes['clearAccountStatements'][0])
+    {
+        return $this->clearAccountStatementsAsyncWithHttpInfo($contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation clearAccountStatementsAsyncWithHttpInfo
+     *
+     * Clears the cached user statements for a user.
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['clearAccountStatements'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function clearAccountStatementsAsyncWithHttpInfo(string $contentType = self::contentTypes['clearAccountStatements'][0])
+    {
+        $returnType = '';
+        $request = $this->clearAccountStatementsRequest($contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'clearAccountStatements'
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['clearAccountStatements'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function clearAccountStatementsRequest(string $contentType = self::contentTypes['clearAccountStatements'][0])
+    {
+
+
+        $resourcePath = '/api/v1/accounts/statements';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            [],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation createAccount
+     *
+     * Creates a new merchant payment account.
+     *
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountCreate $no_frixion_money_moov_models_payment_account_create The details of the payment account to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAccount'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount
+     */
+    public function createAccount($no_frixion_money_moov_models_payment_account_create = null, string $contentType = self::contentTypes['createAccount'][0])
+    {
+        list($response) = $this->createAccountWithHttpInfo($no_frixion_money_moov_models_payment_account_create, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createAccountWithHttpInfo
+     *
+     * Creates a new merchant payment account.
+     *
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountCreate $no_frixion_money_moov_models_payment_account_create The details of the payment account to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAccount'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createAccountWithHttpInfo($no_frixion_money_moov_models_payment_account_create = null, string $contentType = self::contentTypes['createAccount'][0])
+    {
+        $request = $this->createAccountRequest($no_frixion_money_moov_models_payment_account_create, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createAccountAsync
+     *
+     * Creates a new merchant payment account.
+     *
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountCreate $no_frixion_money_moov_models_payment_account_create The details of the payment account to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAccount'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createAccountAsync($no_frixion_money_moov_models_payment_account_create = null, string $contentType = self::contentTypes['createAccount'][0])
+    {
+        return $this->createAccountAsyncWithHttpInfo($no_frixion_money_moov_models_payment_account_create, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createAccountAsyncWithHttpInfo
+     *
+     * Creates a new merchant payment account.
+     *
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountCreate $no_frixion_money_moov_models_payment_account_create The details of the payment account to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAccount'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createAccountAsyncWithHttpInfo($no_frixion_money_moov_models_payment_account_create = null, string $contentType = self::contentTypes['createAccount'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount';
+        $request = $this->createAccountRequest($no_frixion_money_moov_models_payment_account_create, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createAccount'
+     *
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountCreate $no_frixion_money_moov_models_payment_account_create The details of the payment account to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAccount'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createAccountRequest($no_frixion_money_moov_models_payment_account_create = null, string $contentType = self::contentTypes['createAccount'][0])
+    {
+
+
+
+        $resourcePath = '/api/v1/accounts';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($no_frixion_money_moov_models_payment_account_create)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_payment_account_create));
+            } else {
+                $httpBody = $no_frixion_money_moov_models_payment_account_create;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation generateAccountStatement
+     *
+     * Sends a message to the transaction statement queue to generate a statement with the supplied parameters.
+     *
+     * @param  string $account_id The account id (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsGenerateStatementRequest $no_frixion_money_moov_models_generate_statement_request Request object containing the parameters for the statement generation. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateAccountStatement'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function generateAccountStatement($account_id, $no_frixion_money_moov_models_generate_statement_request = null, string $contentType = self::contentTypes['generateAccountStatement'][0])
+    {
+        $this->generateAccountStatementWithHttpInfo($account_id, $no_frixion_money_moov_models_generate_statement_request, $contentType);
+    }
+
+    /**
+     * Operation generateAccountStatementWithHttpInfo
+     *
+     * Sends a message to the transaction statement queue to generate a statement with the supplied parameters.
+     *
+     * @param  string $account_id The account id (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsGenerateStatementRequest $no_frixion_money_moov_models_generate_statement_request Request object containing the parameters for the statement generation. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateAccountStatement'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function generateAccountStatementWithHttpInfo($account_id, $no_frixion_money_moov_models_generate_statement_request = null, string $contentType = self::contentTypes['generateAccountStatement'][0])
+    {
+        $request = $this->generateAccountStatementRequest($account_id, $no_frixion_money_moov_models_generate_statement_request, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation generateAccountStatementAsync
+     *
+     * Sends a message to the transaction statement queue to generate a statement with the supplied parameters.
+     *
+     * @param  string $account_id The account id (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsGenerateStatementRequest $no_frixion_money_moov_models_generate_statement_request Request object containing the parameters for the statement generation. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateAccountStatement'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function generateAccountStatementAsync($account_id, $no_frixion_money_moov_models_generate_statement_request = null, string $contentType = self::contentTypes['generateAccountStatement'][0])
+    {
+        return $this->generateAccountStatementAsyncWithHttpInfo($account_id, $no_frixion_money_moov_models_generate_statement_request, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation generateAccountStatementAsyncWithHttpInfo
+     *
+     * Sends a message to the transaction statement queue to generate a statement with the supplied parameters.
+     *
+     * @param  string $account_id The account id (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsGenerateStatementRequest $no_frixion_money_moov_models_generate_statement_request Request object containing the parameters for the statement generation. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateAccountStatement'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function generateAccountStatementAsyncWithHttpInfo($account_id, $no_frixion_money_moov_models_generate_statement_request = null, string $contentType = self::contentTypes['generateAccountStatement'][0])
+    {
+        $returnType = '';
+        $request = $this->generateAccountStatementRequest($account_id, $no_frixion_money_moov_models_generate_statement_request, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'generateAccountStatement'
+     *
+     * @param  string $account_id The account id (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsGenerateStatementRequest $no_frixion_money_moov_models_generate_statement_request Request object containing the parameters for the statement generation. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['generateAccountStatement'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function generateAccountStatementRequest($account_id, $no_frixion_money_moov_models_generate_statement_request = null, string $contentType = self::contentTypes['generateAccountStatement'][0])
+    {
+
+        // verify the required parameter 'account_id' is set
+        if ($account_id === null || (is_array($account_id) && count($account_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $account_id when calling generateAccountStatement'
+            );
+        }
+
+
+
+        $resourcePath = '/api/v1/accounts/{accountID}/statements';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($account_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'accountID' . '}',
+                ObjectSerializer::toPathValue($account_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            [],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($no_frixion_money_moov_models_generate_statement_request)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_generate_statement_request));
+            } else {
+                $httpBody = $no_frixion_money_moov_models_generate_statement_request;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getAccount
+     *
+     * Get an account.
+     *
+     * @param  string $account_id The accountID of the account to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccount'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount
+     */
+    public function getAccount($account_id, string $contentType = self::contentTypes['getAccount'][0])
+    {
+        list($response) = $this->getAccountWithHttpInfo($account_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getAccountWithHttpInfo
+     *
+     * Get an account.
+     *
+     * @param  string $account_id The accountID of the account to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccount'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getAccountWithHttpInfo($account_id, string $contentType = self::contentTypes['getAccount'][0])
+    {
+        $request = $this->getAccountRequest($account_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getAccountAsync
+     *
+     * Get an account.
+     *
+     * @param  string $account_id The accountID of the account to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccount'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAccountAsync($account_id, string $contentType = self::contentTypes['getAccount'][0])
+    {
+        return $this->getAccountAsyncWithHttpInfo($account_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getAccountAsyncWithHttpInfo
+     *
+     * Get an account.
+     *
+     * @param  string $account_id The accountID of the account to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccount'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAccountAsyncWithHttpInfo($account_id, string $contentType = self::contentTypes['getAccount'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount';
+        $request = $this->getAccountRequest($account_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getAccount'
+     *
+     * @param  string $account_id The accountID of the account to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccount'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getAccountRequest($account_id, string $contentType = self::contentTypes['getAccount'][0])
+    {
+
+        // verify the required parameter 'account_id' is set
+        if ($account_id === null || (is_array($account_id) && count($account_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $account_id when calling getAccount'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/accounts/{accountID}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($account_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'accountID' . '}',
+                ObjectSerializer::toPathValue($account_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getAccountPayouts
      *
      * Gets a list of all payouts for a specific account.
      *
@@ -181,20 +1496,20 @@ class AccountsApi
      * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount. (optional)
      * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags. (optional)
      * @param  string $sort Optional expression to sort the order of the payouts. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDPayoutsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountPayouts'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPayoutPageResponse
      */
-    public function apiV1AccountsAccountIDPayoutsGet($account_id, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['apiV1AccountsAccountIDPayoutsGet'][0])
+    public function getAccountPayouts($account_id, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['getAccountPayouts'][0])
     {
-        list($response) = $this->apiV1AccountsAccountIDPayoutsGetWithHttpInfo($account_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
+        list($response) = $this->getAccountPayoutsWithHttpInfo($account_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1AccountsAccountIDPayoutsGetWithHttpInfo
+     * Operation getAccountPayoutsWithHttpInfo
      *
      * Gets a list of all payouts for a specific account.
      *
@@ -210,15 +1525,15 @@ class AccountsApi
      * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount. (optional)
      * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags. (optional)
      * @param  string $sort Optional expression to sort the order of the payouts. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDPayoutsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountPayouts'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPayoutPageResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1AccountsAccountIDPayoutsGetWithHttpInfo($account_id, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['apiV1AccountsAccountIDPayoutsGet'][0])
+    public function getAccountPayoutsWithHttpInfo($account_id, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['getAccountPayouts'][0])
     {
-        $request = $this->apiV1AccountsAccountIDPayoutsGetRequest($account_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
+        $request = $this->getAccountPayoutsRequest($account_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -329,7 +1644,7 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsAccountIDPayoutsGetAsync
+     * Operation getAccountPayoutsAsync
      *
      * Gets a list of all payouts for a specific account.
      *
@@ -345,14 +1660,14 @@ class AccountsApi
      * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount. (optional)
      * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags. (optional)
      * @param  string $sort Optional expression to sort the order of the payouts. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDPayoutsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountPayouts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1AccountsAccountIDPayoutsGetAsync($account_id, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['apiV1AccountsAccountIDPayoutsGet'][0])
+    public function getAccountPayoutsAsync($account_id, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['getAccountPayouts'][0])
     {
-        return $this->apiV1AccountsAccountIDPayoutsGetAsyncWithHttpInfo($account_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType)
+        return $this->getAccountPayoutsAsyncWithHttpInfo($account_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -361,7 +1676,7 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsAccountIDPayoutsGetAsyncWithHttpInfo
+     * Operation getAccountPayoutsAsyncWithHttpInfo
      *
      * Gets a list of all payouts for a specific account.
      *
@@ -377,15 +1692,15 @@ class AccountsApi
      * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount. (optional)
      * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags. (optional)
      * @param  string $sort Optional expression to sort the order of the payouts. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDPayoutsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountPayouts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1AccountsAccountIDPayoutsGetAsyncWithHttpInfo($account_id, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['apiV1AccountsAccountIDPayoutsGet'][0])
+    public function getAccountPayoutsAsyncWithHttpInfo($account_id, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['getAccountPayouts'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPayoutPageResponse';
-        $request = $this->apiV1AccountsAccountIDPayoutsGetRequest($account_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
+        $request = $this->getAccountPayoutsRequest($account_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -424,7 +1739,7 @@ class AccountsApi
     }
 
     /**
-     * Create request for operation 'apiV1AccountsAccountIDPayoutsGet'
+     * Create request for operation 'getAccountPayouts'
      *
      * @param  string $account_id Required. The ID of the account to get the payouts for. (required)
      * @param  int $page_number The page number from where records are retrieved. (optional)
@@ -438,18 +1753,18 @@ class AccountsApi
      * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount. (optional)
      * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags. (optional)
      * @param  string $sort Optional expression to sort the order of the payouts. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDPayoutsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountPayouts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1AccountsAccountIDPayoutsGetRequest($account_id, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['apiV1AccountsAccountIDPayoutsGet'][0])
+    public function getAccountPayoutsRequest($account_id, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['getAccountPayouts'][0])
     {
 
         // verify the required parameter 'account_id' is set
         if ($account_id === null || (is_array($account_id) && count($account_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $account_id when calling apiV1AccountsAccountIDPayoutsGet'
+                'Missing the required parameter $account_id when calling getAccountPayouts'
             );
         }
 
@@ -642,39 +1957,39 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsAccountIDStatementsIdGet
+     * Operation getAccountStatement
      *
      * Gets the specified statement from the user&#39;s cache.
      *
      * @param  string $account_id The account id (required)
      * @param  string $id ID of the requested statement. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDStatementsIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountStatement'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function apiV1AccountsAccountIDStatementsIdGet($account_id, $id, string $contentType = self::contentTypes['apiV1AccountsAccountIDStatementsIdGet'][0])
+    public function getAccountStatement($account_id, $id, string $contentType = self::contentTypes['getAccountStatement'][0])
     {
-        $this->apiV1AccountsAccountIDStatementsIdGetWithHttpInfo($account_id, $id, $contentType);
+        $this->getAccountStatementWithHttpInfo($account_id, $id, $contentType);
     }
 
     /**
-     * Operation apiV1AccountsAccountIDStatementsIdGetWithHttpInfo
+     * Operation getAccountStatementWithHttpInfo
      *
      * Gets the specified statement from the user&#39;s cache.
      *
      * @param  string $account_id The account id (required)
      * @param  string $id ID of the requested statement. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDStatementsIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountStatement'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1AccountsAccountIDStatementsIdGetWithHttpInfo($account_id, $id, string $contentType = self::contentTypes['apiV1AccountsAccountIDStatementsIdGet'][0])
+    public function getAccountStatementWithHttpInfo($account_id, $id, string $contentType = self::contentTypes['getAccountStatement'][0])
     {
-        $request = $this->apiV1AccountsAccountIDStatementsIdGetRequest($account_id, $id, $contentType);
+        $request = $this->getAccountStatementRequest($account_id, $id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -721,20 +2036,20 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsAccountIDStatementsIdGetAsync
+     * Operation getAccountStatementAsync
      *
      * Gets the specified statement from the user&#39;s cache.
      *
      * @param  string $account_id The account id (required)
      * @param  string $id ID of the requested statement. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDStatementsIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountStatement'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1AccountsAccountIDStatementsIdGetAsync($account_id, $id, string $contentType = self::contentTypes['apiV1AccountsAccountIDStatementsIdGet'][0])
+    public function getAccountStatementAsync($account_id, $id, string $contentType = self::contentTypes['getAccountStatement'][0])
     {
-        return $this->apiV1AccountsAccountIDStatementsIdGetAsyncWithHttpInfo($account_id, $id, $contentType)
+        return $this->getAccountStatementAsyncWithHttpInfo($account_id, $id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -743,21 +2058,21 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsAccountIDStatementsIdGetAsyncWithHttpInfo
+     * Operation getAccountStatementAsyncWithHttpInfo
      *
      * Gets the specified statement from the user&#39;s cache.
      *
      * @param  string $account_id The account id (required)
      * @param  string $id ID of the requested statement. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDStatementsIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountStatement'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1AccountsAccountIDStatementsIdGetAsyncWithHttpInfo($account_id, $id, string $contentType = self::contentTypes['apiV1AccountsAccountIDStatementsIdGet'][0])
+    public function getAccountStatementAsyncWithHttpInfo($account_id, $id, string $contentType = self::contentTypes['getAccountStatement'][0])
     {
         $returnType = '';
-        $request = $this->apiV1AccountsAccountIDStatementsIdGetRequest($account_id, $id, $contentType);
+        $request = $this->getAccountStatementRequest($account_id, $id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -783,29 +2098,29 @@ class AccountsApi
     }
 
     /**
-     * Create request for operation 'apiV1AccountsAccountIDStatementsIdGet'
+     * Create request for operation 'getAccountStatement'
      *
      * @param  string $account_id The account id (required)
      * @param  string $id ID of the requested statement. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDStatementsIdGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountStatement'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1AccountsAccountIDStatementsIdGetRequest($account_id, $id, string $contentType = self::contentTypes['apiV1AccountsAccountIDStatementsIdGet'][0])
+    public function getAccountStatementRequest($account_id, $id, string $contentType = self::contentTypes['getAccountStatement'][0])
     {
 
         // verify the required parameter 'account_id' is set
         if ($account_id === null || (is_array($account_id) && count($account_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $account_id when calling apiV1AccountsAccountIDStatementsIdGet'
+                'Missing the required parameter $account_id when calling getAccountStatement'
             );
         }
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1AccountsAccountIDStatementsIdGet'
+                'Missing the required parameter $id when calling getAccountStatement'
             );
         }
 
@@ -896,254 +2211,7 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsAccountIDStatementsPost
-     *
-     * Sends a message to the transaction statement queue to generate a statement with the supplied parameters.
-     *
-     * @param  string $account_id The account id (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsGenerateStatementRequest $no_frixion_money_moov_models_generate_statement_request Request object containing the parameters for the statement generation. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDStatementsPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function apiV1AccountsAccountIDStatementsPost($account_id, $no_frixion_money_moov_models_generate_statement_request = null, string $contentType = self::contentTypes['apiV1AccountsAccountIDStatementsPost'][0])
-    {
-        $this->apiV1AccountsAccountIDStatementsPostWithHttpInfo($account_id, $no_frixion_money_moov_models_generate_statement_request, $contentType);
-    }
-
-    /**
-     * Operation apiV1AccountsAccountIDStatementsPostWithHttpInfo
-     *
-     * Sends a message to the transaction statement queue to generate a statement with the supplied parameters.
-     *
-     * @param  string $account_id The account id (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsGenerateStatementRequest $no_frixion_money_moov_models_generate_statement_request Request object containing the parameters for the statement generation. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDStatementsPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1AccountsAccountIDStatementsPostWithHttpInfo($account_id, $no_frixion_money_moov_models_generate_statement_request = null, string $contentType = self::contentTypes['apiV1AccountsAccountIDStatementsPost'][0])
-    {
-        $request = $this->apiV1AccountsAccountIDStatementsPostRequest($account_id, $no_frixion_money_moov_models_generate_statement_request, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1AccountsAccountIDStatementsPostAsync
-     *
-     * Sends a message to the transaction statement queue to generate a statement with the supplied parameters.
-     *
-     * @param  string $account_id The account id (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsGenerateStatementRequest $no_frixion_money_moov_models_generate_statement_request Request object containing the parameters for the statement generation. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDStatementsPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1AccountsAccountIDStatementsPostAsync($account_id, $no_frixion_money_moov_models_generate_statement_request = null, string $contentType = self::contentTypes['apiV1AccountsAccountIDStatementsPost'][0])
-    {
-        return $this->apiV1AccountsAccountIDStatementsPostAsyncWithHttpInfo($account_id, $no_frixion_money_moov_models_generate_statement_request, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1AccountsAccountIDStatementsPostAsyncWithHttpInfo
-     *
-     * Sends a message to the transaction statement queue to generate a statement with the supplied parameters.
-     *
-     * @param  string $account_id The account id (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsGenerateStatementRequest $no_frixion_money_moov_models_generate_statement_request Request object containing the parameters for the statement generation. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDStatementsPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1AccountsAccountIDStatementsPostAsyncWithHttpInfo($account_id, $no_frixion_money_moov_models_generate_statement_request = null, string $contentType = self::contentTypes['apiV1AccountsAccountIDStatementsPost'][0])
-    {
-        $returnType = '';
-        $request = $this->apiV1AccountsAccountIDStatementsPostRequest($account_id, $no_frixion_money_moov_models_generate_statement_request, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1AccountsAccountIDStatementsPost'
-     *
-     * @param  string $account_id The account id (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsGenerateStatementRequest $no_frixion_money_moov_models_generate_statement_request Request object containing the parameters for the statement generation. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDStatementsPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1AccountsAccountIDStatementsPostRequest($account_id, $no_frixion_money_moov_models_generate_statement_request = null, string $contentType = self::contentTypes['apiV1AccountsAccountIDStatementsPost'][0])
-    {
-
-        // verify the required parameter 'account_id' is set
-        if ($account_id === null || (is_array($account_id) && count($account_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $account_id when calling apiV1AccountsAccountIDStatementsPost'
-            );
-        }
-
-
-
-        $resourcePath = '/api/v1/accounts/{accountID}/statements';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($account_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'accountID' . '}',
-                ObjectSerializer::toPathValue($account_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            [],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($no_frixion_money_moov_models_generate_statement_request)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_generate_statement_request));
-            } else {
-                $httpBody = $no_frixion_money_moov_models_generate_statement_request;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1AccountsAccountIDTransactionsGet
+     * Operation getAccountTransactionsPaged
      *
      * Get a list of the transactions for a single payment account.
      *
@@ -1155,20 +2223,20 @@ class AccountsApi
      * @param  string $credit_type The type of transactions to retrieve from. (optional)
      * @param  string $search The text filter to apply to retrieve transactions with a similar title, description, merchant name. (optional)
      * @param  string $sort Optional expression to sort the order of the transactions. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDTransactionsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountTransactionsPaged'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransactionPageResponse
      */
-    public function apiV1AccountsAccountIDTransactionsGet($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['apiV1AccountsAccountIDTransactionsGet'][0])
+    public function getAccountTransactionsPaged($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['getAccountTransactionsPaged'][0])
     {
-        list($response) = $this->apiV1AccountsAccountIDTransactionsGetWithHttpInfo($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort, $contentType);
+        list($response) = $this->getAccountTransactionsPagedWithHttpInfo($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1AccountsAccountIDTransactionsGetWithHttpInfo
+     * Operation getAccountTransactionsPagedWithHttpInfo
      *
      * Get a list of the transactions for a single payment account.
      *
@@ -1180,15 +2248,15 @@ class AccountsApi
      * @param  string $credit_type The type of transactions to retrieve from. (optional)
      * @param  string $search The text filter to apply to retrieve transactions with a similar title, description, merchant name. (optional)
      * @param  string $sort Optional expression to sort the order of the transactions. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDTransactionsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountTransactionsPaged'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransactionPageResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1AccountsAccountIDTransactionsGetWithHttpInfo($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['apiV1AccountsAccountIDTransactionsGet'][0])
+    public function getAccountTransactionsPagedWithHttpInfo($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['getAccountTransactionsPaged'][0])
     {
-        $request = $this->apiV1AccountsAccountIDTransactionsGetRequest($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort, $contentType);
+        $request = $this->getAccountTransactionsPagedRequest($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1299,7 +2367,7 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsAccountIDTransactionsGetAsync
+     * Operation getAccountTransactionsPagedAsync
      *
      * Get a list of the transactions for a single payment account.
      *
@@ -1311,14 +2379,14 @@ class AccountsApi
      * @param  string $credit_type The type of transactions to retrieve from. (optional)
      * @param  string $search The text filter to apply to retrieve transactions with a similar title, description, merchant name. (optional)
      * @param  string $sort Optional expression to sort the order of the transactions. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDTransactionsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountTransactionsPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1AccountsAccountIDTransactionsGetAsync($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['apiV1AccountsAccountIDTransactionsGet'][0])
+    public function getAccountTransactionsPagedAsync($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['getAccountTransactionsPaged'][0])
     {
-        return $this->apiV1AccountsAccountIDTransactionsGetAsyncWithHttpInfo($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort, $contentType)
+        return $this->getAccountTransactionsPagedAsyncWithHttpInfo($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1327,7 +2395,7 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsAccountIDTransactionsGetAsyncWithHttpInfo
+     * Operation getAccountTransactionsPagedAsyncWithHttpInfo
      *
      * Get a list of the transactions for a single payment account.
      *
@@ -1339,15 +2407,15 @@ class AccountsApi
      * @param  string $credit_type The type of transactions to retrieve from. (optional)
      * @param  string $search The text filter to apply to retrieve transactions with a similar title, description, merchant name. (optional)
      * @param  string $sort Optional expression to sort the order of the transactions. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDTransactionsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountTransactionsPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1AccountsAccountIDTransactionsGetAsyncWithHttpInfo($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['apiV1AccountsAccountIDTransactionsGet'][0])
+    public function getAccountTransactionsPagedAsyncWithHttpInfo($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['getAccountTransactionsPaged'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransactionPageResponse';
-        $request = $this->apiV1AccountsAccountIDTransactionsGetRequest($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort, $contentType);
+        $request = $this->getAccountTransactionsPagedRequest($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1386,7 +2454,7 @@ class AccountsApi
     }
 
     /**
-     * Create request for operation 'apiV1AccountsAccountIDTransactionsGet'
+     * Create request for operation 'getAccountTransactionsPaged'
      *
      * @param  string $account_id The ID of the account to retrieve transactions for. (required)
      * @param  \DateTime $from_date The start date to retrieve transactions from. (optional)
@@ -1396,18 +2464,18 @@ class AccountsApi
      * @param  string $credit_type The type of transactions to retrieve from. (optional)
      * @param  string $search The text filter to apply to retrieve transactions with a similar title, description, merchant name. (optional)
      * @param  string $sort Optional expression to sort the order of the transactions. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDTransactionsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountTransactionsPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1AccountsAccountIDTransactionsGetRequest($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['apiV1AccountsAccountIDTransactionsGet'][0])
+    public function getAccountTransactionsPagedRequest($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['getAccountTransactionsPaged'][0])
     {
 
         // verify the required parameter 'account_id' is set
         if ($account_id === null || (is_array($account_id) && count($account_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $account_id when calling apiV1AccountsAccountIDTransactionsGet'
+                'Missing the required parameter $account_id when calling getAccountTransactionsPaged'
             );
         }
 
@@ -1560,608 +2628,42 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsAccountIDTransactionsIdGet
-     *
-     * Get a transaction.
-     *
-     * @param  string $account_id The ID of the account to retrieve transactions for. (required)
-     * @param  string $id The transaction ID (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDTransactionsIdGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction
-     */
-    public function apiV1AccountsAccountIDTransactionsIdGet($account_id, $id, string $contentType = self::contentTypes['apiV1AccountsAccountIDTransactionsIdGet'][0])
-    {
-        list($response) = $this->apiV1AccountsAccountIDTransactionsIdGetWithHttpInfo($account_id, $id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1AccountsAccountIDTransactionsIdGetWithHttpInfo
-     *
-     * Get a transaction.
-     *
-     * @param  string $account_id The ID of the account to retrieve transactions for. (required)
-     * @param  string $id The transaction ID (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDTransactionsIdGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1AccountsAccountIDTransactionsIdGetWithHttpInfo($account_id, $id, string $contentType = self::contentTypes['apiV1AccountsAccountIDTransactionsIdGet'][0])
-    {
-        $request = $this->apiV1AccountsAccountIDTransactionsIdGetRequest($account_id, $id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1AccountsAccountIDTransactionsIdGetAsync
-     *
-     * Get a transaction.
-     *
-     * @param  string $account_id The ID of the account to retrieve transactions for. (required)
-     * @param  string $id The transaction ID (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDTransactionsIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1AccountsAccountIDTransactionsIdGetAsync($account_id, $id, string $contentType = self::contentTypes['apiV1AccountsAccountIDTransactionsIdGet'][0])
-    {
-        return $this->apiV1AccountsAccountIDTransactionsIdGetAsyncWithHttpInfo($account_id, $id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1AccountsAccountIDTransactionsIdGetAsyncWithHttpInfo
-     *
-     * Get a transaction.
-     *
-     * @param  string $account_id The ID of the account to retrieve transactions for. (required)
-     * @param  string $id The transaction ID (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDTransactionsIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1AccountsAccountIDTransactionsIdGetAsyncWithHttpInfo($account_id, $id, string $contentType = self::contentTypes['apiV1AccountsAccountIDTransactionsIdGet'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction';
-        $request = $this->apiV1AccountsAccountIDTransactionsIdGetRequest($account_id, $id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1AccountsAccountIDTransactionsIdGet'
-     *
-     * @param  string $account_id The ID of the account to retrieve transactions for. (required)
-     * @param  string $id The transaction ID (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsAccountIDTransactionsIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1AccountsAccountIDTransactionsIdGetRequest($account_id, $id, string $contentType = self::contentTypes['apiV1AccountsAccountIDTransactionsIdGet'][0])
-    {
-
-        // verify the required parameter 'account_id' is set
-        if ($account_id === null || (is_array($account_id) && count($account_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $account_id when calling apiV1AccountsAccountIDTransactionsIdGet'
-            );
-        }
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1AccountsAccountIDTransactionsIdGet'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/accounts/{accountID}/transactions/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($account_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'accountID' . '}',
-                ObjectSerializer::toPathValue($account_id),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1AccountsArchiveIdDelete
-     *
-     * Sets the specified account as archived.
-     *
-     * @param  string $id The id of the account to archive. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsArchiveIdDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function apiV1AccountsArchiveIdDelete($id, string $contentType = self::contentTypes['apiV1AccountsArchiveIdDelete'][0])
-    {
-        $this->apiV1AccountsArchiveIdDeleteWithHttpInfo($id, $contentType);
-    }
-
-    /**
-     * Operation apiV1AccountsArchiveIdDeleteWithHttpInfo
-     *
-     * Sets the specified account as archived.
-     *
-     * @param  string $id The id of the account to archive. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsArchiveIdDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1AccountsArchiveIdDeleteWithHttpInfo($id, string $contentType = self::contentTypes['apiV1AccountsArchiveIdDelete'][0])
-    {
-        $request = $this->apiV1AccountsArchiveIdDeleteRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1AccountsArchiveIdDeleteAsync
-     *
-     * Sets the specified account as archived.
-     *
-     * @param  string $id The id of the account to archive. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsArchiveIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1AccountsArchiveIdDeleteAsync($id, string $contentType = self::contentTypes['apiV1AccountsArchiveIdDelete'][0])
-    {
-        return $this->apiV1AccountsArchiveIdDeleteAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1AccountsArchiveIdDeleteAsyncWithHttpInfo
-     *
-     * Sets the specified account as archived.
-     *
-     * @param  string $id The id of the account to archive. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsArchiveIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1AccountsArchiveIdDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1AccountsArchiveIdDelete'][0])
-    {
-        $returnType = '';
-        $request = $this->apiV1AccountsArchiveIdDeleteRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1AccountsArchiveIdDelete'
-     *
-     * @param  string $id The id of the account to archive. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsArchiveIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1AccountsArchiveIdDeleteRequest($id, string $contentType = self::contentTypes['apiV1AccountsArchiveIdDelete'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1AccountsArchiveIdDelete'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/accounts/archive/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            [],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1AccountsGet
+     * Operation getAccounts
      *
      * Get a list of all payment accounts the user has access to.
      *
      * @param  string $merchant_id The merchantID of the accounts to retrieve. (optional)
      * @param  bool $connected_accounts Optional include connected accounts along with payment accounts. (optional, default to false)
      * @param  bool $only_connect_accounts Only return connected accounts (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccounts'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount[]
      */
-    public function apiV1AccountsGet($merchant_id = null, $connected_accounts = false, $only_connect_accounts = false, string $contentType = self::contentTypes['apiV1AccountsGet'][0])
+    public function getAccounts($merchant_id = null, $connected_accounts = false, $only_connect_accounts = false, string $contentType = self::contentTypes['getAccounts'][0])
     {
-        list($response) = $this->apiV1AccountsGetWithHttpInfo($merchant_id, $connected_accounts, $only_connect_accounts, $contentType);
+        list($response) = $this->getAccountsWithHttpInfo($merchant_id, $connected_accounts, $only_connect_accounts, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1AccountsGetWithHttpInfo
+     * Operation getAccountsWithHttpInfo
      *
      * Get a list of all payment accounts the user has access to.
      *
      * @param  string $merchant_id The merchantID of the accounts to retrieve. (optional)
      * @param  bool $connected_accounts Optional include connected accounts along with payment accounts. (optional, default to false)
      * @param  bool $only_connect_accounts Only return connected accounts (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccounts'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1AccountsGetWithHttpInfo($merchant_id = null, $connected_accounts = false, $only_connect_accounts = false, string $contentType = self::contentTypes['apiV1AccountsGet'][0])
+    public function getAccountsWithHttpInfo($merchant_id = null, $connected_accounts = false, $only_connect_accounts = false, string $contentType = self::contentTypes['getAccounts'][0])
     {
-        $request = $this->apiV1AccountsGetRequest($merchant_id, $connected_accounts, $only_connect_accounts, $contentType);
+        $request = $this->getAccountsRequest($merchant_id, $connected_accounts, $only_connect_accounts, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2272,21 +2774,21 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsGetAsync
+     * Operation getAccountsAsync
      *
      * Get a list of all payment accounts the user has access to.
      *
      * @param  string $merchant_id The merchantID of the accounts to retrieve. (optional)
      * @param  bool $connected_accounts Optional include connected accounts along with payment accounts. (optional, default to false)
      * @param  bool $only_connect_accounts Only return connected accounts (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccounts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1AccountsGetAsync($merchant_id = null, $connected_accounts = false, $only_connect_accounts = false, string $contentType = self::contentTypes['apiV1AccountsGet'][0])
+    public function getAccountsAsync($merchant_id = null, $connected_accounts = false, $only_connect_accounts = false, string $contentType = self::contentTypes['getAccounts'][0])
     {
-        return $this->apiV1AccountsGetAsyncWithHttpInfo($merchant_id, $connected_accounts, $only_connect_accounts, $contentType)
+        return $this->getAccountsAsyncWithHttpInfo($merchant_id, $connected_accounts, $only_connect_accounts, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2295,22 +2797,22 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsGetAsyncWithHttpInfo
+     * Operation getAccountsAsyncWithHttpInfo
      *
      * Get a list of all payment accounts the user has access to.
      *
      * @param  string $merchant_id The merchantID of the accounts to retrieve. (optional)
      * @param  bool $connected_accounts Optional include connected accounts along with payment accounts. (optional, default to false)
      * @param  bool $only_connect_accounts Only return connected accounts (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccounts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1AccountsGetAsyncWithHttpInfo($merchant_id = null, $connected_accounts = false, $only_connect_accounts = false, string $contentType = self::contentTypes['apiV1AccountsGet'][0])
+    public function getAccountsAsyncWithHttpInfo($merchant_id = null, $connected_accounts = false, $only_connect_accounts = false, string $contentType = self::contentTypes['getAccounts'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount[]';
-        $request = $this->apiV1AccountsGetRequest($merchant_id, $connected_accounts, $only_connect_accounts, $contentType);
+        $request = $this->getAccountsRequest($merchant_id, $connected_accounts, $only_connect_accounts, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2349,17 +2851,17 @@ class AccountsApi
     }
 
     /**
-     * Create request for operation 'apiV1AccountsGet'
+     * Create request for operation 'getAccounts'
      *
      * @param  string $merchant_id The merchantID of the accounts to retrieve. (optional)
      * @param  bool $connected_accounts Optional include connected accounts along with payment accounts. (optional, default to false)
      * @param  bool $only_connect_accounts Only return connected accounts (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccounts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1AccountsGetRequest($merchant_id = null, $connected_accounts = false, $only_connect_accounts = false, string $contentType = self::contentTypes['apiV1AccountsGet'][0])
+    public function getAccountsRequest($merchant_id = null, $connected_accounts = false, $only_connect_accounts = false, string $contentType = self::contentTypes['getAccounts'][0])
     {
 
 
@@ -2463,332 +2965,7 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsIdPut
-     *
-     * Updates an account record.
-     *
-     * @param  string $id The ID of the account to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsAccountUpdate $no_frixion_money_moov_models_account_update The object containing the details of account to update (only name is editable). (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsIdPut'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount
-     */
-    public function apiV1AccountsIdPut($id, $no_frixion_money_moov_models_account_update = null, string $contentType = self::contentTypes['apiV1AccountsIdPut'][0])
-    {
-        list($response) = $this->apiV1AccountsIdPutWithHttpInfo($id, $no_frixion_money_moov_models_account_update, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1AccountsIdPutWithHttpInfo
-     *
-     * Updates an account record.
-     *
-     * @param  string $id The ID of the account to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsAccountUpdate $no_frixion_money_moov_models_account_update The object containing the details of account to update (only name is editable). (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsIdPut'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1AccountsIdPutWithHttpInfo($id, $no_frixion_money_moov_models_account_update = null, string $contentType = self::contentTypes['apiV1AccountsIdPut'][0])
-    {
-        $request = $this->apiV1AccountsIdPutRequest($id, $no_frixion_money_moov_models_account_update, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1AccountsIdPutAsync
-     *
-     * Updates an account record.
-     *
-     * @param  string $id The ID of the account to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsAccountUpdate $no_frixion_money_moov_models_account_update The object containing the details of account to update (only name is editable). (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsIdPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1AccountsIdPutAsync($id, $no_frixion_money_moov_models_account_update = null, string $contentType = self::contentTypes['apiV1AccountsIdPut'][0])
-    {
-        return $this->apiV1AccountsIdPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_account_update, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1AccountsIdPutAsyncWithHttpInfo
-     *
-     * Updates an account record.
-     *
-     * @param  string $id The ID of the account to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsAccountUpdate $no_frixion_money_moov_models_account_update The object containing the details of account to update (only name is editable). (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsIdPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1AccountsIdPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_account_update = null, string $contentType = self::contentTypes['apiV1AccountsIdPut'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount';
-        $request = $this->apiV1AccountsIdPutRequest($id, $no_frixion_money_moov_models_account_update, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1AccountsIdPut'
-     *
-     * @param  string $id The ID of the account to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsAccountUpdate $no_frixion_money_moov_models_account_update The object containing the details of account to update (only name is editable). (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsIdPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1AccountsIdPutRequest($id, $no_frixion_money_moov_models_account_update = null, string $contentType = self::contentTypes['apiV1AccountsIdPut'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1AccountsIdPut'
-            );
-        }
-
-
-
-        $resourcePath = '/api/v1/accounts/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($no_frixion_money_moov_models_account_update)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_account_update));
-            } else {
-                $httpBody = $no_frixion_money_moov_models_account_update;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'PUT',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1AccountsPagedGet
+     * Operation getAccountsPaged
      *
      * Get a paged list of all payment accounts the user has access to for a specific merchant.
      *
@@ -2800,20 +2977,21 @@ class AccountsApi
      * @param  string $search The text filter to apply to retrieve accounts with a similar account name, IBAN etc. (optional)
      * @param  string $sort Optional expression to sort the order of the accounts. Example \&quot;AvailableBalance desc,Inserted asc\&quot;. (optional)
      * @param  bool $only_connect_accounts Only return connected accounts (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsPagedGet'] to see the possible values for this operation
+     * @param  bool $only_archived Flag that indicates whether to fetch only archived accounts or not. (optional, default to false)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountsPaged'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountPageResponse
      */
-    public function apiV1AccountsPagedGet($merchant_id = null, $connected_accounts = false, $page_number = null, $page_size = null, $currency = null, $search = null, $sort = null, $only_connect_accounts = false, string $contentType = self::contentTypes['apiV1AccountsPagedGet'][0])
+    public function getAccountsPaged($merchant_id = null, $connected_accounts = false, $page_number = null, $page_size = null, $currency = null, $search = null, $sort = null, $only_connect_accounts = false, $only_archived = false, string $contentType = self::contentTypes['getAccountsPaged'][0])
     {
-        list($response) = $this->apiV1AccountsPagedGetWithHttpInfo($merchant_id, $connected_accounts, $page_number, $page_size, $currency, $search, $sort, $only_connect_accounts, $contentType);
+        list($response) = $this->getAccountsPagedWithHttpInfo($merchant_id, $connected_accounts, $page_number, $page_size, $currency, $search, $sort, $only_connect_accounts, $only_archived, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1AccountsPagedGetWithHttpInfo
+     * Operation getAccountsPagedWithHttpInfo
      *
      * Get a paged list of all payment accounts the user has access to for a specific merchant.
      *
@@ -2825,15 +3003,16 @@ class AccountsApi
      * @param  string $search The text filter to apply to retrieve accounts with a similar account name, IBAN etc. (optional)
      * @param  string $sort Optional expression to sort the order of the accounts. Example \&quot;AvailableBalance desc,Inserted asc\&quot;. (optional)
      * @param  bool $only_connect_accounts Only return connected accounts (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsPagedGet'] to see the possible values for this operation
+     * @param  bool $only_archived Flag that indicates whether to fetch only archived accounts or not. (optional, default to false)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountsPaged'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountPageResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1AccountsPagedGetWithHttpInfo($merchant_id = null, $connected_accounts = false, $page_number = null, $page_size = null, $currency = null, $search = null, $sort = null, $only_connect_accounts = false, string $contentType = self::contentTypes['apiV1AccountsPagedGet'][0])
+    public function getAccountsPagedWithHttpInfo($merchant_id = null, $connected_accounts = false, $page_number = null, $page_size = null, $currency = null, $search = null, $sort = null, $only_connect_accounts = false, $only_archived = false, string $contentType = self::contentTypes['getAccountsPaged'][0])
     {
-        $request = $this->apiV1AccountsPagedGetRequest($merchant_id, $connected_accounts, $page_number, $page_size, $currency, $search, $sort, $only_connect_accounts, $contentType);
+        $request = $this->getAccountsPagedRequest($merchant_id, $connected_accounts, $page_number, $page_size, $currency, $search, $sort, $only_connect_accounts, $only_archived, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2944,7 +3123,7 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsPagedGetAsync
+     * Operation getAccountsPagedAsync
      *
      * Get a paged list of all payment accounts the user has access to for a specific merchant.
      *
@@ -2956,14 +3135,15 @@ class AccountsApi
      * @param  string $search The text filter to apply to retrieve accounts with a similar account name, IBAN etc. (optional)
      * @param  string $sort Optional expression to sort the order of the accounts. Example \&quot;AvailableBalance desc,Inserted asc\&quot;. (optional)
      * @param  bool $only_connect_accounts Only return connected accounts (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsPagedGet'] to see the possible values for this operation
+     * @param  bool $only_archived Flag that indicates whether to fetch only archived accounts or not. (optional, default to false)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountsPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1AccountsPagedGetAsync($merchant_id = null, $connected_accounts = false, $page_number = null, $page_size = null, $currency = null, $search = null, $sort = null, $only_connect_accounts = false, string $contentType = self::contentTypes['apiV1AccountsPagedGet'][0])
+    public function getAccountsPagedAsync($merchant_id = null, $connected_accounts = false, $page_number = null, $page_size = null, $currency = null, $search = null, $sort = null, $only_connect_accounts = false, $only_archived = false, string $contentType = self::contentTypes['getAccountsPaged'][0])
     {
-        return $this->apiV1AccountsPagedGetAsyncWithHttpInfo($merchant_id, $connected_accounts, $page_number, $page_size, $currency, $search, $sort, $only_connect_accounts, $contentType)
+        return $this->getAccountsPagedAsyncWithHttpInfo($merchant_id, $connected_accounts, $page_number, $page_size, $currency, $search, $sort, $only_connect_accounts, $only_archived, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2972,7 +3152,7 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsPagedGetAsyncWithHttpInfo
+     * Operation getAccountsPagedAsyncWithHttpInfo
      *
      * Get a paged list of all payment accounts the user has access to for a specific merchant.
      *
@@ -2984,15 +3164,16 @@ class AccountsApi
      * @param  string $search The text filter to apply to retrieve accounts with a similar account name, IBAN etc. (optional)
      * @param  string $sort Optional expression to sort the order of the accounts. Example \&quot;AvailableBalance desc,Inserted asc\&quot;. (optional)
      * @param  bool $only_connect_accounts Only return connected accounts (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsPagedGet'] to see the possible values for this operation
+     * @param  bool $only_archived Flag that indicates whether to fetch only archived accounts or not. (optional, default to false)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountsPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1AccountsPagedGetAsyncWithHttpInfo($merchant_id = null, $connected_accounts = false, $page_number = null, $page_size = null, $currency = null, $search = null, $sort = null, $only_connect_accounts = false, string $contentType = self::contentTypes['apiV1AccountsPagedGet'][0])
+    public function getAccountsPagedAsyncWithHttpInfo($merchant_id = null, $connected_accounts = false, $page_number = null, $page_size = null, $currency = null, $search = null, $sort = null, $only_connect_accounts = false, $only_archived = false, string $contentType = self::contentTypes['getAccountsPaged'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountPageResponse';
-        $request = $this->apiV1AccountsPagedGetRequest($merchant_id, $connected_accounts, $page_number, $page_size, $currency, $search, $sort, $only_connect_accounts, $contentType);
+        $request = $this->getAccountsPagedRequest($merchant_id, $connected_accounts, $page_number, $page_size, $currency, $search, $sort, $only_connect_accounts, $only_archived, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3031,7 +3212,7 @@ class AccountsApi
     }
 
     /**
-     * Create request for operation 'apiV1AccountsPagedGet'
+     * Create request for operation 'getAccountsPaged'
      *
      * @param  string $merchant_id The merchantID of the accounts to retrieve. (optional)
      * @param  bool $connected_accounts Optional include connected accounts along with payment accounts. (optional, default to false)
@@ -3041,13 +3222,15 @@ class AccountsApi
      * @param  string $search The text filter to apply to retrieve accounts with a similar account name, IBAN etc. (optional)
      * @param  string $sort Optional expression to sort the order of the accounts. Example \&quot;AvailableBalance desc,Inserted asc\&quot;. (optional)
      * @param  bool $only_connect_accounts Only return connected accounts (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsPagedGet'] to see the possible values for this operation
+     * @param  bool $only_archived Flag that indicates whether to fetch only archived accounts or not. (optional, default to false)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountsPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1AccountsPagedGetRequest($merchant_id = null, $connected_accounts = false, $page_number = null, $page_size = null, $currency = null, $search = null, $sort = null, $only_connect_accounts = false, string $contentType = self::contentTypes['apiV1AccountsPagedGet'][0])
+    public function getAccountsPagedRequest($merchant_id = null, $connected_accounts = false, $page_number = null, $page_size = null, $currency = null, $search = null, $sort = null, $only_connect_accounts = false, $only_archived = false, string $contentType = self::contentTypes['getAccountsPaged'][0])
     {
+
 
 
 
@@ -3137,6 +3320,15 @@ class AccountsApi
             true, // explode
             false // required
         ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $only_archived,
+            'onlyArchived', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
 
 
 
@@ -3200,38 +3392,254 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsPost
+     * Operation getAllAccountStatements
      *
-     * Creates a new merchant payment account.
+     * Gets all active statement generation requests for the user.
      *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountCreate $no_frixion_money_moov_models_payment_account_create The details of the payment account to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllAccountStatements'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount
+     * @return void
      */
-    public function apiV1AccountsPost($no_frixion_money_moov_models_payment_account_create = null, string $contentType = self::contentTypes['apiV1AccountsPost'][0])
+    public function getAllAccountStatements(string $contentType = self::contentTypes['getAllAccountStatements'][0])
     {
-        list($response) = $this->apiV1AccountsPostWithHttpInfo($no_frixion_money_moov_models_payment_account_create, $contentType);
+        $this->getAllAccountStatementsWithHttpInfo($contentType);
+    }
+
+    /**
+     * Operation getAllAccountStatementsWithHttpInfo
+     *
+     * Gets all active statement generation requests for the user.
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllAccountStatements'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getAllAccountStatementsWithHttpInfo(string $contentType = self::contentTypes['getAllAccountStatements'][0])
+    {
+        $request = $this->getAllAccountStatementsRequest($contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getAllAccountStatementsAsync
+     *
+     * Gets all active statement generation requests for the user.
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllAccountStatements'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAllAccountStatementsAsync(string $contentType = self::contentTypes['getAllAccountStatements'][0])
+    {
+        return $this->getAllAccountStatementsAsyncWithHttpInfo($contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getAllAccountStatementsAsyncWithHttpInfo
+     *
+     * Gets all active statement generation requests for the user.
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllAccountStatements'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAllAccountStatementsAsyncWithHttpInfo(string $contentType = self::contentTypes['getAllAccountStatements'][0])
+    {
+        $returnType = '';
+        $request = $this->getAllAccountStatementsRequest($contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getAllAccountStatements'
+     *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllAccountStatements'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getAllAccountStatementsRequest(string $contentType = self::contentTypes['getAllAccountStatements'][0])
+    {
+
+
+        $resourcePath = '/api/v1/accounts/statements';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            [],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getTransactionForAccount
+     *
+     * Get a transaction.
+     *
+     * @param  string $account_id The ID of the account to retrieve transactions for. (required)
+     * @param  string $id The transaction ID (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTransactionForAccount'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction
+     */
+    public function getTransactionForAccount($account_id, $id, string $contentType = self::contentTypes['getTransactionForAccount'][0])
+    {
+        list($response) = $this->getTransactionForAccountWithHttpInfo($account_id, $id, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1AccountsPostWithHttpInfo
+     * Operation getTransactionForAccountWithHttpInfo
      *
-     * Creates a new merchant payment account.
+     * Get a transaction.
      *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountCreate $no_frixion_money_moov_models_payment_account_create The details of the payment account to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsPost'] to see the possible values for this operation
+     * @param  string $account_id The ID of the account to retrieve transactions for. (required)
+     * @param  string $id The transaction ID (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTransactionForAccount'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1AccountsPostWithHttpInfo($no_frixion_money_moov_models_payment_account_create = null, string $contentType = self::contentTypes['apiV1AccountsPost'][0])
+    public function getTransactionForAccountWithHttpInfo($account_id, $id, string $contentType = self::contentTypes['getTransactionForAccount'][0])
     {
-        $request = $this->apiV1AccountsPostRequest($no_frixion_money_moov_models_payment_account_create, $contentType);
+        $request = $this->getTransactionForAccountRequest($account_id, $id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3270,11 +3678,11 @@ class AccountsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount' === '\SplFileObject') {
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount' !== 'string') {
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -3292,13 +3700,13 @@ class AccountsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount', []),
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount';
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -3331,7 +3739,7 @@ class AccountsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount',
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -3342,19 +3750,20 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsPostAsync
+     * Operation getTransactionForAccountAsync
      *
-     * Creates a new merchant payment account.
+     * Get a transaction.
      *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountCreate $no_frixion_money_moov_models_payment_account_create The details of the payment account to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsPost'] to see the possible values for this operation
+     * @param  string $account_id The ID of the account to retrieve transactions for. (required)
+     * @param  string $id The transaction ID (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTransactionForAccount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1AccountsPostAsync($no_frixion_money_moov_models_payment_account_create = null, string $contentType = self::contentTypes['apiV1AccountsPost'][0])
+    public function getTransactionForAccountAsync($account_id, $id, string $contentType = self::contentTypes['getTransactionForAccount'][0])
     {
-        return $this->apiV1AccountsPostAsyncWithHttpInfo($no_frixion_money_moov_models_payment_account_create, $contentType)
+        return $this->getTransactionForAccountAsyncWithHttpInfo($account_id, $id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3363,20 +3772,21 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsPostAsyncWithHttpInfo
+     * Operation getTransactionForAccountAsyncWithHttpInfo
      *
-     * Creates a new merchant payment account.
+     * Get a transaction.
      *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountCreate $no_frixion_money_moov_models_payment_account_create The details of the payment account to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsPost'] to see the possible values for this operation
+     * @param  string $account_id The ID of the account to retrieve transactions for. (required)
+     * @param  string $id The transaction ID (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTransactionForAccount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1AccountsPostAsyncWithHttpInfo($no_frixion_money_moov_models_payment_account_create = null, string $contentType = self::contentTypes['apiV1AccountsPost'][0])
+    public function getTransactionForAccountAsyncWithHttpInfo($account_id, $id, string $contentType = self::contentTypes['getTransactionForAccount'][0])
     {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount';
-        $request = $this->apiV1AccountsPostRequest($no_frixion_money_moov_models_payment_account_create, $contentType);
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransaction';
+        $request = $this->getTransactionForAccountRequest($account_id, $id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3415,20 +3825,34 @@ class AccountsApi
     }
 
     /**
-     * Create request for operation 'apiV1AccountsPost'
+     * Create request for operation 'getTransactionForAccount'
      *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccountCreate $no_frixion_money_moov_models_payment_account_create The details of the payment account to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsPost'] to see the possible values for this operation
+     * @param  string $account_id The ID of the account to retrieve transactions for. (required)
+     * @param  string $id The transaction ID (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTransactionForAccount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1AccountsPostRequest($no_frixion_money_moov_models_payment_account_create = null, string $contentType = self::contentTypes['apiV1AccountsPost'][0])
+    public function getTransactionForAccountRequest($account_id, $id, string $contentType = self::contentTypes['getTransactionForAccount'][0])
     {
 
+        // verify the required parameter 'account_id' is set
+        if ($account_id === null || (is_array($account_id) && count($account_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $account_id when calling getTransactionForAccount'
+            );
+        }
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling getTransactionForAccount'
+            );
+        }
 
 
-        $resourcePath = '/api/v1/accounts';
+        $resourcePath = '/api/v1/accounts/{accountID}/transactions/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -3437,445 +3861,26 @@ class AccountsApi
 
 
 
+        // path params
+        if ($account_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'accountID' . '}',
+                ObjectSerializer::toPathValue($account_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
 
 
         $headers = $this->headerSelector->selectHeaders(
             ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($no_frixion_money_moov_models_payment_account_create)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_payment_account_create));
-            } else {
-                $httpBody = $no_frixion_money_moov_models_payment_account_create;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1AccountsStatementsDelete
-     *
-     * Clears the cached user statements for a user.
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsStatementsDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function apiV1AccountsStatementsDelete(string $contentType = self::contentTypes['apiV1AccountsStatementsDelete'][0])
-    {
-        $this->apiV1AccountsStatementsDeleteWithHttpInfo($contentType);
-    }
-
-    /**
-     * Operation apiV1AccountsStatementsDeleteWithHttpInfo
-     *
-     * Clears the cached user statements for a user.
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsStatementsDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1AccountsStatementsDeleteWithHttpInfo(string $contentType = self::contentTypes['apiV1AccountsStatementsDelete'][0])
-    {
-        $request = $this->apiV1AccountsStatementsDeleteRequest($contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1AccountsStatementsDeleteAsync
-     *
-     * Clears the cached user statements for a user.
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsStatementsDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1AccountsStatementsDeleteAsync(string $contentType = self::contentTypes['apiV1AccountsStatementsDelete'][0])
-    {
-        return $this->apiV1AccountsStatementsDeleteAsyncWithHttpInfo($contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1AccountsStatementsDeleteAsyncWithHttpInfo
-     *
-     * Clears the cached user statements for a user.
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsStatementsDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1AccountsStatementsDeleteAsyncWithHttpInfo(string $contentType = self::contentTypes['apiV1AccountsStatementsDelete'][0])
-    {
-        $returnType = '';
-        $request = $this->apiV1AccountsStatementsDeleteRequest($contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1AccountsStatementsDelete'
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsStatementsDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1AccountsStatementsDeleteRequest(string $contentType = self::contentTypes['apiV1AccountsStatementsDelete'][0])
-    {
-
-
-        $resourcePath = '/api/v1/accounts/statements';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            [],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1AccountsStatementsGet
-     *
-     * Gets all active statement generation requests for the user.
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsStatementsGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function apiV1AccountsStatementsGet(string $contentType = self::contentTypes['apiV1AccountsStatementsGet'][0])
-    {
-        $this->apiV1AccountsStatementsGetWithHttpInfo($contentType);
-    }
-
-    /**
-     * Operation apiV1AccountsStatementsGetWithHttpInfo
-     *
-     * Gets all active statement generation requests for the user.
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsStatementsGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1AccountsStatementsGetWithHttpInfo(string $contentType = self::contentTypes['apiV1AccountsStatementsGet'][0])
-    {
-        $request = $this->apiV1AccountsStatementsGetRequest($contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1AccountsStatementsGetAsync
-     *
-     * Gets all active statement generation requests for the user.
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsStatementsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1AccountsStatementsGetAsync(string $contentType = self::contentTypes['apiV1AccountsStatementsGet'][0])
-    {
-        return $this->apiV1AccountsStatementsGetAsyncWithHttpInfo($contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1AccountsStatementsGetAsyncWithHttpInfo
-     *
-     * Gets all active statement generation requests for the user.
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsStatementsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1AccountsStatementsGetAsyncWithHttpInfo(string $contentType = self::contentTypes['apiV1AccountsStatementsGet'][0])
-    {
-        $returnType = '';
-        $request = $this->apiV1AccountsStatementsGetRequest($contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1AccountsStatementsGet'
-     *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsStatementsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1AccountsStatementsGetRequest(string $contentType = self::contentTypes['apiV1AccountsStatementsGet'][0])
-    {
-
-
-        $resourcePath = '/api/v1/accounts/statements';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            [],
             $contentType,
             $multipart
         );
@@ -3933,37 +3938,39 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsUnarchiveIdPut
+     * Operation topupAccount
      *
-     * Sets the specified account as unarchived / active.
+     * SANDBOX ONLY. Top-ups a payment account with the amount provided.
      *
-     * @param  string $id The id of the account to unarchive. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsUnarchiveIdPut'] to see the possible values for this operation
+     * @param  string $account_id The ID of the payment account. (required)
+     * @param  float $amount The amount to top-up on the payment account. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['topupAccount'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function apiV1AccountsUnarchiveIdPut($id, string $contentType = self::contentTypes['apiV1AccountsUnarchiveIdPut'][0])
+    public function topupAccount($account_id, $amount, string $contentType = self::contentTypes['topupAccount'][0])
     {
-        $this->apiV1AccountsUnarchiveIdPutWithHttpInfo($id, $contentType);
+        $this->topupAccountWithHttpInfo($account_id, $amount, $contentType);
     }
 
     /**
-     * Operation apiV1AccountsUnarchiveIdPutWithHttpInfo
+     * Operation topupAccountWithHttpInfo
      *
-     * Sets the specified account as unarchived / active.
+     * SANDBOX ONLY. Top-ups a payment account with the amount provided.
      *
-     * @param  string $id The id of the account to unarchive. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsUnarchiveIdPut'] to see the possible values for this operation
+     * @param  string $account_id The ID of the payment account. (required)
+     * @param  float $amount The amount to top-up on the payment account. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['topupAccount'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1AccountsUnarchiveIdPutWithHttpInfo($id, string $contentType = self::contentTypes['apiV1AccountsUnarchiveIdPut'][0])
+    public function topupAccountWithHttpInfo($account_id, $amount, string $contentType = self::contentTypes['topupAccount'][0])
     {
-        $request = $this->apiV1AccountsUnarchiveIdPutRequest($id, $contentType);
+        $request = $this->topupAccountRequest($account_id, $amount, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4010,19 +4017,20 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsUnarchiveIdPutAsync
+     * Operation topupAccountAsync
      *
-     * Sets the specified account as unarchived / active.
+     * SANDBOX ONLY. Top-ups a payment account with the amount provided.
      *
-     * @param  string $id The id of the account to unarchive. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsUnarchiveIdPut'] to see the possible values for this operation
+     * @param  string $account_id The ID of the payment account. (required)
+     * @param  float $amount The amount to top-up on the payment account. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['topupAccount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1AccountsUnarchiveIdPutAsync($id, string $contentType = self::contentTypes['apiV1AccountsUnarchiveIdPut'][0])
+    public function topupAccountAsync($account_id, $amount, string $contentType = self::contentTypes['topupAccount'][0])
     {
-        return $this->apiV1AccountsUnarchiveIdPutAsyncWithHttpInfo($id, $contentType)
+        return $this->topupAccountAsyncWithHttpInfo($account_id, $amount, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4031,20 +4039,21 @@ class AccountsApi
     }
 
     /**
-     * Operation apiV1AccountsUnarchiveIdPutAsyncWithHttpInfo
+     * Operation topupAccountAsyncWithHttpInfo
      *
-     * Sets the specified account as unarchived / active.
+     * SANDBOX ONLY. Top-ups a payment account with the amount provided.
      *
-     * @param  string $id The id of the account to unarchive. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsUnarchiveIdPut'] to see the possible values for this operation
+     * @param  string $account_id The ID of the payment account. (required)
+     * @param  float $amount The amount to top-up on the payment account. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['topupAccount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1AccountsUnarchiveIdPutAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1AccountsUnarchiveIdPut'][0])
+    public function topupAccountAsyncWithHttpInfo($account_id, $amount, string $contentType = self::contentTypes['topupAccount'][0])
     {
         $returnType = '';
-        $request = $this->apiV1AccountsUnarchiveIdPutRequest($id, $contentType);
+        $request = $this->topupAccountRequest($account_id, $amount, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4070,21 +4079,271 @@ class AccountsApi
     }
 
     /**
-     * Create request for operation 'apiV1AccountsUnarchiveIdPut'
+     * Create request for operation 'topupAccount'
      *
-     * @param  string $id The id of the account to unarchive. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1AccountsUnarchiveIdPut'] to see the possible values for this operation
+     * @param  string $account_id The ID of the payment account. (required)
+     * @param  float $amount The amount to top-up on the payment account. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['topupAccount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1AccountsUnarchiveIdPutRequest($id, string $contentType = self::contentTypes['apiV1AccountsUnarchiveIdPut'][0])
+    public function topupAccountRequest($account_id, $amount, string $contentType = self::contentTypes['topupAccount'][0])
+    {
+
+        // verify the required parameter 'account_id' is set
+        if ($account_id === null || (is_array($account_id) && count($account_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $account_id when calling topupAccount'
+            );
+        }
+
+        // verify the required parameter 'amount' is set
+        if ($amount === null || (is_array($amount) && count($amount) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $amount when calling topupAccount'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/accounts/{accountID}/topup/{amount}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($account_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'accountID' . '}',
+                ObjectSerializer::toPathValue($account_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($amount !== null) {
+            $resourcePath = str_replace(
+                '{' . 'amount' . '}',
+                ObjectSerializer::toPathValue($amount),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            [],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation unarchiveAccount
+     *
+     * Sets the specified account as unarchived / active.
+     *
+     * @param  string $id The id of the account to unarchive. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unarchiveAccount'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function unarchiveAccount($id, string $contentType = self::contentTypes['unarchiveAccount'][0])
+    {
+        $this->unarchiveAccountWithHttpInfo($id, $contentType);
+    }
+
+    /**
+     * Operation unarchiveAccountWithHttpInfo
+     *
+     * Sets the specified account as unarchived / active.
+     *
+     * @param  string $id The id of the account to unarchive. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unarchiveAccount'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function unarchiveAccountWithHttpInfo($id, string $contentType = self::contentTypes['unarchiveAccount'][0])
+    {
+        $request = $this->unarchiveAccountRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation unarchiveAccountAsync
+     *
+     * Sets the specified account as unarchived / active.
+     *
+     * @param  string $id The id of the account to unarchive. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unarchiveAccount'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function unarchiveAccountAsync($id, string $contentType = self::contentTypes['unarchiveAccount'][0])
+    {
+        return $this->unarchiveAccountAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation unarchiveAccountAsyncWithHttpInfo
+     *
+     * Sets the specified account as unarchived / active.
+     *
+     * @param  string $id The id of the account to unarchive. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unarchiveAccount'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function unarchiveAccountAsyncWithHttpInfo($id, string $contentType = self::contentTypes['unarchiveAccount'][0])
+    {
+        $returnType = '';
+        $request = $this->unarchiveAccountRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'unarchiveAccount'
+     *
+     * @param  string $id The id of the account to unarchive. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['unarchiveAccount'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function unarchiveAccountRequest($id, string $contentType = self::contentTypes['unarchiveAccount'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1AccountsUnarchiveIdPut'
+                'Missing the required parameter $id when calling unarchiveAccount'
             );
         }
 
@@ -4167,38 +4426,40 @@ class AccountsApi
     }
 
     /**
-     * Operation getAccountAsync
+     * Operation updateAccount
      *
-     * Get an account.
+     * Updates an account record.
      *
-     * @param  string $account_id The accountID of the account to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountAsync'] to see the possible values for this operation
+     * @param  string $id The ID of the account to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsAccountUpdate $no_frixion_money_moov_models_account_update The object containing the details of account to update (only name is editable). (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAccount'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount
      */
-    public function getAccountAsync($account_id, string $contentType = self::contentTypes['getAccountAsync'][0])
+    public function updateAccount($id, $no_frixion_money_moov_models_account_update = null, string $contentType = self::contentTypes['updateAccount'][0])
     {
-        list($response) = $this->getAccountAsyncWithHttpInfo($account_id, $contentType);
+        list($response) = $this->updateAccountWithHttpInfo($id, $no_frixion_money_moov_models_account_update, $contentType);
         return $response;
     }
 
     /**
-     * Operation getAccountAsyncWithHttpInfo
+     * Operation updateAccountWithHttpInfo
      *
-     * Get an account.
+     * Updates an account record.
      *
-     * @param  string $account_id The accountID of the account to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountAsync'] to see the possible values for this operation
+     * @param  string $id The ID of the account to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsAccountUpdate $no_frixion_money_moov_models_account_update The object containing the details of account to update (only name is editable). (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAccount'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getAccountAsyncWithHttpInfo($account_id, string $contentType = self::contentTypes['getAccountAsync'][0])
+    public function updateAccountWithHttpInfo($id, $no_frixion_money_moov_models_account_update = null, string $contentType = self::contentTypes['updateAccount'][0])
     {
-        $request = $this->getAccountAsyncRequest($account_id, $contentType);
+        $request = $this->updateAccountRequest($id, $no_frixion_money_moov_models_account_update, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4309,19 +4570,20 @@ class AccountsApi
     }
 
     /**
-     * Operation getAccountAsyncAsync
+     * Operation updateAccountAsync
      *
-     * Get an account.
+     * Updates an account record.
      *
-     * @param  string $account_id The accountID of the account to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountAsync'] to see the possible values for this operation
+     * @param  string $id The ID of the account to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsAccountUpdate $no_frixion_money_moov_models_account_update The object containing the details of account to update (only name is editable). (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAccount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAccountAsyncAsync($account_id, string $contentType = self::contentTypes['getAccountAsync'][0])
+    public function updateAccountAsync($id, $no_frixion_money_moov_models_account_update = null, string $contentType = self::contentTypes['updateAccount'][0])
     {
-        return $this->getAccountAsyncAsyncWithHttpInfo($account_id, $contentType)
+        return $this->updateAccountAsyncWithHttpInfo($id, $no_frixion_money_moov_models_account_update, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4330,20 +4592,21 @@ class AccountsApi
     }
 
     /**
-     * Operation getAccountAsyncAsyncWithHttpInfo
+     * Operation updateAccountAsyncWithHttpInfo
      *
-     * Get an account.
+     * Updates an account record.
      *
-     * @param  string $account_id The accountID of the account to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountAsync'] to see the possible values for this operation
+     * @param  string $id The ID of the account to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsAccountUpdate $no_frixion_money_moov_models_account_update The object containing the details of account to update (only name is editable). (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAccount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAccountAsyncAsyncWithHttpInfo($account_id, string $contentType = self::contentTypes['getAccountAsync'][0])
+    public function updateAccountAsyncWithHttpInfo($id, $no_frixion_money_moov_models_account_update = null, string $contentType = self::contentTypes['updateAccount'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount';
-        $request = $this->getAccountAsyncRequest($account_id, $contentType);
+        $request = $this->updateAccountRequest($id, $no_frixion_money_moov_models_account_update, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4382,26 +4645,28 @@ class AccountsApi
     }
 
     /**
-     * Create request for operation 'getAccountAsync'
+     * Create request for operation 'updateAccount'
      *
-     * @param  string $account_id The accountID of the account to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAccountAsync'] to see the possible values for this operation
+     * @param  string $id The ID of the account to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsAccountUpdate $no_frixion_money_moov_models_account_update The object containing the details of account to update (only name is editable). (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateAccount'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAccountAsyncRequest($account_id, string $contentType = self::contentTypes['getAccountAsync'][0])
+    public function updateAccountRequest($id, $no_frixion_money_moov_models_account_update = null, string $contentType = self::contentTypes['updateAccount'][0])
     {
 
-        // verify the required parameter 'account_id' is set
-        if ($account_id === null || (is_array($account_id) && count($account_id) === 0)) {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $account_id when calling getAccountAsync'
+                'Missing the required parameter $id when calling updateAccount'
             );
         }
 
 
-        $resourcePath = '/api/v1/accounts/{accountID}';
+
+        $resourcePath = '/api/v1/accounts/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -4411,10 +4676,10 @@ class AccountsApi
 
 
         // path params
-        if ($account_id !== null) {
+        if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'accountID' . '}',
-                ObjectSerializer::toPathValue($account_id),
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
@@ -4427,7 +4692,14 @@ class AccountsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($no_frixion_money_moov_models_account_update)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_account_update));
+            } else {
+                $httpBody = $no_frixion_money_moov_models_account_update;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -4471,7 +4743,7 @@ class AccountsApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'GET',
+            'PUT',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

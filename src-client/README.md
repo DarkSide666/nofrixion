@@ -61,24 +61,12 @@ $apiInstance = new Nofrixion\Client\Api\AccountsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$account_id = 'account_id_example'; // string | Required. The ID of the account to get the payouts for.
-$page_number = 56; // int | The page number from where records are retrieved.
-$page_size = 56; // int | The number of records to be retrieved from a page.
-$statuses = array('statuses_example'); // string[] | An optional status filter for the payout records.
-$from_date = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | The date filter to apply to retrieve payouts created after this date.
-$to_date = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | The date filter to apply to retrieve payouts created up until this date.
-$search = 'search_example'; // string | The text filter to apply to retrieve payouts with a similar title, description, merchant name or contact information.
-$currency = 'currency_example'; // string | The currency filter to apply to retrieve payouts with this currency.
-$min_amount = 3.4; // float | The amount filter to apply to retrieve payouts that exceed this amount.
-$max_amount = 3.4; // float | The amount filter to apply to retrieve payouts that don't exceed this amount.
-$tags = array('tags_example'); // string[] | The tag filter to apply to retrieve payouts with at least one of these tags.
-$sort = 'sort_example'; // string | Optional expression to sort the order of the payouts.
+$id = 'id_example'; // string | The id of the account to archive.
 
 try {
-    $result = $apiInstance->apiV1AccountsAccountIDPayoutsGet($account_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort);
-    print_r($result);
+    $apiInstance->archiveAccount($id);
 } catch (Exception $e) {
-    echo 'Exception when calling AccountsApi->apiV1AccountsAccountIDPayoutsGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AccountsApi->archiveAccount: ', $e->getMessage(), PHP_EOL;
 }
 
 ```
@@ -89,135 +77,137 @@ All URIs are relative to *https://api-sandbox.nofrixion.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*AccountsApi* | [**apiV1AccountsAccountIDPayoutsGet**](docs/Api/AccountsApi.md#apiv1accountsaccountidpayoutsget) | **GET** /api/v1/accounts/{accountID}/payouts | Gets a list of all payouts for a specific account.
-*AccountsApi* | [**apiV1AccountsAccountIDStatementsIdGet**](docs/Api/AccountsApi.md#apiv1accountsaccountidstatementsidget) | **GET** /api/v1/accounts/{accountID}/statements/{id} | Gets the specified statement from the user&#39;s cache.
-*AccountsApi* | [**apiV1AccountsAccountIDStatementsPost**](docs/Api/AccountsApi.md#apiv1accountsaccountidstatementspost) | **POST** /api/v1/accounts/{accountID}/statements | Sends a message to the transaction statement queue to generate a statement with the supplied parameters.
-*AccountsApi* | [**apiV1AccountsAccountIDTransactionsGet**](docs/Api/AccountsApi.md#apiv1accountsaccountidtransactionsget) | **GET** /api/v1/accounts/{accountID}/transactions | Get a list of the transactions for a single payment account.
-*AccountsApi* | [**apiV1AccountsAccountIDTransactionsIdGet**](docs/Api/AccountsApi.md#apiv1accountsaccountidtransactionsidget) | **GET** /api/v1/accounts/{accountID}/transactions/{id} | Get a transaction.
-*AccountsApi* | [**apiV1AccountsArchiveIdDelete**](docs/Api/AccountsApi.md#apiv1accountsarchiveiddelete) | **DELETE** /api/v1/accounts/archive/{id} | Sets the specified account as archived.
-*AccountsApi* | [**apiV1AccountsGet**](docs/Api/AccountsApi.md#apiv1accountsget) | **GET** /api/v1/accounts | Get a list of all payment accounts the user has access to.
-*AccountsApi* | [**apiV1AccountsIdPut**](docs/Api/AccountsApi.md#apiv1accountsidput) | **PUT** /api/v1/accounts/{id} | Updates an account record.
-*AccountsApi* | [**apiV1AccountsPagedGet**](docs/Api/AccountsApi.md#apiv1accountspagedget) | **GET** /api/v1/accounts/paged | Get a paged list of all payment accounts the user has access to for a specific merchant.
-*AccountsApi* | [**apiV1AccountsPost**](docs/Api/AccountsApi.md#apiv1accountspost) | **POST** /api/v1/accounts | Creates a new merchant payment account.
-*AccountsApi* | [**apiV1AccountsStatementsDelete**](docs/Api/AccountsApi.md#apiv1accountsstatementsdelete) | **DELETE** /api/v1/accounts/statements | Clears the cached user statements for a user.
-*AccountsApi* | [**apiV1AccountsStatementsGet**](docs/Api/AccountsApi.md#apiv1accountsstatementsget) | **GET** /api/v1/accounts/statements | Gets all active statement generation requests for the user.
-*AccountsApi* | [**apiV1AccountsUnarchiveIdPut**](docs/Api/AccountsApi.md#apiv1accountsunarchiveidput) | **PUT** /api/v1/accounts/unarchive/{id} | Sets the specified account as unarchived / active.
-*AccountsApi* | [**getAccountAsync**](docs/Api/AccountsApi.md#getaccountasync) | **GET** /api/v1/accounts/{accountID} | Get an account.
-*BeneficiariesApi* | [**apiV1BeneficiariesAuthoriseIdPost**](docs/Api/BeneficiariesApi.md#apiv1beneficiariesauthoriseidpost) | **POST** /api/v1/beneficiaries/authorise/{id} | Authorises a beneficiary.
-*BeneficiariesApi* | [**apiV1BeneficiariesDisableIdPut**](docs/Api/BeneficiariesApi.md#apiv1beneficiariesdisableidput) | **PUT** /api/v1/beneficiaries/disable/{id} | Attempts to disable a beneficiary. If successful the beneficiary will be disabled.
-*BeneficiariesApi* | [**apiV1BeneficiariesEnableIdPut**](docs/Api/BeneficiariesApi.md#apiv1beneficiariesenableidput) | **PUT** /api/v1/beneficiaries/enable/{id} | Attempts to enable a beneficiary. If successful the beneficiary will be enabled.
-*BeneficiariesApi* | [**apiV1BeneficiariesGet**](docs/Api/BeneficiariesApi.md#apiv1beneficiariesget) | **GET** /api/v1/beneficiaries | Gets a list of all beneficiaries.
-*BeneficiariesApi* | [**apiV1BeneficiariesIdDelete**](docs/Api/BeneficiariesApi.md#apiv1beneficiariesiddelete) | **DELETE** /api/v1/beneficiaries/{id} | Deletes a beneficiary
-*BeneficiariesApi* | [**apiV1BeneficiariesIdPut**](docs/Api/BeneficiariesApi.md#apiv1beneficiariesidput) | **PUT** /api/v1/beneficiaries/{id} | Updates a beneficiary.
-*BeneficiariesApi* | [**apiV1BeneficiariesPost**](docs/Api/BeneficiariesApi.md#apiv1beneficiariespost) | **POST** /api/v1/beneficiaries | Creates a new beneficiary.
-*BeneficiariesApi* | [**getBeneficiaryAsync**](docs/Api/BeneficiariesApi.md#getbeneficiaryasync) | **GET** /api/v1/beneficiaries/{id} | Get&#39;s a beneficiary by beneficiary ID.
-*MandatesApi* | [**apiV1MandatesGet**](docs/Api/MandatesApi.md#apiv1mandatesget) | **GET** /api/v1/mandates | Gets all mandates from a specific merchant with the supplied parameters.
-*MandatesApi* | [**apiV1MandatesIdGet**](docs/Api/MandatesApi.md#apiv1mandatesidget) | **GET** /api/v1/mandates/{id} | Gets a specific mandate&#39;s information.
-*MandatesApi* | [**apiV1MandatesPost**](docs/Api/MandatesApi.md#apiv1mandatespost) | **POST** /api/v1/mandates | Creates a Direct Debit mandate.
-*MerchantsApi* | [**apiV1MerchantsGet**](docs/Api/MerchantsApi.md#apiv1merchantsget) | **GET** /api/v1/merchants | Get&#39;s a list of merchants the caller has access to.
-*MerchantsApi* | [**apiV1MerchantsMerchantIDAccountsAccountIDGet**](docs/Api/MerchantsApi.md#apiv1merchantsmerchantidaccountsaccountidget) | **GET** /api/v1/merchants/{merchantID}/accounts/{accountID} | Get an account.
-*MerchantsApi* | [**apiV1MerchantsMerchantIDAccountsGet**](docs/Api/MerchantsApi.md#apiv1merchantsmerchantidaccountsget) | **GET** /api/v1/merchants/{merchantID}/accounts | Get a list of merchant&#39;s payment accounts.
-*MerchantsApi* | [**apiV1MerchantsMerchantIDBanksettingsGet**](docs/Api/MerchantsApi.md#apiv1merchantsmerchantidbanksettingsget) | **GET** /api/v1/merchants/{merchantID}/banksettings | Gets a list of the banks configured for a merchant&#39;s pay by bank requests,
-*MerchantsApi* | [**apiV1MerchantsMerchantIDBeneficiariesGet**](docs/Api/MerchantsApi.md#apiv1merchantsmerchantidbeneficiariesget) | **GET** /api/v1/merchants/{merchantID}/beneficiaries | Gets a list of all beneficiaries.
-*MerchantsApi* | [**apiV1MerchantsMerchantIDBeneficiariesIdGet**](docs/Api/MerchantsApi.md#apiv1merchantsmerchantidbeneficiariesidget) | **GET** /api/v1/merchants/{merchantID}/beneficiaries/{id} | Get&#39;s a beneficiary by beneficiary ID.
-*MerchantsApi* | [**apiV1MerchantsMerchantIDBeneficiarygroupsGet**](docs/Api/MerchantsApi.md#apiv1merchantsmerchantidbeneficiarygroupsget) | **GET** /api/v1/merchants/{merchantID}/beneficiarygroups | Gets a list of all beneficiary groups.
-*MerchantsApi* | [**apiV1MerchantsMerchantIDGet**](docs/Api/MerchantsApi.md#apiv1merchantsmerchantidget) | **GET** /api/v1/merchants/{merchantID} | Get&#39;s a merchant.
-*MerchantsApi* | [**apiV1MerchantsMerchantIDPayoutsGet**](docs/Api/MerchantsApi.md#apiv1merchantsmerchantidpayoutsget) | **GET** /api/v1/merchants/{merchantID}/payouts | Gets a list of all payouts for a specific merchant.
-*MerchantsApi* | [**apiV1MerchantsMerchantIDTagsGet**](docs/Api/MerchantsApi.md#apiv1merchantsmerchantidtagsget) | **GET** /api/v1/merchants/{merchantID}/tags | Get a list of merchant tags
-*MerchantsApi* | [**apiV1MerchantsMerchantIDTagsPost**](docs/Api/MerchantsApi.md#apiv1merchantsmerchantidtagspost) | **POST** /api/v1/merchants/{merchantID}/tags | Adds a tag to a merchant.
-*MerchantsApi* | [**apiV1MerchantsMerchantIDTagsTagIDDelete**](docs/Api/MerchantsApi.md#apiv1merchantsmerchantidtagstagiddelete) | **DELETE** /api/v1/merchants/{merchantID}/tags/{tagID} | Deletes a tag from a merchant
-*MerchantsApi* | [**apiV1MerchantsMerchantIDTokensGet**](docs/Api/MerchantsApi.md#apiv1merchantsmerchantidtokensget) | **GET** /api/v1/merchants/{merchantID}/tokens | Gets a list of a merchant&#39;s issued API tokens.
-*MerchantsApi* | [**apiV1MerchantsMerchantIDTransactionsGet**](docs/Api/MerchantsApi.md#apiv1merchantsmerchantidtransactionsget) | **GET** /api/v1/merchants/{merchantID}/transactions | Gets a list of transactions for all a merchant&#39;s accounts.
-*MerchantsApi* | [**apiV1MerchantsMerchantIDUserinvitesGet**](docs/Api/MerchantsApi.md#apiv1merchantsmerchantiduserinvitesget) | **GET** /api/v1/merchants/{merchantID}/userinvites | Gets user invites associated with merchant.
-*MerchantsApi* | [**apiV1MerchantsMerchantIDUserrolesGet**](docs/Api/MerchantsApi.md#apiv1merchantsmerchantiduserrolesget) | **GET** /api/v1/merchants/{merchantID}/userroles | Gets user roles associated with merchant.
-*MerchantsApi* | [**apiV1MerchantsMerchantIDUsersGet**](docs/Api/MerchantsApi.md#apiv1merchantsmerchantidusersget) | **GET** /api/v1/merchants/{merchantID}/users | Gets all users including invitees for a merchant.
-*MerchantsApi* | [**apiV1MerchantsMerchantIDWebhooksGet**](docs/Api/MerchantsApi.md#apiv1merchantsmerchantidwebhooksget) | **GET** /api/v1/merchants/{merchantID}/webhooks | Get all configured webhooks for a merchant.
-*MerchantsApi* | [**apiV1MerchantsPagedGet**](docs/Api/MerchantsApi.md#apiv1merchantspagedget) | **GET** /api/v1/merchants/paged | Get a paged list of all the merchants the caller has access to.
-*MerchantsApi* | [**apiV1MerchantsUserrolesIdDelete**](docs/Api/MerchantsApi.md#apiv1merchantsuserrolesiddelete) | **DELETE** /api/v1/merchants/userroles/{id} | Deletes user role.
-*MerchantsApi* | [**apiV1MerchantsUserrolesPost**](docs/Api/MerchantsApi.md#apiv1merchantsuserrolespost) | **POST** /api/v1/merchants/userroles | Assigns role to user.
-*MetadataApi* | [**apiV1MetadataHeightGet**](docs/Api/MetadataApi.md#apiv1metadataheightget) | **GET** /api/v1/metadata/height | Gets the current Bitcoin blockchain height. In sandbox the testnet height is returned.
-*MetadataApi* | [**apiV1MetadataProblemGet**](docs/Api/MetadataApi.md#apiv1metadataproblemget) | **GET** /api/v1/metadata/problem | Returns an example problem response.
-*MetadataApi* | [**apiV1MetadataProblemnotificationGet**](docs/Api/MetadataApi.md#apiv1metadataproblemnotificationget) | **GET** /api/v1/metadata/problemnotification | Triggers a webhook with the problem details in the payload.
-*MetadataApi* | [**apiV1MetadataVersionGet**](docs/Api/MetadataApi.md#apiv1metadataversionget) | **GET** /api/v1/metadata/version | Gets the current version of the MoneyMoov API.
-*MetadataApi* | [**apiV1MetadataWhoamiGet**](docs/Api/MetadataApi.md#apiv1metadatawhoamiget) | **GET** /api/v1/metadata/whoami | Returns the profile of the requesting user.
-*MetadataApi* | [**apiV1MetadataWhoamimerchantGet**](docs/Api/MetadataApi.md#apiv1metadatawhoamimerchantget) | **GET** /api/v1/metadata/whoamimerchant | Returns the name of the merchant that authentication token was issued for.
-*OpenBankingApi* | [**apiV1OpenbankingAccountAccountIDDelete**](docs/Api/OpenBankingApi.md#apiv1openbankingaccountaccountiddelete) | **DELETE** /api/v1/openbanking/account/{accountID} | Deletes the specified connected account and all associated transactions.
-*OpenBankingApi* | [**apiV1OpenbankingAccountAccountIDSynchronisePost**](docs/Api/OpenBankingApi.md#apiv1openbankingaccountaccountidsynchronisepost) | **POST** /api/v1/openbanking/account/{accountID}/synchronise | Attempts to synchronise the balance and transactions of a connected account.
-*OpenBankingApi* | [**apiV1OpenbankingAccountsConsentIDGet**](docs/Api/OpenBankingApi.md#apiv1openbankingaccountsconsentidget) | **GET** /api/v1/openbanking/accounts/{consentID} | Retrieves list of accounts from financial institution.
-*OpenBankingApi* | [**apiV1OpenbankingConsentsConsentIDDelete**](docs/Api/OpenBankingApi.md#apiv1openbankingconsentsconsentiddelete) | **DELETE** /api/v1/openbanking/consents/{consentID} | Deletes a single open banking consent.
-*OpenBankingApi* | [**apiV1OpenbankingConsentsConsentIDGet**](docs/Api/OpenBankingApi.md#apiv1openbankingconsentsconsentidget) | **GET** /api/v1/openbanking/consents/{consentID} | Retrieve a single open banking consent.
-*OpenBankingApi* | [**apiV1OpenbankingConsentsConsentIDPatch**](docs/Api/OpenBankingApi.md#apiv1openbankingconsentsconsentidpatch) | **PATCH** /api/v1/openbanking/consents/{consentID} | Creates a new authorisation to a financial institution based on a consent that has   already been authorised.
-*OpenBankingApi* | [**apiV1OpenbankingConsentsMerchantIDEmailDelete**](docs/Api/OpenBankingApi.md#apiv1openbankingconsentsmerchantidemaildelete) | **DELETE** /api/v1/openbanking/consents/{merchantID}/{email} | Delete all the open banking consents for a single user.
-*OpenBankingApi* | [**apiV1OpenbankingConsentsMerchantIDEmailGet**](docs/Api/OpenBankingApi.md#apiv1openbankingconsentsmerchantidemailget) | **GET** /api/v1/openbanking/consents/{merchantID}/{email} | Retrieve all the open banking consents for a single user.
-*OpenBankingApi* | [**apiV1OpenbankingConsentsPost**](docs/Api/OpenBankingApi.md#apiv1openbankingconsentspost) | **POST** /api/v1/openbanking/consents | Creates a consent thats used to initiate an authorisation to a financial institution.
-*OpenBankingApi* | [**apiV1OpenbankingTransactionsConsentIDAccountIDGet**](docs/Api/OpenBankingApi.md#apiv1openbankingtransactionsconsentidaccountidget) | **GET** /api/v1/openbanking/transactions/{consentID}/{accountID} | Retrieves transactions from financial institution.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestscardcustomertokenscustomeremailaddressget) | **GET** /api/v1/paymentrequests/card/customertokens/{customerEmailAddress} | Gets a list of the tokenised cards stored for a single customer.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsCardCustomertokensIdDelete**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestscardcustomertokensiddelete) | **DELETE** /api/v1/paymentrequests/card/customertokens/{id} | Deletes a single card token.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestscardcustomertokensmerchantidcustomeremailaddressget) | **GET** /api/v1/paymentrequests/card/customertokens/{merchantID}/{customerEmailAddress} | Gets a list of the tokenised cards stored for a single customer.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestscardcustomertokensremoveallcustomeremailaddressdelete) | **DELETE** /api/v1/paymentrequests/card/customertokens/removeall/{customerEmailAddress} | Deletes all the card tokens for a customer.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestscardcustomertokensremoveallmerchantidcustomeremailaddressdelete) | **DELETE** /api/v1/paymentrequests/card/customertokens/removeall/{merchantID}/{customerEmailAddress} | Deletes all the card tokens for a customer.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsGet**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsget) | **GET** /api/v1/paymentrequests | Gets a list of all payment requests.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsGetbyorderidOrderIDGet**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsgetbyorderidorderidget) | **GET** /api/v1/paymentrequests/getbyorderid/{orderID} | Gets a payment request by its order ID.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsIdCardAuthenticationsetupPost**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsidcardauthenticationsetuppost) | **POST** /api/v1/paymentrequests/{id}/card/authenticationsetup | Set up payer authentication for a card payment.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsIdCardCapturePost**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsidcardcapturepost) | **POST** /api/v1/paymentrequests/{id}/card/capture | Submits a request to capture a previously authorised card payment.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsIdCardPaywithtokenPost**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsidcardpaywithtokenpost) | **POST** /api/v1/paymentrequests/{id}/card/paywithtoken | Submits a payment request, using a tokenised card, to a payment gateway.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsIdCardPost**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsidcardpost) | **POST** /api/v1/paymentrequests/{id}/card | Submit a payment authorisation request to the card gateway.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsIdCardPublickeyGet**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsidcardpublickeyget) | **GET** /api/v1/paymentrequests/{id}/card/publickey | Gets the public key to encrypt card details with when submitting an authorisation.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsidcardrefundpartialrefundamountpost) | **POST** /api/v1/paymentrequests/{id}/card/refund/{partialRefundAmount} | Submits a request to refund a card payment.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsIdCardVoidPost**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsidcardvoidpost) | **POST** /api/v1/paymentrequests/{id}/card/void | Submits a request to void a card payment.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsIdCardVoidpaymentrequestPost**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsidcardvoidpaymentrequestpost) | **POST** /api/v1/paymentrequests/{id}/card/voidpaymentrequest | Submits a request to void all payments for a payment request.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsIdDelete**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsiddelete) | **DELETE** /api/v1/paymentrequests/{id} | Deletes a payment request, along with its keys and addresses, if there&#39;s  no payment event associated with it.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsIdEventsGet**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsideventsget) | **GET** /api/v1/paymentrequests/{id}/events | Gets a payment requests&#39;s events.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsIdGet**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsidget) | **GET** /api/v1/paymentrequests/{id} | Gets a payment request.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsIdMinimalGet**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsidminimalget) | **GET** /api/v1/paymentrequests/{id}/minimal | Gets a minimal representation of a payment request.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsIdPispPost**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsidpisppost) | **POST** /api/v1/paymentrequests/{id}/pisp | Submits a payment initiation request.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsIdPispSandboxcallbackPut**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsidpispsandboxcallbackput) | **PUT** /api/v1/paymentrequests/{id}/pisp/sandboxcallback | This action simulates a payment initiation callback from a bank to authorise a payment in a sandbox environment.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsIdPut**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsidput) | **PUT** /api/v1/paymentrequests/{id} | Updates a payment request.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsIdResultGet**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsidresultget) | **GET** /api/v1/paymentrequests/{id}/result | Gets a payment request result.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsMetricsGet**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestsmetricsget) | **GET** /api/v1/paymentrequests/metrics | Gets payment request metrics of a merchant.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsPayondemandPost**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestspayondemandpost) | **POST** /api/v1/paymentrequests/payondemand | Creates a payment request record and processes the payment.
-*PaymentRequestsApi* | [**apiV1PaymentrequestsPost**](docs/Api/PaymentRequestsApi.md#apiv1paymentrequestspost) | **POST** /api/v1/paymentrequests | Creates a payment request record.
-*PayoutsApi* | [**apiV1PayoutsBatchIdGet**](docs/Api/PayoutsApi.md#apiv1payoutsbatchidget) | **GET** /api/v1/payouts/batch/{id} | Gets a list of all the payouts contained in a batch.
-*PayoutsApi* | [**apiV1PayoutsBatchPost**](docs/Api/PayoutsApi.md#apiv1payoutsbatchpost) | **POST** /api/v1/payouts/batch | Creates a new batch payout.
-*PayoutsApi* | [**apiV1PayoutsBatchSubmitIdPost**](docs/Api/PayoutsApi.md#apiv1payoutsbatchsubmitidpost) | **POST** /api/v1/payouts/batch/submit/{id} | Submits a batch payout for processing.
-*PayoutsApi* | [**apiV1PayoutsBatchcreatePost**](docs/Api/PayoutsApi.md#apiv1payoutsbatchcreatepost) | **POST** /api/v1/payouts/batchcreate | Creates payouts.
-*PayoutsApi* | [**apiV1PayoutsBatchdeleteDelete**](docs/Api/PayoutsApi.md#apiv1payoutsbatchdeletedelete) | **DELETE** /api/v1/payouts/batchdelete | Deletes a list of payout records.
-*PayoutsApi* | [**apiV1PayoutsCancelIdPut**](docs/Api/PayoutsApi.md#apiv1payoutscancelidput) | **PUT** /api/v1/payouts/cancel/{id} | Attempts to cancel a scheduled payout.
-*PayoutsApi* | [**apiV1PayoutsGet**](docs/Api/PayoutsApi.md#apiv1payoutsget) | **GET** /api/v1/payouts | Gets a list of all payouts for a specific merchant.
-*PayoutsApi* | [**apiV1PayoutsGetbyinvoiceidInvoiceIDGet**](docs/Api/PayoutsApi.md#apiv1payoutsgetbyinvoiceidinvoiceidget) | **GET** /api/v1/payouts/getbyinvoiceid/{invoiceID} | Gets a payout by its invoice ID.
-*PayoutsApi* | [**apiV1PayoutsIdDelete**](docs/Api/PayoutsApi.md#apiv1payoutsiddelete) | **DELETE** /api/v1/payouts/{id} | Deletes a payout record.
-*PayoutsApi* | [**apiV1PayoutsIdGet**](docs/Api/PayoutsApi.md#apiv1payoutsidget) | **GET** /api/v1/payouts/{id} | Gets a single payout.
-*PayoutsApi* | [**apiV1PayoutsIdPut**](docs/Api/PayoutsApi.md#apiv1payoutsidput) | **PUT** /api/v1/payouts/{id} | Updates a payout record.
-*PayoutsApi* | [**apiV1PayoutsMetricsGet**](docs/Api/PayoutsApi.md#apiv1payoutsmetricsget) | **GET** /api/v1/payouts/metrics | Gets a list of all payouts for a specific merchant.
-*PayoutsApi* | [**apiV1PayoutsPost**](docs/Api/PayoutsApi.md#apiv1payoutspost) | **POST** /api/v1/payouts | Creates a new payout.
-*PayoutsApi* | [**apiV1PayoutsRejectIdPut**](docs/Api/PayoutsApi.md#apiv1payoutsrejectidput) | **PUT** /api/v1/payouts/reject/{id} | Rejects the authorisation for a payout.
-*PayoutsApi* | [**apiV1PayoutsSendPost**](docs/Api/PayoutsApi.md#apiv1payoutssendpost) | **POST** /api/v1/payouts/send | Creates and submits a payout for a trusted caller.
-*PayoutsApi* | [**apiV1PayoutsStatusIdGet**](docs/Api/PayoutsApi.md#apiv1payoutsstatusidget) | **GET** /api/v1/payouts/status/{id} | Gets a single payout status from.
-*PayoutsApi* | [**apiV1PayoutsSubmitIdPost**](docs/Api/PayoutsApi.md#apiv1payoutssubmitidpost) | **POST** /api/v1/payouts/submit/{id} | Submits a payout for processing.
-*ReportsApi* | [**apiV1ReportsIdInitiatePut**](docs/Api/ReportsApi.md#apiv1reportsidinitiateput) | **PUT** /api/v1/reports/{id}/initiate | Initiates the execution of a merchant report.
-*ReportsApi* | [**apiV1ReportsIdResultStatementNumberGet**](docs/Api/ReportsApi.md#apiv1reportsidresultstatementnumberget) | **GET** /api/v1/reports/{id}/result/{statementNumber} | Attempts to get the aggregated results of report execution. If the   report is still in progress an accepted response will be returned.
-*RulesApi* | [**apiV1RulesGet**](docs/Api/RulesApi.md#apiv1rulesget) | **GET** /api/v1/rules | Gets all the rules for a merchant.
-*RulesApi* | [**apiV1RulesIdDelete**](docs/Api/RulesApi.md#apiv1rulesiddelete) | **DELETE** /api/v1/rules/{id} | Deletes a rule and any associated events.
-*RulesApi* | [**apiV1RulesIdDisablePut**](docs/Api/RulesApi.md#apiv1rulesiddisableput) | **PUT** /api/v1/rules/{id}/disable | Disables a rule.
-*RulesApi* | [**apiV1RulesIdEventsGet**](docs/Api/RulesApi.md#apiv1rulesideventsget) | **GET** /api/v1/rules/{id}/events | Gets a list of the events for a single rule.
-*RulesApi* | [**apiV1RulesIdGet**](docs/Api/RulesApi.md#apiv1rulesidget) | **GET** /api/v1/rules/{id} | Get a single rule by ID.
-*RulesApi* | [**apiV1RulesIdPut**](docs/Api/RulesApi.md#apiv1rulesidput) | **PUT** /api/v1/rules/{id} | Update an existing rule.
-*RulesApi* | [**apiV1RulesPost**](docs/Api/RulesApi.md#apiv1rulespost) | **POST** /api/v1/rules | Creates a new rule for a MoneyMoov payment account.
-*TokensApi* | [**apiV1TokensIdDelete**](docs/Api/TokensApi.md#apiv1tokensiddelete) | **DELETE** /api/v1/tokens/{id} | Deletes a merchant API token.
-*TokensApi* | [**apiV1TokensPost**](docs/Api/TokensApi.md#apiv1tokenspost) | **POST** /api/v1/tokens | Creates a new merchant API token.
-*TransactionsApi* | [**apiV1TransactionsAccountIDGet**](docs/Api/TransactionsApi.md#apiv1transactionsaccountidget) | **GET** /api/v1/transactions/{accountID} | Get a list of the transactions for a single payment account.
-*TransactionsApi* | [**apiV1TransactionsGet**](docs/Api/TransactionsApi.md#apiv1transactionsget) | **GET** /api/v1/transactions | Get a list of the transactions for all payment accounts a user has access to.
-*UserApi* | [**apiV1UserGet**](docs/Api/UserApi.md#apiv1userget) | **GET** /api/v1/user | Get the profile for the authenticated user.
-*UserApi* | [**apiV1UserIdPut**](docs/Api/UserApi.md#apiv1useridput) | **PUT** /api/v1/user/{id} | Updates a user record and optionally accepts an invite to join a merchant.
-*UserApi* | [**apiV1UserMerchantIDUsersGet**](docs/Api/UserApi.md#apiv1usermerchantidusersget) | **GET** /api/v1/user/{merchantID}/users | Gets all users including invitees for a merchant.
-*UserInvitesApi* | [**apiV1UserinvitesIdDelete**](docs/Api/UserInvitesApi.md#apiv1userinvitesiddelete) | **DELETE** /api/v1/userinvites/{id} | Deletes user invite.
-*UserInvitesApi* | [**apiV1UserinvitesIdGet**](docs/Api/UserInvitesApi.md#apiv1userinvitesidget) | **GET** /api/v1/userinvites/{id} | Gets a user invite by ID.
-*UserInvitesApi* | [**apiV1UserinvitesIdPut**](docs/Api/UserInvitesApi.md#apiv1userinvitesidput) | **PUT** /api/v1/userinvites/{id} | Resend, or request a resend, of a user invite.
-*UserInvitesApi* | [**apiV1UserinvitesPost**](docs/Api/UserInvitesApi.md#apiv1userinvitespost) | **POST** /api/v1/userinvites | Creates a new user invite and optionally sends the invitee an email with the details.
-*WebhooksApi* | [**apiV1WebhooksIdDelete**](docs/Api/WebhooksApi.md#apiv1webhooksiddelete) | **DELETE** /api/v1/webhooks/{id} | Deletes a webhook.
-*WebhooksApi* | [**apiV1WebhooksIdPut**](docs/Api/WebhooksApi.md#apiv1webhooksidput) | **PUT** /api/v1/webhooks/{id} | Updates a webhook for the given merchant.
-*WebhooksApi* | [**apiV1WebhooksMerchantIDGet**](docs/Api/WebhooksApi.md#apiv1webhooksmerchantidget) | **GET** /api/v1/webhooks/{merchantID} | Get all configured webhooks for a merchant.
-*WebhooksApi* | [**apiV1WebhooksPost**](docs/Api/WebhooksApi.md#apiv1webhookspost) | **POST** /api/v1/webhooks | Creates a webhook for the given merchant.
+*AccountsApi* | [**archiveAccount**](docs/Api/AccountsApi.md#archiveaccount) | **DELETE** /api/v1/accounts/archive/{id} | Sets the specified account as archived.
+*AccountsApi* | [**clearAccountStatements**](docs/Api/AccountsApi.md#clearaccountstatements) | **DELETE** /api/v1/accounts/statements | Clears the cached user statements for a user.
+*AccountsApi* | [**createAccount**](docs/Api/AccountsApi.md#createaccount) | **POST** /api/v1/accounts | Creates a new merchant payment account.
+*AccountsApi* | [**generateAccountStatement**](docs/Api/AccountsApi.md#generateaccountstatement) | **POST** /api/v1/accounts/{accountID}/statements | Sends a message to the transaction statement queue to generate a statement with the supplied parameters.
+*AccountsApi* | [**getAccount**](docs/Api/AccountsApi.md#getaccount) | **GET** /api/v1/accounts/{accountID} | Get an account.
+*AccountsApi* | [**getAccountPayouts**](docs/Api/AccountsApi.md#getaccountpayouts) | **GET** /api/v1/accounts/{accountID}/payouts | Gets a list of all payouts for a specific account.
+*AccountsApi* | [**getAccountStatement**](docs/Api/AccountsApi.md#getaccountstatement) | **GET** /api/v1/accounts/{accountID}/statements/{id} | Gets the specified statement from the user&#39;s cache.
+*AccountsApi* | [**getAccountTransactionsPaged**](docs/Api/AccountsApi.md#getaccounttransactionspaged) | **GET** /api/v1/accounts/{accountID}/transactions | Get a list of the transactions for a single payment account.
+*AccountsApi* | [**getAccounts**](docs/Api/AccountsApi.md#getaccounts) | **GET** /api/v1/accounts | Get a list of all payment accounts the user has access to.
+*AccountsApi* | [**getAccountsPaged**](docs/Api/AccountsApi.md#getaccountspaged) | **GET** /api/v1/accounts/paged | Get a paged list of all payment accounts the user has access to for a specific merchant.
+*AccountsApi* | [**getAllAccountStatements**](docs/Api/AccountsApi.md#getallaccountstatements) | **GET** /api/v1/accounts/statements | Gets all active statement generation requests for the user.
+*AccountsApi* | [**getTransactionForAccount**](docs/Api/AccountsApi.md#gettransactionforaccount) | **GET** /api/v1/accounts/{accountID}/transactions/{id} | Get a transaction.
+*AccountsApi* | [**topupAccount**](docs/Api/AccountsApi.md#topupaccount) | **PUT** /api/v1/accounts/{accountID}/topup/{amount} | SANDBOX ONLY. Top-ups a payment account with the amount provided.
+*AccountsApi* | [**unarchiveAccount**](docs/Api/AccountsApi.md#unarchiveaccount) | **PUT** /api/v1/accounts/unarchive/{id} | Sets the specified account as unarchived / active.
+*AccountsApi* | [**updateAccount**](docs/Api/AccountsApi.md#updateaccount) | **PUT** /api/v1/accounts/{id} | Updates an account record.
+*BeneficiariesApi* | [**authoriseBeneficiary**](docs/Api/BeneficiariesApi.md#authorisebeneficiary) | **POST** /api/v1/beneficiaries/authorise/{id} | Authorises a beneficiary.
+*BeneficiariesApi* | [**createBeneficiary**](docs/Api/BeneficiariesApi.md#createbeneficiary) | **POST** /api/v1/beneficiaries | Creates a new beneficiary.
+*BeneficiariesApi* | [**deleteBeneficiary**](docs/Api/BeneficiariesApi.md#deletebeneficiary) | **DELETE** /api/v1/beneficiaries/{id} | Deletes a beneficiary
+*BeneficiariesApi* | [**disableBeneficiary**](docs/Api/BeneficiariesApi.md#disablebeneficiary) | **PUT** /api/v1/beneficiaries/disable/{id} | Attempts to disable a beneficiary. If successful the beneficiary will be disabled.
+*BeneficiariesApi* | [**enableBeneficiary**](docs/Api/BeneficiariesApi.md#enablebeneficiary) | **PUT** /api/v1/beneficiaries/enable/{id} | Attempts to enable a beneficiary. If successful the beneficiary will be enabled.
+*BeneficiariesApi* | [**getBeneficiaries**](docs/Api/BeneficiariesApi.md#getbeneficiaries) | **GET** /api/v1/beneficiaries | Gets a list of all beneficiaries.
+*BeneficiariesApi* | [**getBeneficiary**](docs/Api/BeneficiariesApi.md#getbeneficiary) | **GET** /api/v1/beneficiaries/{id} | Get&#39;s a beneficiary by beneficiary ID.
+*BeneficiariesApi* | [**updateBeneficiary**](docs/Api/BeneficiariesApi.md#updatebeneficiary) | **PUT** /api/v1/beneficiaries/{id} | Updates a beneficiary.
+*MandatesApi* | [**createMandate**](docs/Api/MandatesApi.md#createmandate) | **POST** /api/v1/mandates | Creates a Direct Debit mandate.
+*MandatesApi* | [**getMandate**](docs/Api/MandatesApi.md#getmandate) | **GET** /api/v1/mandates/{id} | Gets a specific mandate&#39;s information.
+*MandatesApi* | [**getMandatesPaged**](docs/Api/MandatesApi.md#getmandatespaged) | **GET** /api/v1/mandates | Gets all mandates from a specific merchant with the supplied parameters.
+*MerchantsApi* | [**createMerchantTag**](docs/Api/MerchantsApi.md#createmerchanttag) | **POST** /api/v1/merchants/{merchantID}/tags | Adds a tag to a merchant.
+*MerchantsApi* | [**createMerchantUserRole**](docs/Api/MerchantsApi.md#createmerchantuserrole) | **POST** /api/v1/merchants/userroles | Assigns role to user.
+*MerchantsApi* | [**deleteMerchantTag**](docs/Api/MerchantsApi.md#deletemerchanttag) | **DELETE** /api/v1/merchants/{merchantID}/tags/{tagID} | Deletes a tag from a merchant
+*MerchantsApi* | [**deleteMerchantUserRole**](docs/Api/MerchantsApi.md#deletemerchantuserrole) | **DELETE** /api/v1/merchants/userroles/{id} | Deletes user role.
+*MerchantsApi* | [**getMerchant**](docs/Api/MerchantsApi.md#getmerchant) | **GET** /api/v1/merchants/{merchantID} | Get&#39;s a merchant.
+*MerchantsApi* | [**getMerchantAccount**](docs/Api/MerchantsApi.md#getmerchantaccount) | **GET** /api/v1/merchants/{merchantID}/accounts/{accountID} | Get an account.
+*MerchantsApi* | [**getMerchantAccounts**](docs/Api/MerchantsApi.md#getmerchantaccounts) | **GET** /api/v1/merchants/{merchantID}/accounts | Get a list of merchant&#39;s payment accounts.
+*MerchantsApi* | [**getMerchantBankSettings**](docs/Api/MerchantsApi.md#getmerchantbanksettings) | **GET** /api/v1/merchants/{merchantID}/banksettings | Gets a list of the banks configured for a merchant&#39;s pay by bank requests,
+*MerchantsApi* | [**getMerchantBeneficiaries**](docs/Api/MerchantsApi.md#getmerchantbeneficiaries) | **GET** /api/v1/merchants/{merchantID}/beneficiaries | Gets a list of all beneficiaries.
+*MerchantsApi* | [**getMerchantBeneficiary**](docs/Api/MerchantsApi.md#getmerchantbeneficiary) | **GET** /api/v1/merchants/{merchantID}/beneficiaries/{id} | Get&#39;s a beneficiary by beneficiary ID.
+*MerchantsApi* | [**getMerchantBeneficiaryGroups**](docs/Api/MerchantsApi.md#getmerchantbeneficiarygroups) | **GET** /api/v1/merchants/{merchantID}/beneficiarygroups | Gets a list of all beneficiary groups.
+*MerchantsApi* | [**getMerchantPayoutsPaged**](docs/Api/MerchantsApi.md#getmerchantpayoutspaged) | **GET** /api/v1/merchants/{merchantID}/payouts | Gets a list of all payouts for a specific merchant.
+*MerchantsApi* | [**getMerchantTags**](docs/Api/MerchantsApi.md#getmerchanttags) | **GET** /api/v1/merchants/{merchantID}/tags | Get a list of merchant tags
+*MerchantsApi* | [**getMerchantTokens**](docs/Api/MerchantsApi.md#getmerchanttokens) | **GET** /api/v1/merchants/{merchantID}/tokens | Gets a list of a merchant&#39;s issued API tokens.
+*MerchantsApi* | [**getMerchantTransactionsPaged**](docs/Api/MerchantsApi.md#getmerchanttransactionspaged) | **GET** /api/v1/merchants/{merchantID}/transactions | Gets a list of transactions for all a merchant&#39;s accounts.
+*MerchantsApi* | [**getMerchantUserInvites**](docs/Api/MerchantsApi.md#getmerchantuserinvites) | **GET** /api/v1/merchants/{merchantID}/userinvites | Gets user invites associated with merchant.
+*MerchantsApi* | [**getMerchantUserRoles**](docs/Api/MerchantsApi.md#getmerchantuserroles) | **GET** /api/v1/merchants/{merchantID}/userroles | Gets user roles associated with merchant.
+*MerchantsApi* | [**getMerchantUsers**](docs/Api/MerchantsApi.md#getmerchantusers) | **GET** /api/v1/merchants/{merchantID}/users | Gets all users including invitees for a merchant.
+*MerchantsApi* | [**getMerchantWebhooks**](docs/Api/MerchantsApi.md#getmerchantwebhooks) | **GET** /api/v1/merchants/{merchantID}/webhooks | Get all configured webhooks for a merchant.
+*MerchantsApi* | [**getMerchants**](docs/Api/MerchantsApi.md#getmerchants) | **GET** /api/v1/merchants | Get&#39;s a list of merchants the caller has access to.
+*MerchantsApi* | [**getMerchantsPaged**](docs/Api/MerchantsApi.md#getmerchantspaged) | **GET** /api/v1/merchants/paged | Get a paged list of all the merchants the caller has access to.
+*MetadataApi* | [**getBitcoinBlockHeight**](docs/Api/MetadataApi.md#getbitcoinblockheight) | **GET** /api/v1/metadata/height | Gets the current Bitcoin blockchain height. In sandbox the testnet height is returned.
+*MetadataApi* | [**problem**](docs/Api/MetadataApi.md#problem) | **GET** /api/v1/metadata/problem | Returns an example problem response.
+*MetadataApi* | [**problemNotification**](docs/Api/MetadataApi.md#problemnotification) | **GET** /api/v1/metadata/problemnotification | Triggers a webhook with the problem details in the payload.
+*MetadataApi* | [**version**](docs/Api/MetadataApi.md#version) | **GET** /api/v1/metadata/version | Gets the current version of the MoneyMoov API.
+*MetadataApi* | [**whoAmI**](docs/Api/MetadataApi.md#whoami) | **GET** /api/v1/metadata/whoami | Returns the profile of the requesting user.
+*MetadataApi* | [**whoAmIMerchant**](docs/Api/MetadataApi.md#whoamimerchant) | **GET** /api/v1/metadata/whoamimerchant | Returns the name of the merchant that authentication token was issued for.
+*OpenBankingApi* | [**createConsent**](docs/Api/OpenBankingApi.md#createconsent) | **POST** /api/v1/openbanking/consents | Creates a consent thats used to initiate an authorisation to a financial institution.
+*OpenBankingApi* | [**deleteAllConsents**](docs/Api/OpenBankingApi.md#deleteallconsents) | **DELETE** /api/v1/openbanking/consents/{merchantID}/{email} | Delete all the open banking consents for a single user.
+*OpenBankingApi* | [**deleteConnectedAccount**](docs/Api/OpenBankingApi.md#deleteconnectedaccount) | **DELETE** /api/v1/openbanking/account/{accountID} | Deletes the specified connected account and all associated transactions.
+*OpenBankingApi* | [**deleteConsent**](docs/Api/OpenBankingApi.md#deleteconsent) | **DELETE** /api/v1/openbanking/consents/{consentID} | Deletes a single open banking consent.
+*OpenBankingApi* | [**getConnectedAccountTransactions**](docs/Api/OpenBankingApi.md#getconnectedaccounttransactions) | **GET** /api/v1/openbanking/transactions/{consentID}/{accountID} | Retrieves transactions from financial institution.
+*OpenBankingApi* | [**getConnectedAccounts**](docs/Api/OpenBankingApi.md#getconnectedaccounts) | **GET** /api/v1/openbanking/accounts/{consentID} | Retrieves list of accounts from financial institution.
+*OpenBankingApi* | [**getConsent**](docs/Api/OpenBankingApi.md#getconsent) | **GET** /api/v1/openbanking/consents/{consentID} | Retrieve a single open banking consent.
+*OpenBankingApi* | [**getConsents**](docs/Api/OpenBankingApi.md#getconsents) | **GET** /api/v1/openbanking/consents/{merchantID}/{email} | Retrieve all the open banking consents for a single user.
+*OpenBankingApi* | [**reauthoriseConsent**](docs/Api/OpenBankingApi.md#reauthoriseconsent) | **PATCH** /api/v1/openbanking/consents/{consentID} | Creates a new authorisation to a financial institution based on a consent that has   already been authorised.
+*OpenBankingApi* | [**synchroniseConnectedAccount**](docs/Api/OpenBankingApi.md#synchroniseconnectedaccount) | **POST** /api/v1/openbanking/account/{accountID}/synchronise | Attempts to synchronise the balance and transactions of a connected account.
+*PaymentRequestsApi* | [**captureCardPayment**](docs/Api/PaymentRequestsApi.md#capturecardpayment) | **POST** /api/v1/paymentrequests/{id}/card/capture | Submits a request to capture a previously authorised card payment.
+*PaymentRequestsApi* | [**createAndPayPaymentRequest**](docs/Api/PaymentRequestsApi.md#createandpaypaymentrequest) | **POST** /api/v1/paymentrequests/payondemand | Creates a payment request record and processes the payment.
+*PaymentRequestsApi* | [**createPaymentRequest**](docs/Api/PaymentRequestsApi.md#createpaymentrequest) | **POST** /api/v1/paymentrequests | Creates a payment request record.
+*PaymentRequestsApi* | [**deleteAllTokenisedCards**](docs/Api/PaymentRequestsApi.md#deletealltokenisedcards) | **DELETE** /api/v1/paymentrequests/card/customertokens/removeall/{customerEmailAddress} | Deletes all the card tokens for a customer.
+*PaymentRequestsApi* | [**deleteAllTokenisedCardsForMerchant**](docs/Api/PaymentRequestsApi.md#deletealltokenisedcardsformerchant) | **DELETE** /api/v1/paymentrequests/card/customertokens/removeall/{merchantID}/{customerEmailAddress} | Deletes all the card tokens for a customer.
+*PaymentRequestsApi* | [**deletePaymentRequest**](docs/Api/PaymentRequestsApi.md#deletepaymentrequest) | **DELETE** /api/v1/paymentrequests/{id} | Deletes a payment request, along with its keys and addresses, if there&#39;s  no payment event associated with it.
+*PaymentRequestsApi* | [**deleteTokenisedCard**](docs/Api/PaymentRequestsApi.md#deletetokenisedcard) | **DELETE** /api/v1/paymentrequests/card/customertokens/{id} | Deletes a single card token.
+*PaymentRequestsApi* | [**getAllPaymentRequestsPaged**](docs/Api/PaymentRequestsApi.md#getallpaymentrequestspaged) | **GET** /api/v1/paymentrequests | Gets a list of all payment requests.
+*PaymentRequestsApi* | [**getLightningInvoice**](docs/Api/PaymentRequestsApi.md#getlightninginvoice) | **GET** /api/v1/paymentrequests/{id}/lightning/{partialAmount} | Gets a Bitcoin Lightning invoice for a payment request.
+*PaymentRequestsApi* | [**getPaymentRequest**](docs/Api/PaymentRequestsApi.md#getpaymentrequest) | **GET** /api/v1/paymentrequests/{id} | Gets a payment request.
+*PaymentRequestsApi* | [**getPaymentRequestEvents**](docs/Api/PaymentRequestsApi.md#getpaymentrequestevents) | **GET** /api/v1/paymentrequests/{id}/events | Gets a payment requests&#39;s events.
+*PaymentRequestsApi* | [**getPaymentRequestForOrder**](docs/Api/PaymentRequestsApi.md#getpaymentrequestfororder) | **GET** /api/v1/paymentrequests/getbyorderid/{orderID} | Gets a payment request by its order ID.
+*PaymentRequestsApi* | [**getPaymentRequestMetricsForMerchant**](docs/Api/PaymentRequestsApi.md#getpaymentrequestmetricsformerchant) | **GET** /api/v1/paymentrequests/metrics | Gets payment request metrics of a merchant.
+*PaymentRequestsApi* | [**getPaymentRequestMinimal**](docs/Api/PaymentRequestsApi.md#getpaymentrequestminimal) | **GET** /api/v1/paymentrequests/{id}/minimal | Gets a minimal representation of a payment request.
+*PaymentRequestsApi* | [**getPaymentRequestResult**](docs/Api/PaymentRequestsApi.md#getpaymentrequestresult) | **GET** /api/v1/paymentrequests/{id}/result | Gets a payment request result.
+*PaymentRequestsApi* | [**getPublicKeyForCardPayment**](docs/Api/PaymentRequestsApi.md#getpublickeyforcardpayment) | **GET** /api/v1/paymentrequests/{id}/card/publickey | Gets the public key to encrypt card details with when submitting an authorisation.
+*PaymentRequestsApi* | [**getTokenisedCards**](docs/Api/PaymentRequestsApi.md#gettokenisedcards) | **GET** /api/v1/paymentrequests/card/customertokens/{customerEmailAddress} | Gets a list of the tokenised cards stored for a single customer.
+*PaymentRequestsApi* | [**getTokenisedCardsForMerchant**](docs/Api/PaymentRequestsApi.md#gettokenisedcardsformerchant) | **GET** /api/v1/paymentrequests/card/customertokens/{merchantID}/{customerEmailAddress} | Gets a list of the tokenised cards stored for a single customer.
+*PaymentRequestsApi* | [**refundCardPayment**](docs/Api/PaymentRequestsApi.md#refundcardpayment) | **POST** /api/v1/paymentrequests/{id}/card/refund/{partialRefundAmount} | Submits a request to refund a card payment.
+*PaymentRequestsApi* | [**setupCardPayerAuthentication**](docs/Api/PaymentRequestsApi.md#setupcardpayerauthentication) | **POST** /api/v1/paymentrequests/{id}/card/authenticationsetup | Set up payer authentication for a card payment.
+*PaymentRequestsApi* | [**simulatePayByBankCallback**](docs/Api/PaymentRequestsApi.md#simulatepaybybankcallback) | **PUT** /api/v1/paymentrequests/{id}/pisp/sandboxcallback | This action simulates a payment initiation callback from a bank to authorise a payment in a sandbox environment.
+*PaymentRequestsApi* | [**submitCardPayment**](docs/Api/PaymentRequestsApi.md#submitcardpayment) | **POST** /api/v1/paymentrequests/{id}/card | Submit a payment authorisation request to the card gateway.
+*PaymentRequestsApi* | [**submitPayByBank**](docs/Api/PaymentRequestsApi.md#submitpaybybank) | **POST** /api/v1/paymentrequests/{id}/pisp | Submits a payment initiation request.
+*PaymentRequestsApi* | [**submitTokenisedCardPayment**](docs/Api/PaymentRequestsApi.md#submittokenisedcardpayment) | **POST** /api/v1/paymentrequests/{id}/card/paywithtoken | Submits a payment request, using a tokenised card, to a payment gateway.
+*PaymentRequestsApi* | [**updatePaymentRequest**](docs/Api/PaymentRequestsApi.md#updatepaymentrequest) | **PUT** /api/v1/paymentrequests/{id} | Updates a payment request.
+*PaymentRequestsApi* | [**voidAllCardPayments**](docs/Api/PaymentRequestsApi.md#voidallcardpayments) | **POST** /api/v1/paymentrequests/{id}/card/voidpaymentrequest | Submits a request to void all payments for a payment request.
+*PaymentRequestsApi* | [**voidCardPayment**](docs/Api/PaymentRequestsApi.md#voidcardpayment) | **POST** /api/v1/paymentrequests/{id}/card/void | Submits a request to void a card payment.
+*PayoutsApi* | [**cancelScheduledPayout**](docs/Api/PayoutsApi.md#cancelscheduledpayout) | **PUT** /api/v1/payouts/cancel/{id} | Attempts to cancel a scheduled payout.
+*PayoutsApi* | [**createBatchPayout**](docs/Api/PayoutsApi.md#createbatchpayout) | **POST** /api/v1/payouts/batch | Creates a new batch payout.
+*PayoutsApi* | [**createPayout**](docs/Api/PayoutsApi.md#createpayout) | **POST** /api/v1/payouts | Creates a new payout.
+*PayoutsApi* | [**createPayouts**](docs/Api/PayoutsApi.md#createpayouts) | **POST** /api/v1/payouts/batchcreate | Creates payouts.
+*PayoutsApi* | [**deletePayout**](docs/Api/PayoutsApi.md#deletepayout) | **DELETE** /api/v1/payouts/{id} | Deletes a payout record.
+*PayoutsApi* | [**deletePayouts**](docs/Api/PayoutsApi.md#deletepayouts) | **DELETE** /api/v1/payouts/batchdelete | Deletes a list of payout records.
+*PayoutsApi* | [**getBatchPayout**](docs/Api/PayoutsApi.md#getbatchpayout) | **GET** /api/v1/payouts/batch/{id} | Gets a list of all the payouts contained in a batch.
+*PayoutsApi* | [**getPayout**](docs/Api/PayoutsApi.md#getpayout) | **GET** /api/v1/payouts/{id} | Gets a single payout.
+*PayoutsApi* | [**getPayoutForInvoice**](docs/Api/PayoutsApi.md#getpayoutforinvoice) | **GET** /api/v1/payouts/getbyinvoiceid/{invoiceID} | Gets a payout by its invoice ID.
+*PayoutsApi* | [**getPayoutMetrics**](docs/Api/PayoutsApi.md#getpayoutmetrics) | **GET** /api/v1/payouts/metrics | Gets a list of all payout metrics for a specific merchant.
+*PayoutsApi* | [**getPayoutStatus**](docs/Api/PayoutsApi.md#getpayoutstatus) | **GET** /api/v1/payouts/status/{id} | Gets a single payout status from.
+*PayoutsApi* | [**getPayoutsPaged**](docs/Api/PayoutsApi.md#getpayoutspaged) | **GET** /api/v1/payouts | Gets a list of all payouts for a specific merchant.
+*PayoutsApi* | [**rejectPayout**](docs/Api/PayoutsApi.md#rejectpayout) | **PUT** /api/v1/payouts/reject/{id} | Rejects the authorisation for a payout.
+*PayoutsApi* | [**sendPayout**](docs/Api/PayoutsApi.md#sendpayout) | **POST** /api/v1/payouts/send | Creates and submits a payout for a trusted caller.
+*PayoutsApi* | [**submitBatchPayout**](docs/Api/PayoutsApi.md#submitbatchpayout) | **POST** /api/v1/payouts/batch/submit/{id} | Submits a batch payout for processing.
+*PayoutsApi* | [**submitPayout**](docs/Api/PayoutsApi.md#submitpayout) | **POST** /api/v1/payouts/submit/{id} | Submits a payout for processing.
+*PayoutsApi* | [**updatePayout**](docs/Api/PayoutsApi.md#updatepayout) | **PUT** /api/v1/payouts/{id} | Updates a payout record.
+*ReportsApi* | [**getReportResult**](docs/Api/ReportsApi.md#getreportresult) | **GET** /api/v1/reports/{id}/result/{statementNumber} | Attempts to get the aggregated results of report execution. If the   report is still in progress an accepted response will be returned.
+*ReportsApi* | [**initiateReport**](docs/Api/ReportsApi.md#initiatereport) | **PUT** /api/v1/reports/{id}/initiate | Initiates the execution of a merchant report.
+*RulesApi* | [**createRule**](docs/Api/RulesApi.md#createrule) | **POST** /api/v1/rules | Creates a new rule for a MoneyMoov payment account.
+*RulesApi* | [**deleteRule**](docs/Api/RulesApi.md#deleterule) | **DELETE** /api/v1/rules/{id} | Deletes a rule and any associated events.
+*RulesApi* | [**disableRule**](docs/Api/RulesApi.md#disablerule) | **PUT** /api/v1/rules/{id}/disable | Disables a rule.
+*RulesApi* | [**getRule**](docs/Api/RulesApi.md#getrule) | **GET** /api/v1/rules/{id} | Get a single rule by ID.
+*RulesApi* | [**getRuleEvents**](docs/Api/RulesApi.md#getruleevents) | **GET** /api/v1/rules/{id}/events | Gets a list of the events for a single rule.
+*RulesApi* | [**getRulesPaged**](docs/Api/RulesApi.md#getrulespaged) | **GET** /api/v1/rules | Gets all the rules for a merchant.
+*RulesApi* | [**updateRule**](docs/Api/RulesApi.md#updaterule) | **PUT** /api/v1/rules/{id} | Update an existing rule.
+*TokensApi* | [**createMerchantToken**](docs/Api/TokensApi.md#createmerchanttoken) | **POST** /api/v1/tokens | Creates a new merchant API token.
+*TokensApi* | [**deleteToken**](docs/Api/TokensApi.md#deletetoken) | **DELETE** /api/v1/tokens/{id} | Deletes a merchant API token.
+*TransactionsApi* | [**getTransactionsForAccountPaged**](docs/Api/TransactionsApi.md#gettransactionsforaccountpaged) | **GET** /api/v1/transactions/{accountID} | Get a list of the transactions for a single payment account.
+*TransactionsApi* | [**getTransactionsPaged**](docs/Api/TransactionsApi.md#gettransactionspaged) | **GET** /api/v1/transactions | Get a list of the transactions for all payment accounts a user has access to.
+*UserApi* | [**getUser**](docs/Api/UserApi.md#getuser) | **GET** /api/v1/user | Get the profile for the authenticated user.
+*UserApi* | [**getUsers**](docs/Api/UserApi.md#getusers) | **GET** /api/v1/user/{merchantID}/users | Gets all users including invitees for a merchant.
+*UserApi* | [**updateUser**](docs/Api/UserApi.md#updateuser) | **PUT** /api/v1/user/{id} | Updates a user record and optionally accepts an invite to join a merchant.
+*UserInvitesApi* | [**createUserInvite**](docs/Api/UserInvitesApi.md#createuserinvite) | **POST** /api/v1/userinvites | Creates a new user invite and optionally sends the invitee an email with the details.
+*UserInvitesApi* | [**deleteUserInvite**](docs/Api/UserInvitesApi.md#deleteuserinvite) | **DELETE** /api/v1/userinvites/{id} | Deletes user invite.
+*UserInvitesApi* | [**getUserInvite**](docs/Api/UserInvitesApi.md#getuserinvite) | **GET** /api/v1/userinvites/{id} | Gets a user invite by ID.
+*UserInvitesApi* | [**resendUserInvite**](docs/Api/UserInvitesApi.md#resenduserinvite) | **PUT** /api/v1/userinvites/{id} | Resend, or request a resend, of a user invite.
+*WebhooksApi* | [**createWebhook**](docs/Api/WebhooksApi.md#createwebhook) | **POST** /api/v1/webhooks | Creates a webhook for the given merchant.
+*WebhooksApi* | [**deleteWebhook**](docs/Api/WebhooksApi.md#deletewebhook) | **DELETE** /api/v1/webhooks/{id} | Deletes a webhook.
+*WebhooksApi* | [**getWebhooks**](docs/Api/WebhooksApi.md#getwebhooks) | **GET** /api/v1/webhooks/{merchantID} | Get all configured webhooks for a merchant.
+*WebhooksApi* | [**updateWebhook**](docs/Api/WebhooksApi.md#updatewebhook) | **PUT** /api/v1/webhooks/{id} | Updates a webhook for the given merchant.
 
 ## Models
 
@@ -230,60 +220,6 @@ Class | Method | HTTP request | Description
 - [NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse](docs/Model/NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse.md)
 - [NoFrixionBizBizModelsPaymentsCardPaymentResponse](docs/Model/NoFrixionBizBizModelsPaymentsCardPaymentResponse.md)
 - [NoFrixionBizBizModelsPaymentsCardPublicKey](docs/Model/NoFrixionBizBizModelsPaymentsCardPublicKey.md)
-- [NoFrixionDataAccessDataModelsBankCountriesEntity](docs/Model/NoFrixionDataAccessDataModelsBankCountriesEntity.md)
-- [NoFrixionDataAccessDataModelsInvoiceEntity](docs/Model/NoFrixionDataAccessDataModelsInvoiceEntity.md)
-- [NoFrixionDataAccessDataModelsInvoicePaymentEntity](docs/Model/NoFrixionDataAccessDataModelsInvoicePaymentEntity.md)
-- [NoFrixionDataAccessDataModelsPayin](docs/Model/NoFrixionDataAccessDataModelsPayin.md)
-- [NoFrixionDataAccessDataModelsPayrunEntity](docs/Model/NoFrixionDataAccessDataModelsPayrunEntity.md)
-- [NoFrixionDataAccessDataModelsPayrunEventEntity](docs/Model/NoFrixionDataAccessDataModelsPayrunEventEntity.md)
-- [NoFrixionDataAccessDataModelsPayrunSourceAccountEntity](docs/Model/NoFrixionDataAccessDataModelsPayrunSourceAccountEntity.md)
-- [NoFrixionDataAccessDataModelsReportAccountResultEntity](docs/Model/NoFrixionDataAccessDataModelsReportAccountResultEntity.md)
-- [NoFrixionDataAccessDataModelsThirdPartyApplicationEntity](docs/Model/NoFrixionDataAccessDataModelsThirdPartyApplicationEntity.md)
-- [NoFrixionDataAccessDataModelsThirdPartyApplicationKeyEntity](docs/Model/NoFrixionDataAccessDataModelsThirdPartyApplicationKeyEntity.md)
-- [NoFrixionDataModelsAISTransactionEntity](docs/Model/NoFrixionDataModelsAISTransactionEntity.md)
-- [NoFrixionDataModelsAccountBusinessSettingEntity](docs/Model/NoFrixionDataModelsAccountBusinessSettingEntity.md)
-- [NoFrixionDataModelsAccountEntity](docs/Model/NoFrixionDataModelsAccountEntity.md)
-- [NoFrixionDataModelsBankEntity](docs/Model/NoFrixionDataModelsBankEntity.md)
-- [NoFrixionDataModelsBankingCirclePhysicalAccountEntity](docs/Model/NoFrixionDataModelsBankingCirclePhysicalAccountEntity.md)
-- [NoFrixionDataModelsBeneficiaryEntity](docs/Model/NoFrixionDataModelsBeneficiaryEntity.md)
-- [NoFrixionDataModelsBeneficiaryEventEntity](docs/Model/NoFrixionDataModelsBeneficiaryEventEntity.md)
-- [NoFrixionDataModelsBeneficiaryGroupEntity](docs/Model/NoFrixionDataModelsBeneficiaryGroupEntity.md)
-- [NoFrixionDataModelsBeneficiaryGroupMemberEntity](docs/Model/NoFrixionDataModelsBeneficiaryGroupMemberEntity.md)
-- [NoFrixionDataModelsBeneficiarySourceAccountEntity](docs/Model/NoFrixionDataModelsBeneficiarySourceAccountEntity.md)
-- [NoFrixionDataModelsCountryEntity](docs/Model/NoFrixionDataModelsCountryEntity.md)
-- [NoFrixionDataModelsMerchantBankSettingsEntity](docs/Model/NoFrixionDataModelsMerchantBankSettingsEntity.md)
-- [NoFrixionDataModelsMerchantBusinessSettingEntity](docs/Model/NoFrixionDataModelsMerchantBusinessSettingEntity.md)
-- [NoFrixionDataModelsMerchantCardProcessingSettingsEntity](docs/Model/NoFrixionDataModelsMerchantCardProcessingSettingsEntity.md)
-- [NoFrixionDataModelsMerchantCardSettingEntity](docs/Model/NoFrixionDataModelsMerchantCardSettingEntity.md)
-- [NoFrixionDataModelsMerchantEntity](docs/Model/NoFrixionDataModelsMerchantEntity.md)
-- [NoFrixionDataModelsMerchantNotificationEntity](docs/Model/NoFrixionDataModelsMerchantNotificationEntity.md)
-- [NoFrixionDataModelsMerchantTokenEntity](docs/Model/NoFrixionDataModelsMerchantTokenEntity.md)
-- [NoFrixionDataModelsOpenBankingConsentEntity](docs/Model/NoFrixionDataModelsOpenBankingConsentEntity.md)
-- [NoFrixionDataModelsPaymentRequestAddressEntity](docs/Model/NoFrixionDataModelsPaymentRequestAddressEntity.md)
-- [NoFrixionDataModelsPaymentRequestEntity](docs/Model/NoFrixionDataModelsPaymentRequestEntity.md)
-- [NoFrixionDataModelsPaymentRequestEventEntity](docs/Model/NoFrixionDataModelsPaymentRequestEventEntity.md)
-- [NoFrixionDataModelsPaymentRequestKeysEntity](docs/Model/NoFrixionDataModelsPaymentRequestKeysEntity.md)
-- [NoFrixionDataModelsPaymentRequestTagEntity](docs/Model/NoFrixionDataModelsPaymentRequestTagEntity.md)
-- [NoFrixionDataModelsPayoutEntity](docs/Model/NoFrixionDataModelsPayoutEntity.md)
-- [NoFrixionDataModelsPayoutEventEntity](docs/Model/NoFrixionDataModelsPayoutEventEntity.md)
-- [NoFrixionDataModelsPayoutTagEntity](docs/Model/NoFrixionDataModelsPayoutTagEntity.md)
-- [NoFrixionDataModelsReportAccountEntity](docs/Model/NoFrixionDataModelsReportAccountEntity.md)
-- [NoFrixionDataModelsReportEntity](docs/Model/NoFrixionDataModelsReportEntity.md)
-- [NoFrixionDataModelsReportResultEntity](docs/Model/NoFrixionDataModelsReportResultEntity.md)
-- [NoFrixionDataModelsRoleEntity](docs/Model/NoFrixionDataModelsRoleEntity.md)
-- [NoFrixionDataModelsRoleUserAccountEntity](docs/Model/NoFrixionDataModelsRoleUserAccountEntity.md)
-- [NoFrixionDataModelsRoleUserEntity](docs/Model/NoFrixionDataModelsRoleUserEntity.md)
-- [NoFrixionDataModelsRoleUserMerchantEntity](docs/Model/NoFrixionDataModelsRoleUserMerchantEntity.md)
-- [NoFrixionDataModelsRuleDestinationEntity](docs/Model/NoFrixionDataModelsRuleDestinationEntity.md)
-- [NoFrixionDataModelsRuleEntity](docs/Model/NoFrixionDataModelsRuleEntity.md)
-- [NoFrixionDataModelsRuleEventEntity](docs/Model/NoFrixionDataModelsRuleEventEntity.md)
-- [NoFrixionDataModelsTagEntity](docs/Model/NoFrixionDataModelsTagEntity.md)
-- [NoFrixionDataModelsTokenisedCardsEntity](docs/Model/NoFrixionDataModelsTokenisedCardsEntity.md)
-- [NoFrixionDataModelsTransactionEntity](docs/Model/NoFrixionDataModelsTransactionEntity.md)
-- [NoFrixionDataModelsUserEntity](docs/Model/NoFrixionDataModelsUserEntity.md)
-- [NoFrixionDataModelsUserInviteEntity](docs/Model/NoFrixionDataModelsUserInviteEntity.md)
-- [NoFrixionDataModelsUserRoleEntity](docs/Model/NoFrixionDataModelsUserRoleEntity.md)
-- [NoFrixionDataModelsXeroBankFeedConnectionEntity](docs/Model/NoFrixionDataModelsXeroBankFeedConnectionEntity.md)
 - [NoFrixionMoneyMoovApiFeaturesPayoutsFailedPayout](docs/Model/NoFrixionMoneyMoovApiFeaturesPayoutsFailedPayout.md)
 - [NoFrixionMoneyMoovModelsAccountIdentifier](docs/Model/NoFrixionMoneyMoovModelsAccountIdentifier.md)
 - [NoFrixionMoneyMoovModelsAccountIdentifierCreate](docs/Model/NoFrixionMoneyMoovModelsAccountIdentifierCreate.md)
@@ -303,6 +239,7 @@ Class | Method | HTTP request | Description
 - [NoFrixionMoneyMoovModelsGenerateStatementRequest](docs/Model/NoFrixionMoneyMoovModelsGenerateStatementRequest.md)
 - [NoFrixionMoneyMoovModelsIPaymentResponse](docs/Model/NoFrixionMoneyMoovModelsIPaymentResponse.md)
 - [NoFrixionMoneyMoovModelsLastTransaction](docs/Model/NoFrixionMoneyMoovModelsLastTransaction.md)
+- [NoFrixionMoneyMoovModelsLightningInvoice](docs/Model/NoFrixionMoneyMoovModelsLightningInvoice.md)
 - [NoFrixionMoneyMoovModelsMandatesMandate](docs/Model/NoFrixionMoneyMoovModelsMandatesMandate.md)
 - [NoFrixionMoneyMoovModelsMandatesMandateCreate](docs/Model/NoFrixionMoneyMoovModelsMandatesMandateCreate.md)
 - [NoFrixionMoneyMoovModelsMerchant](docs/Model/NoFrixionMoneyMoovModelsMerchant.md)

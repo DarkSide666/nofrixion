@@ -71,28 +71,28 @@ class BeneficiariesApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiV1BeneficiariesAuthoriseIdPost' => [
+        'authoriseBeneficiary' => [
             'application/json',
         ],
-        'apiV1BeneficiariesDisableIdPut' => [
+        'createBeneficiary' => [
             'application/json',
         ],
-        'apiV1BeneficiariesEnableIdPut' => [
+        'deleteBeneficiary' => [
             'application/json',
         ],
-        'apiV1BeneficiariesGet' => [
+        'disableBeneficiary' => [
             'application/json',
         ],
-        'apiV1BeneficiariesIdDelete' => [
+        'enableBeneficiary' => [
             'application/json',
         ],
-        'apiV1BeneficiariesIdPut' => [
+        'getBeneficiaries' => [
             'application/json',
         ],
-        'apiV1BeneficiariesPost' => [
+        'getBeneficiary' => [
             'application/json',
         ],
-        'getBeneficiaryAsync' => [
+        'updateBeneficiary' => [
             'application/json',
         ],
     ];
@@ -144,37 +144,37 @@ class BeneficiariesApi
     }
 
     /**
-     * Operation apiV1BeneficiariesAuthoriseIdPost
+     * Operation authoriseBeneficiary
      *
      * Authorises a beneficiary.
      *
      * @param  string $id The ID of the beneficiary record to authorise. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesAuthoriseIdPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['authoriseBeneficiary'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function apiV1BeneficiariesAuthoriseIdPost($id, string $contentType = self::contentTypes['apiV1BeneficiariesAuthoriseIdPost'][0])
+    public function authoriseBeneficiary($id, string $contentType = self::contentTypes['authoriseBeneficiary'][0])
     {
-        $this->apiV1BeneficiariesAuthoriseIdPostWithHttpInfo($id, $contentType);
+        $this->authoriseBeneficiaryWithHttpInfo($id, $contentType);
     }
 
     /**
-     * Operation apiV1BeneficiariesAuthoriseIdPostWithHttpInfo
+     * Operation authoriseBeneficiaryWithHttpInfo
      *
      * Authorises a beneficiary.
      *
      * @param  string $id The ID of the beneficiary record to authorise. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesAuthoriseIdPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['authoriseBeneficiary'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1BeneficiariesAuthoriseIdPostWithHttpInfo($id, string $contentType = self::contentTypes['apiV1BeneficiariesAuthoriseIdPost'][0])
+    public function authoriseBeneficiaryWithHttpInfo($id, string $contentType = self::contentTypes['authoriseBeneficiary'][0])
     {
-        $request = $this->apiV1BeneficiariesAuthoriseIdPostRequest($id, $contentType);
+        $request = $this->authoriseBeneficiaryRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -221,19 +221,19 @@ class BeneficiariesApi
     }
 
     /**
-     * Operation apiV1BeneficiariesAuthoriseIdPostAsync
+     * Operation authoriseBeneficiaryAsync
      *
      * Authorises a beneficiary.
      *
      * @param  string $id The ID of the beneficiary record to authorise. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesAuthoriseIdPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['authoriseBeneficiary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1BeneficiariesAuthoriseIdPostAsync($id, string $contentType = self::contentTypes['apiV1BeneficiariesAuthoriseIdPost'][0])
+    public function authoriseBeneficiaryAsync($id, string $contentType = self::contentTypes['authoriseBeneficiary'][0])
     {
-        return $this->apiV1BeneficiariesAuthoriseIdPostAsyncWithHttpInfo($id, $contentType)
+        return $this->authoriseBeneficiaryAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -242,20 +242,20 @@ class BeneficiariesApi
     }
 
     /**
-     * Operation apiV1BeneficiariesAuthoriseIdPostAsyncWithHttpInfo
+     * Operation authoriseBeneficiaryAsyncWithHttpInfo
      *
      * Authorises a beneficiary.
      *
      * @param  string $id The ID of the beneficiary record to authorise. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesAuthoriseIdPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['authoriseBeneficiary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1BeneficiariesAuthoriseIdPostAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1BeneficiariesAuthoriseIdPost'][0])
+    public function authoriseBeneficiaryAsyncWithHttpInfo($id, string $contentType = self::contentTypes['authoriseBeneficiary'][0])
     {
         $returnType = '';
-        $request = $this->apiV1BeneficiariesAuthoriseIdPostRequest($id, $contentType);
+        $request = $this->authoriseBeneficiaryRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -281,21 +281,21 @@ class BeneficiariesApi
     }
 
     /**
-     * Create request for operation 'apiV1BeneficiariesAuthoriseIdPost'
+     * Create request for operation 'authoriseBeneficiary'
      *
      * @param  string $id The ID of the beneficiary record to authorise. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesAuthoriseIdPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['authoriseBeneficiary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1BeneficiariesAuthoriseIdPostRequest($id, string $contentType = self::contentTypes['apiV1BeneficiariesAuthoriseIdPost'][0])
+    public function authoriseBeneficiaryRequest($id, string $contentType = self::contentTypes['authoriseBeneficiary'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1BeneficiariesAuthoriseIdPost'
+                'Missing the required parameter $id when calling authoriseBeneficiary'
             );
         }
 
@@ -378,38 +378,38 @@ class BeneficiariesApi
     }
 
     /**
-     * Operation apiV1BeneficiariesDisableIdPut
+     * Operation createBeneficiary
      *
-     * Attempts to disable a beneficiary. If successful the beneficiary will be disabled.
+     * Creates a new beneficiary.
      *
-     * @param  string $id The ID of the beneficiary to disable. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesDisableIdPut'] to see the possible values for this operation
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryCreate $no_frixion_money_moov_models_beneficiary_create The beneficiary to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBeneficiary'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary
      */
-    public function apiV1BeneficiariesDisableIdPut($id, string $contentType = self::contentTypes['apiV1BeneficiariesDisableIdPut'][0])
+    public function createBeneficiary($no_frixion_money_moov_models_beneficiary_create = null, string $contentType = self::contentTypes['createBeneficiary'][0])
     {
-        list($response) = $this->apiV1BeneficiariesDisableIdPutWithHttpInfo($id, $contentType);
+        list($response) = $this->createBeneficiaryWithHttpInfo($no_frixion_money_moov_models_beneficiary_create, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1BeneficiariesDisableIdPutWithHttpInfo
+     * Operation createBeneficiaryWithHttpInfo
      *
-     * Attempts to disable a beneficiary. If successful the beneficiary will be disabled.
+     * Creates a new beneficiary.
      *
-     * @param  string $id The ID of the beneficiary to disable. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesDisableIdPut'] to see the possible values for this operation
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryCreate $no_frixion_money_moov_models_beneficiary_create The beneficiary to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBeneficiary'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1BeneficiariesDisableIdPutWithHttpInfo($id, string $contentType = self::contentTypes['apiV1BeneficiariesDisableIdPut'][0])
+    public function createBeneficiaryWithHttpInfo($no_frixion_money_moov_models_beneficiary_create = null, string $contentType = self::contentTypes['createBeneficiary'][0])
     {
-        $request = $this->apiV1BeneficiariesDisableIdPutRequest($id, $contentType);
+        $request = $this->createBeneficiaryRequest($no_frixion_money_moov_models_beneficiary_create, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -520,19 +520,19 @@ class BeneficiariesApi
     }
 
     /**
-     * Operation apiV1BeneficiariesDisableIdPutAsync
+     * Operation createBeneficiaryAsync
      *
-     * Attempts to disable a beneficiary. If successful the beneficiary will be disabled.
+     * Creates a new beneficiary.
      *
-     * @param  string $id The ID of the beneficiary to disable. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesDisableIdPut'] to see the possible values for this operation
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryCreate $no_frixion_money_moov_models_beneficiary_create The beneficiary to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBeneficiary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1BeneficiariesDisableIdPutAsync($id, string $contentType = self::contentTypes['apiV1BeneficiariesDisableIdPut'][0])
+    public function createBeneficiaryAsync($no_frixion_money_moov_models_beneficiary_create = null, string $contentType = self::contentTypes['createBeneficiary'][0])
     {
-        return $this->apiV1BeneficiariesDisableIdPutAsyncWithHttpInfo($id, $contentType)
+        return $this->createBeneficiaryAsyncWithHttpInfo($no_frixion_money_moov_models_beneficiary_create, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -541,20 +541,20 @@ class BeneficiariesApi
     }
 
     /**
-     * Operation apiV1BeneficiariesDisableIdPutAsyncWithHttpInfo
+     * Operation createBeneficiaryAsyncWithHttpInfo
      *
-     * Attempts to disable a beneficiary. If successful the beneficiary will be disabled.
+     * Creates a new beneficiary.
      *
-     * @param  string $id The ID of the beneficiary to disable. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesDisableIdPut'] to see the possible values for this operation
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryCreate $no_frixion_money_moov_models_beneficiary_create The beneficiary to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBeneficiary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1BeneficiariesDisableIdPutAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1BeneficiariesDisableIdPut'][0])
+    public function createBeneficiaryAsyncWithHttpInfo($no_frixion_money_moov_models_beneficiary_create = null, string $contentType = self::contentTypes['createBeneficiary'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary';
-        $request = $this->apiV1BeneficiariesDisableIdPutRequest($id, $contentType);
+        $request = $this->createBeneficiaryRequest($no_frixion_money_moov_models_beneficiary_create, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -593,21 +593,560 @@ class BeneficiariesApi
     }
 
     /**
-     * Create request for operation 'apiV1BeneficiariesDisableIdPut'
+     * Create request for operation 'createBeneficiary'
      *
-     * @param  string $id The ID of the beneficiary to disable. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesDisableIdPut'] to see the possible values for this operation
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryCreate $no_frixion_money_moov_models_beneficiary_create The beneficiary to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBeneficiary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1BeneficiariesDisableIdPutRequest($id, string $contentType = self::contentTypes['apiV1BeneficiariesDisableIdPut'][0])
+    public function createBeneficiaryRequest($no_frixion_money_moov_models_beneficiary_create = null, string $contentType = self::contentTypes['createBeneficiary'][0])
+    {
+
+
+
+        $resourcePath = '/api/v1/beneficiaries';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($no_frixion_money_moov_models_beneficiary_create)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_beneficiary_create));
+            } else {
+                $httpBody = $no_frixion_money_moov_models_beneficiary_create;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteBeneficiary
+     *
+     * Deletes a beneficiary
+     *
+     * @param  string $id The id of the beneficiary to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBeneficiary'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deleteBeneficiary($id, string $contentType = self::contentTypes['deleteBeneficiary'][0])
+    {
+        $this->deleteBeneficiaryWithHttpInfo($id, $contentType);
+    }
+
+    /**
+     * Operation deleteBeneficiaryWithHttpInfo
+     *
+     * Deletes a beneficiary
+     *
+     * @param  string $id The id of the beneficiary to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBeneficiary'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteBeneficiaryWithHttpInfo($id, string $contentType = self::contentTypes['deleteBeneficiary'][0])
+    {
+        $request = $this->deleteBeneficiaryRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteBeneficiaryAsync
+     *
+     * Deletes a beneficiary
+     *
+     * @param  string $id The id of the beneficiary to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBeneficiary'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteBeneficiaryAsync($id, string $contentType = self::contentTypes['deleteBeneficiary'][0])
+    {
+        return $this->deleteBeneficiaryAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteBeneficiaryAsyncWithHttpInfo
+     *
+     * Deletes a beneficiary
+     *
+     * @param  string $id The id of the beneficiary to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBeneficiary'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteBeneficiaryAsyncWithHttpInfo($id, string $contentType = self::contentTypes['deleteBeneficiary'][0])
+    {
+        $returnType = '';
+        $request = $this->deleteBeneficiaryRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteBeneficiary'
+     *
+     * @param  string $id The id of the beneficiary to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBeneficiary'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteBeneficiaryRequest($id, string $contentType = self::contentTypes['deleteBeneficiary'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1BeneficiariesDisableIdPut'
+                'Missing the required parameter $id when calling deleteBeneficiary'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/beneficiaries/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            [],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation disableBeneficiary
+     *
+     * Attempts to disable a beneficiary. If successful the beneficiary will be disabled.
+     *
+     * @param  string $id The ID of the beneficiary to disable. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['disableBeneficiary'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary
+     */
+    public function disableBeneficiary($id, string $contentType = self::contentTypes['disableBeneficiary'][0])
+    {
+        list($response) = $this->disableBeneficiaryWithHttpInfo($id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation disableBeneficiaryWithHttpInfo
+     *
+     * Attempts to disable a beneficiary. If successful the beneficiary will be disabled.
+     *
+     * @param  string $id The ID of the beneficiary to disable. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['disableBeneficiary'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function disableBeneficiaryWithHttpInfo($id, string $contentType = self::contentTypes['disableBeneficiary'][0])
+    {
+        $request = $this->disableBeneficiaryRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation disableBeneficiaryAsync
+     *
+     * Attempts to disable a beneficiary. If successful the beneficiary will be disabled.
+     *
+     * @param  string $id The ID of the beneficiary to disable. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['disableBeneficiary'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function disableBeneficiaryAsync($id, string $contentType = self::contentTypes['disableBeneficiary'][0])
+    {
+        return $this->disableBeneficiaryAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation disableBeneficiaryAsyncWithHttpInfo
+     *
+     * Attempts to disable a beneficiary. If successful the beneficiary will be disabled.
+     *
+     * @param  string $id The ID of the beneficiary to disable. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['disableBeneficiary'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function disableBeneficiaryAsyncWithHttpInfo($id, string $contentType = self::contentTypes['disableBeneficiary'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary';
+        $request = $this->disableBeneficiaryRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'disableBeneficiary'
+     *
+     * @param  string $id The ID of the beneficiary to disable. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['disableBeneficiary'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function disableBeneficiaryRequest($id, string $contentType = self::contentTypes['disableBeneficiary'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling disableBeneficiary'
             );
         }
 
@@ -690,38 +1229,38 @@ class BeneficiariesApi
     }
 
     /**
-     * Operation apiV1BeneficiariesEnableIdPut
+     * Operation enableBeneficiary
      *
      * Attempts to enable a beneficiary. If successful the beneficiary will be enabled.
      *
      * @param  string $id The ID of the beneficiary to enable. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesEnableIdPut'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['enableBeneficiary'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary
      */
-    public function apiV1BeneficiariesEnableIdPut($id, string $contentType = self::contentTypes['apiV1BeneficiariesEnableIdPut'][0])
+    public function enableBeneficiary($id, string $contentType = self::contentTypes['enableBeneficiary'][0])
     {
-        list($response) = $this->apiV1BeneficiariesEnableIdPutWithHttpInfo($id, $contentType);
+        list($response) = $this->enableBeneficiaryWithHttpInfo($id, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1BeneficiariesEnableIdPutWithHttpInfo
+     * Operation enableBeneficiaryWithHttpInfo
      *
      * Attempts to enable a beneficiary. If successful the beneficiary will be enabled.
      *
      * @param  string $id The ID of the beneficiary to enable. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesEnableIdPut'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['enableBeneficiary'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1BeneficiariesEnableIdPutWithHttpInfo($id, string $contentType = self::contentTypes['apiV1BeneficiariesEnableIdPut'][0])
+    public function enableBeneficiaryWithHttpInfo($id, string $contentType = self::contentTypes['enableBeneficiary'][0])
     {
-        $request = $this->apiV1BeneficiariesEnableIdPutRequest($id, $contentType);
+        $request = $this->enableBeneficiaryRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -832,19 +1371,19 @@ class BeneficiariesApi
     }
 
     /**
-     * Operation apiV1BeneficiariesEnableIdPutAsync
+     * Operation enableBeneficiaryAsync
      *
      * Attempts to enable a beneficiary. If successful the beneficiary will be enabled.
      *
      * @param  string $id The ID of the beneficiary to enable. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesEnableIdPut'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['enableBeneficiary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1BeneficiariesEnableIdPutAsync($id, string $contentType = self::contentTypes['apiV1BeneficiariesEnableIdPut'][0])
+    public function enableBeneficiaryAsync($id, string $contentType = self::contentTypes['enableBeneficiary'][0])
     {
-        return $this->apiV1BeneficiariesEnableIdPutAsyncWithHttpInfo($id, $contentType)
+        return $this->enableBeneficiaryAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -853,20 +1392,20 @@ class BeneficiariesApi
     }
 
     /**
-     * Operation apiV1BeneficiariesEnableIdPutAsyncWithHttpInfo
+     * Operation enableBeneficiaryAsyncWithHttpInfo
      *
      * Attempts to enable a beneficiary. If successful the beneficiary will be enabled.
      *
      * @param  string $id The ID of the beneficiary to enable. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesEnableIdPut'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['enableBeneficiary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1BeneficiariesEnableIdPutAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1BeneficiariesEnableIdPut'][0])
+    public function enableBeneficiaryAsyncWithHttpInfo($id, string $contentType = self::contentTypes['enableBeneficiary'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary';
-        $request = $this->apiV1BeneficiariesEnableIdPutRequest($id, $contentType);
+        $request = $this->enableBeneficiaryRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -905,21 +1444,21 @@ class BeneficiariesApi
     }
 
     /**
-     * Create request for operation 'apiV1BeneficiariesEnableIdPut'
+     * Create request for operation 'enableBeneficiary'
      *
      * @param  string $id The ID of the beneficiary to enable. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesEnableIdPut'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['enableBeneficiary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1BeneficiariesEnableIdPutRequest($id, string $contentType = self::contentTypes['apiV1BeneficiariesEnableIdPut'][0])
+    public function enableBeneficiaryRequest($id, string $contentType = self::contentTypes['enableBeneficiary'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1BeneficiariesEnableIdPut'
+                'Missing the required parameter $id when calling enableBeneficiary'
             );
         }
 
@@ -1002,7 +1541,7 @@ class BeneficiariesApi
     }
 
     /**
-     * Operation apiV1BeneficiariesGet
+     * Operation getBeneficiaries
      *
      * Gets a list of all beneficiaries.
      *
@@ -1013,20 +1552,20 @@ class BeneficiariesApi
      * @param  string $currency The currency filter used to retrieve the records.. (optional)
      * @param  bool $include_disabled If set to true will include disabled beneficiaries as well (optional, default to false)
      * @param  string $sort Optional expression to sort the order of the beneficiaries. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBeneficiaries'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryPageResponse
      */
-    public function apiV1BeneficiariesGet($merchant_id = null, $page_number = null, $page_size = null, $search = null, $currency = null, $include_disabled = false, $sort = null, string $contentType = self::contentTypes['apiV1BeneficiariesGet'][0])
+    public function getBeneficiaries($merchant_id = null, $page_number = null, $page_size = null, $search = null, $currency = null, $include_disabled = false, $sort = null, string $contentType = self::contentTypes['getBeneficiaries'][0])
     {
-        list($response) = $this->apiV1BeneficiariesGetWithHttpInfo($merchant_id, $page_number, $page_size, $search, $currency, $include_disabled, $sort, $contentType);
+        list($response) = $this->getBeneficiariesWithHttpInfo($merchant_id, $page_number, $page_size, $search, $currency, $include_disabled, $sort, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1BeneficiariesGetWithHttpInfo
+     * Operation getBeneficiariesWithHttpInfo
      *
      * Gets a list of all beneficiaries.
      *
@@ -1037,15 +1576,15 @@ class BeneficiariesApi
      * @param  string $currency The currency filter used to retrieve the records.. (optional)
      * @param  bool $include_disabled If set to true will include disabled beneficiaries as well (optional, default to false)
      * @param  string $sort Optional expression to sort the order of the beneficiaries. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBeneficiaries'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryPageResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1BeneficiariesGetWithHttpInfo($merchant_id = null, $page_number = null, $page_size = null, $search = null, $currency = null, $include_disabled = false, $sort = null, string $contentType = self::contentTypes['apiV1BeneficiariesGet'][0])
+    public function getBeneficiariesWithHttpInfo($merchant_id = null, $page_number = null, $page_size = null, $search = null, $currency = null, $include_disabled = false, $sort = null, string $contentType = self::contentTypes['getBeneficiaries'][0])
     {
-        $request = $this->apiV1BeneficiariesGetRequest($merchant_id, $page_number, $page_size, $search, $currency, $include_disabled, $sort, $contentType);
+        $request = $this->getBeneficiariesRequest($merchant_id, $page_number, $page_size, $search, $currency, $include_disabled, $sort, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1156,7 +1695,7 @@ class BeneficiariesApi
     }
 
     /**
-     * Operation apiV1BeneficiariesGetAsync
+     * Operation getBeneficiariesAsync
      *
      * Gets a list of all beneficiaries.
      *
@@ -1167,14 +1706,14 @@ class BeneficiariesApi
      * @param  string $currency The currency filter used to retrieve the records.. (optional)
      * @param  bool $include_disabled If set to true will include disabled beneficiaries as well (optional, default to false)
      * @param  string $sort Optional expression to sort the order of the beneficiaries. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBeneficiaries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1BeneficiariesGetAsync($merchant_id = null, $page_number = null, $page_size = null, $search = null, $currency = null, $include_disabled = false, $sort = null, string $contentType = self::contentTypes['apiV1BeneficiariesGet'][0])
+    public function getBeneficiariesAsync($merchant_id = null, $page_number = null, $page_size = null, $search = null, $currency = null, $include_disabled = false, $sort = null, string $contentType = self::contentTypes['getBeneficiaries'][0])
     {
-        return $this->apiV1BeneficiariesGetAsyncWithHttpInfo($merchant_id, $page_number, $page_size, $search, $currency, $include_disabled, $sort, $contentType)
+        return $this->getBeneficiariesAsyncWithHttpInfo($merchant_id, $page_number, $page_size, $search, $currency, $include_disabled, $sort, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1183,7 +1722,7 @@ class BeneficiariesApi
     }
 
     /**
-     * Operation apiV1BeneficiariesGetAsyncWithHttpInfo
+     * Operation getBeneficiariesAsyncWithHttpInfo
      *
      * Gets a list of all beneficiaries.
      *
@@ -1194,15 +1733,15 @@ class BeneficiariesApi
      * @param  string $currency The currency filter used to retrieve the records.. (optional)
      * @param  bool $include_disabled If set to true will include disabled beneficiaries as well (optional, default to false)
      * @param  string $sort Optional expression to sort the order of the beneficiaries. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBeneficiaries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1BeneficiariesGetAsyncWithHttpInfo($merchant_id = null, $page_number = null, $page_size = null, $search = null, $currency = null, $include_disabled = false, $sort = null, string $contentType = self::contentTypes['apiV1BeneficiariesGet'][0])
+    public function getBeneficiariesAsyncWithHttpInfo($merchant_id = null, $page_number = null, $page_size = null, $search = null, $currency = null, $include_disabled = false, $sort = null, string $contentType = self::contentTypes['getBeneficiaries'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryPageResponse';
-        $request = $this->apiV1BeneficiariesGetRequest($merchant_id, $page_number, $page_size, $search, $currency, $include_disabled, $sort, $contentType);
+        $request = $this->getBeneficiariesRequest($merchant_id, $page_number, $page_size, $search, $currency, $include_disabled, $sort, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1241,7 +1780,7 @@ class BeneficiariesApi
     }
 
     /**
-     * Create request for operation 'apiV1BeneficiariesGet'
+     * Create request for operation 'getBeneficiaries'
      *
      * @param  string $merchant_id Optional. The ID of the merchant to retrieve the beneficiaries for.               If not set beneficiaries for all merchants the user has access to will be returned (optional)
      * @param  int $page_number The page number from where records are retrieved. (optional)
@@ -1250,12 +1789,12 @@ class BeneficiariesApi
      * @param  string $currency The currency filter used to retrieve the records.. (optional)
      * @param  bool $include_disabled If set to true will include disabled beneficiaries as well (optional, default to false)
      * @param  string $sort Optional expression to sort the order of the beneficiaries. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBeneficiaries'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1BeneficiariesGetRequest($merchant_id = null, $page_number = null, $page_size = null, $search = null, $currency = null, $include_disabled = false, $sort = null, string $contentType = self::contentTypes['apiV1BeneficiariesGet'][0])
+    public function getBeneficiariesRequest($merchant_id = null, $page_number = null, $page_size = null, $search = null, $currency = null, $include_disabled = false, $sort = null, string $contentType = self::contentTypes['getBeneficiaries'][0])
     {
 
 
@@ -1399,274 +1938,38 @@ class BeneficiariesApi
     }
 
     /**
-     * Operation apiV1BeneficiariesIdDelete
+     * Operation getBeneficiary
      *
-     * Deletes a beneficiary
+     * Get&#39;s a beneficiary by beneficiary ID.
      *
-     * @param  string $id The id of the beneficiary to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesIdDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function apiV1BeneficiariesIdDelete($id, string $contentType = self::contentTypes['apiV1BeneficiariesIdDelete'][0])
-    {
-        $this->apiV1BeneficiariesIdDeleteWithHttpInfo($id, $contentType);
-    }
-
-    /**
-     * Operation apiV1BeneficiariesIdDeleteWithHttpInfo
-     *
-     * Deletes a beneficiary
-     *
-     * @param  string $id The id of the beneficiary to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesIdDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1BeneficiariesIdDeleteWithHttpInfo($id, string $contentType = self::contentTypes['apiV1BeneficiariesIdDelete'][0])
-    {
-        $request = $this->apiV1BeneficiariesIdDeleteRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1BeneficiariesIdDeleteAsync
-     *
-     * Deletes a beneficiary
-     *
-     * @param  string $id The id of the beneficiary to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1BeneficiariesIdDeleteAsync($id, string $contentType = self::contentTypes['apiV1BeneficiariesIdDelete'][0])
-    {
-        return $this->apiV1BeneficiariesIdDeleteAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1BeneficiariesIdDeleteAsyncWithHttpInfo
-     *
-     * Deletes a beneficiary
-     *
-     * @param  string $id The id of the beneficiary to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1BeneficiariesIdDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1BeneficiariesIdDelete'][0])
-    {
-        $returnType = '';
-        $request = $this->apiV1BeneficiariesIdDeleteRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1BeneficiariesIdDelete'
-     *
-     * @param  string $id The id of the beneficiary to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1BeneficiariesIdDeleteRequest($id, string $contentType = self::contentTypes['apiV1BeneficiariesIdDelete'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1BeneficiariesIdDelete'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/beneficiaries/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            [],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1BeneficiariesIdPut
-     *
-     * Updates a beneficiary.
-     *
-     * @param  string $id The ID of the beneficiary to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryUpdate $no_frixion_money_moov_models_beneficiary_update The beneficiary to update (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesIdPut'] to see the possible values for this operation
+     * @param  string $id The beneficiaryID of the beneficiary to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBeneficiary'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary
      */
-    public function apiV1BeneficiariesIdPut($id, $no_frixion_money_moov_models_beneficiary_update = null, string $contentType = self::contentTypes['apiV1BeneficiariesIdPut'][0])
+    public function getBeneficiary($id, string $contentType = self::contentTypes['getBeneficiary'][0])
     {
-        list($response) = $this->apiV1BeneficiariesIdPutWithHttpInfo($id, $no_frixion_money_moov_models_beneficiary_update, $contentType);
+        list($response) = $this->getBeneficiaryWithHttpInfo($id, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1BeneficiariesIdPutWithHttpInfo
+     * Operation getBeneficiaryWithHttpInfo
      *
-     * Updates a beneficiary.
+     * Get&#39;s a beneficiary by beneficiary ID.
      *
-     * @param  string $id The ID of the beneficiary to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryUpdate $no_frixion_money_moov_models_beneficiary_update The beneficiary to update (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesIdPut'] to see the possible values for this operation
+     * @param  string $id The beneficiaryID of the beneficiary to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBeneficiary'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1BeneficiariesIdPutWithHttpInfo($id, $no_frixion_money_moov_models_beneficiary_update = null, string $contentType = self::contentTypes['apiV1BeneficiariesIdPut'][0])
+    public function getBeneficiaryWithHttpInfo($id, string $contentType = self::contentTypes['getBeneficiary'][0])
     {
-        $request = $this->apiV1BeneficiariesIdPutRequest($id, $no_frixion_money_moov_models_beneficiary_update, $contentType);
+        $request = $this->getBeneficiaryRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1777,20 +2080,19 @@ class BeneficiariesApi
     }
 
     /**
-     * Operation apiV1BeneficiariesIdPutAsync
+     * Operation getBeneficiaryAsync
      *
-     * Updates a beneficiary.
+     * Get&#39;s a beneficiary by beneficiary ID.
      *
-     * @param  string $id The ID of the beneficiary to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryUpdate $no_frixion_money_moov_models_beneficiary_update The beneficiary to update (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesIdPut'] to see the possible values for this operation
+     * @param  string $id The beneficiaryID of the beneficiary to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBeneficiary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1BeneficiariesIdPutAsync($id, $no_frixion_money_moov_models_beneficiary_update = null, string $contentType = self::contentTypes['apiV1BeneficiariesIdPut'][0])
+    public function getBeneficiaryAsync($id, string $contentType = self::contentTypes['getBeneficiary'][0])
     {
-        return $this->apiV1BeneficiariesIdPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_beneficiary_update, $contentType)
+        return $this->getBeneficiaryAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1799,21 +2101,20 @@ class BeneficiariesApi
     }
 
     /**
-     * Operation apiV1BeneficiariesIdPutAsyncWithHttpInfo
+     * Operation getBeneficiaryAsyncWithHttpInfo
      *
-     * Updates a beneficiary.
+     * Get&#39;s a beneficiary by beneficiary ID.
      *
-     * @param  string $id The ID of the beneficiary to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryUpdate $no_frixion_money_moov_models_beneficiary_update The beneficiary to update (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesIdPut'] to see the possible values for this operation
+     * @param  string $id The beneficiaryID of the beneficiary to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBeneficiary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1BeneficiariesIdPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_beneficiary_update = null, string $contentType = self::contentTypes['apiV1BeneficiariesIdPut'][0])
+    public function getBeneficiaryAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getBeneficiary'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary';
-        $request = $this->apiV1BeneficiariesIdPutRequest($id, $no_frixion_money_moov_models_beneficiary_update, $contentType);
+        $request = $this->getBeneficiaryRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1852,22 +2153,338 @@ class BeneficiariesApi
     }
 
     /**
-     * Create request for operation 'apiV1BeneficiariesIdPut'
+     * Create request for operation 'getBeneficiary'
      *
-     * @param  string $id The ID of the beneficiary to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryUpdate $no_frixion_money_moov_models_beneficiary_update The beneficiary to update (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesIdPut'] to see the possible values for this operation
+     * @param  string $id The beneficiaryID of the beneficiary to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBeneficiary'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1BeneficiariesIdPutRequest($id, $no_frixion_money_moov_models_beneficiary_update = null, string $contentType = self::contentTypes['apiV1BeneficiariesIdPut'][0])
+    public function getBeneficiaryRequest($id, string $contentType = self::contentTypes['getBeneficiary'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1BeneficiariesIdPut'
+                'Missing the required parameter $id when calling getBeneficiary'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/beneficiaries/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateBeneficiary
+     *
+     * Updates a beneficiary.
+     *
+     * @param  string $id The ID of the beneficiary to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryUpdate $no_frixion_money_moov_models_beneficiary_update The beneficiary to update (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateBeneficiary'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary
+     */
+    public function updateBeneficiary($id, $no_frixion_money_moov_models_beneficiary_update = null, string $contentType = self::contentTypes['updateBeneficiary'][0])
+    {
+        list($response) = $this->updateBeneficiaryWithHttpInfo($id, $no_frixion_money_moov_models_beneficiary_update, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updateBeneficiaryWithHttpInfo
+     *
+     * Updates a beneficiary.
+     *
+     * @param  string $id The ID of the beneficiary to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryUpdate $no_frixion_money_moov_models_beneficiary_update The beneficiary to update (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateBeneficiary'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateBeneficiaryWithHttpInfo($id, $no_frixion_money_moov_models_beneficiary_update = null, string $contentType = self::contentTypes['updateBeneficiary'][0])
+    {
+        $request = $this->updateBeneficiaryRequest($id, $no_frixion_money_moov_models_beneficiary_update, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateBeneficiaryAsync
+     *
+     * Updates a beneficiary.
+     *
+     * @param  string $id The ID of the beneficiary to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryUpdate $no_frixion_money_moov_models_beneficiary_update The beneficiary to update (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateBeneficiary'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateBeneficiaryAsync($id, $no_frixion_money_moov_models_beneficiary_update = null, string $contentType = self::contentTypes['updateBeneficiary'][0])
+    {
+        return $this->updateBeneficiaryAsyncWithHttpInfo($id, $no_frixion_money_moov_models_beneficiary_update, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateBeneficiaryAsyncWithHttpInfo
+     *
+     * Updates a beneficiary.
+     *
+     * @param  string $id The ID of the beneficiary to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryUpdate $no_frixion_money_moov_models_beneficiary_update The beneficiary to update (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateBeneficiary'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateBeneficiaryAsyncWithHttpInfo($id, $no_frixion_money_moov_models_beneficiary_update = null, string $contentType = self::contentTypes['updateBeneficiary'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary';
+        $request = $this->updateBeneficiaryRequest($id, $no_frixion_money_moov_models_beneficiary_update, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateBeneficiary'
+     *
+     * @param  string $id The ID of the beneficiary to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryUpdate $no_frixion_money_moov_models_beneficiary_update The beneficiary to update (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateBeneficiary'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateBeneficiaryRequest($id, $no_frixion_money_moov_models_beneficiary_update = null, string $contentType = self::contentTypes['updateBeneficiary'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling updateBeneficiary'
             );
         }
 
@@ -1951,623 +2568,6 @@ class BeneficiariesApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'PUT',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1BeneficiariesPost
-     *
-     * Creates a new beneficiary.
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryCreate $no_frixion_money_moov_models_beneficiary_create The beneficiary to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary
-     */
-    public function apiV1BeneficiariesPost($no_frixion_money_moov_models_beneficiary_create = null, string $contentType = self::contentTypes['apiV1BeneficiariesPost'][0])
-    {
-        list($response) = $this->apiV1BeneficiariesPostWithHttpInfo($no_frixion_money_moov_models_beneficiary_create, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1BeneficiariesPostWithHttpInfo
-     *
-     * Creates a new beneficiary.
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryCreate $no_frixion_money_moov_models_beneficiary_create The beneficiary to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1BeneficiariesPostWithHttpInfo($no_frixion_money_moov_models_beneficiary_create = null, string $contentType = self::contentTypes['apiV1BeneficiariesPost'][0])
-    {
-        $request = $this->apiV1BeneficiariesPostRequest($no_frixion_money_moov_models_beneficiary_create, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1BeneficiariesPostAsync
-     *
-     * Creates a new beneficiary.
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryCreate $no_frixion_money_moov_models_beneficiary_create The beneficiary to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1BeneficiariesPostAsync($no_frixion_money_moov_models_beneficiary_create = null, string $contentType = self::contentTypes['apiV1BeneficiariesPost'][0])
-    {
-        return $this->apiV1BeneficiariesPostAsyncWithHttpInfo($no_frixion_money_moov_models_beneficiary_create, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1BeneficiariesPostAsyncWithHttpInfo
-     *
-     * Creates a new beneficiary.
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryCreate $no_frixion_money_moov_models_beneficiary_create The beneficiary to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1BeneficiariesPostAsyncWithHttpInfo($no_frixion_money_moov_models_beneficiary_create = null, string $contentType = self::contentTypes['apiV1BeneficiariesPost'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary';
-        $request = $this->apiV1BeneficiariesPostRequest($no_frixion_money_moov_models_beneficiary_create, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1BeneficiariesPost'
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiaryCreate $no_frixion_money_moov_models_beneficiary_create The beneficiary to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1BeneficiariesPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1BeneficiariesPostRequest($no_frixion_money_moov_models_beneficiary_create = null, string $contentType = self::contentTypes['apiV1BeneficiariesPost'][0])
-    {
-
-
-
-        $resourcePath = '/api/v1/beneficiaries';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($no_frixion_money_moov_models_beneficiary_create)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_beneficiary_create));
-            } else {
-                $httpBody = $no_frixion_money_moov_models_beneficiary_create;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation getBeneficiaryAsync
-     *
-     * Get&#39;s a beneficiary by beneficiary ID.
-     *
-     * @param  string $id The beneficiaryID of the beneficiary to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBeneficiaryAsync'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary
-     */
-    public function getBeneficiaryAsync($id, string $contentType = self::contentTypes['getBeneficiaryAsync'][0])
-    {
-        list($response) = $this->getBeneficiaryAsyncWithHttpInfo($id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation getBeneficiaryAsyncWithHttpInfo
-     *
-     * Get&#39;s a beneficiary by beneficiary ID.
-     *
-     * @param  string $id The beneficiaryID of the beneficiary to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBeneficiaryAsync'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function getBeneficiaryAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getBeneficiaryAsync'][0])
-    {
-        $request = $this->getBeneficiaryAsyncRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation getBeneficiaryAsyncAsync
-     *
-     * Get&#39;s a beneficiary by beneficiary ID.
-     *
-     * @param  string $id The beneficiaryID of the beneficiary to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBeneficiaryAsync'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getBeneficiaryAsyncAsync($id, string $contentType = self::contentTypes['getBeneficiaryAsync'][0])
-    {
-        return $this->getBeneficiaryAsyncAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation getBeneficiaryAsyncAsyncWithHttpInfo
-     *
-     * Get&#39;s a beneficiary by beneficiary ID.
-     *
-     * @param  string $id The beneficiaryID of the beneficiary to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBeneficiaryAsync'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function getBeneficiaryAsyncAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getBeneficiaryAsync'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary';
-        $request = $this->getBeneficiaryAsyncRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'getBeneficiaryAsync'
-     *
-     * @param  string $id The beneficiaryID of the beneficiary to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBeneficiaryAsync'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function getBeneficiaryAsyncRequest($id, string $contentType = self::contentTypes['getBeneficiaryAsync'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling getBeneficiaryAsync'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/beneficiaries/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

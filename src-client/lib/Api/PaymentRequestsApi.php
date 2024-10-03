@@ -71,86 +71,89 @@ class PaymentRequestsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet' => [
-            'application/json',
-        ],
-        'apiV1PaymentrequestsCardCustomertokensIdDelete' => [
-            'application/json',
-        ],
-        'apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet' => [
-            'application/json',
-        ],
-        'apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete' => [
-            'application/json',
-        ],
-        'apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete' => [
-            'application/json',
-        ],
-        'apiV1PaymentrequestsGet' => [
-            'application/json',
-        ],
-        'apiV1PaymentrequestsGetbyorderidOrderIDGet' => [
-            'application/json',
-        ],
-        'apiV1PaymentrequestsIdCardAuthenticationsetupPost' => [
+        'captureCardPayment' => [
             'multipart/form-data',
         ],
-        'apiV1PaymentrequestsIdCardCapturePost' => [
+        'createAndPayPaymentRequest' => [
             'multipart/form-data',
         ],
-        'apiV1PaymentrequestsIdCardPaywithtokenPost' => [
+        'createPaymentRequest' => [
+            'application/json',
+        ],
+        'deleteAllTokenisedCards' => [
+            'application/json',
+        ],
+        'deleteAllTokenisedCardsForMerchant' => [
+            'application/json',
+        ],
+        'deletePaymentRequest' => [
+            'application/json',
+        ],
+        'deleteTokenisedCard' => [
+            'application/json',
+        ],
+        'getAllPaymentRequestsPaged' => [
+            'application/json',
+        ],
+        'getLightningInvoice' => [
+            'application/json',
+        ],
+        'getPaymentRequest' => [
+            'application/json',
+        ],
+        'getPaymentRequestEvents' => [
+            'application/json',
+        ],
+        'getPaymentRequestForOrder' => [
+            'application/json',
+        ],
+        'getPaymentRequestMetricsForMerchant' => [
+            'application/json',
+        ],
+        'getPaymentRequestMinimal' => [
+            'application/json',
+        ],
+        'getPaymentRequestResult' => [
+            'application/json',
+        ],
+        'getPublicKeyForCardPayment' => [
+            'application/json',
+        ],
+        'getTokenisedCards' => [
+            'application/json',
+        ],
+        'getTokenisedCardsForMerchant' => [
+            'application/json',
+        ],
+        'refundCardPayment' => [
             'multipart/form-data',
         ],
-        'apiV1PaymentrequestsIdCardPost' => [
+        'setupCardPayerAuthentication' => [
             'multipart/form-data',
         ],
-        'apiV1PaymentrequestsIdCardPublickeyGet' => [
-            'application/json',
-        ],
-        'apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost' => [
-            'multipart/form-data',
-        ],
-        'apiV1PaymentrequestsIdCardVoidPost' => [
-            'multipart/form-data',
-        ],
-        'apiV1PaymentrequestsIdCardVoidpaymentrequestPost' => [
-            'application/json',
-        ],
-        'apiV1PaymentrequestsIdDelete' => [
-            'application/json',
-        ],
-        'apiV1PaymentrequestsIdEventsGet' => [
-            'application/json',
-        ],
-        'apiV1PaymentrequestsIdGet' => [
-            'application/json',
-        ],
-        'apiV1PaymentrequestsIdMinimalGet' => [
-            'application/json',
-        ],
-        'apiV1PaymentrequestsIdPispPost' => [
-            'multipart/form-data',
-        ],
-        'apiV1PaymentrequestsIdPispSandboxcallbackPut' => [
+        'simulatePayByBankCallback' => [
             'application/json-patch+json',
             'application/json',
             'text/json',
             'application/*+json',
         ],
-        'apiV1PaymentrequestsIdPut' => [
-            'application/json',
-        ],
-        'apiV1PaymentrequestsIdResultGet' => [
-            'application/json',
-        ],
-        'apiV1PaymentrequestsMetricsGet' => [
-            'application/json',
-        ],
-        'apiV1PaymentrequestsPayondemandPost' => [
+        'submitCardPayment' => [
             'multipart/form-data',
         ],
-        'apiV1PaymentrequestsPost' => [
+        'submitPayByBank' => [
+            'multipart/form-data',
+        ],
+        'submitTokenisedCardPayment' => [
+            'multipart/form-data',
+        ],
+        'updatePaymentRequest' => [
             'application/json',
+        ],
+        'voidAllCardPayments' => [
+            'application/json',
+        ],
+        'voidCardPayment' => [
+            'multipart/form-data',
         ],
     ];
 
@@ -201,2748 +204,42 @@ class PaymentRequestsApi
     }
 
     /**
-     * Operation apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet
-     *
-     * Gets a list of the tokenised cards stored for a single customer.
-     *
-     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]
-     */
-    public function apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet($customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGetWithHttpInfo($customer_email_address, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGetWithHttpInfo
-     *
-     * Gets a list of the tokenised cards stored for a single customer.
-     *
-     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[], HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGetWithHttpInfo($customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet'][0])
-    {
-        $request = $this->apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGetRequest($customer_email_address, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGetAsync
-     *
-     * Gets a list of the tokenised cards stored for a single customer.
-     *
-     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGetAsync($customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet'][0])
-    {
-        return $this->apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGetAsyncWithHttpInfo($customer_email_address, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGetAsyncWithHttpInfo
-     *
-     * Gets a list of the tokenised cards stored for a single customer.
-     *
-     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGetAsyncWithHttpInfo($customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
-        $request = $this->apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGetRequest($customer_email_address, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet'
-     *
-     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGetRequest($customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet'][0])
-    {
-
-        // verify the required parameter 'customer_email_address' is set
-        if ($customer_email_address === null || (is_array($customer_email_address) && count($customer_email_address) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $customer_email_address when calling apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/paymentrequests/card/customertokens/{customerEmailAddress}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($customer_email_address !== null) {
-            $resourcePath = str_replace(
-                '{' . 'customerEmailAddress' . '}',
-                ObjectSerializer::toPathValue($customer_email_address),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensIdDelete
-     *
-     * Deletes a single card token.
-     *
-     * @param  string $id The ID of the card token to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensIdDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]
-     */
-    public function apiV1PaymentrequestsCardCustomertokensIdDelete($id, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensIdDelete'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsCardCustomertokensIdDeleteWithHttpInfo($id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensIdDeleteWithHttpInfo
-     *
-     * Deletes a single card token.
-     *
-     * @param  string $id The ID of the card token to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensIdDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[], HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsCardCustomertokensIdDeleteWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensIdDelete'][0])
-    {
-        $request = $this->apiV1PaymentrequestsCardCustomertokensIdDeleteRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensIdDeleteAsync
-     *
-     * Deletes a single card token.
-     *
-     * @param  string $id The ID of the card token to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsCardCustomertokensIdDeleteAsync($id, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensIdDelete'][0])
-    {
-        return $this->apiV1PaymentrequestsCardCustomertokensIdDeleteAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensIdDeleteAsyncWithHttpInfo
-     *
-     * Deletes a single card token.
-     *
-     * @param  string $id The ID of the card token to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsCardCustomertokensIdDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensIdDelete'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
-        $request = $this->apiV1PaymentrequestsCardCustomertokensIdDeleteRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsCardCustomertokensIdDelete'
-     *
-     * @param  string $id The ID of the card token to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsCardCustomertokensIdDeleteRequest($id, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensIdDelete'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PaymentrequestsCardCustomertokensIdDelete'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/paymentrequests/card/customertokens/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet
-     *
-     * Gets a list of the tokenised cards stored for a single customer.
-     *
-     * @param  string $merchant_id The ID of the merchant to get all customer card tokens for. (required)
-     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]
-     */
-    public function apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet($merchant_id, $customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGetWithHttpInfo($merchant_id, $customer_email_address, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGetWithHttpInfo
-     *
-     * Gets a list of the tokenised cards stored for a single customer.
-     *
-     * @param  string $merchant_id The ID of the merchant to get all customer card tokens for. (required)
-     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[], HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGetWithHttpInfo($merchant_id, $customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet'][0])
-    {
-        $request = $this->apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGetRequest($merchant_id, $customer_email_address, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGetAsync
-     *
-     * Gets a list of the tokenised cards stored for a single customer.
-     *
-     * @param  string $merchant_id The ID of the merchant to get all customer card tokens for. (required)
-     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGetAsync($merchant_id, $customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet'][0])
-    {
-        return $this->apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGetAsyncWithHttpInfo($merchant_id, $customer_email_address, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGetAsyncWithHttpInfo
-     *
-     * Gets a list of the tokenised cards stored for a single customer.
-     *
-     * @param  string $merchant_id The ID of the merchant to get all customer card tokens for. (required)
-     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGetAsyncWithHttpInfo($merchant_id, $customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
-        $request = $this->apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGetRequest($merchant_id, $customer_email_address, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet'
-     *
-     * @param  string $merchant_id The ID of the merchant to get all customer card tokens for. (required)
-     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGetRequest($merchant_id, $customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet'][0])
-    {
-
-        // verify the required parameter 'merchant_id' is set
-        if ($merchant_id === null || (is_array($merchant_id) && count($merchant_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $merchant_id when calling apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet'
-            );
-        }
-
-        // verify the required parameter 'customer_email_address' is set
-        if ($customer_email_address === null || (is_array($customer_email_address) && count($customer_email_address) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $customer_email_address when calling apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/paymentrequests/card/customertokens/{merchantID}/{customerEmailAddress}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($merchant_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'merchantID' . '}',
-                ObjectSerializer::toPathValue($merchant_id),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($customer_email_address !== null) {
-            $resourcePath = str_replace(
-                '{' . 'customerEmailAddress' . '}',
-                ObjectSerializer::toPathValue($customer_email_address),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete
-     *
-     * Deletes all the card tokens for a customer.
-     *
-     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]
-     */
-    public function apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete($customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDeleteWithHttpInfo($customer_email_address, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDeleteWithHttpInfo
-     *
-     * Deletes all the card tokens for a customer.
-     *
-     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[], HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDeleteWithHttpInfo($customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete'][0])
-    {
-        $request = $this->apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDeleteRequest($customer_email_address, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDeleteAsync
-     *
-     * Deletes all the card tokens for a customer.
-     *
-     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDeleteAsync($customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete'][0])
-    {
-        return $this->apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDeleteAsyncWithHttpInfo($customer_email_address, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDeleteAsyncWithHttpInfo
-     *
-     * Deletes all the card tokens for a customer.
-     *
-     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDeleteAsyncWithHttpInfo($customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
-        $request = $this->apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDeleteRequest($customer_email_address, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete'
-     *
-     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDeleteRequest($customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete'][0])
-    {
-
-        // verify the required parameter 'customer_email_address' is set
-        if ($customer_email_address === null || (is_array($customer_email_address) && count($customer_email_address) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $customer_email_address when calling apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/paymentrequests/card/customertokens/removeall/{customerEmailAddress}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($customer_email_address !== null) {
-            $resourcePath = str_replace(
-                '{' . 'customerEmailAddress' . '}',
-                ObjectSerializer::toPathValue($customer_email_address),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete
-     *
-     * Deletes all the card tokens for a customer.
-     *
-     * @param  string $merchant_id The ID of the merchant to delete all customer card tokens for. (required)
-     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]
-     */
-    public function apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete($merchant_id, $customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDeleteWithHttpInfo($merchant_id, $customer_email_address, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDeleteWithHttpInfo
-     *
-     * Deletes all the card tokens for a customer.
-     *
-     * @param  string $merchant_id The ID of the merchant to delete all customer card tokens for. (required)
-     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[], HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDeleteWithHttpInfo($merchant_id, $customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete'][0])
-    {
-        $request = $this->apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDeleteRequest($merchant_id, $customer_email_address, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDeleteAsync
-     *
-     * Deletes all the card tokens for a customer.
-     *
-     * @param  string $merchant_id The ID of the merchant to delete all customer card tokens for. (required)
-     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDeleteAsync($merchant_id, $customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete'][0])
-    {
-        return $this->apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDeleteAsyncWithHttpInfo($merchant_id, $customer_email_address, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDeleteAsyncWithHttpInfo
-     *
-     * Deletes all the card tokens for a customer.
-     *
-     * @param  string $merchant_id The ID of the merchant to delete all customer card tokens for. (required)
-     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDeleteAsyncWithHttpInfo($merchant_id, $customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
-        $request = $this->apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDeleteRequest($merchant_id, $customer_email_address, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete'
-     *
-     * @param  string $merchant_id The ID of the merchant to delete all customer card tokens for. (required)
-     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDeleteRequest($merchant_id, $customer_email_address, string $contentType = self::contentTypes['apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete'][0])
-    {
-
-        // verify the required parameter 'merchant_id' is set
-        if ($merchant_id === null || (is_array($merchant_id) && count($merchant_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $merchant_id when calling apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete'
-            );
-        }
-
-        // verify the required parameter 'customer_email_address' is set
-        if ($customer_email_address === null || (is_array($customer_email_address) && count($customer_email_address) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $customer_email_address when calling apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/paymentrequests/card/customertokens/removeall/{merchantID}/{customerEmailAddress}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($merchant_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'merchantID' . '}',
-                ObjectSerializer::toPathValue($merchant_id),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($customer_email_address !== null) {
-            $resourcePath = str_replace(
-                '{' . 'customerEmailAddress' . '}',
-                ObjectSerializer::toPathValue($customer_email_address),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsGet
-     *
-     * Gets a list of all payment requests.
-     *
-     * @param  string $merchant_id The merchant ID to get he list of payment requests for. This field is ignored for              merchant tokens and required for user tokens. (optional)
-     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
-     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
-     * @param  \DateTime $from_date The date filter to apply to retrieve payment requests created after this date. (optional)
-     * @param  \DateTime $to_date The date filter to apply to retrieve payment requests created up until this date. (optional)
-     * @param  string $status The status filter to apply to retrieve payment requests with this status (optional, default to 'All')
-     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description, merchant name or contact information. (optional)
-     * @param  string $currency The currency filter to apply to retrieve payment requests with this currency. (optional)
-     * @param  float $min_amount The amount filter to apply to retrieve payment requests that exceed this amount. (optional)
-     * @param  float $max_amount The amount filter to apply to retrieve payment requests that don&#39;t exceed this amount. (optional)
-     * @param  string[] $tags The tag filter to apply to retrieve payment requests with at least one of these tags. (optional)
-     * @param  string $sort Optional expression to sort the order of the payment requests. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPaymentRequestPageResponse
-     */
-    public function apiV1PaymentrequestsGet($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = 'All', $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['apiV1PaymentrequestsGet'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsGetWithHttpInfo($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsGetWithHttpInfo
-     *
-     * Gets a list of all payment requests.
-     *
-     * @param  string $merchant_id The merchant ID to get he list of payment requests for. This field is ignored for              merchant tokens and required for user tokens. (optional)
-     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
-     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
-     * @param  \DateTime $from_date The date filter to apply to retrieve payment requests created after this date. (optional)
-     * @param  \DateTime $to_date The date filter to apply to retrieve payment requests created up until this date. (optional)
-     * @param  string $status The status filter to apply to retrieve payment requests with this status (optional, default to 'All')
-     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description, merchant name or contact information. (optional)
-     * @param  string $currency The currency filter to apply to retrieve payment requests with this currency. (optional)
-     * @param  float $min_amount The amount filter to apply to retrieve payment requests that exceed this amount. (optional)
-     * @param  float $max_amount The amount filter to apply to retrieve payment requests that don&#39;t exceed this amount. (optional)
-     * @param  string[] $tags The tag filter to apply to retrieve payment requests with at least one of these tags. (optional)
-     * @param  string $sort Optional expression to sort the order of the payment requests. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPaymentRequestPageResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsGetWithHttpInfo($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = 'All', $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['apiV1PaymentrequestsGet'][0])
-    {
-        $request = $this->apiV1PaymentrequestsGetRequest($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPaymentRequestPageResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPaymentRequestPageResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPaymentRequestPageResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPaymentRequestPageResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPaymentRequestPageResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsGetAsync
-     *
-     * Gets a list of all payment requests.
-     *
-     * @param  string $merchant_id The merchant ID to get he list of payment requests for. This field is ignored for              merchant tokens and required for user tokens. (optional)
-     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
-     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
-     * @param  \DateTime $from_date The date filter to apply to retrieve payment requests created after this date. (optional)
-     * @param  \DateTime $to_date The date filter to apply to retrieve payment requests created up until this date. (optional)
-     * @param  string $status The status filter to apply to retrieve payment requests with this status (optional, default to 'All')
-     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description, merchant name or contact information. (optional)
-     * @param  string $currency The currency filter to apply to retrieve payment requests with this currency. (optional)
-     * @param  float $min_amount The amount filter to apply to retrieve payment requests that exceed this amount. (optional)
-     * @param  float $max_amount The amount filter to apply to retrieve payment requests that don&#39;t exceed this amount. (optional)
-     * @param  string[] $tags The tag filter to apply to retrieve payment requests with at least one of these tags. (optional)
-     * @param  string $sort Optional expression to sort the order of the payment requests. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsGetAsync($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = 'All', $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['apiV1PaymentrequestsGet'][0])
-    {
-        return $this->apiV1PaymentrequestsGetAsyncWithHttpInfo($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsGetAsyncWithHttpInfo
-     *
-     * Gets a list of all payment requests.
-     *
-     * @param  string $merchant_id The merchant ID to get he list of payment requests for. This field is ignored for              merchant tokens and required for user tokens. (optional)
-     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
-     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
-     * @param  \DateTime $from_date The date filter to apply to retrieve payment requests created after this date. (optional)
-     * @param  \DateTime $to_date The date filter to apply to retrieve payment requests created up until this date. (optional)
-     * @param  string $status The status filter to apply to retrieve payment requests with this status (optional, default to 'All')
-     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description, merchant name or contact information. (optional)
-     * @param  string $currency The currency filter to apply to retrieve payment requests with this currency. (optional)
-     * @param  float $min_amount The amount filter to apply to retrieve payment requests that exceed this amount. (optional)
-     * @param  float $max_amount The amount filter to apply to retrieve payment requests that don&#39;t exceed this amount. (optional)
-     * @param  string[] $tags The tag filter to apply to retrieve payment requests with at least one of these tags. (optional)
-     * @param  string $sort Optional expression to sort the order of the payment requests. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsGetAsyncWithHttpInfo($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = 'All', $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['apiV1PaymentrequestsGet'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPaymentRequestPageResponse';
-        $request = $this->apiV1PaymentrequestsGetRequest($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsGet'
-     *
-     * @param  string $merchant_id The merchant ID to get he list of payment requests for. This field is ignored for              merchant tokens and required for user tokens. (optional)
-     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
-     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
-     * @param  \DateTime $from_date The date filter to apply to retrieve payment requests created after this date. (optional)
-     * @param  \DateTime $to_date The date filter to apply to retrieve payment requests created up until this date. (optional)
-     * @param  string $status The status filter to apply to retrieve payment requests with this status (optional, default to 'All')
-     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description, merchant name or contact information. (optional)
-     * @param  string $currency The currency filter to apply to retrieve payment requests with this currency. (optional)
-     * @param  float $min_amount The amount filter to apply to retrieve payment requests that exceed this amount. (optional)
-     * @param  float $max_amount The amount filter to apply to retrieve payment requests that don&#39;t exceed this amount. (optional)
-     * @param  string[] $tags The tag filter to apply to retrieve payment requests with at least one of these tags. (optional)
-     * @param  string $sort Optional expression to sort the order of the payment requests. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsGetRequest($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = 'All', $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['apiV1PaymentrequestsGet'][0])
-    {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        $resourcePath = '/api/v1/paymentrequests';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $merchant_id,
-            'merchantID', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $page,
-            'page', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $size,
-            'size', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $from_date,
-            'fromDate', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $to_date,
-            'toDate', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $status,
-            'status', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $search,
-            'search', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $currency,
-            'currency', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $min_amount,
-            'minAmount', // param base name
-            'number', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $max_amount,
-            'maxAmount', // param base name
-            'number', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $tags,
-            'tags', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $sort,
-            'sort', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsGetbyorderidOrderIDGet
-     *
-     * Gets a payment request by its order ID.
-     *
-     * @param  string $order_id The order ID of the payment request to retrieve. Useful when the              payment request has been created by an external application such as WooCommerce or Xero. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsGetbyorderidOrderIDGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest
-     */
-    public function apiV1PaymentrequestsGetbyorderidOrderIDGet($order_id, string $contentType = self::contentTypes['apiV1PaymentrequestsGetbyorderidOrderIDGet'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsGetbyorderidOrderIDGetWithHttpInfo($order_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsGetbyorderidOrderIDGetWithHttpInfo
-     *
-     * Gets a payment request by its order ID.
-     *
-     * @param  string $order_id The order ID of the payment request to retrieve. Useful when the              payment request has been created by an external application such as WooCommerce or Xero. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsGetbyorderidOrderIDGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsGetbyorderidOrderIDGetWithHttpInfo($order_id, string $contentType = self::contentTypes['apiV1PaymentrequestsGetbyorderidOrderIDGet'][0])
-    {
-        $request = $this->apiV1PaymentrequestsGetbyorderidOrderIDGetRequest($order_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsGetbyorderidOrderIDGetAsync
-     *
-     * Gets a payment request by its order ID.
-     *
-     * @param  string $order_id The order ID of the payment request to retrieve. Useful when the              payment request has been created by an external application such as WooCommerce or Xero. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsGetbyorderidOrderIDGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsGetbyorderidOrderIDGetAsync($order_id, string $contentType = self::contentTypes['apiV1PaymentrequestsGetbyorderidOrderIDGet'][0])
-    {
-        return $this->apiV1PaymentrequestsGetbyorderidOrderIDGetAsyncWithHttpInfo($order_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsGetbyorderidOrderIDGetAsyncWithHttpInfo
-     *
-     * Gets a payment request by its order ID.
-     *
-     * @param  string $order_id The order ID of the payment request to retrieve. Useful when the              payment request has been created by an external application such as WooCommerce or Xero. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsGetbyorderidOrderIDGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsGetbyorderidOrderIDGetAsyncWithHttpInfo($order_id, string $contentType = self::contentTypes['apiV1PaymentrequestsGetbyorderidOrderIDGet'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest';
-        $request = $this->apiV1PaymentrequestsGetbyorderidOrderIDGetRequest($order_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsGetbyorderidOrderIDGet'
-     *
-     * @param  string $order_id The order ID of the payment request to retrieve. Useful when the              payment request has been created by an external application such as WooCommerce or Xero. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsGetbyorderidOrderIDGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsGetbyorderidOrderIDGetRequest($order_id, string $contentType = self::contentTypes['apiV1PaymentrequestsGetbyorderidOrderIDGet'][0])
-    {
-
-        // verify the required parameter 'order_id' is set
-        if ($order_id === null || (is_array($order_id) && count($order_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $order_id when calling apiV1PaymentrequestsGetbyorderidOrderIDGet'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/paymentrequests/getbyorderid/{orderID}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($order_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'orderID' . '}',
-                ObjectSerializer::toPathValue($order_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardAuthenticationsetupPost
-     *
-     * Set up payer authentication for a card payment.
-     *
-     * @param  string $id The ID of the payment request the card payment is being processed for. (required)
-     * @param  string $jwt The JSON Web Token containing the tokenised card details. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardAuthenticationsetupPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse
-     */
-    public function apiV1PaymentrequestsIdCardAuthenticationsetupPost($id, $jwt = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardAuthenticationsetupPost'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsIdCardAuthenticationsetupPostWithHttpInfo($id, $jwt, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardAuthenticationsetupPostWithHttpInfo
-     *
-     * Set up payer authentication for a card payment.
-     *
-     * @param  string $id The ID of the payment request the card payment is being processed for. (required)
-     * @param  string $jwt The JSON Web Token containing the tokenised card details. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardAuthenticationsetupPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsIdCardAuthenticationsetupPostWithHttpInfo($id, $jwt = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardAuthenticationsetupPost'][0])
-    {
-        $request = $this->apiV1PaymentrequestsIdCardAuthenticationsetupPostRequest($id, $jwt, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardAuthenticationsetupPostAsync
-     *
-     * Set up payer authentication for a card payment.
-     *
-     * @param  string $id The ID of the payment request the card payment is being processed for. (required)
-     * @param  string $jwt The JSON Web Token containing the tokenised card details. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardAuthenticationsetupPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdCardAuthenticationsetupPostAsync($id, $jwt = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardAuthenticationsetupPost'][0])
-    {
-        return $this->apiV1PaymentrequestsIdCardAuthenticationsetupPostAsyncWithHttpInfo($id, $jwt, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardAuthenticationsetupPostAsyncWithHttpInfo
-     *
-     * Set up payer authentication for a card payment.
-     *
-     * @param  string $id The ID of the payment request the card payment is being processed for. (required)
-     * @param  string $jwt The JSON Web Token containing the tokenised card details. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardAuthenticationsetupPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdCardAuthenticationsetupPostAsyncWithHttpInfo($id, $jwt = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardAuthenticationsetupPost'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse';
-        $request = $this->apiV1PaymentrequestsIdCardAuthenticationsetupPostRequest($id, $jwt, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsIdCardAuthenticationsetupPost'
-     *
-     * @param  string $id The ID of the payment request the card payment is being processed for. (required)
-     * @param  string $jwt The JSON Web Token containing the tokenised card details. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardAuthenticationsetupPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsIdCardAuthenticationsetupPostRequest($id, $jwt = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardAuthenticationsetupPost'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PaymentrequestsIdCardAuthenticationsetupPost'
-            );
-        }
-
-
-
-        $resourcePath = '/api/v1/paymentrequests/{id}/card/authenticationsetup';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // form params
-        if ($jwt !== null) {
-            $formParams['jwt'] = ObjectSerializer::toFormValue($jwt);
-        }
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardCapturePost
+     * Operation captureCardPayment
      *
      * Submits a request to capture a previously authorised card payment.
      *
      * @param  string $id The ID of the payment request to perform the capture for. (required)
      * @param  string $authorization_id The ID returned from a successful card authorisation. (required)
      * @param  float $amount The amount to capture. Must be less than the authorisation amount. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardCapturePost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['captureCardPayment'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse
      */
-    public function apiV1PaymentrequestsIdCardCapturePost($id, $authorization_id, $amount = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardCapturePost'][0])
+    public function captureCardPayment($id, $authorization_id, $amount = null, string $contentType = self::contentTypes['captureCardPayment'][0])
     {
-        list($response) = $this->apiV1PaymentrequestsIdCardCapturePostWithHttpInfo($id, $authorization_id, $amount, $contentType);
+        list($response) = $this->captureCardPaymentWithHttpInfo($id, $authorization_id, $amount, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1PaymentrequestsIdCardCapturePostWithHttpInfo
+     * Operation captureCardPaymentWithHttpInfo
      *
      * Submits a request to capture a previously authorised card payment.
      *
      * @param  string $id The ID of the payment request to perform the capture for. (required)
      * @param  string $authorization_id The ID returned from a successful card authorisation. (required)
      * @param  float $amount The amount to capture. Must be less than the authorisation amount. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardCapturePost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['captureCardPayment'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1PaymentrequestsIdCardCapturePostWithHttpInfo($id, $authorization_id, $amount = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardCapturePost'][0])
+    public function captureCardPaymentWithHttpInfo($id, $authorization_id, $amount = null, string $contentType = self::contentTypes['captureCardPayment'][0])
     {
-        $request = $this->apiV1PaymentrequestsIdCardCapturePostRequest($id, $authorization_id, $amount, $contentType);
+        $request = $this->captureCardPaymentRequest($id, $authorization_id, $amount, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3053,21 +350,21 @@ class PaymentRequestsApi
     }
 
     /**
-     * Operation apiV1PaymentrequestsIdCardCapturePostAsync
+     * Operation captureCardPaymentAsync
      *
      * Submits a request to capture a previously authorised card payment.
      *
      * @param  string $id The ID of the payment request to perform the capture for. (required)
      * @param  string $authorization_id The ID returned from a successful card authorisation. (required)
      * @param  float $amount The amount to capture. Must be less than the authorisation amount. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardCapturePost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['captureCardPayment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PaymentrequestsIdCardCapturePostAsync($id, $authorization_id, $amount = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardCapturePost'][0])
+    public function captureCardPaymentAsync($id, $authorization_id, $amount = null, string $contentType = self::contentTypes['captureCardPayment'][0])
     {
-        return $this->apiV1PaymentrequestsIdCardCapturePostAsyncWithHttpInfo($id, $authorization_id, $amount, $contentType)
+        return $this->captureCardPaymentAsyncWithHttpInfo($id, $authorization_id, $amount, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3076,22 +373,22 @@ class PaymentRequestsApi
     }
 
     /**
-     * Operation apiV1PaymentrequestsIdCardCapturePostAsyncWithHttpInfo
+     * Operation captureCardPaymentAsyncWithHttpInfo
      *
      * Submits a request to capture a previously authorised card payment.
      *
      * @param  string $id The ID of the payment request to perform the capture for. (required)
      * @param  string $authorization_id The ID returned from a successful card authorisation. (required)
      * @param  float $amount The amount to capture. Must be less than the authorisation amount. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardCapturePost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['captureCardPayment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PaymentrequestsIdCardCapturePostAsyncWithHttpInfo($id, $authorization_id, $amount = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardCapturePost'][0])
+    public function captureCardPaymentAsyncWithHttpInfo($id, $authorization_id, $amount = null, string $contentType = self::contentTypes['captureCardPayment'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse';
-        $request = $this->apiV1PaymentrequestsIdCardCapturePostRequest($id, $authorization_id, $amount, $contentType);
+        $request = $this->captureCardPaymentRequest($id, $authorization_id, $amount, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3130,30 +427,30 @@ class PaymentRequestsApi
     }
 
     /**
-     * Create request for operation 'apiV1PaymentrequestsIdCardCapturePost'
+     * Create request for operation 'captureCardPayment'
      *
      * @param  string $id The ID of the payment request to perform the capture for. (required)
      * @param  string $authorization_id The ID returned from a successful card authorisation. (required)
      * @param  float $amount The amount to capture. Must be less than the authorisation amount. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardCapturePost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['captureCardPayment'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1PaymentrequestsIdCardCapturePostRequest($id, $authorization_id, $amount = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardCapturePost'][0])
+    public function captureCardPaymentRequest($id, $authorization_id, $amount = null, string $contentType = self::contentTypes['captureCardPayment'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PaymentrequestsIdCardCapturePost'
+                'Missing the required parameter $id when calling captureCardPayment'
             );
         }
 
         // verify the required parameter 'authorization_id' is set
         if ($authorization_id === null || (is_array($authorization_id) && count($authorization_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $authorization_id when calling apiV1PaymentrequestsIdCardCapturePost'
+                'Missing the required parameter $authorization_id when calling captureCardPayment'
             );
         }
 
@@ -3245,5078 +542,7 @@ class PaymentRequestsApi
     }
 
     /**
-     * Operation apiV1PaymentrequestsIdCardPaywithtokenPost
-     *
-     * Submits a payment request, using a tokenised card, to a payment gateway.
-     *
-     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
-     * @param  string $tokenised_card_id The ID of the tokenised card to use for the payment. The merchant needs to ensure that  the use of the tokenised card is restricted to the same customer that created it. (optional)
-     * @param  string $payment_initiator Indicates who initiated the card token payment, customer or merchant. (optional)
-     * @param  string $merchant_standard_reason For merchant initiated transactions that correspond to one of the industry standard  reasons should be set. (optional)
-     * @param  string $commerce_indicator For recurring and installment merchant initiated transactions this property should  be set accordingly. For all other transactions it should be left at the default of  \\\&quot;internet\\\&quot;. (optional)
-     * @param  string $card_security_code Not used for merchant initiated transactions. Optional for customer initiated transactions.  If supplied will be sent to the card processor as a check that the customer using the   tokenised card knows the card verification number. (optional)
-     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardPaywithtokenPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse
-     */
-    public function apiV1PaymentrequestsIdCardPaywithtokenPost($id, $tokenised_card_id = null, $payment_initiator = null, $merchant_standard_reason = null, $commerce_indicator = null, $card_security_code = null, $partial_amount = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardPaywithtokenPost'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsIdCardPaywithtokenPostWithHttpInfo($id, $tokenised_card_id, $payment_initiator, $merchant_standard_reason, $commerce_indicator, $card_security_code, $partial_amount, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardPaywithtokenPostWithHttpInfo
-     *
-     * Submits a payment request, using a tokenised card, to a payment gateway.
-     *
-     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
-     * @param  string $tokenised_card_id The ID of the tokenised card to use for the payment. The merchant needs to ensure that  the use of the tokenised card is restricted to the same customer that created it. (optional)
-     * @param  string $payment_initiator Indicates who initiated the card token payment, customer or merchant. (optional)
-     * @param  string $merchant_standard_reason For merchant initiated transactions that correspond to one of the industry standard  reasons should be set. (optional)
-     * @param  string $commerce_indicator For recurring and installment merchant initiated transactions this property should  be set accordingly. For all other transactions it should be left at the default of  \\\&quot;internet\\\&quot;. (optional)
-     * @param  string $card_security_code Not used for merchant initiated transactions. Optional for customer initiated transactions.  If supplied will be sent to the card processor as a check that the customer using the   tokenised card knows the card verification number. (optional)
-     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardPaywithtokenPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsIdCardPaywithtokenPostWithHttpInfo($id, $tokenised_card_id = null, $payment_initiator = null, $merchant_standard_reason = null, $commerce_indicator = null, $card_security_code = null, $partial_amount = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardPaywithtokenPost'][0])
-    {
-        $request = $this->apiV1PaymentrequestsIdCardPaywithtokenPostRequest($id, $tokenised_card_id, $payment_initiator, $merchant_standard_reason, $commerce_indicator, $card_security_code, $partial_amount, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardPaywithtokenPostAsync
-     *
-     * Submits a payment request, using a tokenised card, to a payment gateway.
-     *
-     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
-     * @param  string $tokenised_card_id The ID of the tokenised card to use for the payment. The merchant needs to ensure that  the use of the tokenised card is restricted to the same customer that created it. (optional)
-     * @param  string $payment_initiator Indicates who initiated the card token payment, customer or merchant. (optional)
-     * @param  string $merchant_standard_reason For merchant initiated transactions that correspond to one of the industry standard  reasons should be set. (optional)
-     * @param  string $commerce_indicator For recurring and installment merchant initiated transactions this property should  be set accordingly. For all other transactions it should be left at the default of  \\\&quot;internet\\\&quot;. (optional)
-     * @param  string $card_security_code Not used for merchant initiated transactions. Optional for customer initiated transactions.  If supplied will be sent to the card processor as a check that the customer using the   tokenised card knows the card verification number. (optional)
-     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardPaywithtokenPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdCardPaywithtokenPostAsync($id, $tokenised_card_id = null, $payment_initiator = null, $merchant_standard_reason = null, $commerce_indicator = null, $card_security_code = null, $partial_amount = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardPaywithtokenPost'][0])
-    {
-        return $this->apiV1PaymentrequestsIdCardPaywithtokenPostAsyncWithHttpInfo($id, $tokenised_card_id, $payment_initiator, $merchant_standard_reason, $commerce_indicator, $card_security_code, $partial_amount, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardPaywithtokenPostAsyncWithHttpInfo
-     *
-     * Submits a payment request, using a tokenised card, to a payment gateway.
-     *
-     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
-     * @param  string $tokenised_card_id The ID of the tokenised card to use for the payment. The merchant needs to ensure that  the use of the tokenised card is restricted to the same customer that created it. (optional)
-     * @param  string $payment_initiator Indicates who initiated the card token payment, customer or merchant. (optional)
-     * @param  string $merchant_standard_reason For merchant initiated transactions that correspond to one of the industry standard  reasons should be set. (optional)
-     * @param  string $commerce_indicator For recurring and installment merchant initiated transactions this property should  be set accordingly. For all other transactions it should be left at the default of  \\\&quot;internet\\\&quot;. (optional)
-     * @param  string $card_security_code Not used for merchant initiated transactions. Optional for customer initiated transactions.  If supplied will be sent to the card processor as a check that the customer using the   tokenised card knows the card verification number. (optional)
-     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardPaywithtokenPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdCardPaywithtokenPostAsyncWithHttpInfo($id, $tokenised_card_id = null, $payment_initiator = null, $merchant_standard_reason = null, $commerce_indicator = null, $card_security_code = null, $partial_amount = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardPaywithtokenPost'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse';
-        $request = $this->apiV1PaymentrequestsIdCardPaywithtokenPostRequest($id, $tokenised_card_id, $payment_initiator, $merchant_standard_reason, $commerce_indicator, $card_security_code, $partial_amount, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsIdCardPaywithtokenPost'
-     *
-     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
-     * @param  string $tokenised_card_id The ID of the tokenised card to use for the payment. The merchant needs to ensure that  the use of the tokenised card is restricted to the same customer that created it. (optional)
-     * @param  string $payment_initiator Indicates who initiated the card token payment, customer or merchant. (optional)
-     * @param  string $merchant_standard_reason For merchant initiated transactions that correspond to one of the industry standard  reasons should be set. (optional)
-     * @param  string $commerce_indicator For recurring and installment merchant initiated transactions this property should  be set accordingly. For all other transactions it should be left at the default of  \\\&quot;internet\\\&quot;. (optional)
-     * @param  string $card_security_code Not used for merchant initiated transactions. Optional for customer initiated transactions.  If supplied will be sent to the card processor as a check that the customer using the   tokenised card knows the card verification number. (optional)
-     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardPaywithtokenPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsIdCardPaywithtokenPostRequest($id, $tokenised_card_id = null, $payment_initiator = null, $merchant_standard_reason = null, $commerce_indicator = null, $card_security_code = null, $partial_amount = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardPaywithtokenPost'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PaymentrequestsIdCardPaywithtokenPost'
-            );
-        }
-
-
-
-
-
-
-
-
-        $resourcePath = '/api/v1/paymentrequests/{id}/card/paywithtoken';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // form params
-        if ($tokenised_card_id !== null) {
-            $formParams['TokenisedCardID'] = ObjectSerializer::toFormValue($tokenised_card_id);
-        }
-        // form params
-        if ($payment_initiator !== null) {
-            $formParams['PaymentInitiator'] = ObjectSerializer::toFormValue($payment_initiator);
-        }
-        // form params
-        if ($merchant_standard_reason !== null) {
-            $formParams['MerchantStandardReason'] = ObjectSerializer::toFormValue($merchant_standard_reason);
-        }
-        // form params
-        if ($commerce_indicator !== null) {
-            $formParams['CommerceIndicator'] = ObjectSerializer::toFormValue($commerce_indicator);
-        }
-        // form params
-        if ($card_security_code !== null) {
-            $formParams['CardSecurityCode'] = ObjectSerializer::toFormValue($card_security_code);
-        }
-        // form params
-        if ($partial_amount !== null) {
-            $formParams['PartialAmount'] = ObjectSerializer::toFormValue($partial_amount);
-        }
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardPost
-     *
-     * Submit a payment authorisation request to the card gateway.
-     *
-     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
-     * @param  string $expiry_month expiry_month (required)
-     * @param  string $expiry_year expiry_year (required)
-     * @param  string $jwt_token The tokenised Card Number and CardVerification Number (CVN) details.  Typically generated by the CyberSource javascript library. (optional)
-     * @param  string $number_token number_token (optional)
-     * @param  string $cvc_token cvc_token (optional)
-     * @param  string $card_holder_first_name card_holder_first_name (optional)
-     * @param  string $card_holder_last_name card_holder_last_name (optional)
-     * @param  string $billing_address_line1 billing_address_line1 (optional)
-     * @param  string $billing_address_line2 billing_address_line2 (optional)
-     * @param  string $billing_address_city billing_address_city (optional)
-     * @param  string $billing_address_county billing_address_county (optional)
-     * @param  string $billing_address_post_code billing_address_post_code (optional)
-     * @param  string $billing_address_country_code billing_address_country_code (optional)
-     * @param  string $billing_phone billing_phone (optional)
-     * @param  string $billing_email billing_email (optional)
-     * @param  bool $save_card_consent save_card_consent (optional)
-     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse
-     */
-    public function apiV1PaymentrequestsIdCardPost($id, $expiry_month, $expiry_year, $jwt_token = null, $number_token = null, $cvc_token = null, $card_holder_first_name = null, $card_holder_last_name = null, $billing_address_line1 = null, $billing_address_line2 = null, $billing_address_city = null, $billing_address_county = null, $billing_address_post_code = null, $billing_address_country_code = null, $billing_phone = null, $billing_email = null, $save_card_consent = null, $partial_amount = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardPost'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsIdCardPostWithHttpInfo($id, $expiry_month, $expiry_year, $jwt_token, $number_token, $cvc_token, $card_holder_first_name, $card_holder_last_name, $billing_address_line1, $billing_address_line2, $billing_address_city, $billing_address_county, $billing_address_post_code, $billing_address_country_code, $billing_phone, $billing_email, $save_card_consent, $partial_amount, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardPostWithHttpInfo
-     *
-     * Submit a payment authorisation request to the card gateway.
-     *
-     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
-     * @param  string $expiry_month (required)
-     * @param  string $expiry_year (required)
-     * @param  string $jwt_token The tokenised Card Number and CardVerification Number (CVN) details.  Typically generated by the CyberSource javascript library. (optional)
-     * @param  string $number_token (optional)
-     * @param  string $cvc_token (optional)
-     * @param  string $card_holder_first_name (optional)
-     * @param  string $card_holder_last_name (optional)
-     * @param  string $billing_address_line1 (optional)
-     * @param  string $billing_address_line2 (optional)
-     * @param  string $billing_address_city (optional)
-     * @param  string $billing_address_county (optional)
-     * @param  string $billing_address_post_code (optional)
-     * @param  string $billing_address_country_code (optional)
-     * @param  string $billing_phone (optional)
-     * @param  string $billing_email (optional)
-     * @param  bool $save_card_consent (optional)
-     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsIdCardPostWithHttpInfo($id, $expiry_month, $expiry_year, $jwt_token = null, $number_token = null, $cvc_token = null, $card_holder_first_name = null, $card_holder_last_name = null, $billing_address_line1 = null, $billing_address_line2 = null, $billing_address_city = null, $billing_address_county = null, $billing_address_post_code = null, $billing_address_country_code = null, $billing_phone = null, $billing_email = null, $save_card_consent = null, $partial_amount = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardPost'][0])
-    {
-        $request = $this->apiV1PaymentrequestsIdCardPostRequest($id, $expiry_month, $expiry_year, $jwt_token, $number_token, $cvc_token, $card_holder_first_name, $card_holder_last_name, $billing_address_line1, $billing_address_line2, $billing_address_city, $billing_address_county, $billing_address_post_code, $billing_address_country_code, $billing_phone, $billing_email, $save_card_consent, $partial_amount, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardPostAsync
-     *
-     * Submit a payment authorisation request to the card gateway.
-     *
-     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
-     * @param  string $expiry_month (required)
-     * @param  string $expiry_year (required)
-     * @param  string $jwt_token The tokenised Card Number and CardVerification Number (CVN) details.  Typically generated by the CyberSource javascript library. (optional)
-     * @param  string $number_token (optional)
-     * @param  string $cvc_token (optional)
-     * @param  string $card_holder_first_name (optional)
-     * @param  string $card_holder_last_name (optional)
-     * @param  string $billing_address_line1 (optional)
-     * @param  string $billing_address_line2 (optional)
-     * @param  string $billing_address_city (optional)
-     * @param  string $billing_address_county (optional)
-     * @param  string $billing_address_post_code (optional)
-     * @param  string $billing_address_country_code (optional)
-     * @param  string $billing_phone (optional)
-     * @param  string $billing_email (optional)
-     * @param  bool $save_card_consent (optional)
-     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdCardPostAsync($id, $expiry_month, $expiry_year, $jwt_token = null, $number_token = null, $cvc_token = null, $card_holder_first_name = null, $card_holder_last_name = null, $billing_address_line1 = null, $billing_address_line2 = null, $billing_address_city = null, $billing_address_county = null, $billing_address_post_code = null, $billing_address_country_code = null, $billing_phone = null, $billing_email = null, $save_card_consent = null, $partial_amount = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardPost'][0])
-    {
-        return $this->apiV1PaymentrequestsIdCardPostAsyncWithHttpInfo($id, $expiry_month, $expiry_year, $jwt_token, $number_token, $cvc_token, $card_holder_first_name, $card_holder_last_name, $billing_address_line1, $billing_address_line2, $billing_address_city, $billing_address_county, $billing_address_post_code, $billing_address_country_code, $billing_phone, $billing_email, $save_card_consent, $partial_amount, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardPostAsyncWithHttpInfo
-     *
-     * Submit a payment authorisation request to the card gateway.
-     *
-     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
-     * @param  string $expiry_month (required)
-     * @param  string $expiry_year (required)
-     * @param  string $jwt_token The tokenised Card Number and CardVerification Number (CVN) details.  Typically generated by the CyberSource javascript library. (optional)
-     * @param  string $number_token (optional)
-     * @param  string $cvc_token (optional)
-     * @param  string $card_holder_first_name (optional)
-     * @param  string $card_holder_last_name (optional)
-     * @param  string $billing_address_line1 (optional)
-     * @param  string $billing_address_line2 (optional)
-     * @param  string $billing_address_city (optional)
-     * @param  string $billing_address_county (optional)
-     * @param  string $billing_address_post_code (optional)
-     * @param  string $billing_address_country_code (optional)
-     * @param  string $billing_phone (optional)
-     * @param  string $billing_email (optional)
-     * @param  bool $save_card_consent (optional)
-     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdCardPostAsyncWithHttpInfo($id, $expiry_month, $expiry_year, $jwt_token = null, $number_token = null, $cvc_token = null, $card_holder_first_name = null, $card_holder_last_name = null, $billing_address_line1 = null, $billing_address_line2 = null, $billing_address_city = null, $billing_address_county = null, $billing_address_post_code = null, $billing_address_country_code = null, $billing_phone = null, $billing_email = null, $save_card_consent = null, $partial_amount = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardPost'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse';
-        $request = $this->apiV1PaymentrequestsIdCardPostRequest($id, $expiry_month, $expiry_year, $jwt_token, $number_token, $cvc_token, $card_holder_first_name, $card_holder_last_name, $billing_address_line1, $billing_address_line2, $billing_address_city, $billing_address_county, $billing_address_post_code, $billing_address_country_code, $billing_phone, $billing_email, $save_card_consent, $partial_amount, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsIdCardPost'
-     *
-     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
-     * @param  string $expiry_month (required)
-     * @param  string $expiry_year (required)
-     * @param  string $jwt_token The tokenised Card Number and CardVerification Number (CVN) details.  Typically generated by the CyberSource javascript library. (optional)
-     * @param  string $number_token (optional)
-     * @param  string $cvc_token (optional)
-     * @param  string $card_holder_first_name (optional)
-     * @param  string $card_holder_last_name (optional)
-     * @param  string $billing_address_line1 (optional)
-     * @param  string $billing_address_line2 (optional)
-     * @param  string $billing_address_city (optional)
-     * @param  string $billing_address_county (optional)
-     * @param  string $billing_address_post_code (optional)
-     * @param  string $billing_address_country_code (optional)
-     * @param  string $billing_phone (optional)
-     * @param  string $billing_email (optional)
-     * @param  bool $save_card_consent (optional)
-     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsIdCardPostRequest($id, $expiry_month, $expiry_year, $jwt_token = null, $number_token = null, $cvc_token = null, $card_holder_first_name = null, $card_holder_last_name = null, $billing_address_line1 = null, $billing_address_line2 = null, $billing_address_city = null, $billing_address_county = null, $billing_address_post_code = null, $billing_address_country_code = null, $billing_phone = null, $billing_email = null, $save_card_consent = null, $partial_amount = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardPost'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PaymentrequestsIdCardPost'
-            );
-        }
-
-        // verify the required parameter 'expiry_month' is set
-        if ($expiry_month === null || (is_array($expiry_month) && count($expiry_month) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $expiry_month when calling apiV1PaymentrequestsIdCardPost'
-            );
-        }
-
-        // verify the required parameter 'expiry_year' is set
-        if ($expiry_year === null || (is_array($expiry_year) && count($expiry_year) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $expiry_year when calling apiV1PaymentrequestsIdCardPost'
-            );
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        $resourcePath = '/api/v1/paymentrequests/{id}/card';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // form params
-        if ($expiry_month !== null) {
-            $formParams['ExpiryMonth'] = ObjectSerializer::toFormValue($expiry_month);
-        }
-        // form params
-        if ($expiry_year !== null) {
-            $formParams['ExpiryYear'] = ObjectSerializer::toFormValue($expiry_year);
-        }
-        // form params
-        if ($jwt_token !== null) {
-            $formParams['JwtToken'] = ObjectSerializer::toFormValue($jwt_token);
-        }
-        // form params
-        if ($number_token !== null) {
-            $formParams['NumberToken'] = ObjectSerializer::toFormValue($number_token);
-        }
-        // form params
-        if ($cvc_token !== null) {
-            $formParams['CvcToken'] = ObjectSerializer::toFormValue($cvc_token);
-        }
-        // form params
-        if ($card_holder_first_name !== null) {
-            $formParams['CardHolderFirstName'] = ObjectSerializer::toFormValue($card_holder_first_name);
-        }
-        // form params
-        if ($card_holder_last_name !== null) {
-            $formParams['CardHolderLastName'] = ObjectSerializer::toFormValue($card_holder_last_name);
-        }
-        // form params
-        if ($billing_address_line1 !== null) {
-            $formParams['BillingAddressLine1'] = ObjectSerializer::toFormValue($billing_address_line1);
-        }
-        // form params
-        if ($billing_address_line2 !== null) {
-            $formParams['BillingAddressLine2'] = ObjectSerializer::toFormValue($billing_address_line2);
-        }
-        // form params
-        if ($billing_address_city !== null) {
-            $formParams['BillingAddressCity'] = ObjectSerializer::toFormValue($billing_address_city);
-        }
-        // form params
-        if ($billing_address_county !== null) {
-            $formParams['BillingAddressCounty'] = ObjectSerializer::toFormValue($billing_address_county);
-        }
-        // form params
-        if ($billing_address_post_code !== null) {
-            $formParams['BillingAddressPostCode'] = ObjectSerializer::toFormValue($billing_address_post_code);
-        }
-        // form params
-        if ($billing_address_country_code !== null) {
-            $formParams['BillingAddressCountryCode'] = ObjectSerializer::toFormValue($billing_address_country_code);
-        }
-        // form params
-        if ($billing_phone !== null) {
-            $formParams['BillingPhone'] = ObjectSerializer::toFormValue($billing_phone);
-        }
-        // form params
-        if ($billing_email !== null) {
-            $formParams['BillingEmail'] = ObjectSerializer::toFormValue($billing_email);
-        }
-        // form params
-        if ($save_card_consent !== null) {
-            $formParams['SaveCardConsent'] = ObjectSerializer::toFormValue($save_card_consent);
-        }
-        // form params
-        if ($partial_amount !== null) {
-            $formParams['PartialAmount'] = ObjectSerializer::toFormValue($partial_amount);
-        }
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardPublickeyGet
-     *
-     * Gets the public key to encrypt card details with when submitting an authorisation.
-     *
-     * @param  string $id The ID of the payment request the public key will be used with. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardPublickeyGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPublicKey
-     */
-    public function apiV1PaymentrequestsIdCardPublickeyGet($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardPublickeyGet'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsIdCardPublickeyGetWithHttpInfo($id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardPublickeyGetWithHttpInfo
-     *
-     * Gets the public key to encrypt card details with when submitting an authorisation.
-     *
-     * @param  string $id The ID of the payment request the public key will be used with. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardPublickeyGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPublicKey, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsIdCardPublickeyGetWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardPublickeyGet'][0])
-    {
-        $request = $this->apiV1PaymentrequestsIdCardPublickeyGetRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPublicKey' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPublicKey' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPublicKey', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPublicKey';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPublicKey',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardPublickeyGetAsync
-     *
-     * Gets the public key to encrypt card details with when submitting an authorisation.
-     *
-     * @param  string $id The ID of the payment request the public key will be used with. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardPublickeyGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdCardPublickeyGetAsync($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardPublickeyGet'][0])
-    {
-        return $this->apiV1PaymentrequestsIdCardPublickeyGetAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardPublickeyGetAsyncWithHttpInfo
-     *
-     * Gets the public key to encrypt card details with when submitting an authorisation.
-     *
-     * @param  string $id The ID of the payment request the public key will be used with. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardPublickeyGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdCardPublickeyGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardPublickeyGet'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPublicKey';
-        $request = $this->apiV1PaymentrequestsIdCardPublickeyGetRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsIdCardPublickeyGet'
-     *
-     * @param  string $id The ID of the payment request the public key will be used with. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardPublickeyGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsIdCardPublickeyGetRequest($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardPublickeyGet'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PaymentrequestsIdCardPublickeyGet'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/paymentrequests/{id}/card/publickey';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost
-     *
-     * Submits a request to refund a card payment.
-     *
-     * @param  string $id The ID of the payment request a card payment has previously been captured for. (required)
-     * @param  float $partial_refund_amount The partial amount to be refunded in case of captured payment. (required)
-     * @param  string $authorization_id The authorisation ID of the card payment to refund. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse
-     */
-    public function apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost($id, $partial_refund_amount, $authorization_id = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsIdCardRefundPartialRefundAmountPostWithHttpInfo($id, $partial_refund_amount, $authorization_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardRefundPartialRefundAmountPostWithHttpInfo
-     *
-     * Submits a request to refund a card payment.
-     *
-     * @param  string $id The ID of the payment request a card payment has previously been captured for. (required)
-     * @param  float $partial_refund_amount The partial amount to be refunded in case of captured payment. (required)
-     * @param  string $authorization_id The authorisation ID of the card payment to refund. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsIdCardRefundPartialRefundAmountPostWithHttpInfo($id, $partial_refund_amount, $authorization_id = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost'][0])
-    {
-        $request = $this->apiV1PaymentrequestsIdCardRefundPartialRefundAmountPostRequest($id, $partial_refund_amount, $authorization_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardRefundPartialRefundAmountPostAsync
-     *
-     * Submits a request to refund a card payment.
-     *
-     * @param  string $id The ID of the payment request a card payment has previously been captured for. (required)
-     * @param  float $partial_refund_amount The partial amount to be refunded in case of captured payment. (required)
-     * @param  string $authorization_id The authorisation ID of the card payment to refund. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdCardRefundPartialRefundAmountPostAsync($id, $partial_refund_amount, $authorization_id = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost'][0])
-    {
-        return $this->apiV1PaymentrequestsIdCardRefundPartialRefundAmountPostAsyncWithHttpInfo($id, $partial_refund_amount, $authorization_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardRefundPartialRefundAmountPostAsyncWithHttpInfo
-     *
-     * Submits a request to refund a card payment.
-     *
-     * @param  string $id The ID of the payment request a card payment has previously been captured for. (required)
-     * @param  float $partial_refund_amount The partial amount to be refunded in case of captured payment. (required)
-     * @param  string $authorization_id The authorisation ID of the card payment to refund. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdCardRefundPartialRefundAmountPostAsyncWithHttpInfo($id, $partial_refund_amount, $authorization_id = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse';
-        $request = $this->apiV1PaymentrequestsIdCardRefundPartialRefundAmountPostRequest($id, $partial_refund_amount, $authorization_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost'
-     *
-     * @param  string $id The ID of the payment request a card payment has previously been captured for. (required)
-     * @param  float $partial_refund_amount The partial amount to be refunded in case of captured payment. (required)
-     * @param  string $authorization_id The authorisation ID of the card payment to refund. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsIdCardRefundPartialRefundAmountPostRequest($id, $partial_refund_amount, $authorization_id = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost'
-            );
-        }
-
-        // verify the required parameter 'partial_refund_amount' is set
-        if ($partial_refund_amount === null || (is_array($partial_refund_amount) && count($partial_refund_amount) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $partial_refund_amount when calling apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost'
-            );
-        }
-
-
-
-        $resourcePath = '/api/v1/paymentrequests/{id}/card/refund/{partialRefundAmount}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-        // path params
-        if ($partial_refund_amount !== null) {
-            $resourcePath = str_replace(
-                '{' . 'partialRefundAmount' . '}',
-                ObjectSerializer::toPathValue($partial_refund_amount),
-                $resourcePath
-            );
-        }
-
-        // form params
-        if ($authorization_id !== null) {
-            $formParams['authorizationID'] = ObjectSerializer::toFormValue($authorization_id);
-        }
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardVoidPost
-     *
-     * Submits a request to void a card payment.
-     *
-     * @param  string $id The ID of the payment request a card payment has previously been authorised or captured for. (required)
-     * @param  string $authorization_id The authorisation ID of the card payment to void. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardVoidPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse
-     */
-    public function apiV1PaymentrequestsIdCardVoidPost($id, $authorization_id = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardVoidPost'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsIdCardVoidPostWithHttpInfo($id, $authorization_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardVoidPostWithHttpInfo
-     *
-     * Submits a request to void a card payment.
-     *
-     * @param  string $id The ID of the payment request a card payment has previously been authorised or captured for. (required)
-     * @param  string $authorization_id The authorisation ID of the card payment to void. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardVoidPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsIdCardVoidPostWithHttpInfo($id, $authorization_id = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardVoidPost'][0])
-    {
-        $request = $this->apiV1PaymentrequestsIdCardVoidPostRequest($id, $authorization_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardVoidPostAsync
-     *
-     * Submits a request to void a card payment.
-     *
-     * @param  string $id The ID of the payment request a card payment has previously been authorised or captured for. (required)
-     * @param  string $authorization_id The authorisation ID of the card payment to void. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardVoidPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdCardVoidPostAsync($id, $authorization_id = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardVoidPost'][0])
-    {
-        return $this->apiV1PaymentrequestsIdCardVoidPostAsyncWithHttpInfo($id, $authorization_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardVoidPostAsyncWithHttpInfo
-     *
-     * Submits a request to void a card payment.
-     *
-     * @param  string $id The ID of the payment request a card payment has previously been authorised or captured for. (required)
-     * @param  string $authorization_id The authorisation ID of the card payment to void. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardVoidPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdCardVoidPostAsyncWithHttpInfo($id, $authorization_id = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardVoidPost'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse';
-        $request = $this->apiV1PaymentrequestsIdCardVoidPostRequest($id, $authorization_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsIdCardVoidPost'
-     *
-     * @param  string $id The ID of the payment request a card payment has previously been authorised or captured for. (required)
-     * @param  string $authorization_id The authorisation ID of the card payment to void. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardVoidPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsIdCardVoidPostRequest($id, $authorization_id = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardVoidPost'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PaymentrequestsIdCardVoidPost'
-            );
-        }
-
-
-
-        $resourcePath = '/api/v1/paymentrequests/{id}/card/void';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // form params
-        if ($authorization_id !== null) {
-            $formParams['authorizationID'] = ObjectSerializer::toFormValue($authorization_id);
-        }
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardVoidpaymentrequestPost
-     *
-     * Submits a request to void all payments for a payment request.
-     *
-     * @param  string $id The ID of the payment request to void the payments for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardVoidpaymentrequestPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse[]
-     */
-    public function apiV1PaymentrequestsIdCardVoidpaymentrequestPost($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardVoidpaymentrequestPost'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsIdCardVoidpaymentrequestPostWithHttpInfo($id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardVoidpaymentrequestPostWithHttpInfo
-     *
-     * Submits a request to void all payments for a payment request.
-     *
-     * @param  string $id The ID of the payment request to void the payments for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardVoidpaymentrequestPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse[], HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsIdCardVoidpaymentrequestPostWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardVoidpaymentrequestPost'][0])
-    {
-        $request = $this->apiV1PaymentrequestsIdCardVoidpaymentrequestPostRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse[]' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse[]' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse[]';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardVoidpaymentrequestPostAsync
-     *
-     * Submits a request to void all payments for a payment request.
-     *
-     * @param  string $id The ID of the payment request to void the payments for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardVoidpaymentrequestPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdCardVoidpaymentrequestPostAsync($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardVoidpaymentrequestPost'][0])
-    {
-        return $this->apiV1PaymentrequestsIdCardVoidpaymentrequestPostAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdCardVoidpaymentrequestPostAsyncWithHttpInfo
-     *
-     * Submits a request to void all payments for a payment request.
-     *
-     * @param  string $id The ID of the payment request to void the payments for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardVoidpaymentrequestPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdCardVoidpaymentrequestPostAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardVoidpaymentrequestPost'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse[]';
-        $request = $this->apiV1PaymentrequestsIdCardVoidpaymentrequestPostRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsIdCardVoidpaymentrequestPost'
-     *
-     * @param  string $id The ID of the payment request to void the payments for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdCardVoidpaymentrequestPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsIdCardVoidpaymentrequestPostRequest($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdCardVoidpaymentrequestPost'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PaymentrequestsIdCardVoidpaymentrequestPost'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/paymentrequests/{id}/card/voidpaymentrequest';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdDelete
-     *
-     * Deletes a payment request, along with its keys and addresses, if there&#39;s  no payment event associated with it.
-     *
-     * @param  string $id The id of the payment request to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function apiV1PaymentrequestsIdDelete($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdDelete'][0])
-    {
-        $this->apiV1PaymentrequestsIdDeleteWithHttpInfo($id, $contentType);
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdDeleteWithHttpInfo
-     *
-     * Deletes a payment request, along with its keys and addresses, if there&#39;s  no payment event associated with it.
-     *
-     * @param  string $id The id of the payment request to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsIdDeleteWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdDelete'][0])
-    {
-        $request = $this->apiV1PaymentrequestsIdDeleteRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdDeleteAsync
-     *
-     * Deletes a payment request, along with its keys and addresses, if there&#39;s  no payment event associated with it.
-     *
-     * @param  string $id The id of the payment request to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdDeleteAsync($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdDelete'][0])
-    {
-        return $this->apiV1PaymentrequestsIdDeleteAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdDeleteAsyncWithHttpInfo
-     *
-     * Deletes a payment request, along with its keys and addresses, if there&#39;s  no payment event associated with it.
-     *
-     * @param  string $id The id of the payment request to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdDelete'][0])
-    {
-        $returnType = '';
-        $request = $this->apiV1PaymentrequestsIdDeleteRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsIdDelete'
-     *
-     * @param  string $id The id of the payment request to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsIdDeleteRequest($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdDelete'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PaymentrequestsIdDelete'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/paymentrequests/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            [],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdEventsGet
-     *
-     * Gets a payment requests&#39;s events.
-     *
-     * @param  string $id ID of the payment request to get the events for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdEventsGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestEvent[]
-     */
-    public function apiV1PaymentrequestsIdEventsGet($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdEventsGet'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsIdEventsGetWithHttpInfo($id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdEventsGetWithHttpInfo
-     *
-     * Gets a payment requests&#39;s events.
-     *
-     * @param  string $id ID of the payment request to get the events for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdEventsGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestEvent[], HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsIdEventsGetWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdEventsGet'][0])
-    {
-        $request = $this->apiV1PaymentrequestsIdEventsGetRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestEvent[]' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestEvent[]' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestEvent[]', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestEvent[]';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestEvent[]',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdEventsGetAsync
-     *
-     * Gets a payment requests&#39;s events.
-     *
-     * @param  string $id ID of the payment request to get the events for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdEventsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdEventsGetAsync($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdEventsGet'][0])
-    {
-        return $this->apiV1PaymentrequestsIdEventsGetAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdEventsGetAsyncWithHttpInfo
-     *
-     * Gets a payment requests&#39;s events.
-     *
-     * @param  string $id ID of the payment request to get the events for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdEventsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdEventsGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdEventsGet'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestEvent[]';
-        $request = $this->apiV1PaymentrequestsIdEventsGetRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsIdEventsGet'
-     *
-     * @param  string $id ID of the payment request to get the events for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdEventsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsIdEventsGetRequest($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdEventsGet'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PaymentrequestsIdEventsGet'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/paymentrequests/{id}/events';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdGet
-     *
-     * Gets a payment request.
-     *
-     * @param  string $id The ID of the payment request to retrieve. (required)
-     * @param  bool $include_events Set to true to include any associated payment request events. (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest
-     */
-    public function apiV1PaymentrequestsIdGet($id, $include_events = false, string $contentType = self::contentTypes['apiV1PaymentrequestsIdGet'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsIdGetWithHttpInfo($id, $include_events, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdGetWithHttpInfo
-     *
-     * Gets a payment request.
-     *
-     * @param  string $id The ID of the payment request to retrieve. (required)
-     * @param  bool $include_events Set to true to include any associated payment request events. (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsIdGetWithHttpInfo($id, $include_events = false, string $contentType = self::contentTypes['apiV1PaymentrequestsIdGet'][0])
-    {
-        $request = $this->apiV1PaymentrequestsIdGetRequest($id, $include_events, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdGetAsync
-     *
-     * Gets a payment request.
-     *
-     * @param  string $id The ID of the payment request to retrieve. (required)
-     * @param  bool $include_events Set to true to include any associated payment request events. (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdGetAsync($id, $include_events = false, string $contentType = self::contentTypes['apiV1PaymentrequestsIdGet'][0])
-    {
-        return $this->apiV1PaymentrequestsIdGetAsyncWithHttpInfo($id, $include_events, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdGetAsyncWithHttpInfo
-     *
-     * Gets a payment request.
-     *
-     * @param  string $id The ID of the payment request to retrieve. (required)
-     * @param  bool $include_events Set to true to include any associated payment request events. (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdGetAsyncWithHttpInfo($id, $include_events = false, string $contentType = self::contentTypes['apiV1PaymentrequestsIdGet'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest';
-        $request = $this->apiV1PaymentrequestsIdGetRequest($id, $include_events, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsIdGet'
-     *
-     * @param  string $id The ID of the payment request to retrieve. (required)
-     * @param  bool $include_events Set to true to include any associated payment request events. (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsIdGetRequest($id, $include_events = false, string $contentType = self::contentTypes['apiV1PaymentrequestsIdGet'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PaymentrequestsIdGet'
-            );
-        }
-
-
-
-        $resourcePath = '/api/v1/paymentrequests/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $include_events,
-            'includeEvents', // param base name
-            'boolean', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdMinimalGet
-     *
-     * Gets a minimal representation of a payment request.
-     *
-     * @param  string $id The ID of the payment request to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdMinimalGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMinimal
-     */
-    public function apiV1PaymentrequestsIdMinimalGet($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdMinimalGet'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsIdMinimalGetWithHttpInfo($id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdMinimalGetWithHttpInfo
-     *
-     * Gets a minimal representation of a payment request.
-     *
-     * @param  string $id The ID of the payment request to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdMinimalGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMinimal, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsIdMinimalGetWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdMinimalGet'][0])
-    {
-        $request = $this->apiV1PaymentrequestsIdMinimalGetRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMinimal' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMinimal' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMinimal', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMinimal';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMinimal',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdMinimalGetAsync
-     *
-     * Gets a minimal representation of a payment request.
-     *
-     * @param  string $id The ID of the payment request to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdMinimalGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdMinimalGetAsync($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdMinimalGet'][0])
-    {
-        return $this->apiV1PaymentrequestsIdMinimalGetAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdMinimalGetAsyncWithHttpInfo
-     *
-     * Gets a minimal representation of a payment request.
-     *
-     * @param  string $id The ID of the payment request to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdMinimalGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdMinimalGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdMinimalGet'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMinimal';
-        $request = $this->apiV1PaymentrequestsIdMinimalGetRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsIdMinimalGet'
-     *
-     * @param  string $id The ID of the payment request to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdMinimalGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsIdMinimalGetRequest($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdMinimalGet'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PaymentrequestsIdMinimalGet'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/paymentrequests/{id}/minimal';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdPispPost
-     *
-     * Submits a payment initiation request.
-     *
-     * @param  string $id The ID of the payment request the payment initiation is being submitted for. (required)
-     * @param  string $provider_id This is the ID of the institution (bank) that the payer ha chosen. (required)
-     * @param  float $partial_amount Optional. If 0 the full amount is assumed. (optional)
-     * @param  string $redirect_to_origin_url redirect_to_origin_url (optional)
-     * @param  string $origin_url Optional. If set should indicate the origin URL the payer is making the   payment from. If a pay by bank attempt fails and the payment request does not  have a FailureCallbackUrl set then the payer will be redirected to this URL. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdPispPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentInitiationResponse
-     */
-    public function apiV1PaymentrequestsIdPispPost($id, $provider_id, $partial_amount = null, $redirect_to_origin_url = null, $origin_url = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdPispPost'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsIdPispPostWithHttpInfo($id, $provider_id, $partial_amount, $redirect_to_origin_url, $origin_url, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdPispPostWithHttpInfo
-     *
-     * Submits a payment initiation request.
-     *
-     * @param  string $id The ID of the payment request the payment initiation is being submitted for. (required)
-     * @param  string $provider_id This is the ID of the institution (bank) that the payer ha chosen. (required)
-     * @param  float $partial_amount Optional. If 0 the full amount is assumed. (optional)
-     * @param  string $redirect_to_origin_url (optional)
-     * @param  string $origin_url Optional. If set should indicate the origin URL the payer is making the   payment from. If a pay by bank attempt fails and the payment request does not  have a FailureCallbackUrl set then the payer will be redirected to this URL. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdPispPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentInitiationResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsIdPispPostWithHttpInfo($id, $provider_id, $partial_amount = null, $redirect_to_origin_url = null, $origin_url = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdPispPost'][0])
-    {
-        $request = $this->apiV1PaymentrequestsIdPispPostRequest($id, $provider_id, $partial_amount, $redirect_to_origin_url, $origin_url, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentInitiationResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentInitiationResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentInitiationResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentInitiationResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentInitiationResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdPispPostAsync
-     *
-     * Submits a payment initiation request.
-     *
-     * @param  string $id The ID of the payment request the payment initiation is being submitted for. (required)
-     * @param  string $provider_id This is the ID of the institution (bank) that the payer ha chosen. (required)
-     * @param  float $partial_amount Optional. If 0 the full amount is assumed. (optional)
-     * @param  string $redirect_to_origin_url (optional)
-     * @param  string $origin_url Optional. If set should indicate the origin URL the payer is making the   payment from. If a pay by bank attempt fails and the payment request does not  have a FailureCallbackUrl set then the payer will be redirected to this URL. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdPispPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdPispPostAsync($id, $provider_id, $partial_amount = null, $redirect_to_origin_url = null, $origin_url = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdPispPost'][0])
-    {
-        return $this->apiV1PaymentrequestsIdPispPostAsyncWithHttpInfo($id, $provider_id, $partial_amount, $redirect_to_origin_url, $origin_url, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdPispPostAsyncWithHttpInfo
-     *
-     * Submits a payment initiation request.
-     *
-     * @param  string $id The ID of the payment request the payment initiation is being submitted for. (required)
-     * @param  string $provider_id This is the ID of the institution (bank) that the payer ha chosen. (required)
-     * @param  float $partial_amount Optional. If 0 the full amount is assumed. (optional)
-     * @param  string $redirect_to_origin_url (optional)
-     * @param  string $origin_url Optional. If set should indicate the origin URL the payer is making the   payment from. If a pay by bank attempt fails and the payment request does not  have a FailureCallbackUrl set then the payer will be redirected to this URL. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdPispPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdPispPostAsyncWithHttpInfo($id, $provider_id, $partial_amount = null, $redirect_to_origin_url = null, $origin_url = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdPispPost'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentInitiationResponse';
-        $request = $this->apiV1PaymentrequestsIdPispPostRequest($id, $provider_id, $partial_amount, $redirect_to_origin_url, $origin_url, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsIdPispPost'
-     *
-     * @param  string $id The ID of the payment request the payment initiation is being submitted for. (required)
-     * @param  string $provider_id This is the ID of the institution (bank) that the payer ha chosen. (required)
-     * @param  float $partial_amount Optional. If 0 the full amount is assumed. (optional)
-     * @param  string $redirect_to_origin_url (optional)
-     * @param  string $origin_url Optional. If set should indicate the origin URL the payer is making the   payment from. If a pay by bank attempt fails and the payment request does not  have a FailureCallbackUrl set then the payer will be redirected to this URL. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdPispPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsIdPispPostRequest($id, $provider_id, $partial_amount = null, $redirect_to_origin_url = null, $origin_url = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdPispPost'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PaymentrequestsIdPispPost'
-            );
-        }
-
-        // verify the required parameter 'provider_id' is set
-        if ($provider_id === null || (is_array($provider_id) && count($provider_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $provider_id when calling apiV1PaymentrequestsIdPispPost'
-            );
-        }
-
-
-
-
-
-        $resourcePath = '/api/v1/paymentrequests/{id}/pisp';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-        // form params
-        if ($provider_id !== null) {
-            $formParams['ProviderID'] = ObjectSerializer::toFormValue($provider_id);
-        }
-        // form params
-        if ($partial_amount !== null) {
-            $formParams['PartialAmount'] = ObjectSerializer::toFormValue($partial_amount);
-        }
-        // form params
-        if ($redirect_to_origin_url !== null) {
-            $formParams['RedirectToOriginUrl'] = ObjectSerializer::toFormValue($redirect_to_origin_url);
-        }
-        // form params
-        if ($origin_url !== null) {
-            $formParams['OriginUrl'] = ObjectSerializer::toFormValue($origin_url);
-        }
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdPispSandboxcallbackPut
-     *
-     * This action simulates a payment initiation callback from a bank to authorise a payment in a sandbox environment.
-     *
-     * @param  string $id The ID of the payment request. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestPispSandboxCallback $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback The callback instance with details for the sandbox simulated payment attempt. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdPispSandboxcallbackPut'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return string
-     */
-    public function apiV1PaymentrequestsIdPispSandboxcallbackPut($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdPispSandboxcallbackPut'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsIdPispSandboxcallbackPutWithHttpInfo($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdPispSandboxcallbackPutWithHttpInfo
-     *
-     * This action simulates a payment initiation callback from a bank to authorise a payment in a sandbox environment.
-     *
-     * @param  string $id The ID of the payment request. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestPispSandboxCallback $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback The callback instance with details for the sandbox simulated payment attempt. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdPispSandboxcallbackPut'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of string, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsIdPispSandboxcallbackPutWithHttpInfo($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdPispSandboxcallbackPut'][0])
-    {
-        $request = $this->apiV1PaymentrequestsIdPispSandboxcallbackPutRequest($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('string' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('string' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, 'string', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = 'string';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        'string',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdPispSandboxcallbackPutAsync
-     *
-     * This action simulates a payment initiation callback from a bank to authorise a payment in a sandbox environment.
-     *
-     * @param  string $id The ID of the payment request. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestPispSandboxCallback $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback The callback instance with details for the sandbox simulated payment attempt. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdPispSandboxcallbackPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdPispSandboxcallbackPutAsync($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdPispSandboxcallbackPut'][0])
-    {
-        return $this->apiV1PaymentrequestsIdPispSandboxcallbackPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdPispSandboxcallbackPutAsyncWithHttpInfo
-     *
-     * This action simulates a payment initiation callback from a bank to authorise a payment in a sandbox environment.
-     *
-     * @param  string $id The ID of the payment request. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestPispSandboxCallback $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback The callback instance with details for the sandbox simulated payment attempt. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdPispSandboxcallbackPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdPispSandboxcallbackPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdPispSandboxcallbackPut'][0])
-    {
-        $returnType = 'string';
-        $request = $this->apiV1PaymentrequestsIdPispSandboxcallbackPutRequest($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsIdPispSandboxcallbackPut'
-     *
-     * @param  string $id The ID of the payment request. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestPispSandboxCallback $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback The callback instance with details for the sandbox simulated payment attempt. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdPispSandboxcallbackPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsIdPispSandboxcallbackPutRequest($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdPispSandboxcallbackPut'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PaymentrequestsIdPispSandboxcallbackPut'
-            );
-        }
-
-
-
-        $resourcePath = '/api/v1/paymentrequests/{id}/pisp/sandboxcallback';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($no_frixion_money_moov_models_payment_request_pisp_sandbox_callback)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_payment_request_pisp_sandbox_callback));
-            } else {
-                $httpBody = $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'PUT',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdPut
-     *
-     * Updates a payment request.
-     *
-     * @param  string $id The ID of the payment request to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestUpdate $no_frixion_money_moov_models_payment_request_update The payment request containing the updated details to apply. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdPut'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest
-     */
-    public function apiV1PaymentrequestsIdPut($id, $no_frixion_money_moov_models_payment_request_update = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdPut'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsIdPutWithHttpInfo($id, $no_frixion_money_moov_models_payment_request_update, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdPutWithHttpInfo
-     *
-     * Updates a payment request.
-     *
-     * @param  string $id The ID of the payment request to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestUpdate $no_frixion_money_moov_models_payment_request_update The payment request containing the updated details to apply. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdPut'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsIdPutWithHttpInfo($id, $no_frixion_money_moov_models_payment_request_update = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdPut'][0])
-    {
-        $request = $this->apiV1PaymentrequestsIdPutRequest($id, $no_frixion_money_moov_models_payment_request_update, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdPutAsync
-     *
-     * Updates a payment request.
-     *
-     * @param  string $id The ID of the payment request to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestUpdate $no_frixion_money_moov_models_payment_request_update The payment request containing the updated details to apply. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdPutAsync($id, $no_frixion_money_moov_models_payment_request_update = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdPut'][0])
-    {
-        return $this->apiV1PaymentrequestsIdPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_payment_request_update, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdPutAsyncWithHttpInfo
-     *
-     * Updates a payment request.
-     *
-     * @param  string $id The ID of the payment request to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestUpdate $no_frixion_money_moov_models_payment_request_update The payment request containing the updated details to apply. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_payment_request_update = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdPut'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest';
-        $request = $this->apiV1PaymentrequestsIdPutRequest($id, $no_frixion_money_moov_models_payment_request_update, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsIdPut'
-     *
-     * @param  string $id The ID of the payment request to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestUpdate $no_frixion_money_moov_models_payment_request_update The payment request containing the updated details to apply. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsIdPutRequest($id, $no_frixion_money_moov_models_payment_request_update = null, string $contentType = self::contentTypes['apiV1PaymentrequestsIdPut'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PaymentrequestsIdPut'
-            );
-        }
-
-
-
-        $resourcePath = '/api/v1/paymentrequests/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($no_frixion_money_moov_models_payment_request_update)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_payment_request_update));
-            } else {
-                $httpBody = $no_frixion_money_moov_models_payment_request_update;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'PUT',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdResultGet
-     *
-     * Gets a payment request result.
-     *
-     * @param  string $id ID of the payment request to get the result for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdResultGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestResult
-     */
-    public function apiV1PaymentrequestsIdResultGet($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdResultGet'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsIdResultGetWithHttpInfo($id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdResultGetWithHttpInfo
-     *
-     * Gets a payment request result.
-     *
-     * @param  string $id ID of the payment request to get the result for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdResultGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestResult, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsIdResultGetWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdResultGet'][0])
-    {
-        $request = $this->apiV1PaymentrequestsIdResultGetRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestResult' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestResult' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestResult', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestResult';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestResult',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdResultGetAsync
-     *
-     * Gets a payment request result.
-     *
-     * @param  string $id ID of the payment request to get the result for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdResultGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdResultGetAsync($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdResultGet'][0])
-    {
-        return $this->apiV1PaymentrequestsIdResultGetAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsIdResultGetAsyncWithHttpInfo
-     *
-     * Gets a payment request result.
-     *
-     * @param  string $id ID of the payment request to get the result for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdResultGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsIdResultGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdResultGet'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestResult';
-        $request = $this->apiV1PaymentrequestsIdResultGetRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsIdResultGet'
-     *
-     * @param  string $id ID of the payment request to get the result for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsIdResultGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsIdResultGetRequest($id, string $contentType = self::contentTypes['apiV1PaymentrequestsIdResultGet'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PaymentrequestsIdResultGet'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/paymentrequests/{id}/result';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsMetricsGet
-     *
-     * Gets payment request metrics of a merchant.
-     *
-     * @param  string $merchant_id The merchant ID to get the payment request metrics. This field is ignored for              merchant tokens and required for user tokens. (optional)
-     * @param  \DateTime $from_date The date filter to apply to retrieve payment request metrics created after this date. (optional)
-     * @param  \DateTime $to_date The date filter to apply to retrieve payment request metrics created up until this date. (optional)
-     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description or contact information.k (optional)
-     * @param  string $currency The currency filter to apply to retrieve payment request metrics with this currency. (optional)
-     * @param  float $min_amount The amount filter to apply to retrieve payment request metrics that exceed this amount. (optional)
-     * @param  float $max_amount The amount filter to apply to retrieve payment request metrics that don&#39;t exceed this amount. (optional)
-     * @param  string[] $tags The tag filter to apply to retrieve payment request metrics with at least one of these tags. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsMetricsGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMetrics
-     */
-    public function apiV1PaymentrequestsMetricsGet($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['apiV1PaymentrequestsMetricsGet'][0])
-    {
-        list($response) = $this->apiV1PaymentrequestsMetricsGetWithHttpInfo($merchant_id, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsMetricsGetWithHttpInfo
-     *
-     * Gets payment request metrics of a merchant.
-     *
-     * @param  string $merchant_id The merchant ID to get the payment request metrics. This field is ignored for              merchant tokens and required for user tokens. (optional)
-     * @param  \DateTime $from_date The date filter to apply to retrieve payment request metrics created after this date. (optional)
-     * @param  \DateTime $to_date The date filter to apply to retrieve payment request metrics created up until this date. (optional)
-     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description or contact information.k (optional)
-     * @param  string $currency The currency filter to apply to retrieve payment request metrics with this currency. (optional)
-     * @param  float $min_amount The amount filter to apply to retrieve payment request metrics that exceed this amount. (optional)
-     * @param  float $max_amount The amount filter to apply to retrieve payment request metrics that don&#39;t exceed this amount. (optional)
-     * @param  string[] $tags The tag filter to apply to retrieve payment request metrics with at least one of these tags. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsMetricsGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMetrics, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PaymentrequestsMetricsGetWithHttpInfo($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['apiV1PaymentrequestsMetricsGet'][0])
-    {
-        $request = $this->apiV1PaymentrequestsMetricsGetRequest($merchant_id, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMetrics' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMetrics' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMetrics', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMetrics';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMetrics',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsMetricsGetAsync
-     *
-     * Gets payment request metrics of a merchant.
-     *
-     * @param  string $merchant_id The merchant ID to get the payment request metrics. This field is ignored for              merchant tokens and required for user tokens. (optional)
-     * @param  \DateTime $from_date The date filter to apply to retrieve payment request metrics created after this date. (optional)
-     * @param  \DateTime $to_date The date filter to apply to retrieve payment request metrics created up until this date. (optional)
-     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description or contact information.k (optional)
-     * @param  string $currency The currency filter to apply to retrieve payment request metrics with this currency. (optional)
-     * @param  float $min_amount The amount filter to apply to retrieve payment request metrics that exceed this amount. (optional)
-     * @param  float $max_amount The amount filter to apply to retrieve payment request metrics that don&#39;t exceed this amount. (optional)
-     * @param  string[] $tags The tag filter to apply to retrieve payment request metrics with at least one of these tags. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsMetricsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsMetricsGetAsync($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['apiV1PaymentrequestsMetricsGet'][0])
-    {
-        return $this->apiV1PaymentrequestsMetricsGetAsyncWithHttpInfo($merchant_id, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsMetricsGetAsyncWithHttpInfo
-     *
-     * Gets payment request metrics of a merchant.
-     *
-     * @param  string $merchant_id The merchant ID to get the payment request metrics. This field is ignored for              merchant tokens and required for user tokens. (optional)
-     * @param  \DateTime $from_date The date filter to apply to retrieve payment request metrics created after this date. (optional)
-     * @param  \DateTime $to_date The date filter to apply to retrieve payment request metrics created up until this date. (optional)
-     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description or contact information.k (optional)
-     * @param  string $currency The currency filter to apply to retrieve payment request metrics with this currency. (optional)
-     * @param  float $min_amount The amount filter to apply to retrieve payment request metrics that exceed this amount. (optional)
-     * @param  float $max_amount The amount filter to apply to retrieve payment request metrics that don&#39;t exceed this amount. (optional)
-     * @param  string[] $tags The tag filter to apply to retrieve payment request metrics with at least one of these tags. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsMetricsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PaymentrequestsMetricsGetAsyncWithHttpInfo($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['apiV1PaymentrequestsMetricsGet'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMetrics';
-        $request = $this->apiV1PaymentrequestsMetricsGetRequest($merchant_id, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PaymentrequestsMetricsGet'
-     *
-     * @param  string $merchant_id The merchant ID to get the payment request metrics. This field is ignored for              merchant tokens and required for user tokens. (optional)
-     * @param  \DateTime $from_date The date filter to apply to retrieve payment request metrics created after this date. (optional)
-     * @param  \DateTime $to_date The date filter to apply to retrieve payment request metrics created up until this date. (optional)
-     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description or contact information.k (optional)
-     * @param  string $currency The currency filter to apply to retrieve payment request metrics with this currency. (optional)
-     * @param  float $min_amount The amount filter to apply to retrieve payment request metrics that exceed this amount. (optional)
-     * @param  float $max_amount The amount filter to apply to retrieve payment request metrics that don&#39;t exceed this amount. (optional)
-     * @param  string[] $tags The tag filter to apply to retrieve payment request metrics with at least one of these tags. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsMetricsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PaymentrequestsMetricsGetRequest($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['apiV1PaymentrequestsMetricsGet'][0])
-    {
-
-
-
-
-
-
-
-
-
-
-        $resourcePath = '/api/v1/paymentrequests/metrics';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $merchant_id,
-            'merchantID', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $from_date,
-            'fromDate', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $to_date,
-            'toDate', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $search,
-            'search', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $currency,
-            'currency', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $min_amount,
-            'minAmount', // param base name
-            'number', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $max_amount,
-            'maxAmount', // param base name
-            'number', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $tags,
-            'tags', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PaymentrequestsPayondemandPost
+     * Operation createAndPayPaymentRequest
      *
      * Creates a payment request record and processes the payment.
      *
@@ -8412,20 +638,20 @@ class PaymentRequestsApi
      * @param  float $payment_initiation_request_partial_amount Optional. If 0 the full amount is assumed. (optional)
      * @param  string $payment_initiation_request_redirect_to_origin_url payment_initiation_request_redirect_to_origin_url (optional)
      * @param  string $payment_initiation_request_origin_url Optional. If set should indicate the origin URL the payer is making the   payment from. If a pay by bank attempt fails and the payment request does not  have a FailureCallbackUrl set then the payer will be redirected to this URL. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsPayondemandPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAndPayPaymentRequest'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsIPaymentResponse
      */
-    public function apiV1PaymentrequestsPayondemandPost($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id = null, $payment_request_create_currency = null, $payment_request_create_customer_id = null, $payment_request_create_order_id = null, $payment_request_create_payment_method_types = null, $payment_request_create_description = null, $payment_request_create_pisp_account_id = null, $payment_request_create_shipping_first_name = null, $payment_request_create_shipping_last_name = null, $payment_request_create_shipping_address_line1 = null, $payment_request_create_shipping_address_line2 = null, $payment_request_create_shipping_address_city = null, $payment_request_create_shipping_address_county = null, $payment_request_create_shipping_address_post_code = null, $payment_request_create_shipping_address_country_code = null, $payment_request_create_shipping_phone = null, $payment_request_create_shipping_email = null, $payment_request_create_origin_url = null, $payment_request_create_base_origin_url = null, $payment_request_create_callback_url = null, $payment_request_create_failure_callback_url = null, $payment_request_create_success_web_hook_url = null, $payment_request_create_card_authorize_only = null, $payment_request_create_card_create_token = null, $payment_request_create_card_create_token_mode = null, $payment_request_create_card_transmit_raw_details = null, $payment_request_create_card_processor_merchant_id = null, $payment_request_create_ignore_address_verification = null, $payment_request_create_card_ignore_cvn = null, $payment_request_create_pisp_recipient_reference = null, $payment_request_create_use_hosted_payment_page = null, $payment_request_create_card_no_payer_authentication = null, $payment_request_create_partial_payment_method = null, $payment_request_create_customer_email_address = null, $payment_request_create_payment_processor = null, $payment_request_create_lightning_invoice = null, $payment_request_create_lightning_invoice_expires_at = null, $payment_request_create_notification_email_addresses = null, $payment_request_create_priority_bank_id = null, $payment_request_create_title = null, $payment_request_create_partial_payment_steps = null, $payment_request_create_payrun_id = null, $payment_request_create_tag_ids = null, $payment_request_create_tags = null, $card_sensitive_jwt_token = null, $card_sensitive_number_token = null, $card_sensitive_cvc_token = null, $card_sensitive_card_holder_first_name = null, $card_sensitive_card_holder_last_name = null, $card_sensitive_billing_address_line1 = null, $card_sensitive_billing_address_line2 = null, $card_sensitive_billing_address_city = null, $card_sensitive_billing_address_county = null, $card_sensitive_billing_address_post_code = null, $card_sensitive_billing_address_country_code = null, $card_sensitive_billing_phone = null, $card_sensitive_billing_email = null, $card_sensitive_save_card_consent = null, $card_sensitive_partial_amount = null, $card_jwt_token = null, $card_number_token = null, $card_cvc_token = null, $card_card_holder_first_name = null, $card_card_holder_last_name = null, $card_billing_address_line1 = null, $card_billing_address_line2 = null, $card_billing_address_city = null, $card_billing_address_county = null, $card_billing_address_post_code = null, $card_billing_address_country_code = null, $card_billing_phone = null, $card_billing_email = null, $card_save_card_consent = null, $card_partial_amount = null, $payment_method = null, $card_token_tokenised_card_id = null, $card_token_payment_initiator = null, $card_token_merchant_standard_reason = null, $card_token_commerce_indicator = null, $card_token_card_security_code = null, $card_token_partial_amount = null, $payment_initiation_request_partial_amount = null, $payment_initiation_request_redirect_to_origin_url = null, $payment_initiation_request_origin_url = null, string $contentType = self::contentTypes['apiV1PaymentrequestsPayondemandPost'][0])
+    public function createAndPayPaymentRequest($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id = null, $payment_request_create_currency = null, $payment_request_create_customer_id = null, $payment_request_create_order_id = null, $payment_request_create_payment_method_types = null, $payment_request_create_description = null, $payment_request_create_pisp_account_id = null, $payment_request_create_shipping_first_name = null, $payment_request_create_shipping_last_name = null, $payment_request_create_shipping_address_line1 = null, $payment_request_create_shipping_address_line2 = null, $payment_request_create_shipping_address_city = null, $payment_request_create_shipping_address_county = null, $payment_request_create_shipping_address_post_code = null, $payment_request_create_shipping_address_country_code = null, $payment_request_create_shipping_phone = null, $payment_request_create_shipping_email = null, $payment_request_create_origin_url = null, $payment_request_create_base_origin_url = null, $payment_request_create_callback_url = null, $payment_request_create_failure_callback_url = null, $payment_request_create_success_web_hook_url = null, $payment_request_create_card_authorize_only = null, $payment_request_create_card_create_token = null, $payment_request_create_card_create_token_mode = null, $payment_request_create_card_transmit_raw_details = null, $payment_request_create_card_processor_merchant_id = null, $payment_request_create_ignore_address_verification = null, $payment_request_create_card_ignore_cvn = null, $payment_request_create_pisp_recipient_reference = null, $payment_request_create_use_hosted_payment_page = null, $payment_request_create_card_no_payer_authentication = null, $payment_request_create_partial_payment_method = null, $payment_request_create_customer_email_address = null, $payment_request_create_payment_processor = null, $payment_request_create_lightning_invoice = null, $payment_request_create_lightning_invoice_expires_at = null, $payment_request_create_notification_email_addresses = null, $payment_request_create_priority_bank_id = null, $payment_request_create_title = null, $payment_request_create_partial_payment_steps = null, $payment_request_create_payrun_id = null, $payment_request_create_tag_ids = null, $payment_request_create_tags = null, $card_sensitive_jwt_token = null, $card_sensitive_number_token = null, $card_sensitive_cvc_token = null, $card_sensitive_card_holder_first_name = null, $card_sensitive_card_holder_last_name = null, $card_sensitive_billing_address_line1 = null, $card_sensitive_billing_address_line2 = null, $card_sensitive_billing_address_city = null, $card_sensitive_billing_address_county = null, $card_sensitive_billing_address_post_code = null, $card_sensitive_billing_address_country_code = null, $card_sensitive_billing_phone = null, $card_sensitive_billing_email = null, $card_sensitive_save_card_consent = null, $card_sensitive_partial_amount = null, $card_jwt_token = null, $card_number_token = null, $card_cvc_token = null, $card_card_holder_first_name = null, $card_card_holder_last_name = null, $card_billing_address_line1 = null, $card_billing_address_line2 = null, $card_billing_address_city = null, $card_billing_address_county = null, $card_billing_address_post_code = null, $card_billing_address_country_code = null, $card_billing_phone = null, $card_billing_email = null, $card_save_card_consent = null, $card_partial_amount = null, $payment_method = null, $card_token_tokenised_card_id = null, $card_token_payment_initiator = null, $card_token_merchant_standard_reason = null, $card_token_commerce_indicator = null, $card_token_card_security_code = null, $card_token_partial_amount = null, $payment_initiation_request_partial_amount = null, $payment_initiation_request_redirect_to_origin_url = null, $payment_initiation_request_origin_url = null, string $contentType = self::contentTypes['createAndPayPaymentRequest'][0])
     {
-        list($response) = $this->apiV1PaymentrequestsPayondemandPostWithHttpInfo($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id, $payment_request_create_currency, $payment_request_create_customer_id, $payment_request_create_order_id, $payment_request_create_payment_method_types, $payment_request_create_description, $payment_request_create_pisp_account_id, $payment_request_create_shipping_first_name, $payment_request_create_shipping_last_name, $payment_request_create_shipping_address_line1, $payment_request_create_shipping_address_line2, $payment_request_create_shipping_address_city, $payment_request_create_shipping_address_county, $payment_request_create_shipping_address_post_code, $payment_request_create_shipping_address_country_code, $payment_request_create_shipping_phone, $payment_request_create_shipping_email, $payment_request_create_origin_url, $payment_request_create_base_origin_url, $payment_request_create_callback_url, $payment_request_create_failure_callback_url, $payment_request_create_success_web_hook_url, $payment_request_create_card_authorize_only, $payment_request_create_card_create_token, $payment_request_create_card_create_token_mode, $payment_request_create_card_transmit_raw_details, $payment_request_create_card_processor_merchant_id, $payment_request_create_ignore_address_verification, $payment_request_create_card_ignore_cvn, $payment_request_create_pisp_recipient_reference, $payment_request_create_use_hosted_payment_page, $payment_request_create_card_no_payer_authentication, $payment_request_create_partial_payment_method, $payment_request_create_customer_email_address, $payment_request_create_payment_processor, $payment_request_create_lightning_invoice, $payment_request_create_lightning_invoice_expires_at, $payment_request_create_notification_email_addresses, $payment_request_create_priority_bank_id, $payment_request_create_title, $payment_request_create_partial_payment_steps, $payment_request_create_payrun_id, $payment_request_create_tag_ids, $payment_request_create_tags, $card_sensitive_jwt_token, $card_sensitive_number_token, $card_sensitive_cvc_token, $card_sensitive_card_holder_first_name, $card_sensitive_card_holder_last_name, $card_sensitive_billing_address_line1, $card_sensitive_billing_address_line2, $card_sensitive_billing_address_city, $card_sensitive_billing_address_county, $card_sensitive_billing_address_post_code, $card_sensitive_billing_address_country_code, $card_sensitive_billing_phone, $card_sensitive_billing_email, $card_sensitive_save_card_consent, $card_sensitive_partial_amount, $card_jwt_token, $card_number_token, $card_cvc_token, $card_card_holder_first_name, $card_card_holder_last_name, $card_billing_address_line1, $card_billing_address_line2, $card_billing_address_city, $card_billing_address_county, $card_billing_address_post_code, $card_billing_address_country_code, $card_billing_phone, $card_billing_email, $card_save_card_consent, $card_partial_amount, $payment_method, $card_token_tokenised_card_id, $card_token_payment_initiator, $card_token_merchant_standard_reason, $card_token_commerce_indicator, $card_token_card_security_code, $card_token_partial_amount, $payment_initiation_request_partial_amount, $payment_initiation_request_redirect_to_origin_url, $payment_initiation_request_origin_url, $contentType);
+        list($response) = $this->createAndPayPaymentRequestWithHttpInfo($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id, $payment_request_create_currency, $payment_request_create_customer_id, $payment_request_create_order_id, $payment_request_create_payment_method_types, $payment_request_create_description, $payment_request_create_pisp_account_id, $payment_request_create_shipping_first_name, $payment_request_create_shipping_last_name, $payment_request_create_shipping_address_line1, $payment_request_create_shipping_address_line2, $payment_request_create_shipping_address_city, $payment_request_create_shipping_address_county, $payment_request_create_shipping_address_post_code, $payment_request_create_shipping_address_country_code, $payment_request_create_shipping_phone, $payment_request_create_shipping_email, $payment_request_create_origin_url, $payment_request_create_base_origin_url, $payment_request_create_callback_url, $payment_request_create_failure_callback_url, $payment_request_create_success_web_hook_url, $payment_request_create_card_authorize_only, $payment_request_create_card_create_token, $payment_request_create_card_create_token_mode, $payment_request_create_card_transmit_raw_details, $payment_request_create_card_processor_merchant_id, $payment_request_create_ignore_address_verification, $payment_request_create_card_ignore_cvn, $payment_request_create_pisp_recipient_reference, $payment_request_create_use_hosted_payment_page, $payment_request_create_card_no_payer_authentication, $payment_request_create_partial_payment_method, $payment_request_create_customer_email_address, $payment_request_create_payment_processor, $payment_request_create_lightning_invoice, $payment_request_create_lightning_invoice_expires_at, $payment_request_create_notification_email_addresses, $payment_request_create_priority_bank_id, $payment_request_create_title, $payment_request_create_partial_payment_steps, $payment_request_create_payrun_id, $payment_request_create_tag_ids, $payment_request_create_tags, $card_sensitive_jwt_token, $card_sensitive_number_token, $card_sensitive_cvc_token, $card_sensitive_card_holder_first_name, $card_sensitive_card_holder_last_name, $card_sensitive_billing_address_line1, $card_sensitive_billing_address_line2, $card_sensitive_billing_address_city, $card_sensitive_billing_address_county, $card_sensitive_billing_address_post_code, $card_sensitive_billing_address_country_code, $card_sensitive_billing_phone, $card_sensitive_billing_email, $card_sensitive_save_card_consent, $card_sensitive_partial_amount, $card_jwt_token, $card_number_token, $card_cvc_token, $card_card_holder_first_name, $card_card_holder_last_name, $card_billing_address_line1, $card_billing_address_line2, $card_billing_address_city, $card_billing_address_county, $card_billing_address_post_code, $card_billing_address_country_code, $card_billing_phone, $card_billing_email, $card_save_card_consent, $card_partial_amount, $payment_method, $card_token_tokenised_card_id, $card_token_payment_initiator, $card_token_merchant_standard_reason, $card_token_commerce_indicator, $card_token_card_security_code, $card_token_partial_amount, $payment_initiation_request_partial_amount, $payment_initiation_request_redirect_to_origin_url, $payment_initiation_request_origin_url, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1PaymentrequestsPayondemandPostWithHttpInfo
+     * Operation createAndPayPaymentRequestWithHttpInfo
      *
      * Creates a payment request record and processes the payment.
      *
@@ -8521,15 +747,15 @@ class PaymentRequestsApi
      * @param  float $payment_initiation_request_partial_amount Optional. If 0 the full amount is assumed. (optional)
      * @param  string $payment_initiation_request_redirect_to_origin_url (optional)
      * @param  string $payment_initiation_request_origin_url Optional. If set should indicate the origin URL the payer is making the   payment from. If a pay by bank attempt fails and the payment request does not  have a FailureCallbackUrl set then the payer will be redirected to this URL. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsPayondemandPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAndPayPaymentRequest'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsIPaymentResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1PaymentrequestsPayondemandPostWithHttpInfo($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id = null, $payment_request_create_currency = null, $payment_request_create_customer_id = null, $payment_request_create_order_id = null, $payment_request_create_payment_method_types = null, $payment_request_create_description = null, $payment_request_create_pisp_account_id = null, $payment_request_create_shipping_first_name = null, $payment_request_create_shipping_last_name = null, $payment_request_create_shipping_address_line1 = null, $payment_request_create_shipping_address_line2 = null, $payment_request_create_shipping_address_city = null, $payment_request_create_shipping_address_county = null, $payment_request_create_shipping_address_post_code = null, $payment_request_create_shipping_address_country_code = null, $payment_request_create_shipping_phone = null, $payment_request_create_shipping_email = null, $payment_request_create_origin_url = null, $payment_request_create_base_origin_url = null, $payment_request_create_callback_url = null, $payment_request_create_failure_callback_url = null, $payment_request_create_success_web_hook_url = null, $payment_request_create_card_authorize_only = null, $payment_request_create_card_create_token = null, $payment_request_create_card_create_token_mode = null, $payment_request_create_card_transmit_raw_details = null, $payment_request_create_card_processor_merchant_id = null, $payment_request_create_ignore_address_verification = null, $payment_request_create_card_ignore_cvn = null, $payment_request_create_pisp_recipient_reference = null, $payment_request_create_use_hosted_payment_page = null, $payment_request_create_card_no_payer_authentication = null, $payment_request_create_partial_payment_method = null, $payment_request_create_customer_email_address = null, $payment_request_create_payment_processor = null, $payment_request_create_lightning_invoice = null, $payment_request_create_lightning_invoice_expires_at = null, $payment_request_create_notification_email_addresses = null, $payment_request_create_priority_bank_id = null, $payment_request_create_title = null, $payment_request_create_partial_payment_steps = null, $payment_request_create_payrun_id = null, $payment_request_create_tag_ids = null, $payment_request_create_tags = null, $card_sensitive_jwt_token = null, $card_sensitive_number_token = null, $card_sensitive_cvc_token = null, $card_sensitive_card_holder_first_name = null, $card_sensitive_card_holder_last_name = null, $card_sensitive_billing_address_line1 = null, $card_sensitive_billing_address_line2 = null, $card_sensitive_billing_address_city = null, $card_sensitive_billing_address_county = null, $card_sensitive_billing_address_post_code = null, $card_sensitive_billing_address_country_code = null, $card_sensitive_billing_phone = null, $card_sensitive_billing_email = null, $card_sensitive_save_card_consent = null, $card_sensitive_partial_amount = null, $card_jwt_token = null, $card_number_token = null, $card_cvc_token = null, $card_card_holder_first_name = null, $card_card_holder_last_name = null, $card_billing_address_line1 = null, $card_billing_address_line2 = null, $card_billing_address_city = null, $card_billing_address_county = null, $card_billing_address_post_code = null, $card_billing_address_country_code = null, $card_billing_phone = null, $card_billing_email = null, $card_save_card_consent = null, $card_partial_amount = null, $payment_method = null, $card_token_tokenised_card_id = null, $card_token_payment_initiator = null, $card_token_merchant_standard_reason = null, $card_token_commerce_indicator = null, $card_token_card_security_code = null, $card_token_partial_amount = null, $payment_initiation_request_partial_amount = null, $payment_initiation_request_redirect_to_origin_url = null, $payment_initiation_request_origin_url = null, string $contentType = self::contentTypes['apiV1PaymentrequestsPayondemandPost'][0])
+    public function createAndPayPaymentRequestWithHttpInfo($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id = null, $payment_request_create_currency = null, $payment_request_create_customer_id = null, $payment_request_create_order_id = null, $payment_request_create_payment_method_types = null, $payment_request_create_description = null, $payment_request_create_pisp_account_id = null, $payment_request_create_shipping_first_name = null, $payment_request_create_shipping_last_name = null, $payment_request_create_shipping_address_line1 = null, $payment_request_create_shipping_address_line2 = null, $payment_request_create_shipping_address_city = null, $payment_request_create_shipping_address_county = null, $payment_request_create_shipping_address_post_code = null, $payment_request_create_shipping_address_country_code = null, $payment_request_create_shipping_phone = null, $payment_request_create_shipping_email = null, $payment_request_create_origin_url = null, $payment_request_create_base_origin_url = null, $payment_request_create_callback_url = null, $payment_request_create_failure_callback_url = null, $payment_request_create_success_web_hook_url = null, $payment_request_create_card_authorize_only = null, $payment_request_create_card_create_token = null, $payment_request_create_card_create_token_mode = null, $payment_request_create_card_transmit_raw_details = null, $payment_request_create_card_processor_merchant_id = null, $payment_request_create_ignore_address_verification = null, $payment_request_create_card_ignore_cvn = null, $payment_request_create_pisp_recipient_reference = null, $payment_request_create_use_hosted_payment_page = null, $payment_request_create_card_no_payer_authentication = null, $payment_request_create_partial_payment_method = null, $payment_request_create_customer_email_address = null, $payment_request_create_payment_processor = null, $payment_request_create_lightning_invoice = null, $payment_request_create_lightning_invoice_expires_at = null, $payment_request_create_notification_email_addresses = null, $payment_request_create_priority_bank_id = null, $payment_request_create_title = null, $payment_request_create_partial_payment_steps = null, $payment_request_create_payrun_id = null, $payment_request_create_tag_ids = null, $payment_request_create_tags = null, $card_sensitive_jwt_token = null, $card_sensitive_number_token = null, $card_sensitive_cvc_token = null, $card_sensitive_card_holder_first_name = null, $card_sensitive_card_holder_last_name = null, $card_sensitive_billing_address_line1 = null, $card_sensitive_billing_address_line2 = null, $card_sensitive_billing_address_city = null, $card_sensitive_billing_address_county = null, $card_sensitive_billing_address_post_code = null, $card_sensitive_billing_address_country_code = null, $card_sensitive_billing_phone = null, $card_sensitive_billing_email = null, $card_sensitive_save_card_consent = null, $card_sensitive_partial_amount = null, $card_jwt_token = null, $card_number_token = null, $card_cvc_token = null, $card_card_holder_first_name = null, $card_card_holder_last_name = null, $card_billing_address_line1 = null, $card_billing_address_line2 = null, $card_billing_address_city = null, $card_billing_address_county = null, $card_billing_address_post_code = null, $card_billing_address_country_code = null, $card_billing_phone = null, $card_billing_email = null, $card_save_card_consent = null, $card_partial_amount = null, $payment_method = null, $card_token_tokenised_card_id = null, $card_token_payment_initiator = null, $card_token_merchant_standard_reason = null, $card_token_commerce_indicator = null, $card_token_card_security_code = null, $card_token_partial_amount = null, $payment_initiation_request_partial_amount = null, $payment_initiation_request_redirect_to_origin_url = null, $payment_initiation_request_origin_url = null, string $contentType = self::contentTypes['createAndPayPaymentRequest'][0])
     {
-        $request = $this->apiV1PaymentrequestsPayondemandPostRequest($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id, $payment_request_create_currency, $payment_request_create_customer_id, $payment_request_create_order_id, $payment_request_create_payment_method_types, $payment_request_create_description, $payment_request_create_pisp_account_id, $payment_request_create_shipping_first_name, $payment_request_create_shipping_last_name, $payment_request_create_shipping_address_line1, $payment_request_create_shipping_address_line2, $payment_request_create_shipping_address_city, $payment_request_create_shipping_address_county, $payment_request_create_shipping_address_post_code, $payment_request_create_shipping_address_country_code, $payment_request_create_shipping_phone, $payment_request_create_shipping_email, $payment_request_create_origin_url, $payment_request_create_base_origin_url, $payment_request_create_callback_url, $payment_request_create_failure_callback_url, $payment_request_create_success_web_hook_url, $payment_request_create_card_authorize_only, $payment_request_create_card_create_token, $payment_request_create_card_create_token_mode, $payment_request_create_card_transmit_raw_details, $payment_request_create_card_processor_merchant_id, $payment_request_create_ignore_address_verification, $payment_request_create_card_ignore_cvn, $payment_request_create_pisp_recipient_reference, $payment_request_create_use_hosted_payment_page, $payment_request_create_card_no_payer_authentication, $payment_request_create_partial_payment_method, $payment_request_create_customer_email_address, $payment_request_create_payment_processor, $payment_request_create_lightning_invoice, $payment_request_create_lightning_invoice_expires_at, $payment_request_create_notification_email_addresses, $payment_request_create_priority_bank_id, $payment_request_create_title, $payment_request_create_partial_payment_steps, $payment_request_create_payrun_id, $payment_request_create_tag_ids, $payment_request_create_tags, $card_sensitive_jwt_token, $card_sensitive_number_token, $card_sensitive_cvc_token, $card_sensitive_card_holder_first_name, $card_sensitive_card_holder_last_name, $card_sensitive_billing_address_line1, $card_sensitive_billing_address_line2, $card_sensitive_billing_address_city, $card_sensitive_billing_address_county, $card_sensitive_billing_address_post_code, $card_sensitive_billing_address_country_code, $card_sensitive_billing_phone, $card_sensitive_billing_email, $card_sensitive_save_card_consent, $card_sensitive_partial_amount, $card_jwt_token, $card_number_token, $card_cvc_token, $card_card_holder_first_name, $card_card_holder_last_name, $card_billing_address_line1, $card_billing_address_line2, $card_billing_address_city, $card_billing_address_county, $card_billing_address_post_code, $card_billing_address_country_code, $card_billing_phone, $card_billing_email, $card_save_card_consent, $card_partial_amount, $payment_method, $card_token_tokenised_card_id, $card_token_payment_initiator, $card_token_merchant_standard_reason, $card_token_commerce_indicator, $card_token_card_security_code, $card_token_partial_amount, $payment_initiation_request_partial_amount, $payment_initiation_request_redirect_to_origin_url, $payment_initiation_request_origin_url, $contentType);
+        $request = $this->createAndPayPaymentRequestRequest($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id, $payment_request_create_currency, $payment_request_create_customer_id, $payment_request_create_order_id, $payment_request_create_payment_method_types, $payment_request_create_description, $payment_request_create_pisp_account_id, $payment_request_create_shipping_first_name, $payment_request_create_shipping_last_name, $payment_request_create_shipping_address_line1, $payment_request_create_shipping_address_line2, $payment_request_create_shipping_address_city, $payment_request_create_shipping_address_county, $payment_request_create_shipping_address_post_code, $payment_request_create_shipping_address_country_code, $payment_request_create_shipping_phone, $payment_request_create_shipping_email, $payment_request_create_origin_url, $payment_request_create_base_origin_url, $payment_request_create_callback_url, $payment_request_create_failure_callback_url, $payment_request_create_success_web_hook_url, $payment_request_create_card_authorize_only, $payment_request_create_card_create_token, $payment_request_create_card_create_token_mode, $payment_request_create_card_transmit_raw_details, $payment_request_create_card_processor_merchant_id, $payment_request_create_ignore_address_verification, $payment_request_create_card_ignore_cvn, $payment_request_create_pisp_recipient_reference, $payment_request_create_use_hosted_payment_page, $payment_request_create_card_no_payer_authentication, $payment_request_create_partial_payment_method, $payment_request_create_customer_email_address, $payment_request_create_payment_processor, $payment_request_create_lightning_invoice, $payment_request_create_lightning_invoice_expires_at, $payment_request_create_notification_email_addresses, $payment_request_create_priority_bank_id, $payment_request_create_title, $payment_request_create_partial_payment_steps, $payment_request_create_payrun_id, $payment_request_create_tag_ids, $payment_request_create_tags, $card_sensitive_jwt_token, $card_sensitive_number_token, $card_sensitive_cvc_token, $card_sensitive_card_holder_first_name, $card_sensitive_card_holder_last_name, $card_sensitive_billing_address_line1, $card_sensitive_billing_address_line2, $card_sensitive_billing_address_city, $card_sensitive_billing_address_county, $card_sensitive_billing_address_post_code, $card_sensitive_billing_address_country_code, $card_sensitive_billing_phone, $card_sensitive_billing_email, $card_sensitive_save_card_consent, $card_sensitive_partial_amount, $card_jwt_token, $card_number_token, $card_cvc_token, $card_card_holder_first_name, $card_card_holder_last_name, $card_billing_address_line1, $card_billing_address_line2, $card_billing_address_city, $card_billing_address_county, $card_billing_address_post_code, $card_billing_address_country_code, $card_billing_phone, $card_billing_email, $card_save_card_consent, $card_partial_amount, $payment_method, $card_token_tokenised_card_id, $card_token_payment_initiator, $card_token_merchant_standard_reason, $card_token_commerce_indicator, $card_token_card_security_code, $card_token_partial_amount, $payment_initiation_request_partial_amount, $payment_initiation_request_redirect_to_origin_url, $payment_initiation_request_origin_url, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -8640,7 +866,7 @@ class PaymentRequestsApi
     }
 
     /**
-     * Operation apiV1PaymentrequestsPayondemandPostAsync
+     * Operation createAndPayPaymentRequestAsync
      *
      * Creates a payment request record and processes the payment.
      *
@@ -8736,14 +962,14 @@ class PaymentRequestsApi
      * @param  float $payment_initiation_request_partial_amount Optional. If 0 the full amount is assumed. (optional)
      * @param  string $payment_initiation_request_redirect_to_origin_url (optional)
      * @param  string $payment_initiation_request_origin_url Optional. If set should indicate the origin URL the payer is making the   payment from. If a pay by bank attempt fails and the payment request does not  have a FailureCallbackUrl set then the payer will be redirected to this URL. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsPayondemandPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAndPayPaymentRequest'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PaymentrequestsPayondemandPostAsync($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id = null, $payment_request_create_currency = null, $payment_request_create_customer_id = null, $payment_request_create_order_id = null, $payment_request_create_payment_method_types = null, $payment_request_create_description = null, $payment_request_create_pisp_account_id = null, $payment_request_create_shipping_first_name = null, $payment_request_create_shipping_last_name = null, $payment_request_create_shipping_address_line1 = null, $payment_request_create_shipping_address_line2 = null, $payment_request_create_shipping_address_city = null, $payment_request_create_shipping_address_county = null, $payment_request_create_shipping_address_post_code = null, $payment_request_create_shipping_address_country_code = null, $payment_request_create_shipping_phone = null, $payment_request_create_shipping_email = null, $payment_request_create_origin_url = null, $payment_request_create_base_origin_url = null, $payment_request_create_callback_url = null, $payment_request_create_failure_callback_url = null, $payment_request_create_success_web_hook_url = null, $payment_request_create_card_authorize_only = null, $payment_request_create_card_create_token = null, $payment_request_create_card_create_token_mode = null, $payment_request_create_card_transmit_raw_details = null, $payment_request_create_card_processor_merchant_id = null, $payment_request_create_ignore_address_verification = null, $payment_request_create_card_ignore_cvn = null, $payment_request_create_pisp_recipient_reference = null, $payment_request_create_use_hosted_payment_page = null, $payment_request_create_card_no_payer_authentication = null, $payment_request_create_partial_payment_method = null, $payment_request_create_customer_email_address = null, $payment_request_create_payment_processor = null, $payment_request_create_lightning_invoice = null, $payment_request_create_lightning_invoice_expires_at = null, $payment_request_create_notification_email_addresses = null, $payment_request_create_priority_bank_id = null, $payment_request_create_title = null, $payment_request_create_partial_payment_steps = null, $payment_request_create_payrun_id = null, $payment_request_create_tag_ids = null, $payment_request_create_tags = null, $card_sensitive_jwt_token = null, $card_sensitive_number_token = null, $card_sensitive_cvc_token = null, $card_sensitive_card_holder_first_name = null, $card_sensitive_card_holder_last_name = null, $card_sensitive_billing_address_line1 = null, $card_sensitive_billing_address_line2 = null, $card_sensitive_billing_address_city = null, $card_sensitive_billing_address_county = null, $card_sensitive_billing_address_post_code = null, $card_sensitive_billing_address_country_code = null, $card_sensitive_billing_phone = null, $card_sensitive_billing_email = null, $card_sensitive_save_card_consent = null, $card_sensitive_partial_amount = null, $card_jwt_token = null, $card_number_token = null, $card_cvc_token = null, $card_card_holder_first_name = null, $card_card_holder_last_name = null, $card_billing_address_line1 = null, $card_billing_address_line2 = null, $card_billing_address_city = null, $card_billing_address_county = null, $card_billing_address_post_code = null, $card_billing_address_country_code = null, $card_billing_phone = null, $card_billing_email = null, $card_save_card_consent = null, $card_partial_amount = null, $payment_method = null, $card_token_tokenised_card_id = null, $card_token_payment_initiator = null, $card_token_merchant_standard_reason = null, $card_token_commerce_indicator = null, $card_token_card_security_code = null, $card_token_partial_amount = null, $payment_initiation_request_partial_amount = null, $payment_initiation_request_redirect_to_origin_url = null, $payment_initiation_request_origin_url = null, string $contentType = self::contentTypes['apiV1PaymentrequestsPayondemandPost'][0])
+    public function createAndPayPaymentRequestAsync($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id = null, $payment_request_create_currency = null, $payment_request_create_customer_id = null, $payment_request_create_order_id = null, $payment_request_create_payment_method_types = null, $payment_request_create_description = null, $payment_request_create_pisp_account_id = null, $payment_request_create_shipping_first_name = null, $payment_request_create_shipping_last_name = null, $payment_request_create_shipping_address_line1 = null, $payment_request_create_shipping_address_line2 = null, $payment_request_create_shipping_address_city = null, $payment_request_create_shipping_address_county = null, $payment_request_create_shipping_address_post_code = null, $payment_request_create_shipping_address_country_code = null, $payment_request_create_shipping_phone = null, $payment_request_create_shipping_email = null, $payment_request_create_origin_url = null, $payment_request_create_base_origin_url = null, $payment_request_create_callback_url = null, $payment_request_create_failure_callback_url = null, $payment_request_create_success_web_hook_url = null, $payment_request_create_card_authorize_only = null, $payment_request_create_card_create_token = null, $payment_request_create_card_create_token_mode = null, $payment_request_create_card_transmit_raw_details = null, $payment_request_create_card_processor_merchant_id = null, $payment_request_create_ignore_address_verification = null, $payment_request_create_card_ignore_cvn = null, $payment_request_create_pisp_recipient_reference = null, $payment_request_create_use_hosted_payment_page = null, $payment_request_create_card_no_payer_authentication = null, $payment_request_create_partial_payment_method = null, $payment_request_create_customer_email_address = null, $payment_request_create_payment_processor = null, $payment_request_create_lightning_invoice = null, $payment_request_create_lightning_invoice_expires_at = null, $payment_request_create_notification_email_addresses = null, $payment_request_create_priority_bank_id = null, $payment_request_create_title = null, $payment_request_create_partial_payment_steps = null, $payment_request_create_payrun_id = null, $payment_request_create_tag_ids = null, $payment_request_create_tags = null, $card_sensitive_jwt_token = null, $card_sensitive_number_token = null, $card_sensitive_cvc_token = null, $card_sensitive_card_holder_first_name = null, $card_sensitive_card_holder_last_name = null, $card_sensitive_billing_address_line1 = null, $card_sensitive_billing_address_line2 = null, $card_sensitive_billing_address_city = null, $card_sensitive_billing_address_county = null, $card_sensitive_billing_address_post_code = null, $card_sensitive_billing_address_country_code = null, $card_sensitive_billing_phone = null, $card_sensitive_billing_email = null, $card_sensitive_save_card_consent = null, $card_sensitive_partial_amount = null, $card_jwt_token = null, $card_number_token = null, $card_cvc_token = null, $card_card_holder_first_name = null, $card_card_holder_last_name = null, $card_billing_address_line1 = null, $card_billing_address_line2 = null, $card_billing_address_city = null, $card_billing_address_county = null, $card_billing_address_post_code = null, $card_billing_address_country_code = null, $card_billing_phone = null, $card_billing_email = null, $card_save_card_consent = null, $card_partial_amount = null, $payment_method = null, $card_token_tokenised_card_id = null, $card_token_payment_initiator = null, $card_token_merchant_standard_reason = null, $card_token_commerce_indicator = null, $card_token_card_security_code = null, $card_token_partial_amount = null, $payment_initiation_request_partial_amount = null, $payment_initiation_request_redirect_to_origin_url = null, $payment_initiation_request_origin_url = null, string $contentType = self::contentTypes['createAndPayPaymentRequest'][0])
     {
-        return $this->apiV1PaymentrequestsPayondemandPostAsyncWithHttpInfo($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id, $payment_request_create_currency, $payment_request_create_customer_id, $payment_request_create_order_id, $payment_request_create_payment_method_types, $payment_request_create_description, $payment_request_create_pisp_account_id, $payment_request_create_shipping_first_name, $payment_request_create_shipping_last_name, $payment_request_create_shipping_address_line1, $payment_request_create_shipping_address_line2, $payment_request_create_shipping_address_city, $payment_request_create_shipping_address_county, $payment_request_create_shipping_address_post_code, $payment_request_create_shipping_address_country_code, $payment_request_create_shipping_phone, $payment_request_create_shipping_email, $payment_request_create_origin_url, $payment_request_create_base_origin_url, $payment_request_create_callback_url, $payment_request_create_failure_callback_url, $payment_request_create_success_web_hook_url, $payment_request_create_card_authorize_only, $payment_request_create_card_create_token, $payment_request_create_card_create_token_mode, $payment_request_create_card_transmit_raw_details, $payment_request_create_card_processor_merchant_id, $payment_request_create_ignore_address_verification, $payment_request_create_card_ignore_cvn, $payment_request_create_pisp_recipient_reference, $payment_request_create_use_hosted_payment_page, $payment_request_create_card_no_payer_authentication, $payment_request_create_partial_payment_method, $payment_request_create_customer_email_address, $payment_request_create_payment_processor, $payment_request_create_lightning_invoice, $payment_request_create_lightning_invoice_expires_at, $payment_request_create_notification_email_addresses, $payment_request_create_priority_bank_id, $payment_request_create_title, $payment_request_create_partial_payment_steps, $payment_request_create_payrun_id, $payment_request_create_tag_ids, $payment_request_create_tags, $card_sensitive_jwt_token, $card_sensitive_number_token, $card_sensitive_cvc_token, $card_sensitive_card_holder_first_name, $card_sensitive_card_holder_last_name, $card_sensitive_billing_address_line1, $card_sensitive_billing_address_line2, $card_sensitive_billing_address_city, $card_sensitive_billing_address_county, $card_sensitive_billing_address_post_code, $card_sensitive_billing_address_country_code, $card_sensitive_billing_phone, $card_sensitive_billing_email, $card_sensitive_save_card_consent, $card_sensitive_partial_amount, $card_jwt_token, $card_number_token, $card_cvc_token, $card_card_holder_first_name, $card_card_holder_last_name, $card_billing_address_line1, $card_billing_address_line2, $card_billing_address_city, $card_billing_address_county, $card_billing_address_post_code, $card_billing_address_country_code, $card_billing_phone, $card_billing_email, $card_save_card_consent, $card_partial_amount, $payment_method, $card_token_tokenised_card_id, $card_token_payment_initiator, $card_token_merchant_standard_reason, $card_token_commerce_indicator, $card_token_card_security_code, $card_token_partial_amount, $payment_initiation_request_partial_amount, $payment_initiation_request_redirect_to_origin_url, $payment_initiation_request_origin_url, $contentType)
+        return $this->createAndPayPaymentRequestAsyncWithHttpInfo($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id, $payment_request_create_currency, $payment_request_create_customer_id, $payment_request_create_order_id, $payment_request_create_payment_method_types, $payment_request_create_description, $payment_request_create_pisp_account_id, $payment_request_create_shipping_first_name, $payment_request_create_shipping_last_name, $payment_request_create_shipping_address_line1, $payment_request_create_shipping_address_line2, $payment_request_create_shipping_address_city, $payment_request_create_shipping_address_county, $payment_request_create_shipping_address_post_code, $payment_request_create_shipping_address_country_code, $payment_request_create_shipping_phone, $payment_request_create_shipping_email, $payment_request_create_origin_url, $payment_request_create_base_origin_url, $payment_request_create_callback_url, $payment_request_create_failure_callback_url, $payment_request_create_success_web_hook_url, $payment_request_create_card_authorize_only, $payment_request_create_card_create_token, $payment_request_create_card_create_token_mode, $payment_request_create_card_transmit_raw_details, $payment_request_create_card_processor_merchant_id, $payment_request_create_ignore_address_verification, $payment_request_create_card_ignore_cvn, $payment_request_create_pisp_recipient_reference, $payment_request_create_use_hosted_payment_page, $payment_request_create_card_no_payer_authentication, $payment_request_create_partial_payment_method, $payment_request_create_customer_email_address, $payment_request_create_payment_processor, $payment_request_create_lightning_invoice, $payment_request_create_lightning_invoice_expires_at, $payment_request_create_notification_email_addresses, $payment_request_create_priority_bank_id, $payment_request_create_title, $payment_request_create_partial_payment_steps, $payment_request_create_payrun_id, $payment_request_create_tag_ids, $payment_request_create_tags, $card_sensitive_jwt_token, $card_sensitive_number_token, $card_sensitive_cvc_token, $card_sensitive_card_holder_first_name, $card_sensitive_card_holder_last_name, $card_sensitive_billing_address_line1, $card_sensitive_billing_address_line2, $card_sensitive_billing_address_city, $card_sensitive_billing_address_county, $card_sensitive_billing_address_post_code, $card_sensitive_billing_address_country_code, $card_sensitive_billing_phone, $card_sensitive_billing_email, $card_sensitive_save_card_consent, $card_sensitive_partial_amount, $card_jwt_token, $card_number_token, $card_cvc_token, $card_card_holder_first_name, $card_card_holder_last_name, $card_billing_address_line1, $card_billing_address_line2, $card_billing_address_city, $card_billing_address_county, $card_billing_address_post_code, $card_billing_address_country_code, $card_billing_phone, $card_billing_email, $card_save_card_consent, $card_partial_amount, $payment_method, $card_token_tokenised_card_id, $card_token_payment_initiator, $card_token_merchant_standard_reason, $card_token_commerce_indicator, $card_token_card_security_code, $card_token_partial_amount, $payment_initiation_request_partial_amount, $payment_initiation_request_redirect_to_origin_url, $payment_initiation_request_origin_url, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -8752,7 +978,7 @@ class PaymentRequestsApi
     }
 
     /**
-     * Operation apiV1PaymentrequestsPayondemandPostAsyncWithHttpInfo
+     * Operation createAndPayPaymentRequestAsyncWithHttpInfo
      *
      * Creates a payment request record and processes the payment.
      *
@@ -8848,15 +1074,15 @@ class PaymentRequestsApi
      * @param  float $payment_initiation_request_partial_amount Optional. If 0 the full amount is assumed. (optional)
      * @param  string $payment_initiation_request_redirect_to_origin_url (optional)
      * @param  string $payment_initiation_request_origin_url Optional. If set should indicate the origin URL the payer is making the   payment from. If a pay by bank attempt fails and the payment request does not  have a FailureCallbackUrl set then the payer will be redirected to this URL. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsPayondemandPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAndPayPaymentRequest'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PaymentrequestsPayondemandPostAsyncWithHttpInfo($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id = null, $payment_request_create_currency = null, $payment_request_create_customer_id = null, $payment_request_create_order_id = null, $payment_request_create_payment_method_types = null, $payment_request_create_description = null, $payment_request_create_pisp_account_id = null, $payment_request_create_shipping_first_name = null, $payment_request_create_shipping_last_name = null, $payment_request_create_shipping_address_line1 = null, $payment_request_create_shipping_address_line2 = null, $payment_request_create_shipping_address_city = null, $payment_request_create_shipping_address_county = null, $payment_request_create_shipping_address_post_code = null, $payment_request_create_shipping_address_country_code = null, $payment_request_create_shipping_phone = null, $payment_request_create_shipping_email = null, $payment_request_create_origin_url = null, $payment_request_create_base_origin_url = null, $payment_request_create_callback_url = null, $payment_request_create_failure_callback_url = null, $payment_request_create_success_web_hook_url = null, $payment_request_create_card_authorize_only = null, $payment_request_create_card_create_token = null, $payment_request_create_card_create_token_mode = null, $payment_request_create_card_transmit_raw_details = null, $payment_request_create_card_processor_merchant_id = null, $payment_request_create_ignore_address_verification = null, $payment_request_create_card_ignore_cvn = null, $payment_request_create_pisp_recipient_reference = null, $payment_request_create_use_hosted_payment_page = null, $payment_request_create_card_no_payer_authentication = null, $payment_request_create_partial_payment_method = null, $payment_request_create_customer_email_address = null, $payment_request_create_payment_processor = null, $payment_request_create_lightning_invoice = null, $payment_request_create_lightning_invoice_expires_at = null, $payment_request_create_notification_email_addresses = null, $payment_request_create_priority_bank_id = null, $payment_request_create_title = null, $payment_request_create_partial_payment_steps = null, $payment_request_create_payrun_id = null, $payment_request_create_tag_ids = null, $payment_request_create_tags = null, $card_sensitive_jwt_token = null, $card_sensitive_number_token = null, $card_sensitive_cvc_token = null, $card_sensitive_card_holder_first_name = null, $card_sensitive_card_holder_last_name = null, $card_sensitive_billing_address_line1 = null, $card_sensitive_billing_address_line2 = null, $card_sensitive_billing_address_city = null, $card_sensitive_billing_address_county = null, $card_sensitive_billing_address_post_code = null, $card_sensitive_billing_address_country_code = null, $card_sensitive_billing_phone = null, $card_sensitive_billing_email = null, $card_sensitive_save_card_consent = null, $card_sensitive_partial_amount = null, $card_jwt_token = null, $card_number_token = null, $card_cvc_token = null, $card_card_holder_first_name = null, $card_card_holder_last_name = null, $card_billing_address_line1 = null, $card_billing_address_line2 = null, $card_billing_address_city = null, $card_billing_address_county = null, $card_billing_address_post_code = null, $card_billing_address_country_code = null, $card_billing_phone = null, $card_billing_email = null, $card_save_card_consent = null, $card_partial_amount = null, $payment_method = null, $card_token_tokenised_card_id = null, $card_token_payment_initiator = null, $card_token_merchant_standard_reason = null, $card_token_commerce_indicator = null, $card_token_card_security_code = null, $card_token_partial_amount = null, $payment_initiation_request_partial_amount = null, $payment_initiation_request_redirect_to_origin_url = null, $payment_initiation_request_origin_url = null, string $contentType = self::contentTypes['apiV1PaymentrequestsPayondemandPost'][0])
+    public function createAndPayPaymentRequestAsyncWithHttpInfo($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id = null, $payment_request_create_currency = null, $payment_request_create_customer_id = null, $payment_request_create_order_id = null, $payment_request_create_payment_method_types = null, $payment_request_create_description = null, $payment_request_create_pisp_account_id = null, $payment_request_create_shipping_first_name = null, $payment_request_create_shipping_last_name = null, $payment_request_create_shipping_address_line1 = null, $payment_request_create_shipping_address_line2 = null, $payment_request_create_shipping_address_city = null, $payment_request_create_shipping_address_county = null, $payment_request_create_shipping_address_post_code = null, $payment_request_create_shipping_address_country_code = null, $payment_request_create_shipping_phone = null, $payment_request_create_shipping_email = null, $payment_request_create_origin_url = null, $payment_request_create_base_origin_url = null, $payment_request_create_callback_url = null, $payment_request_create_failure_callback_url = null, $payment_request_create_success_web_hook_url = null, $payment_request_create_card_authorize_only = null, $payment_request_create_card_create_token = null, $payment_request_create_card_create_token_mode = null, $payment_request_create_card_transmit_raw_details = null, $payment_request_create_card_processor_merchant_id = null, $payment_request_create_ignore_address_verification = null, $payment_request_create_card_ignore_cvn = null, $payment_request_create_pisp_recipient_reference = null, $payment_request_create_use_hosted_payment_page = null, $payment_request_create_card_no_payer_authentication = null, $payment_request_create_partial_payment_method = null, $payment_request_create_customer_email_address = null, $payment_request_create_payment_processor = null, $payment_request_create_lightning_invoice = null, $payment_request_create_lightning_invoice_expires_at = null, $payment_request_create_notification_email_addresses = null, $payment_request_create_priority_bank_id = null, $payment_request_create_title = null, $payment_request_create_partial_payment_steps = null, $payment_request_create_payrun_id = null, $payment_request_create_tag_ids = null, $payment_request_create_tags = null, $card_sensitive_jwt_token = null, $card_sensitive_number_token = null, $card_sensitive_cvc_token = null, $card_sensitive_card_holder_first_name = null, $card_sensitive_card_holder_last_name = null, $card_sensitive_billing_address_line1 = null, $card_sensitive_billing_address_line2 = null, $card_sensitive_billing_address_city = null, $card_sensitive_billing_address_county = null, $card_sensitive_billing_address_post_code = null, $card_sensitive_billing_address_country_code = null, $card_sensitive_billing_phone = null, $card_sensitive_billing_email = null, $card_sensitive_save_card_consent = null, $card_sensitive_partial_amount = null, $card_jwt_token = null, $card_number_token = null, $card_cvc_token = null, $card_card_holder_first_name = null, $card_card_holder_last_name = null, $card_billing_address_line1 = null, $card_billing_address_line2 = null, $card_billing_address_city = null, $card_billing_address_county = null, $card_billing_address_post_code = null, $card_billing_address_country_code = null, $card_billing_phone = null, $card_billing_email = null, $card_save_card_consent = null, $card_partial_amount = null, $payment_method = null, $card_token_tokenised_card_id = null, $card_token_payment_initiator = null, $card_token_merchant_standard_reason = null, $card_token_commerce_indicator = null, $card_token_card_security_code = null, $card_token_partial_amount = null, $payment_initiation_request_partial_amount = null, $payment_initiation_request_redirect_to_origin_url = null, $payment_initiation_request_origin_url = null, string $contentType = self::contentTypes['createAndPayPaymentRequest'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsIPaymentResponse';
-        $request = $this->apiV1PaymentrequestsPayondemandPostRequest($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id, $payment_request_create_currency, $payment_request_create_customer_id, $payment_request_create_order_id, $payment_request_create_payment_method_types, $payment_request_create_description, $payment_request_create_pisp_account_id, $payment_request_create_shipping_first_name, $payment_request_create_shipping_last_name, $payment_request_create_shipping_address_line1, $payment_request_create_shipping_address_line2, $payment_request_create_shipping_address_city, $payment_request_create_shipping_address_county, $payment_request_create_shipping_address_post_code, $payment_request_create_shipping_address_country_code, $payment_request_create_shipping_phone, $payment_request_create_shipping_email, $payment_request_create_origin_url, $payment_request_create_base_origin_url, $payment_request_create_callback_url, $payment_request_create_failure_callback_url, $payment_request_create_success_web_hook_url, $payment_request_create_card_authorize_only, $payment_request_create_card_create_token, $payment_request_create_card_create_token_mode, $payment_request_create_card_transmit_raw_details, $payment_request_create_card_processor_merchant_id, $payment_request_create_ignore_address_verification, $payment_request_create_card_ignore_cvn, $payment_request_create_pisp_recipient_reference, $payment_request_create_use_hosted_payment_page, $payment_request_create_card_no_payer_authentication, $payment_request_create_partial_payment_method, $payment_request_create_customer_email_address, $payment_request_create_payment_processor, $payment_request_create_lightning_invoice, $payment_request_create_lightning_invoice_expires_at, $payment_request_create_notification_email_addresses, $payment_request_create_priority_bank_id, $payment_request_create_title, $payment_request_create_partial_payment_steps, $payment_request_create_payrun_id, $payment_request_create_tag_ids, $payment_request_create_tags, $card_sensitive_jwt_token, $card_sensitive_number_token, $card_sensitive_cvc_token, $card_sensitive_card_holder_first_name, $card_sensitive_card_holder_last_name, $card_sensitive_billing_address_line1, $card_sensitive_billing_address_line2, $card_sensitive_billing_address_city, $card_sensitive_billing_address_county, $card_sensitive_billing_address_post_code, $card_sensitive_billing_address_country_code, $card_sensitive_billing_phone, $card_sensitive_billing_email, $card_sensitive_save_card_consent, $card_sensitive_partial_amount, $card_jwt_token, $card_number_token, $card_cvc_token, $card_card_holder_first_name, $card_card_holder_last_name, $card_billing_address_line1, $card_billing_address_line2, $card_billing_address_city, $card_billing_address_county, $card_billing_address_post_code, $card_billing_address_country_code, $card_billing_phone, $card_billing_email, $card_save_card_consent, $card_partial_amount, $payment_method, $card_token_tokenised_card_id, $card_token_payment_initiator, $card_token_merchant_standard_reason, $card_token_commerce_indicator, $card_token_card_security_code, $card_token_partial_amount, $payment_initiation_request_partial_amount, $payment_initiation_request_redirect_to_origin_url, $payment_initiation_request_origin_url, $contentType);
+        $request = $this->createAndPayPaymentRequestRequest($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id, $payment_request_create_currency, $payment_request_create_customer_id, $payment_request_create_order_id, $payment_request_create_payment_method_types, $payment_request_create_description, $payment_request_create_pisp_account_id, $payment_request_create_shipping_first_name, $payment_request_create_shipping_last_name, $payment_request_create_shipping_address_line1, $payment_request_create_shipping_address_line2, $payment_request_create_shipping_address_city, $payment_request_create_shipping_address_county, $payment_request_create_shipping_address_post_code, $payment_request_create_shipping_address_country_code, $payment_request_create_shipping_phone, $payment_request_create_shipping_email, $payment_request_create_origin_url, $payment_request_create_base_origin_url, $payment_request_create_callback_url, $payment_request_create_failure_callback_url, $payment_request_create_success_web_hook_url, $payment_request_create_card_authorize_only, $payment_request_create_card_create_token, $payment_request_create_card_create_token_mode, $payment_request_create_card_transmit_raw_details, $payment_request_create_card_processor_merchant_id, $payment_request_create_ignore_address_verification, $payment_request_create_card_ignore_cvn, $payment_request_create_pisp_recipient_reference, $payment_request_create_use_hosted_payment_page, $payment_request_create_card_no_payer_authentication, $payment_request_create_partial_payment_method, $payment_request_create_customer_email_address, $payment_request_create_payment_processor, $payment_request_create_lightning_invoice, $payment_request_create_lightning_invoice_expires_at, $payment_request_create_notification_email_addresses, $payment_request_create_priority_bank_id, $payment_request_create_title, $payment_request_create_partial_payment_steps, $payment_request_create_payrun_id, $payment_request_create_tag_ids, $payment_request_create_tags, $card_sensitive_jwt_token, $card_sensitive_number_token, $card_sensitive_cvc_token, $card_sensitive_card_holder_first_name, $card_sensitive_card_holder_last_name, $card_sensitive_billing_address_line1, $card_sensitive_billing_address_line2, $card_sensitive_billing_address_city, $card_sensitive_billing_address_county, $card_sensitive_billing_address_post_code, $card_sensitive_billing_address_country_code, $card_sensitive_billing_phone, $card_sensitive_billing_email, $card_sensitive_save_card_consent, $card_sensitive_partial_amount, $card_jwt_token, $card_number_token, $card_cvc_token, $card_card_holder_first_name, $card_card_holder_last_name, $card_billing_address_line1, $card_billing_address_line2, $card_billing_address_city, $card_billing_address_county, $card_billing_address_post_code, $card_billing_address_country_code, $card_billing_phone, $card_billing_email, $card_save_card_consent, $card_partial_amount, $payment_method, $card_token_tokenised_card_id, $card_token_payment_initiator, $card_token_merchant_standard_reason, $card_token_commerce_indicator, $card_token_card_security_code, $card_token_partial_amount, $payment_initiation_request_partial_amount, $payment_initiation_request_redirect_to_origin_url, $payment_initiation_request_origin_url, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -8895,7 +1121,7 @@ class PaymentRequestsApi
     }
 
     /**
-     * Create request for operation 'apiV1PaymentrequestsPayondemandPost'
+     * Create request for operation 'createAndPayPaymentRequest'
      *
      * @param  float $payment_request_create_amount The amount of money to request. (required)
      * @param  string $card_sensitive_card_number (required)
@@ -8989,117 +1215,117 @@ class PaymentRequestsApi
      * @param  float $payment_initiation_request_partial_amount Optional. If 0 the full amount is assumed. (optional)
      * @param  string $payment_initiation_request_redirect_to_origin_url (optional)
      * @param  string $payment_initiation_request_origin_url Optional. If set should indicate the origin URL the payer is making the   payment from. If a pay by bank attempt fails and the payment request does not  have a FailureCallbackUrl set then the payer will be redirected to this URL. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsPayondemandPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createAndPayPaymentRequest'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1PaymentrequestsPayondemandPostRequest($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id = null, $payment_request_create_currency = null, $payment_request_create_customer_id = null, $payment_request_create_order_id = null, $payment_request_create_payment_method_types = null, $payment_request_create_description = null, $payment_request_create_pisp_account_id = null, $payment_request_create_shipping_first_name = null, $payment_request_create_shipping_last_name = null, $payment_request_create_shipping_address_line1 = null, $payment_request_create_shipping_address_line2 = null, $payment_request_create_shipping_address_city = null, $payment_request_create_shipping_address_county = null, $payment_request_create_shipping_address_post_code = null, $payment_request_create_shipping_address_country_code = null, $payment_request_create_shipping_phone = null, $payment_request_create_shipping_email = null, $payment_request_create_origin_url = null, $payment_request_create_base_origin_url = null, $payment_request_create_callback_url = null, $payment_request_create_failure_callback_url = null, $payment_request_create_success_web_hook_url = null, $payment_request_create_card_authorize_only = null, $payment_request_create_card_create_token = null, $payment_request_create_card_create_token_mode = null, $payment_request_create_card_transmit_raw_details = null, $payment_request_create_card_processor_merchant_id = null, $payment_request_create_ignore_address_verification = null, $payment_request_create_card_ignore_cvn = null, $payment_request_create_pisp_recipient_reference = null, $payment_request_create_use_hosted_payment_page = null, $payment_request_create_card_no_payer_authentication = null, $payment_request_create_partial_payment_method = null, $payment_request_create_customer_email_address = null, $payment_request_create_payment_processor = null, $payment_request_create_lightning_invoice = null, $payment_request_create_lightning_invoice_expires_at = null, $payment_request_create_notification_email_addresses = null, $payment_request_create_priority_bank_id = null, $payment_request_create_title = null, $payment_request_create_partial_payment_steps = null, $payment_request_create_payrun_id = null, $payment_request_create_tag_ids = null, $payment_request_create_tags = null, $card_sensitive_jwt_token = null, $card_sensitive_number_token = null, $card_sensitive_cvc_token = null, $card_sensitive_card_holder_first_name = null, $card_sensitive_card_holder_last_name = null, $card_sensitive_billing_address_line1 = null, $card_sensitive_billing_address_line2 = null, $card_sensitive_billing_address_city = null, $card_sensitive_billing_address_county = null, $card_sensitive_billing_address_post_code = null, $card_sensitive_billing_address_country_code = null, $card_sensitive_billing_phone = null, $card_sensitive_billing_email = null, $card_sensitive_save_card_consent = null, $card_sensitive_partial_amount = null, $card_jwt_token = null, $card_number_token = null, $card_cvc_token = null, $card_card_holder_first_name = null, $card_card_holder_last_name = null, $card_billing_address_line1 = null, $card_billing_address_line2 = null, $card_billing_address_city = null, $card_billing_address_county = null, $card_billing_address_post_code = null, $card_billing_address_country_code = null, $card_billing_phone = null, $card_billing_email = null, $card_save_card_consent = null, $card_partial_amount = null, $payment_method = null, $card_token_tokenised_card_id = null, $card_token_payment_initiator = null, $card_token_merchant_standard_reason = null, $card_token_commerce_indicator = null, $card_token_card_security_code = null, $card_token_partial_amount = null, $payment_initiation_request_partial_amount = null, $payment_initiation_request_redirect_to_origin_url = null, $payment_initiation_request_origin_url = null, string $contentType = self::contentTypes['apiV1PaymentrequestsPayondemandPost'][0])
+    public function createAndPayPaymentRequestRequest($payment_request_create_amount, $card_sensitive_card_number, $card_sensitive_card_security_code, $card_sensitive_expiry_month, $card_sensitive_expiry_year, $card_expiry_month, $card_expiry_year, $payment_initiation_request_provider_id, $payment_request_create_merchant_id = null, $payment_request_create_currency = null, $payment_request_create_customer_id = null, $payment_request_create_order_id = null, $payment_request_create_payment_method_types = null, $payment_request_create_description = null, $payment_request_create_pisp_account_id = null, $payment_request_create_shipping_first_name = null, $payment_request_create_shipping_last_name = null, $payment_request_create_shipping_address_line1 = null, $payment_request_create_shipping_address_line2 = null, $payment_request_create_shipping_address_city = null, $payment_request_create_shipping_address_county = null, $payment_request_create_shipping_address_post_code = null, $payment_request_create_shipping_address_country_code = null, $payment_request_create_shipping_phone = null, $payment_request_create_shipping_email = null, $payment_request_create_origin_url = null, $payment_request_create_base_origin_url = null, $payment_request_create_callback_url = null, $payment_request_create_failure_callback_url = null, $payment_request_create_success_web_hook_url = null, $payment_request_create_card_authorize_only = null, $payment_request_create_card_create_token = null, $payment_request_create_card_create_token_mode = null, $payment_request_create_card_transmit_raw_details = null, $payment_request_create_card_processor_merchant_id = null, $payment_request_create_ignore_address_verification = null, $payment_request_create_card_ignore_cvn = null, $payment_request_create_pisp_recipient_reference = null, $payment_request_create_use_hosted_payment_page = null, $payment_request_create_card_no_payer_authentication = null, $payment_request_create_partial_payment_method = null, $payment_request_create_customer_email_address = null, $payment_request_create_payment_processor = null, $payment_request_create_lightning_invoice = null, $payment_request_create_lightning_invoice_expires_at = null, $payment_request_create_notification_email_addresses = null, $payment_request_create_priority_bank_id = null, $payment_request_create_title = null, $payment_request_create_partial_payment_steps = null, $payment_request_create_payrun_id = null, $payment_request_create_tag_ids = null, $payment_request_create_tags = null, $card_sensitive_jwt_token = null, $card_sensitive_number_token = null, $card_sensitive_cvc_token = null, $card_sensitive_card_holder_first_name = null, $card_sensitive_card_holder_last_name = null, $card_sensitive_billing_address_line1 = null, $card_sensitive_billing_address_line2 = null, $card_sensitive_billing_address_city = null, $card_sensitive_billing_address_county = null, $card_sensitive_billing_address_post_code = null, $card_sensitive_billing_address_country_code = null, $card_sensitive_billing_phone = null, $card_sensitive_billing_email = null, $card_sensitive_save_card_consent = null, $card_sensitive_partial_amount = null, $card_jwt_token = null, $card_number_token = null, $card_cvc_token = null, $card_card_holder_first_name = null, $card_card_holder_last_name = null, $card_billing_address_line1 = null, $card_billing_address_line2 = null, $card_billing_address_city = null, $card_billing_address_county = null, $card_billing_address_post_code = null, $card_billing_address_country_code = null, $card_billing_phone = null, $card_billing_email = null, $card_save_card_consent = null, $card_partial_amount = null, $payment_method = null, $card_token_tokenised_card_id = null, $card_token_payment_initiator = null, $card_token_merchant_standard_reason = null, $card_token_commerce_indicator = null, $card_token_card_security_code = null, $card_token_partial_amount = null, $payment_initiation_request_partial_amount = null, $payment_initiation_request_redirect_to_origin_url = null, $payment_initiation_request_origin_url = null, string $contentType = self::contentTypes['createAndPayPaymentRequest'][0])
     {
 
         // verify the required parameter 'payment_request_create_amount' is set
         if ($payment_request_create_amount === null || (is_array($payment_request_create_amount) && count($payment_request_create_amount) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $payment_request_create_amount when calling apiV1PaymentrequestsPayondemandPost'
+                'Missing the required parameter $payment_request_create_amount when calling createAndPayPaymentRequest'
             );
         }
 
         // verify the required parameter 'card_sensitive_card_number' is set
         if ($card_sensitive_card_number === null || (is_array($card_sensitive_card_number) && count($card_sensitive_card_number) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $card_sensitive_card_number when calling apiV1PaymentrequestsPayondemandPost'
+                'Missing the required parameter $card_sensitive_card_number when calling createAndPayPaymentRequest'
             );
         }
 
         // verify the required parameter 'card_sensitive_card_security_code' is set
         if ($card_sensitive_card_security_code === null || (is_array($card_sensitive_card_security_code) && count($card_sensitive_card_security_code) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $card_sensitive_card_security_code when calling apiV1PaymentrequestsPayondemandPost'
+                'Missing the required parameter $card_sensitive_card_security_code when calling createAndPayPaymentRequest'
             );
         }
 
         // verify the required parameter 'card_sensitive_expiry_month' is set
         if ($card_sensitive_expiry_month === null || (is_array($card_sensitive_expiry_month) && count($card_sensitive_expiry_month) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $card_sensitive_expiry_month when calling apiV1PaymentrequestsPayondemandPost'
+                'Missing the required parameter $card_sensitive_expiry_month when calling createAndPayPaymentRequest'
             );
         }
 
         // verify the required parameter 'card_sensitive_expiry_year' is set
         if ($card_sensitive_expiry_year === null || (is_array($card_sensitive_expiry_year) && count($card_sensitive_expiry_year) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $card_sensitive_expiry_year when calling apiV1PaymentrequestsPayondemandPost'
+                'Missing the required parameter $card_sensitive_expiry_year when calling createAndPayPaymentRequest'
             );
         }
 
         // verify the required parameter 'card_expiry_month' is set
         if ($card_expiry_month === null || (is_array($card_expiry_month) && count($card_expiry_month) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $card_expiry_month when calling apiV1PaymentrequestsPayondemandPost'
+                'Missing the required parameter $card_expiry_month when calling createAndPayPaymentRequest'
             );
         }
 
         // verify the required parameter 'card_expiry_year' is set
         if ($card_expiry_year === null || (is_array($card_expiry_year) && count($card_expiry_year) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $card_expiry_year when calling apiV1PaymentrequestsPayondemandPost'
+                'Missing the required parameter $card_expiry_year when calling createAndPayPaymentRequest'
             );
         }
 
         // verify the required parameter 'payment_initiation_request_provider_id' is set
         if ($payment_initiation_request_provider_id === null || (is_array($payment_initiation_request_provider_id) && count($payment_initiation_request_provider_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $payment_initiation_request_provider_id when calling apiV1PaymentrequestsPayondemandPost'
+                'Missing the required parameter $payment_initiation_request_provider_id when calling createAndPayPaymentRequest'
             );
         }
 
 
 
         if ($payment_request_create_customer_id !== null && !preg_match("/[a-zA-Z0-9\\-]+/", $payment_request_create_customer_id)) {
-            throw new \InvalidArgumentException("invalid value for \"payment_request_create_customer_id\" when calling PaymentRequestsApi.apiV1PaymentrequestsPayondemandPost, must conform to the pattern /[a-zA-Z0-9\\-]+/.");
+            throw new \InvalidArgumentException("invalid value for \"payment_request_create_customer_id\" when calling PaymentRequestsApi.createAndPayPaymentRequest, must conform to the pattern /[a-zA-Z0-9\\-]+/.");
         }
         
         if ($payment_request_create_order_id !== null && !preg_match("/[a-zA-Z0-9\\-_\\.@&\\*%\\$#!:; ]+/", $payment_request_create_order_id)) {
-            throw new \InvalidArgumentException("invalid value for \"payment_request_create_order_id\" when calling PaymentRequestsApi.apiV1PaymentrequestsPayondemandPost, must conform to the pattern /[a-zA-Z0-9\\-_\\.@&\\*%\\$#!:; ]+/.");
+            throw new \InvalidArgumentException("invalid value for \"payment_request_create_order_id\" when calling PaymentRequestsApi.createAndPayPaymentRequest, must conform to the pattern /[a-zA-Z0-9\\-_\\.@&\\*%\\$#!:; ]+/.");
         }
         
 
 
 
         if ($payment_request_create_shipping_first_name !== null && !preg_match("/[^\\<\\>]+/", $payment_request_create_shipping_first_name)) {
-            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_first_name\" when calling PaymentRequestsApi.apiV1PaymentrequestsPayondemandPost, must conform to the pattern /[^\\<\\>]+/.");
+            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_first_name\" when calling PaymentRequestsApi.createAndPayPaymentRequest, must conform to the pattern /[^\\<\\>]+/.");
         }
         
         if ($payment_request_create_shipping_last_name !== null && !preg_match("/[^\\<\\>]+/", $payment_request_create_shipping_last_name)) {
-            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_last_name\" when calling PaymentRequestsApi.apiV1PaymentrequestsPayondemandPost, must conform to the pattern /[^\\<\\>]+/.");
+            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_last_name\" when calling PaymentRequestsApi.createAndPayPaymentRequest, must conform to the pattern /[^\\<\\>]+/.");
         }
         
         if ($payment_request_create_shipping_address_line1 !== null && !preg_match("/[^\\<\\>]+/", $payment_request_create_shipping_address_line1)) {
-            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_address_line1\" when calling PaymentRequestsApi.apiV1PaymentrequestsPayondemandPost, must conform to the pattern /[^\\<\\>]+/.");
+            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_address_line1\" when calling PaymentRequestsApi.createAndPayPaymentRequest, must conform to the pattern /[^\\<\\>]+/.");
         }
         
         if ($payment_request_create_shipping_address_line2 !== null && !preg_match("/[^\\<\\>]+/", $payment_request_create_shipping_address_line2)) {
-            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_address_line2\" when calling PaymentRequestsApi.apiV1PaymentrequestsPayondemandPost, must conform to the pattern /[^\\<\\>]+/.");
+            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_address_line2\" when calling PaymentRequestsApi.createAndPayPaymentRequest, must conform to the pattern /[^\\<\\>]+/.");
         }
         
         if ($payment_request_create_shipping_address_city !== null && !preg_match("/[^\\<\\>]+/", $payment_request_create_shipping_address_city)) {
-            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_address_city\" when calling PaymentRequestsApi.apiV1PaymentrequestsPayondemandPost, must conform to the pattern /[^\\<\\>]+/.");
+            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_address_city\" when calling PaymentRequestsApi.createAndPayPaymentRequest, must conform to the pattern /[^\\<\\>]+/.");
         }
         
         if ($payment_request_create_shipping_address_county !== null && !preg_match("/[^\\<\\>]+/", $payment_request_create_shipping_address_county)) {
-            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_address_county\" when calling PaymentRequestsApi.apiV1PaymentrequestsPayondemandPost, must conform to the pattern /[^\\<\\>]+/.");
+            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_address_county\" when calling PaymentRequestsApi.createAndPayPaymentRequest, must conform to the pattern /[^\\<\\>]+/.");
         }
         
         if ($payment_request_create_shipping_address_post_code !== null && !preg_match("/[^\\<\\>]+/", $payment_request_create_shipping_address_post_code)) {
-            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_address_post_code\" when calling PaymentRequestsApi.apiV1PaymentrequestsPayondemandPost, must conform to the pattern /[^\\<\\>]+/.");
+            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_address_post_code\" when calling PaymentRequestsApi.createAndPayPaymentRequest, must conform to the pattern /[^\\<\\>]+/.");
         }
         
         if ($payment_request_create_shipping_address_country_code !== null && !preg_match("/[^\\<\\>]+/", $payment_request_create_shipping_address_country_code)) {
-            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_address_country_code\" when calling PaymentRequestsApi.apiV1PaymentrequestsPayondemandPost, must conform to the pattern /[^\\<\\>]+/.");
+            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_address_country_code\" when calling PaymentRequestsApi.createAndPayPaymentRequest, must conform to the pattern /[^\\<\\>]+/.");
         }
         
         if ($payment_request_create_shipping_phone !== null && !preg_match("/[0-9\\+\\- ]+/", $payment_request_create_shipping_phone)) {
-            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_phone\" when calling PaymentRequestsApi.apiV1PaymentrequestsPayondemandPost, must conform to the pattern /[0-9\\+\\- ]+/.");
+            throw new \InvalidArgumentException("invalid value for \"payment_request_create_shipping_phone\" when calling PaymentRequestsApi.createAndPayPaymentRequest, must conform to the pattern /[0-9\\+\\- ]+/.");
         }
         
 
@@ -9113,7 +1339,7 @@ class PaymentRequestsApi
 
 
         if ($payment_request_create_card_processor_merchant_id !== null && !preg_match("/[a-zA-Z0-9]+/", $payment_request_create_card_processor_merchant_id)) {
-            throw new \InvalidArgumentException("invalid value for \"payment_request_create_card_processor_merchant_id\" when calling PaymentRequestsApi.apiV1PaymentrequestsPayondemandPost, must conform to the pattern /[a-zA-Z0-9]+/.");
+            throw new \InvalidArgumentException("invalid value for \"payment_request_create_card_processor_merchant_id\" when calling PaymentRequestsApi.createAndPayPaymentRequest, must conform to the pattern /[a-zA-Z0-9]+/.");
         }
         
 
@@ -9612,38 +1838,38 @@ class PaymentRequestsApi
     }
 
     /**
-     * Operation apiV1PaymentrequestsPost
+     * Operation createPaymentRequest
      *
      * Creates a payment request record.
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestCreate $no_frixion_money_moov_models_payment_request_create A payment request object containing the details of the record to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentRequest'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest
      */
-    public function apiV1PaymentrequestsPost($no_frixion_money_moov_models_payment_request_create = null, string $contentType = self::contentTypes['apiV1PaymentrequestsPost'][0])
+    public function createPaymentRequest($no_frixion_money_moov_models_payment_request_create = null, string $contentType = self::contentTypes['createPaymentRequest'][0])
     {
-        list($response) = $this->apiV1PaymentrequestsPostWithHttpInfo($no_frixion_money_moov_models_payment_request_create, $contentType);
+        list($response) = $this->createPaymentRequestWithHttpInfo($no_frixion_money_moov_models_payment_request_create, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1PaymentrequestsPostWithHttpInfo
+     * Operation createPaymentRequestWithHttpInfo
      *
      * Creates a payment request record.
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestCreate $no_frixion_money_moov_models_payment_request_create A payment request object containing the details of the record to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentRequest'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1PaymentrequestsPostWithHttpInfo($no_frixion_money_moov_models_payment_request_create = null, string $contentType = self::contentTypes['apiV1PaymentrequestsPost'][0])
+    public function createPaymentRequestWithHttpInfo($no_frixion_money_moov_models_payment_request_create = null, string $contentType = self::contentTypes['createPaymentRequest'][0])
     {
-        $request = $this->apiV1PaymentrequestsPostRequest($no_frixion_money_moov_models_payment_request_create, $contentType);
+        $request = $this->createPaymentRequestRequest($no_frixion_money_moov_models_payment_request_create, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -9754,19 +1980,19 @@ class PaymentRequestsApi
     }
 
     /**
-     * Operation apiV1PaymentrequestsPostAsync
+     * Operation createPaymentRequestAsync
      *
      * Creates a payment request record.
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestCreate $no_frixion_money_moov_models_payment_request_create A payment request object containing the details of the record to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentRequest'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PaymentrequestsPostAsync($no_frixion_money_moov_models_payment_request_create = null, string $contentType = self::contentTypes['apiV1PaymentrequestsPost'][0])
+    public function createPaymentRequestAsync($no_frixion_money_moov_models_payment_request_create = null, string $contentType = self::contentTypes['createPaymentRequest'][0])
     {
-        return $this->apiV1PaymentrequestsPostAsyncWithHttpInfo($no_frixion_money_moov_models_payment_request_create, $contentType)
+        return $this->createPaymentRequestAsyncWithHttpInfo($no_frixion_money_moov_models_payment_request_create, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -9775,20 +2001,20 @@ class PaymentRequestsApi
     }
 
     /**
-     * Operation apiV1PaymentrequestsPostAsyncWithHttpInfo
+     * Operation createPaymentRequestAsyncWithHttpInfo
      *
      * Creates a payment request record.
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestCreate $no_frixion_money_moov_models_payment_request_create A payment request object containing the details of the record to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentRequest'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PaymentrequestsPostAsyncWithHttpInfo($no_frixion_money_moov_models_payment_request_create = null, string $contentType = self::contentTypes['apiV1PaymentrequestsPost'][0])
+    public function createPaymentRequestAsyncWithHttpInfo($no_frixion_money_moov_models_payment_request_create = null, string $contentType = self::contentTypes['createPaymentRequest'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest';
-        $request = $this->apiV1PaymentrequestsPostRequest($no_frixion_money_moov_models_payment_request_create, $contentType);
+        $request = $this->createPaymentRequestRequest($no_frixion_money_moov_models_payment_request_create, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -9827,15 +2053,15 @@ class PaymentRequestsApi
     }
 
     /**
-     * Create request for operation 'apiV1PaymentrequestsPost'
+     * Create request for operation 'createPaymentRequest'
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestCreate $no_frixion_money_moov_models_payment_request_create A payment request object containing the details of the record to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PaymentrequestsPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPaymentRequest'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1PaymentrequestsPostRequest($no_frixion_money_moov_models_payment_request_create = null, string $contentType = self::contentTypes['apiV1PaymentrequestsPost'][0])
+    public function createPaymentRequestRequest($no_frixion_money_moov_models_payment_request_create = null, string $contentType = self::contentTypes['createPaymentRequest'][0])
     {
 
 
@@ -9866,6 +2092,8115 @@ class PaymentRequestsApi
                 $httpBody = $no_frixion_money_moov_models_payment_request_create;
             }
         } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteAllTokenisedCards
+     *
+     * Deletes all the card tokens for a customer.
+     *
+     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAllTokenisedCards'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]
+     */
+    public function deleteAllTokenisedCards($customer_email_address, string $contentType = self::contentTypes['deleteAllTokenisedCards'][0])
+    {
+        list($response) = $this->deleteAllTokenisedCardsWithHttpInfo($customer_email_address, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation deleteAllTokenisedCardsWithHttpInfo
+     *
+     * Deletes all the card tokens for a customer.
+     *
+     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAllTokenisedCards'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteAllTokenisedCardsWithHttpInfo($customer_email_address, string $contentType = self::contentTypes['deleteAllTokenisedCards'][0])
+    {
+        $request = $this->deleteAllTokenisedCardsRequest($customer_email_address, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteAllTokenisedCardsAsync
+     *
+     * Deletes all the card tokens for a customer.
+     *
+     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAllTokenisedCards'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteAllTokenisedCardsAsync($customer_email_address, string $contentType = self::contentTypes['deleteAllTokenisedCards'][0])
+    {
+        return $this->deleteAllTokenisedCardsAsyncWithHttpInfo($customer_email_address, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteAllTokenisedCardsAsyncWithHttpInfo
+     *
+     * Deletes all the card tokens for a customer.
+     *
+     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAllTokenisedCards'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteAllTokenisedCardsAsyncWithHttpInfo($customer_email_address, string $contentType = self::contentTypes['deleteAllTokenisedCards'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
+        $request = $this->deleteAllTokenisedCardsRequest($customer_email_address, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteAllTokenisedCards'
+     *
+     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAllTokenisedCards'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteAllTokenisedCardsRequest($customer_email_address, string $contentType = self::contentTypes['deleteAllTokenisedCards'][0])
+    {
+
+        // verify the required parameter 'customer_email_address' is set
+        if ($customer_email_address === null || (is_array($customer_email_address) && count($customer_email_address) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $customer_email_address when calling deleteAllTokenisedCards'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/paymentrequests/card/customertokens/removeall/{customerEmailAddress}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($customer_email_address !== null) {
+            $resourcePath = str_replace(
+                '{' . 'customerEmailAddress' . '}',
+                ObjectSerializer::toPathValue($customer_email_address),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteAllTokenisedCardsForMerchant
+     *
+     * Deletes all the card tokens for a customer.
+     *
+     * @param  string $merchant_id The ID of the merchant to delete all customer card tokens for. (required)
+     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAllTokenisedCardsForMerchant'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]
+     */
+    public function deleteAllTokenisedCardsForMerchant($merchant_id, $customer_email_address, string $contentType = self::contentTypes['deleteAllTokenisedCardsForMerchant'][0])
+    {
+        list($response) = $this->deleteAllTokenisedCardsForMerchantWithHttpInfo($merchant_id, $customer_email_address, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation deleteAllTokenisedCardsForMerchantWithHttpInfo
+     *
+     * Deletes all the card tokens for a customer.
+     *
+     * @param  string $merchant_id The ID of the merchant to delete all customer card tokens for. (required)
+     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAllTokenisedCardsForMerchant'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteAllTokenisedCardsForMerchantWithHttpInfo($merchant_id, $customer_email_address, string $contentType = self::contentTypes['deleteAllTokenisedCardsForMerchant'][0])
+    {
+        $request = $this->deleteAllTokenisedCardsForMerchantRequest($merchant_id, $customer_email_address, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteAllTokenisedCardsForMerchantAsync
+     *
+     * Deletes all the card tokens for a customer.
+     *
+     * @param  string $merchant_id The ID of the merchant to delete all customer card tokens for. (required)
+     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAllTokenisedCardsForMerchant'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteAllTokenisedCardsForMerchantAsync($merchant_id, $customer_email_address, string $contentType = self::contentTypes['deleteAllTokenisedCardsForMerchant'][0])
+    {
+        return $this->deleteAllTokenisedCardsForMerchantAsyncWithHttpInfo($merchant_id, $customer_email_address, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteAllTokenisedCardsForMerchantAsyncWithHttpInfo
+     *
+     * Deletes all the card tokens for a customer.
+     *
+     * @param  string $merchant_id The ID of the merchant to delete all customer card tokens for. (required)
+     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAllTokenisedCardsForMerchant'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteAllTokenisedCardsForMerchantAsyncWithHttpInfo($merchant_id, $customer_email_address, string $contentType = self::contentTypes['deleteAllTokenisedCardsForMerchant'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
+        $request = $this->deleteAllTokenisedCardsForMerchantRequest($merchant_id, $customer_email_address, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteAllTokenisedCardsForMerchant'
+     *
+     * @param  string $merchant_id The ID of the merchant to delete all customer card tokens for. (required)
+     * @param  string $customer_email_address The email of the customer to delete all card tokens for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAllTokenisedCardsForMerchant'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteAllTokenisedCardsForMerchantRequest($merchant_id, $customer_email_address, string $contentType = self::contentTypes['deleteAllTokenisedCardsForMerchant'][0])
+    {
+
+        // verify the required parameter 'merchant_id' is set
+        if ($merchant_id === null || (is_array($merchant_id) && count($merchant_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $merchant_id when calling deleteAllTokenisedCardsForMerchant'
+            );
+        }
+
+        // verify the required parameter 'customer_email_address' is set
+        if ($customer_email_address === null || (is_array($customer_email_address) && count($customer_email_address) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $customer_email_address when calling deleteAllTokenisedCardsForMerchant'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/paymentrequests/card/customertokens/removeall/{merchantID}/{customerEmailAddress}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($merchant_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'merchantID' . '}',
+                ObjectSerializer::toPathValue($merchant_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($customer_email_address !== null) {
+            $resourcePath = str_replace(
+                '{' . 'customerEmailAddress' . '}',
+                ObjectSerializer::toPathValue($customer_email_address),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deletePaymentRequest
+     *
+     * Deletes a payment request, along with its keys and addresses, if there&#39;s  no payment event associated with it.
+     *
+     * @param  string $id The id of the payment request to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentRequest'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deletePaymentRequest($id, string $contentType = self::contentTypes['deletePaymentRequest'][0])
+    {
+        $this->deletePaymentRequestWithHttpInfo($id, $contentType);
+    }
+
+    /**
+     * Operation deletePaymentRequestWithHttpInfo
+     *
+     * Deletes a payment request, along with its keys and addresses, if there&#39;s  no payment event associated with it.
+     *
+     * @param  string $id The id of the payment request to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentRequest'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deletePaymentRequestWithHttpInfo($id, string $contentType = self::contentTypes['deletePaymentRequest'][0])
+    {
+        $request = $this->deletePaymentRequestRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deletePaymentRequestAsync
+     *
+     * Deletes a payment request, along with its keys and addresses, if there&#39;s  no payment event associated with it.
+     *
+     * @param  string $id The id of the payment request to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentRequest'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deletePaymentRequestAsync($id, string $contentType = self::contentTypes['deletePaymentRequest'][0])
+    {
+        return $this->deletePaymentRequestAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deletePaymentRequestAsyncWithHttpInfo
+     *
+     * Deletes a payment request, along with its keys and addresses, if there&#39;s  no payment event associated with it.
+     *
+     * @param  string $id The id of the payment request to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentRequest'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deletePaymentRequestAsyncWithHttpInfo($id, string $contentType = self::contentTypes['deletePaymentRequest'][0])
+    {
+        $returnType = '';
+        $request = $this->deletePaymentRequestRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deletePaymentRequest'
+     *
+     * @param  string $id The id of the payment request to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePaymentRequest'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deletePaymentRequestRequest($id, string $contentType = self::contentTypes['deletePaymentRequest'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling deletePaymentRequest'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/paymentrequests/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            [],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteTokenisedCard
+     *
+     * Deletes a single card token.
+     *
+     * @param  string $id The ID of the card token to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTokenisedCard'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]
+     */
+    public function deleteTokenisedCard($id, string $contentType = self::contentTypes['deleteTokenisedCard'][0])
+    {
+        list($response) = $this->deleteTokenisedCardWithHttpInfo($id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation deleteTokenisedCardWithHttpInfo
+     *
+     * Deletes a single card token.
+     *
+     * @param  string $id The ID of the card token to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTokenisedCard'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteTokenisedCardWithHttpInfo($id, string $contentType = self::contentTypes['deleteTokenisedCard'][0])
+    {
+        $request = $this->deleteTokenisedCardRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteTokenisedCardAsync
+     *
+     * Deletes a single card token.
+     *
+     * @param  string $id The ID of the card token to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTokenisedCard'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteTokenisedCardAsync($id, string $contentType = self::contentTypes['deleteTokenisedCard'][0])
+    {
+        return $this->deleteTokenisedCardAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteTokenisedCardAsyncWithHttpInfo
+     *
+     * Deletes a single card token.
+     *
+     * @param  string $id The ID of the card token to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTokenisedCard'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteTokenisedCardAsyncWithHttpInfo($id, string $contentType = self::contentTypes['deleteTokenisedCard'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
+        $request = $this->deleteTokenisedCardRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteTokenisedCard'
+     *
+     * @param  string $id The ID of the card token to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTokenisedCard'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteTokenisedCardRequest($id, string $contentType = self::contentTypes['deleteTokenisedCard'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling deleteTokenisedCard'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/paymentrequests/card/customertokens/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getAllPaymentRequestsPaged
+     *
+     * Gets a list of all payment requests.
+     *
+     * @param  string $merchant_id The merchant ID to get he list of payment requests for. This field is ignored for              merchant tokens and required for user tokens. (optional)
+     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
+     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
+     * @param  \DateTime $from_date The date filter to apply to retrieve payment requests created after this date. (optional)
+     * @param  \DateTime $to_date The date filter to apply to retrieve payment requests created up until this date. (optional)
+     * @param  string $status The status filter to apply to retrieve payment requests with this status (optional, default to 'All')
+     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description, merchant name or contact information. (optional)
+     * @param  string $currency The currency filter to apply to retrieve payment requests with this currency. (optional)
+     * @param  float $min_amount The amount filter to apply to retrieve payment requests that exceed this amount. (optional)
+     * @param  float $max_amount The amount filter to apply to retrieve payment requests that don&#39;t exceed this amount. (optional)
+     * @param  string[] $tags The tag filter to apply to retrieve payment requests with at least one of these tags. (optional)
+     * @param  string $sort Optional expression to sort the order of the payment requests. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllPaymentRequestsPaged'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPaymentRequestPageResponse
+     */
+    public function getAllPaymentRequestsPaged($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = 'All', $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['getAllPaymentRequestsPaged'][0])
+    {
+        list($response) = $this->getAllPaymentRequestsPagedWithHttpInfo($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getAllPaymentRequestsPagedWithHttpInfo
+     *
+     * Gets a list of all payment requests.
+     *
+     * @param  string $merchant_id The merchant ID to get he list of payment requests for. This field is ignored for              merchant tokens and required for user tokens. (optional)
+     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
+     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
+     * @param  \DateTime $from_date The date filter to apply to retrieve payment requests created after this date. (optional)
+     * @param  \DateTime $to_date The date filter to apply to retrieve payment requests created up until this date. (optional)
+     * @param  string $status The status filter to apply to retrieve payment requests with this status (optional, default to 'All')
+     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description, merchant name or contact information. (optional)
+     * @param  string $currency The currency filter to apply to retrieve payment requests with this currency. (optional)
+     * @param  float $min_amount The amount filter to apply to retrieve payment requests that exceed this amount. (optional)
+     * @param  float $max_amount The amount filter to apply to retrieve payment requests that don&#39;t exceed this amount. (optional)
+     * @param  string[] $tags The tag filter to apply to retrieve payment requests with at least one of these tags. (optional)
+     * @param  string $sort Optional expression to sort the order of the payment requests. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllPaymentRequestsPaged'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPaymentRequestPageResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getAllPaymentRequestsPagedWithHttpInfo($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = 'All', $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['getAllPaymentRequestsPaged'][0])
+    {
+        $request = $this->getAllPaymentRequestsPagedRequest($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPaymentRequestPageResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPaymentRequestPageResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPaymentRequestPageResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPaymentRequestPageResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPaymentRequestPageResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getAllPaymentRequestsPagedAsync
+     *
+     * Gets a list of all payment requests.
+     *
+     * @param  string $merchant_id The merchant ID to get he list of payment requests for. This field is ignored for              merchant tokens and required for user tokens. (optional)
+     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
+     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
+     * @param  \DateTime $from_date The date filter to apply to retrieve payment requests created after this date. (optional)
+     * @param  \DateTime $to_date The date filter to apply to retrieve payment requests created up until this date. (optional)
+     * @param  string $status The status filter to apply to retrieve payment requests with this status (optional, default to 'All')
+     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description, merchant name or contact information. (optional)
+     * @param  string $currency The currency filter to apply to retrieve payment requests with this currency. (optional)
+     * @param  float $min_amount The amount filter to apply to retrieve payment requests that exceed this amount. (optional)
+     * @param  float $max_amount The amount filter to apply to retrieve payment requests that don&#39;t exceed this amount. (optional)
+     * @param  string[] $tags The tag filter to apply to retrieve payment requests with at least one of these tags. (optional)
+     * @param  string $sort Optional expression to sort the order of the payment requests. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllPaymentRequestsPaged'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAllPaymentRequestsPagedAsync($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = 'All', $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['getAllPaymentRequestsPaged'][0])
+    {
+        return $this->getAllPaymentRequestsPagedAsyncWithHttpInfo($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getAllPaymentRequestsPagedAsyncWithHttpInfo
+     *
+     * Gets a list of all payment requests.
+     *
+     * @param  string $merchant_id The merchant ID to get he list of payment requests for. This field is ignored for              merchant tokens and required for user tokens. (optional)
+     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
+     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
+     * @param  \DateTime $from_date The date filter to apply to retrieve payment requests created after this date. (optional)
+     * @param  \DateTime $to_date The date filter to apply to retrieve payment requests created up until this date. (optional)
+     * @param  string $status The status filter to apply to retrieve payment requests with this status (optional, default to 'All')
+     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description, merchant name or contact information. (optional)
+     * @param  string $currency The currency filter to apply to retrieve payment requests with this currency. (optional)
+     * @param  float $min_amount The amount filter to apply to retrieve payment requests that exceed this amount. (optional)
+     * @param  float $max_amount The amount filter to apply to retrieve payment requests that don&#39;t exceed this amount. (optional)
+     * @param  string[] $tags The tag filter to apply to retrieve payment requests with at least one of these tags. (optional)
+     * @param  string $sort Optional expression to sort the order of the payment requests. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllPaymentRequestsPaged'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getAllPaymentRequestsPagedAsyncWithHttpInfo($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = 'All', $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['getAllPaymentRequestsPaged'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPaymentRequestPageResponse';
+        $request = $this->getAllPaymentRequestsPagedRequest($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getAllPaymentRequestsPaged'
+     *
+     * @param  string $merchant_id The merchant ID to get he list of payment requests for. This field is ignored for              merchant tokens and required for user tokens. (optional)
+     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
+     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
+     * @param  \DateTime $from_date The date filter to apply to retrieve payment requests created after this date. (optional)
+     * @param  \DateTime $to_date The date filter to apply to retrieve payment requests created up until this date. (optional)
+     * @param  string $status The status filter to apply to retrieve payment requests with this status (optional, default to 'All')
+     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description, merchant name or contact information. (optional)
+     * @param  string $currency The currency filter to apply to retrieve payment requests with this currency. (optional)
+     * @param  float $min_amount The amount filter to apply to retrieve payment requests that exceed this amount. (optional)
+     * @param  float $max_amount The amount filter to apply to retrieve payment requests that don&#39;t exceed this amount. (optional)
+     * @param  string[] $tags The tag filter to apply to retrieve payment requests with at least one of these tags. (optional)
+     * @param  string $sort Optional expression to sort the order of the payment requests. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllPaymentRequestsPaged'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getAllPaymentRequestsPagedRequest($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = 'All', $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['getAllPaymentRequestsPaged'][0])
+    {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $resourcePath = '/api/v1/paymentrequests';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $merchant_id,
+            'merchantID', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $page,
+            'page', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $size,
+            'size', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $from_date,
+            'fromDate', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $to_date,
+            'toDate', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $status,
+            'status', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $search,
+            'search', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $currency,
+            'currency', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $min_amount,
+            'minAmount', // param base name
+            'number', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $max_amount,
+            'maxAmount', // param base name
+            'number', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tags,
+            'tags', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $sort,
+            'sort', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getLightningInvoice
+     *
+     * Gets a Bitcoin Lightning invoice for a payment request.
+     *
+     * @param  string $id The ID of the payment request the Lightning invoice is being requested for. (required)
+     * @param  float $partial_amount Optional. If non zero will be used as the amount to take payment for. If not set the full               payment request amount will be used. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLightningInvoice'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsLightningInvoice
+     */
+    public function getLightningInvoice($id, $partial_amount, string $contentType = self::contentTypes['getLightningInvoice'][0])
+    {
+        list($response) = $this->getLightningInvoiceWithHttpInfo($id, $partial_amount, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getLightningInvoiceWithHttpInfo
+     *
+     * Gets a Bitcoin Lightning invoice for a payment request.
+     *
+     * @param  string $id The ID of the payment request the Lightning invoice is being requested for. (required)
+     * @param  float $partial_amount Optional. If non zero will be used as the amount to take payment for. If not set the full               payment request amount will be used. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLightningInvoice'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsLightningInvoice, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getLightningInvoiceWithHttpInfo($id, $partial_amount, string $contentType = self::contentTypes['getLightningInvoice'][0])
+    {
+        $request = $this->getLightningInvoiceRequest($id, $partial_amount, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsLightningInvoice' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsLightningInvoice' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsLightningInvoice', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsLightningInvoice';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsLightningInvoice',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getLightningInvoiceAsync
+     *
+     * Gets a Bitcoin Lightning invoice for a payment request.
+     *
+     * @param  string $id The ID of the payment request the Lightning invoice is being requested for. (required)
+     * @param  float $partial_amount Optional. If non zero will be used as the amount to take payment for. If not set the full               payment request amount will be used. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLightningInvoice'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getLightningInvoiceAsync($id, $partial_amount, string $contentType = self::contentTypes['getLightningInvoice'][0])
+    {
+        return $this->getLightningInvoiceAsyncWithHttpInfo($id, $partial_amount, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getLightningInvoiceAsyncWithHttpInfo
+     *
+     * Gets a Bitcoin Lightning invoice for a payment request.
+     *
+     * @param  string $id The ID of the payment request the Lightning invoice is being requested for. (required)
+     * @param  float $partial_amount Optional. If non zero will be used as the amount to take payment for. If not set the full               payment request amount will be used. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLightningInvoice'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getLightningInvoiceAsyncWithHttpInfo($id, $partial_amount, string $contentType = self::contentTypes['getLightningInvoice'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsLightningInvoice';
+        $request = $this->getLightningInvoiceRequest($id, $partial_amount, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getLightningInvoice'
+     *
+     * @param  string $id The ID of the payment request the Lightning invoice is being requested for. (required)
+     * @param  float $partial_amount Optional. If non zero will be used as the amount to take payment for. If not set the full               payment request amount will be used. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLightningInvoice'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getLightningInvoiceRequest($id, $partial_amount, string $contentType = self::contentTypes['getLightningInvoice'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling getLightningInvoice'
+            );
+        }
+
+        // verify the required parameter 'partial_amount' is set
+        if ($partial_amount === null || (is_array($partial_amount) && count($partial_amount) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $partial_amount when calling getLightningInvoice'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/paymentrequests/{id}/lightning/{partialAmount}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($partial_amount !== null) {
+            $resourcePath = str_replace(
+                '{' . 'partialAmount' . '}',
+                ObjectSerializer::toPathValue($partial_amount),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getPaymentRequest
+     *
+     * Gets a payment request.
+     *
+     * @param  string $id The ID of the payment request to retrieve. (required)
+     * @param  bool $include_events Set to true to include any associated payment request events. (optional, default to false)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequest'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest
+     */
+    public function getPaymentRequest($id, $include_events = false, string $contentType = self::contentTypes['getPaymentRequest'][0])
+    {
+        list($response) = $this->getPaymentRequestWithHttpInfo($id, $include_events, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getPaymentRequestWithHttpInfo
+     *
+     * Gets a payment request.
+     *
+     * @param  string $id The ID of the payment request to retrieve. (required)
+     * @param  bool $include_events Set to true to include any associated payment request events. (optional, default to false)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequest'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getPaymentRequestWithHttpInfo($id, $include_events = false, string $contentType = self::contentTypes['getPaymentRequest'][0])
+    {
+        $request = $this->getPaymentRequestRequest($id, $include_events, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getPaymentRequestAsync
+     *
+     * Gets a payment request.
+     *
+     * @param  string $id The ID of the payment request to retrieve. (required)
+     * @param  bool $include_events Set to true to include any associated payment request events. (optional, default to false)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequest'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPaymentRequestAsync($id, $include_events = false, string $contentType = self::contentTypes['getPaymentRequest'][0])
+    {
+        return $this->getPaymentRequestAsyncWithHttpInfo($id, $include_events, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getPaymentRequestAsyncWithHttpInfo
+     *
+     * Gets a payment request.
+     *
+     * @param  string $id The ID of the payment request to retrieve. (required)
+     * @param  bool $include_events Set to true to include any associated payment request events. (optional, default to false)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequest'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPaymentRequestAsyncWithHttpInfo($id, $include_events = false, string $contentType = self::contentTypes['getPaymentRequest'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest';
+        $request = $this->getPaymentRequestRequest($id, $include_events, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getPaymentRequest'
+     *
+     * @param  string $id The ID of the payment request to retrieve. (required)
+     * @param  bool $include_events Set to true to include any associated payment request events. (optional, default to false)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequest'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getPaymentRequestRequest($id, $include_events = false, string $contentType = self::contentTypes['getPaymentRequest'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling getPaymentRequest'
+            );
+        }
+
+
+
+        $resourcePath = '/api/v1/paymentrequests/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $include_events,
+            'includeEvents', // param base name
+            'boolean', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getPaymentRequestEvents
+     *
+     * Gets a payment requests&#39;s events.
+     *
+     * @param  string $id ID of the payment request to get the events for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestEvents'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestEvent[]
+     */
+    public function getPaymentRequestEvents($id, string $contentType = self::contentTypes['getPaymentRequestEvents'][0])
+    {
+        list($response) = $this->getPaymentRequestEventsWithHttpInfo($id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getPaymentRequestEventsWithHttpInfo
+     *
+     * Gets a payment requests&#39;s events.
+     *
+     * @param  string $id ID of the payment request to get the events for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestEvents'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestEvent[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getPaymentRequestEventsWithHttpInfo($id, string $contentType = self::contentTypes['getPaymentRequestEvents'][0])
+    {
+        $request = $this->getPaymentRequestEventsRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestEvent[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestEvent[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestEvent[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestEvent[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestEvent[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getPaymentRequestEventsAsync
+     *
+     * Gets a payment requests&#39;s events.
+     *
+     * @param  string $id ID of the payment request to get the events for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestEvents'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPaymentRequestEventsAsync($id, string $contentType = self::contentTypes['getPaymentRequestEvents'][0])
+    {
+        return $this->getPaymentRequestEventsAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getPaymentRequestEventsAsyncWithHttpInfo
+     *
+     * Gets a payment requests&#39;s events.
+     *
+     * @param  string $id ID of the payment request to get the events for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestEvents'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPaymentRequestEventsAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getPaymentRequestEvents'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestEvent[]';
+        $request = $this->getPaymentRequestEventsRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getPaymentRequestEvents'
+     *
+     * @param  string $id ID of the payment request to get the events for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestEvents'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getPaymentRequestEventsRequest($id, string $contentType = self::contentTypes['getPaymentRequestEvents'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling getPaymentRequestEvents'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/paymentrequests/{id}/events';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getPaymentRequestForOrder
+     *
+     * Gets a payment request by its order ID.
+     *
+     * @param  string $order_id The order ID of the payment request to retrieve. Useful when the              payment request has been created by an external application such as WooCommerce or Xero. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestForOrder'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest
+     */
+    public function getPaymentRequestForOrder($order_id, string $contentType = self::contentTypes['getPaymentRequestForOrder'][0])
+    {
+        list($response) = $this->getPaymentRequestForOrderWithHttpInfo($order_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getPaymentRequestForOrderWithHttpInfo
+     *
+     * Gets a payment request by its order ID.
+     *
+     * @param  string $order_id The order ID of the payment request to retrieve. Useful when the              payment request has been created by an external application such as WooCommerce or Xero. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestForOrder'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getPaymentRequestForOrderWithHttpInfo($order_id, string $contentType = self::contentTypes['getPaymentRequestForOrder'][0])
+    {
+        $request = $this->getPaymentRequestForOrderRequest($order_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getPaymentRequestForOrderAsync
+     *
+     * Gets a payment request by its order ID.
+     *
+     * @param  string $order_id The order ID of the payment request to retrieve. Useful when the              payment request has been created by an external application such as WooCommerce or Xero. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestForOrder'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPaymentRequestForOrderAsync($order_id, string $contentType = self::contentTypes['getPaymentRequestForOrder'][0])
+    {
+        return $this->getPaymentRequestForOrderAsyncWithHttpInfo($order_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getPaymentRequestForOrderAsyncWithHttpInfo
+     *
+     * Gets a payment request by its order ID.
+     *
+     * @param  string $order_id The order ID of the payment request to retrieve. Useful when the              payment request has been created by an external application such as WooCommerce or Xero. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestForOrder'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPaymentRequestForOrderAsyncWithHttpInfo($order_id, string $contentType = self::contentTypes['getPaymentRequestForOrder'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest';
+        $request = $this->getPaymentRequestForOrderRequest($order_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getPaymentRequestForOrder'
+     *
+     * @param  string $order_id The order ID of the payment request to retrieve. Useful when the              payment request has been created by an external application such as WooCommerce or Xero. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestForOrder'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getPaymentRequestForOrderRequest($order_id, string $contentType = self::contentTypes['getPaymentRequestForOrder'][0])
+    {
+
+        // verify the required parameter 'order_id' is set
+        if ($order_id === null || (is_array($order_id) && count($order_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $order_id when calling getPaymentRequestForOrder'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/paymentrequests/getbyorderid/{orderID}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($order_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'orderID' . '}',
+                ObjectSerializer::toPathValue($order_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getPaymentRequestMetricsForMerchant
+     *
+     * Gets payment request metrics of a merchant.
+     *
+     * @param  string $merchant_id The merchant ID to get the payment request metrics. This field is ignored for              merchant tokens and required for user tokens. (optional)
+     * @param  \DateTime $from_date The date filter to apply to retrieve payment request metrics created after this date. (optional)
+     * @param  \DateTime $to_date The date filter to apply to retrieve payment request metrics created up until this date. (optional)
+     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description or contact information.k (optional)
+     * @param  string $currency The currency filter to apply to retrieve payment request metrics with this currency. (optional)
+     * @param  float $min_amount The amount filter to apply to retrieve payment request metrics that exceed this amount. (optional)
+     * @param  float $max_amount The amount filter to apply to retrieve payment request metrics that don&#39;t exceed this amount. (optional)
+     * @param  string[] $tags The tag filter to apply to retrieve payment request metrics with at least one of these tags. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestMetricsForMerchant'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMetrics
+     */
+    public function getPaymentRequestMetricsForMerchant($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['getPaymentRequestMetricsForMerchant'][0])
+    {
+        list($response) = $this->getPaymentRequestMetricsForMerchantWithHttpInfo($merchant_id, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getPaymentRequestMetricsForMerchantWithHttpInfo
+     *
+     * Gets payment request metrics of a merchant.
+     *
+     * @param  string $merchant_id The merchant ID to get the payment request metrics. This field is ignored for              merchant tokens and required for user tokens. (optional)
+     * @param  \DateTime $from_date The date filter to apply to retrieve payment request metrics created after this date. (optional)
+     * @param  \DateTime $to_date The date filter to apply to retrieve payment request metrics created up until this date. (optional)
+     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description or contact information.k (optional)
+     * @param  string $currency The currency filter to apply to retrieve payment request metrics with this currency. (optional)
+     * @param  float $min_amount The amount filter to apply to retrieve payment request metrics that exceed this amount. (optional)
+     * @param  float $max_amount The amount filter to apply to retrieve payment request metrics that don&#39;t exceed this amount. (optional)
+     * @param  string[] $tags The tag filter to apply to retrieve payment request metrics with at least one of these tags. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestMetricsForMerchant'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMetrics, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getPaymentRequestMetricsForMerchantWithHttpInfo($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['getPaymentRequestMetricsForMerchant'][0])
+    {
+        $request = $this->getPaymentRequestMetricsForMerchantRequest($merchant_id, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMetrics' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMetrics' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMetrics', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMetrics';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMetrics',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getPaymentRequestMetricsForMerchantAsync
+     *
+     * Gets payment request metrics of a merchant.
+     *
+     * @param  string $merchant_id The merchant ID to get the payment request metrics. This field is ignored for              merchant tokens and required for user tokens. (optional)
+     * @param  \DateTime $from_date The date filter to apply to retrieve payment request metrics created after this date. (optional)
+     * @param  \DateTime $to_date The date filter to apply to retrieve payment request metrics created up until this date. (optional)
+     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description or contact information.k (optional)
+     * @param  string $currency The currency filter to apply to retrieve payment request metrics with this currency. (optional)
+     * @param  float $min_amount The amount filter to apply to retrieve payment request metrics that exceed this amount. (optional)
+     * @param  float $max_amount The amount filter to apply to retrieve payment request metrics that don&#39;t exceed this amount. (optional)
+     * @param  string[] $tags The tag filter to apply to retrieve payment request metrics with at least one of these tags. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestMetricsForMerchant'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPaymentRequestMetricsForMerchantAsync($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['getPaymentRequestMetricsForMerchant'][0])
+    {
+        return $this->getPaymentRequestMetricsForMerchantAsyncWithHttpInfo($merchant_id, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getPaymentRequestMetricsForMerchantAsyncWithHttpInfo
+     *
+     * Gets payment request metrics of a merchant.
+     *
+     * @param  string $merchant_id The merchant ID to get the payment request metrics. This field is ignored for              merchant tokens and required for user tokens. (optional)
+     * @param  \DateTime $from_date The date filter to apply to retrieve payment request metrics created after this date. (optional)
+     * @param  \DateTime $to_date The date filter to apply to retrieve payment request metrics created up until this date. (optional)
+     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description or contact information.k (optional)
+     * @param  string $currency The currency filter to apply to retrieve payment request metrics with this currency. (optional)
+     * @param  float $min_amount The amount filter to apply to retrieve payment request metrics that exceed this amount. (optional)
+     * @param  float $max_amount The amount filter to apply to retrieve payment request metrics that don&#39;t exceed this amount. (optional)
+     * @param  string[] $tags The tag filter to apply to retrieve payment request metrics with at least one of these tags. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestMetricsForMerchant'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPaymentRequestMetricsForMerchantAsyncWithHttpInfo($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['getPaymentRequestMetricsForMerchant'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMetrics';
+        $request = $this->getPaymentRequestMetricsForMerchantRequest($merchant_id, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getPaymentRequestMetricsForMerchant'
+     *
+     * @param  string $merchant_id The merchant ID to get the payment request metrics. This field is ignored for              merchant tokens and required for user tokens. (optional)
+     * @param  \DateTime $from_date The date filter to apply to retrieve payment request metrics created after this date. (optional)
+     * @param  \DateTime $to_date The date filter to apply to retrieve payment request metrics created up until this date. (optional)
+     * @param  string $search The text filter to apply to retrieve payment requests with a similar title, description or contact information.k (optional)
+     * @param  string $currency The currency filter to apply to retrieve payment request metrics with this currency. (optional)
+     * @param  float $min_amount The amount filter to apply to retrieve payment request metrics that exceed this amount. (optional)
+     * @param  float $max_amount The amount filter to apply to retrieve payment request metrics that don&#39;t exceed this amount. (optional)
+     * @param  string[] $tags The tag filter to apply to retrieve payment request metrics with at least one of these tags. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestMetricsForMerchant'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getPaymentRequestMetricsForMerchantRequest($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['getPaymentRequestMetricsForMerchant'][0])
+    {
+
+
+
+
+
+
+
+
+
+
+        $resourcePath = '/api/v1/paymentrequests/metrics';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $merchant_id,
+            'merchantID', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $from_date,
+            'fromDate', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $to_date,
+            'toDate', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $search,
+            'search', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $currency,
+            'currency', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $min_amount,
+            'minAmount', // param base name
+            'number', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $max_amount,
+            'maxAmount', // param base name
+            'number', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tags,
+            'tags', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getPaymentRequestMinimal
+     *
+     * Gets a minimal representation of a payment request.
+     *
+     * @param  string $id The ID of the payment request to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestMinimal'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMinimal
+     */
+    public function getPaymentRequestMinimal($id, string $contentType = self::contentTypes['getPaymentRequestMinimal'][0])
+    {
+        list($response) = $this->getPaymentRequestMinimalWithHttpInfo($id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getPaymentRequestMinimalWithHttpInfo
+     *
+     * Gets a minimal representation of a payment request.
+     *
+     * @param  string $id The ID of the payment request to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestMinimal'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMinimal, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getPaymentRequestMinimalWithHttpInfo($id, string $contentType = self::contentTypes['getPaymentRequestMinimal'][0])
+    {
+        $request = $this->getPaymentRequestMinimalRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMinimal' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMinimal' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMinimal', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMinimal';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMinimal',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getPaymentRequestMinimalAsync
+     *
+     * Gets a minimal representation of a payment request.
+     *
+     * @param  string $id The ID of the payment request to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestMinimal'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPaymentRequestMinimalAsync($id, string $contentType = self::contentTypes['getPaymentRequestMinimal'][0])
+    {
+        return $this->getPaymentRequestMinimalAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getPaymentRequestMinimalAsyncWithHttpInfo
+     *
+     * Gets a minimal representation of a payment request.
+     *
+     * @param  string $id The ID of the payment request to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestMinimal'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPaymentRequestMinimalAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getPaymentRequestMinimal'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestMinimal';
+        $request = $this->getPaymentRequestMinimalRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getPaymentRequestMinimal'
+     *
+     * @param  string $id The ID of the payment request to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestMinimal'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getPaymentRequestMinimalRequest($id, string $contentType = self::contentTypes['getPaymentRequestMinimal'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling getPaymentRequestMinimal'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/paymentrequests/{id}/minimal';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getPaymentRequestResult
+     *
+     * Gets a payment request result.
+     *
+     * @param  string $id ID of the payment request to get the result for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestResult'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestResult
+     */
+    public function getPaymentRequestResult($id, string $contentType = self::contentTypes['getPaymentRequestResult'][0])
+    {
+        list($response) = $this->getPaymentRequestResultWithHttpInfo($id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getPaymentRequestResultWithHttpInfo
+     *
+     * Gets a payment request result.
+     *
+     * @param  string $id ID of the payment request to get the result for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestResult'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestResult, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getPaymentRequestResultWithHttpInfo($id, string $contentType = self::contentTypes['getPaymentRequestResult'][0])
+    {
+        $request = $this->getPaymentRequestResultRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestResult' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestResult' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestResult', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestResult';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestResult',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getPaymentRequestResultAsync
+     *
+     * Gets a payment request result.
+     *
+     * @param  string $id ID of the payment request to get the result for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestResult'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPaymentRequestResultAsync($id, string $contentType = self::contentTypes['getPaymentRequestResult'][0])
+    {
+        return $this->getPaymentRequestResultAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getPaymentRequestResultAsyncWithHttpInfo
+     *
+     * Gets a payment request result.
+     *
+     * @param  string $id ID of the payment request to get the result for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestResult'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPaymentRequestResultAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getPaymentRequestResult'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestResult';
+        $request = $this->getPaymentRequestResultRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getPaymentRequestResult'
+     *
+     * @param  string $id ID of the payment request to get the result for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPaymentRequestResult'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getPaymentRequestResultRequest($id, string $contentType = self::contentTypes['getPaymentRequestResult'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling getPaymentRequestResult'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/paymentrequests/{id}/result';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getPublicKeyForCardPayment
+     *
+     * Gets the public key to encrypt card details with when submitting an authorisation.
+     *
+     * @param  string $id The ID of the payment request the public key will be used with. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPublicKeyForCardPayment'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPublicKey
+     */
+    public function getPublicKeyForCardPayment($id, string $contentType = self::contentTypes['getPublicKeyForCardPayment'][0])
+    {
+        list($response) = $this->getPublicKeyForCardPaymentWithHttpInfo($id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getPublicKeyForCardPaymentWithHttpInfo
+     *
+     * Gets the public key to encrypt card details with when submitting an authorisation.
+     *
+     * @param  string $id The ID of the payment request the public key will be used with. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPublicKeyForCardPayment'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPublicKey, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getPublicKeyForCardPaymentWithHttpInfo($id, string $contentType = self::contentTypes['getPublicKeyForCardPayment'][0])
+    {
+        $request = $this->getPublicKeyForCardPaymentRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPublicKey' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPublicKey' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPublicKey', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPublicKey';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPublicKey',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getPublicKeyForCardPaymentAsync
+     *
+     * Gets the public key to encrypt card details with when submitting an authorisation.
+     *
+     * @param  string $id The ID of the payment request the public key will be used with. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPublicKeyForCardPayment'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPublicKeyForCardPaymentAsync($id, string $contentType = self::contentTypes['getPublicKeyForCardPayment'][0])
+    {
+        return $this->getPublicKeyForCardPaymentAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getPublicKeyForCardPaymentAsyncWithHttpInfo
+     *
+     * Gets the public key to encrypt card details with when submitting an authorisation.
+     *
+     * @param  string $id The ID of the payment request the public key will be used with. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPublicKeyForCardPayment'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPublicKeyForCardPaymentAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getPublicKeyForCardPayment'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPublicKey';
+        $request = $this->getPublicKeyForCardPaymentRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getPublicKeyForCardPayment'
+     *
+     * @param  string $id The ID of the payment request the public key will be used with. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPublicKeyForCardPayment'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getPublicKeyForCardPaymentRequest($id, string $contentType = self::contentTypes['getPublicKeyForCardPayment'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling getPublicKeyForCardPayment'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/paymentrequests/{id}/card/publickey';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getTokenisedCards
+     *
+     * Gets a list of the tokenised cards stored for a single customer.
+     *
+     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTokenisedCards'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]
+     */
+    public function getTokenisedCards($customer_email_address, string $contentType = self::contentTypes['getTokenisedCards'][0])
+    {
+        list($response) = $this->getTokenisedCardsWithHttpInfo($customer_email_address, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getTokenisedCardsWithHttpInfo
+     *
+     * Gets a list of the tokenised cards stored for a single customer.
+     *
+     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTokenisedCards'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getTokenisedCardsWithHttpInfo($customer_email_address, string $contentType = self::contentTypes['getTokenisedCards'][0])
+    {
+        $request = $this->getTokenisedCardsRequest($customer_email_address, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getTokenisedCardsAsync
+     *
+     * Gets a list of the tokenised cards stored for a single customer.
+     *
+     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTokenisedCards'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getTokenisedCardsAsync($customer_email_address, string $contentType = self::contentTypes['getTokenisedCards'][0])
+    {
+        return $this->getTokenisedCardsAsyncWithHttpInfo($customer_email_address, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getTokenisedCardsAsyncWithHttpInfo
+     *
+     * Gets a list of the tokenised cards stored for a single customer.
+     *
+     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTokenisedCards'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getTokenisedCardsAsyncWithHttpInfo($customer_email_address, string $contentType = self::contentTypes['getTokenisedCards'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
+        $request = $this->getTokenisedCardsRequest($customer_email_address, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getTokenisedCards'
+     *
+     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTokenisedCards'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getTokenisedCardsRequest($customer_email_address, string $contentType = self::contentTypes['getTokenisedCards'][0])
+    {
+
+        // verify the required parameter 'customer_email_address' is set
+        if ($customer_email_address === null || (is_array($customer_email_address) && count($customer_email_address) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $customer_email_address when calling getTokenisedCards'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/paymentrequests/card/customertokens/{customerEmailAddress}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($customer_email_address !== null) {
+            $resourcePath = str_replace(
+                '{' . 'customerEmailAddress' . '}',
+                ObjectSerializer::toPathValue($customer_email_address),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getTokenisedCardsForMerchant
+     *
+     * Gets a list of the tokenised cards stored for a single customer.
+     *
+     * @param  string $merchant_id The ID of the merchant to get all customer card tokens for. (required)
+     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTokenisedCardsForMerchant'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]
+     */
+    public function getTokenisedCardsForMerchant($merchant_id, $customer_email_address, string $contentType = self::contentTypes['getTokenisedCardsForMerchant'][0])
+    {
+        list($response) = $this->getTokenisedCardsForMerchantWithHttpInfo($merchant_id, $customer_email_address, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getTokenisedCardsForMerchantWithHttpInfo
+     *
+     * Gets a list of the tokenised cards stored for a single customer.
+     *
+     * @param  string $merchant_id The ID of the merchant to get all customer card tokens for. (required)
+     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTokenisedCardsForMerchant'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getTokenisedCardsForMerchantWithHttpInfo($merchant_id, $customer_email_address, string $contentType = self::contentTypes['getTokenisedCardsForMerchant'][0])
+    {
+        $request = $this->getTokenisedCardsForMerchantRequest($merchant_id, $customer_email_address, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getTokenisedCardsForMerchantAsync
+     *
+     * Gets a list of the tokenised cards stored for a single customer.
+     *
+     * @param  string $merchant_id The ID of the merchant to get all customer card tokens for. (required)
+     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTokenisedCardsForMerchant'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getTokenisedCardsForMerchantAsync($merchant_id, $customer_email_address, string $contentType = self::contentTypes['getTokenisedCardsForMerchant'][0])
+    {
+        return $this->getTokenisedCardsForMerchantAsyncWithHttpInfo($merchant_id, $customer_email_address, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getTokenisedCardsForMerchantAsyncWithHttpInfo
+     *
+     * Gets a list of the tokenised cards stored for a single customer.
+     *
+     * @param  string $merchant_id The ID of the merchant to get all customer card tokens for. (required)
+     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTokenisedCardsForMerchant'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getTokenisedCardsForMerchantAsyncWithHttpInfo($merchant_id, $customer_email_address, string $contentType = self::contentTypes['getTokenisedCardsForMerchant'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]';
+        $request = $this->getTokenisedCardsForMerchantRequest($merchant_id, $customer_email_address, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getTokenisedCardsForMerchant'
+     *
+     * @param  string $merchant_id The ID of the merchant to get all customer card tokens for. (required)
+     * @param  string $customer_email_address The email address of the customer to retrieve the stored cards for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTokenisedCardsForMerchant'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getTokenisedCardsForMerchantRequest($merchant_id, $customer_email_address, string $contentType = self::contentTypes['getTokenisedCardsForMerchant'][0])
+    {
+
+        // verify the required parameter 'merchant_id' is set
+        if ($merchant_id === null || (is_array($merchant_id) && count($merchant_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $merchant_id when calling getTokenisedCardsForMerchant'
+            );
+        }
+
+        // verify the required parameter 'customer_email_address' is set
+        if ($customer_email_address === null || (is_array($customer_email_address) && count($customer_email_address) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $customer_email_address when calling getTokenisedCardsForMerchant'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/paymentrequests/card/customertokens/{merchantID}/{customerEmailAddress}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($merchant_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'merchantID' . '}',
+                ObjectSerializer::toPathValue($merchant_id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($customer_email_address !== null) {
+            $resourcePath = str_replace(
+                '{' . 'customerEmailAddress' . '}',
+                ObjectSerializer::toPathValue($customer_email_address),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation refundCardPayment
+     *
+     * Submits a request to refund a card payment.
+     *
+     * @param  string $id The ID of the payment request a card payment has previously been captured for. (required)
+     * @param  float $partial_refund_amount The partial amount to be refunded in case of captured payment. (required)
+     * @param  string $authorization_id The authorisation ID of the card payment to refund. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['refundCardPayment'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse
+     */
+    public function refundCardPayment($id, $partial_refund_amount, $authorization_id = null, string $contentType = self::contentTypes['refundCardPayment'][0])
+    {
+        list($response) = $this->refundCardPaymentWithHttpInfo($id, $partial_refund_amount, $authorization_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation refundCardPaymentWithHttpInfo
+     *
+     * Submits a request to refund a card payment.
+     *
+     * @param  string $id The ID of the payment request a card payment has previously been captured for. (required)
+     * @param  float $partial_refund_amount The partial amount to be refunded in case of captured payment. (required)
+     * @param  string $authorization_id The authorisation ID of the card payment to refund. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['refundCardPayment'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function refundCardPaymentWithHttpInfo($id, $partial_refund_amount, $authorization_id = null, string $contentType = self::contentTypes['refundCardPayment'][0])
+    {
+        $request = $this->refundCardPaymentRequest($id, $partial_refund_amount, $authorization_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation refundCardPaymentAsync
+     *
+     * Submits a request to refund a card payment.
+     *
+     * @param  string $id The ID of the payment request a card payment has previously been captured for. (required)
+     * @param  float $partial_refund_amount The partial amount to be refunded in case of captured payment. (required)
+     * @param  string $authorization_id The authorisation ID of the card payment to refund. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['refundCardPayment'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function refundCardPaymentAsync($id, $partial_refund_amount, $authorization_id = null, string $contentType = self::contentTypes['refundCardPayment'][0])
+    {
+        return $this->refundCardPaymentAsyncWithHttpInfo($id, $partial_refund_amount, $authorization_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation refundCardPaymentAsyncWithHttpInfo
+     *
+     * Submits a request to refund a card payment.
+     *
+     * @param  string $id The ID of the payment request a card payment has previously been captured for. (required)
+     * @param  float $partial_refund_amount The partial amount to be refunded in case of captured payment. (required)
+     * @param  string $authorization_id The authorisation ID of the card payment to refund. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['refundCardPayment'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function refundCardPaymentAsyncWithHttpInfo($id, $partial_refund_amount, $authorization_id = null, string $contentType = self::contentTypes['refundCardPayment'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse';
+        $request = $this->refundCardPaymentRequest($id, $partial_refund_amount, $authorization_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'refundCardPayment'
+     *
+     * @param  string $id The ID of the payment request a card payment has previously been captured for. (required)
+     * @param  float $partial_refund_amount The partial amount to be refunded in case of captured payment. (required)
+     * @param  string $authorization_id The authorisation ID of the card payment to refund. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['refundCardPayment'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function refundCardPaymentRequest($id, $partial_refund_amount, $authorization_id = null, string $contentType = self::contentTypes['refundCardPayment'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling refundCardPayment'
+            );
+        }
+
+        // verify the required parameter 'partial_refund_amount' is set
+        if ($partial_refund_amount === null || (is_array($partial_refund_amount) && count($partial_refund_amount) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $partial_refund_amount when calling refundCardPayment'
+            );
+        }
+
+
+
+        $resourcePath = '/api/v1/paymentrequests/{id}/card/refund/{partialRefundAmount}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+        // path params
+        if ($partial_refund_amount !== null) {
+            $resourcePath = str_replace(
+                '{' . 'partialRefundAmount' . '}',
+                ObjectSerializer::toPathValue($partial_refund_amount),
+                $resourcePath
+            );
+        }
+
+        // form params
+        if ($authorization_id !== null) {
+            $formParams['authorizationID'] = ObjectSerializer::toFormValue($authorization_id);
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation setupCardPayerAuthentication
+     *
+     * Set up payer authentication for a card payment.
+     *
+     * @param  string $id The ID of the payment request the card payment is being processed for. (required)
+     * @param  string $jwt The JSON Web Token containing the tokenised card details. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setupCardPayerAuthentication'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse
+     */
+    public function setupCardPayerAuthentication($id, $jwt = null, string $contentType = self::contentTypes['setupCardPayerAuthentication'][0])
+    {
+        list($response) = $this->setupCardPayerAuthenticationWithHttpInfo($id, $jwt, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation setupCardPayerAuthenticationWithHttpInfo
+     *
+     * Set up payer authentication for a card payment.
+     *
+     * @param  string $id The ID of the payment request the card payment is being processed for. (required)
+     * @param  string $jwt The JSON Web Token containing the tokenised card details. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setupCardPayerAuthentication'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function setupCardPayerAuthenticationWithHttpInfo($id, $jwt = null, string $contentType = self::contentTypes['setupCardPayerAuthentication'][0])
+    {
+        $request = $this->setupCardPayerAuthenticationRequest($id, $jwt, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation setupCardPayerAuthenticationAsync
+     *
+     * Set up payer authentication for a card payment.
+     *
+     * @param  string $id The ID of the payment request the card payment is being processed for. (required)
+     * @param  string $jwt The JSON Web Token containing the tokenised card details. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setupCardPayerAuthentication'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function setupCardPayerAuthenticationAsync($id, $jwt = null, string $contentType = self::contentTypes['setupCardPayerAuthentication'][0])
+    {
+        return $this->setupCardPayerAuthenticationAsyncWithHttpInfo($id, $jwt, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation setupCardPayerAuthenticationAsyncWithHttpInfo
+     *
+     * Set up payer authentication for a card payment.
+     *
+     * @param  string $id The ID of the payment request the card payment is being processed for. (required)
+     * @param  string $jwt The JSON Web Token containing the tokenised card details. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setupCardPayerAuthentication'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function setupCardPayerAuthenticationAsyncWithHttpInfo($id, $jwt = null, string $contentType = self::contentTypes['setupCardPayerAuthentication'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse';
+        $request = $this->setupCardPayerAuthenticationRequest($id, $jwt, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'setupCardPayerAuthentication'
+     *
+     * @param  string $id The ID of the payment request the card payment is being processed for. (required)
+     * @param  string $jwt The JSON Web Token containing the tokenised card details. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['setupCardPayerAuthentication'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function setupCardPayerAuthenticationRequest($id, $jwt = null, string $contentType = self::contentTypes['setupCardPayerAuthentication'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling setupCardPayerAuthentication'
+            );
+        }
+
+
+
+        $resourcePath = '/api/v1/paymentrequests/{id}/card/authenticationsetup';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+        // form params
+        if ($jwt !== null) {
+            $formParams['jwt'] = ObjectSerializer::toFormValue($jwt);
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation simulatePayByBankCallback
+     *
+     * This action simulates a payment initiation callback from a bank to authorise a payment in a sandbox environment.
+     *
+     * @param  string $id The ID of the payment request. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestPispSandboxCallback $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback The callback instance with details for the sandbox simulated payment attempt. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['simulatePayByBankCallback'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return string
+     */
+    public function simulatePayByBankCallback($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback = null, string $contentType = self::contentTypes['simulatePayByBankCallback'][0])
+    {
+        list($response) = $this->simulatePayByBankCallbackWithHttpInfo($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation simulatePayByBankCallbackWithHttpInfo
+     *
+     * This action simulates a payment initiation callback from a bank to authorise a payment in a sandbox environment.
+     *
+     * @param  string $id The ID of the payment request. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestPispSandboxCallback $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback The callback instance with details for the sandbox simulated payment attempt. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['simulatePayByBankCallback'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of string, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function simulatePayByBankCallbackWithHttpInfo($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback = null, string $contentType = self::contentTypes['simulatePayByBankCallback'][0])
+    {
+        $request = $this->simulatePayByBankCallbackRequest($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('string' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('string' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, 'string', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = 'string';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'string',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation simulatePayByBankCallbackAsync
+     *
+     * This action simulates a payment initiation callback from a bank to authorise a payment in a sandbox environment.
+     *
+     * @param  string $id The ID of the payment request. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestPispSandboxCallback $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback The callback instance with details for the sandbox simulated payment attempt. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['simulatePayByBankCallback'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function simulatePayByBankCallbackAsync($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback = null, string $contentType = self::contentTypes['simulatePayByBankCallback'][0])
+    {
+        return $this->simulatePayByBankCallbackAsyncWithHttpInfo($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation simulatePayByBankCallbackAsyncWithHttpInfo
+     *
+     * This action simulates a payment initiation callback from a bank to authorise a payment in a sandbox environment.
+     *
+     * @param  string $id The ID of the payment request. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestPispSandboxCallback $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback The callback instance with details for the sandbox simulated payment attempt. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['simulatePayByBankCallback'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function simulatePayByBankCallbackAsyncWithHttpInfo($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback = null, string $contentType = self::contentTypes['simulatePayByBankCallback'][0])
+    {
+        $returnType = 'string';
+        $request = $this->simulatePayByBankCallbackRequest($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'simulatePayByBankCallback'
+     *
+     * @param  string $id The ID of the payment request. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestPispSandboxCallback $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback The callback instance with details for the sandbox simulated payment attempt. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['simulatePayByBankCallback'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function simulatePayByBankCallbackRequest($id, $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback = null, string $contentType = self::contentTypes['simulatePayByBankCallback'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling simulatePayByBankCallback'
+            );
+        }
+
+
+
+        $resourcePath = '/api/v1/paymentrequests/{id}/pisp/sandboxcallback';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($no_frixion_money_moov_models_payment_request_pisp_sandbox_callback)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_payment_request_pisp_sandbox_callback));
+            } else {
+                $httpBody = $no_frixion_money_moov_models_payment_request_pisp_sandbox_callback;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation submitCardPayment
+     *
+     * Submit a payment authorisation request to the card gateway.
+     *
+     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
+     * @param  string $expiry_month expiry_month (required)
+     * @param  string $expiry_year expiry_year (required)
+     * @param  string $jwt_token The tokenised Card Number and CardVerification Number (CVN) details.  Typically generated by the CyberSource javascript library. (optional)
+     * @param  string $number_token number_token (optional)
+     * @param  string $cvc_token cvc_token (optional)
+     * @param  string $card_holder_first_name card_holder_first_name (optional)
+     * @param  string $card_holder_last_name card_holder_last_name (optional)
+     * @param  string $billing_address_line1 billing_address_line1 (optional)
+     * @param  string $billing_address_line2 billing_address_line2 (optional)
+     * @param  string $billing_address_city billing_address_city (optional)
+     * @param  string $billing_address_county billing_address_county (optional)
+     * @param  string $billing_address_post_code billing_address_post_code (optional)
+     * @param  string $billing_address_country_code billing_address_country_code (optional)
+     * @param  string $billing_phone billing_phone (optional)
+     * @param  string $billing_email billing_email (optional)
+     * @param  bool $save_card_consent save_card_consent (optional)
+     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitCardPayment'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse
+     */
+    public function submitCardPayment($id, $expiry_month, $expiry_year, $jwt_token = null, $number_token = null, $cvc_token = null, $card_holder_first_name = null, $card_holder_last_name = null, $billing_address_line1 = null, $billing_address_line2 = null, $billing_address_city = null, $billing_address_county = null, $billing_address_post_code = null, $billing_address_country_code = null, $billing_phone = null, $billing_email = null, $save_card_consent = null, $partial_amount = null, string $contentType = self::contentTypes['submitCardPayment'][0])
+    {
+        list($response) = $this->submitCardPaymentWithHttpInfo($id, $expiry_month, $expiry_year, $jwt_token, $number_token, $cvc_token, $card_holder_first_name, $card_holder_last_name, $billing_address_line1, $billing_address_line2, $billing_address_city, $billing_address_county, $billing_address_post_code, $billing_address_country_code, $billing_phone, $billing_email, $save_card_consent, $partial_amount, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation submitCardPaymentWithHttpInfo
+     *
+     * Submit a payment authorisation request to the card gateway.
+     *
+     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
+     * @param  string $expiry_month (required)
+     * @param  string $expiry_year (required)
+     * @param  string $jwt_token The tokenised Card Number and CardVerification Number (CVN) details.  Typically generated by the CyberSource javascript library. (optional)
+     * @param  string $number_token (optional)
+     * @param  string $cvc_token (optional)
+     * @param  string $card_holder_first_name (optional)
+     * @param  string $card_holder_last_name (optional)
+     * @param  string $billing_address_line1 (optional)
+     * @param  string $billing_address_line2 (optional)
+     * @param  string $billing_address_city (optional)
+     * @param  string $billing_address_county (optional)
+     * @param  string $billing_address_post_code (optional)
+     * @param  string $billing_address_country_code (optional)
+     * @param  string $billing_phone (optional)
+     * @param  string $billing_email (optional)
+     * @param  bool $save_card_consent (optional)
+     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitCardPayment'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function submitCardPaymentWithHttpInfo($id, $expiry_month, $expiry_year, $jwt_token = null, $number_token = null, $cvc_token = null, $card_holder_first_name = null, $card_holder_last_name = null, $billing_address_line1 = null, $billing_address_line2 = null, $billing_address_city = null, $billing_address_county = null, $billing_address_post_code = null, $billing_address_country_code = null, $billing_phone = null, $billing_email = null, $save_card_consent = null, $partial_amount = null, string $contentType = self::contentTypes['submitCardPayment'][0])
+    {
+        $request = $this->submitCardPaymentRequest($id, $expiry_month, $expiry_year, $jwt_token, $number_token, $cvc_token, $card_holder_first_name, $card_holder_last_name, $billing_address_line1, $billing_address_line2, $billing_address_city, $billing_address_county, $billing_address_post_code, $billing_address_country_code, $billing_phone, $billing_email, $save_card_consent, $partial_amount, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation submitCardPaymentAsync
+     *
+     * Submit a payment authorisation request to the card gateway.
+     *
+     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
+     * @param  string $expiry_month (required)
+     * @param  string $expiry_year (required)
+     * @param  string $jwt_token The tokenised Card Number and CardVerification Number (CVN) details.  Typically generated by the CyberSource javascript library. (optional)
+     * @param  string $number_token (optional)
+     * @param  string $cvc_token (optional)
+     * @param  string $card_holder_first_name (optional)
+     * @param  string $card_holder_last_name (optional)
+     * @param  string $billing_address_line1 (optional)
+     * @param  string $billing_address_line2 (optional)
+     * @param  string $billing_address_city (optional)
+     * @param  string $billing_address_county (optional)
+     * @param  string $billing_address_post_code (optional)
+     * @param  string $billing_address_country_code (optional)
+     * @param  string $billing_phone (optional)
+     * @param  string $billing_email (optional)
+     * @param  bool $save_card_consent (optional)
+     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitCardPayment'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function submitCardPaymentAsync($id, $expiry_month, $expiry_year, $jwt_token = null, $number_token = null, $cvc_token = null, $card_holder_first_name = null, $card_holder_last_name = null, $billing_address_line1 = null, $billing_address_line2 = null, $billing_address_city = null, $billing_address_county = null, $billing_address_post_code = null, $billing_address_country_code = null, $billing_phone = null, $billing_email = null, $save_card_consent = null, $partial_amount = null, string $contentType = self::contentTypes['submitCardPayment'][0])
+    {
+        return $this->submitCardPaymentAsyncWithHttpInfo($id, $expiry_month, $expiry_year, $jwt_token, $number_token, $cvc_token, $card_holder_first_name, $card_holder_last_name, $billing_address_line1, $billing_address_line2, $billing_address_city, $billing_address_county, $billing_address_post_code, $billing_address_country_code, $billing_phone, $billing_email, $save_card_consent, $partial_amount, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation submitCardPaymentAsyncWithHttpInfo
+     *
+     * Submit a payment authorisation request to the card gateway.
+     *
+     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
+     * @param  string $expiry_month (required)
+     * @param  string $expiry_year (required)
+     * @param  string $jwt_token The tokenised Card Number and CardVerification Number (CVN) details.  Typically generated by the CyberSource javascript library. (optional)
+     * @param  string $number_token (optional)
+     * @param  string $cvc_token (optional)
+     * @param  string $card_holder_first_name (optional)
+     * @param  string $card_holder_last_name (optional)
+     * @param  string $billing_address_line1 (optional)
+     * @param  string $billing_address_line2 (optional)
+     * @param  string $billing_address_city (optional)
+     * @param  string $billing_address_county (optional)
+     * @param  string $billing_address_post_code (optional)
+     * @param  string $billing_address_country_code (optional)
+     * @param  string $billing_phone (optional)
+     * @param  string $billing_email (optional)
+     * @param  bool $save_card_consent (optional)
+     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitCardPayment'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function submitCardPaymentAsyncWithHttpInfo($id, $expiry_month, $expiry_year, $jwt_token = null, $number_token = null, $cvc_token = null, $card_holder_first_name = null, $card_holder_last_name = null, $billing_address_line1 = null, $billing_address_line2 = null, $billing_address_city = null, $billing_address_county = null, $billing_address_post_code = null, $billing_address_country_code = null, $billing_phone = null, $billing_email = null, $save_card_consent = null, $partial_amount = null, string $contentType = self::contentTypes['submitCardPayment'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse';
+        $request = $this->submitCardPaymentRequest($id, $expiry_month, $expiry_year, $jwt_token, $number_token, $cvc_token, $card_holder_first_name, $card_holder_last_name, $billing_address_line1, $billing_address_line2, $billing_address_city, $billing_address_county, $billing_address_post_code, $billing_address_country_code, $billing_phone, $billing_email, $save_card_consent, $partial_amount, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'submitCardPayment'
+     *
+     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
+     * @param  string $expiry_month (required)
+     * @param  string $expiry_year (required)
+     * @param  string $jwt_token The tokenised Card Number and CardVerification Number (CVN) details.  Typically generated by the CyberSource javascript library. (optional)
+     * @param  string $number_token (optional)
+     * @param  string $cvc_token (optional)
+     * @param  string $card_holder_first_name (optional)
+     * @param  string $card_holder_last_name (optional)
+     * @param  string $billing_address_line1 (optional)
+     * @param  string $billing_address_line2 (optional)
+     * @param  string $billing_address_city (optional)
+     * @param  string $billing_address_county (optional)
+     * @param  string $billing_address_post_code (optional)
+     * @param  string $billing_address_country_code (optional)
+     * @param  string $billing_phone (optional)
+     * @param  string $billing_email (optional)
+     * @param  bool $save_card_consent (optional)
+     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitCardPayment'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function submitCardPaymentRequest($id, $expiry_month, $expiry_year, $jwt_token = null, $number_token = null, $cvc_token = null, $card_holder_first_name = null, $card_holder_last_name = null, $billing_address_line1 = null, $billing_address_line2 = null, $billing_address_city = null, $billing_address_county = null, $billing_address_post_code = null, $billing_address_country_code = null, $billing_phone = null, $billing_email = null, $save_card_consent = null, $partial_amount = null, string $contentType = self::contentTypes['submitCardPayment'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling submitCardPayment'
+            );
+        }
+
+        // verify the required parameter 'expiry_month' is set
+        if ($expiry_month === null || (is_array($expiry_month) && count($expiry_month) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $expiry_month when calling submitCardPayment'
+            );
+        }
+
+        // verify the required parameter 'expiry_year' is set
+        if ($expiry_year === null || (is_array($expiry_year) && count($expiry_year) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $expiry_year when calling submitCardPayment'
+            );
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $resourcePath = '/api/v1/paymentrequests/{id}/card';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+        // form params
+        if ($expiry_month !== null) {
+            $formParams['ExpiryMonth'] = ObjectSerializer::toFormValue($expiry_month);
+        }
+        // form params
+        if ($expiry_year !== null) {
+            $formParams['ExpiryYear'] = ObjectSerializer::toFormValue($expiry_year);
+        }
+        // form params
+        if ($jwt_token !== null) {
+            $formParams['JwtToken'] = ObjectSerializer::toFormValue($jwt_token);
+        }
+        // form params
+        if ($number_token !== null) {
+            $formParams['NumberToken'] = ObjectSerializer::toFormValue($number_token);
+        }
+        // form params
+        if ($cvc_token !== null) {
+            $formParams['CvcToken'] = ObjectSerializer::toFormValue($cvc_token);
+        }
+        // form params
+        if ($card_holder_first_name !== null) {
+            $formParams['CardHolderFirstName'] = ObjectSerializer::toFormValue($card_holder_first_name);
+        }
+        // form params
+        if ($card_holder_last_name !== null) {
+            $formParams['CardHolderLastName'] = ObjectSerializer::toFormValue($card_holder_last_name);
+        }
+        // form params
+        if ($billing_address_line1 !== null) {
+            $formParams['BillingAddressLine1'] = ObjectSerializer::toFormValue($billing_address_line1);
+        }
+        // form params
+        if ($billing_address_line2 !== null) {
+            $formParams['BillingAddressLine2'] = ObjectSerializer::toFormValue($billing_address_line2);
+        }
+        // form params
+        if ($billing_address_city !== null) {
+            $formParams['BillingAddressCity'] = ObjectSerializer::toFormValue($billing_address_city);
+        }
+        // form params
+        if ($billing_address_county !== null) {
+            $formParams['BillingAddressCounty'] = ObjectSerializer::toFormValue($billing_address_county);
+        }
+        // form params
+        if ($billing_address_post_code !== null) {
+            $formParams['BillingAddressPostCode'] = ObjectSerializer::toFormValue($billing_address_post_code);
+        }
+        // form params
+        if ($billing_address_country_code !== null) {
+            $formParams['BillingAddressCountryCode'] = ObjectSerializer::toFormValue($billing_address_country_code);
+        }
+        // form params
+        if ($billing_phone !== null) {
+            $formParams['BillingPhone'] = ObjectSerializer::toFormValue($billing_phone);
+        }
+        // form params
+        if ($billing_email !== null) {
+            $formParams['BillingEmail'] = ObjectSerializer::toFormValue($billing_email);
+        }
+        // form params
+        if ($save_card_consent !== null) {
+            $formParams['SaveCardConsent'] = ObjectSerializer::toFormValue($save_card_consent);
+        }
+        // form params
+        if ($partial_amount !== null) {
+            $formParams['PartialAmount'] = ObjectSerializer::toFormValue($partial_amount);
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation submitPayByBank
+     *
+     * Submits a payment initiation request.
+     *
+     * @param  string $id The ID of the payment request the payment initiation is being submitted for. (required)
+     * @param  string $provider_id This is the ID of the institution (bank) that the payer ha chosen. (required)
+     * @param  float $partial_amount Optional. If 0 the full amount is assumed. (optional)
+     * @param  string $redirect_to_origin_url redirect_to_origin_url (optional)
+     * @param  string $origin_url Optional. If set should indicate the origin URL the payer is making the   payment from. If a pay by bank attempt fails and the payment request does not  have a FailureCallbackUrl set then the payer will be redirected to this URL. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitPayByBank'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentInitiationResponse
+     */
+    public function submitPayByBank($id, $provider_id, $partial_amount = null, $redirect_to_origin_url = null, $origin_url = null, string $contentType = self::contentTypes['submitPayByBank'][0])
+    {
+        list($response) = $this->submitPayByBankWithHttpInfo($id, $provider_id, $partial_amount, $redirect_to_origin_url, $origin_url, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation submitPayByBankWithHttpInfo
+     *
+     * Submits a payment initiation request.
+     *
+     * @param  string $id The ID of the payment request the payment initiation is being submitted for. (required)
+     * @param  string $provider_id This is the ID of the institution (bank) that the payer ha chosen. (required)
+     * @param  float $partial_amount Optional. If 0 the full amount is assumed. (optional)
+     * @param  string $redirect_to_origin_url (optional)
+     * @param  string $origin_url Optional. If set should indicate the origin URL the payer is making the   payment from. If a pay by bank attempt fails and the payment request does not  have a FailureCallbackUrl set then the payer will be redirected to this URL. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitPayByBank'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentInitiationResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function submitPayByBankWithHttpInfo($id, $provider_id, $partial_amount = null, $redirect_to_origin_url = null, $origin_url = null, string $contentType = self::contentTypes['submitPayByBank'][0])
+    {
+        $request = $this->submitPayByBankRequest($id, $provider_id, $partial_amount, $redirect_to_origin_url, $origin_url, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentInitiationResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentInitiationResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentInitiationResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentInitiationResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentInitiationResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation submitPayByBankAsync
+     *
+     * Submits a payment initiation request.
+     *
+     * @param  string $id The ID of the payment request the payment initiation is being submitted for. (required)
+     * @param  string $provider_id This is the ID of the institution (bank) that the payer ha chosen. (required)
+     * @param  float $partial_amount Optional. If 0 the full amount is assumed. (optional)
+     * @param  string $redirect_to_origin_url (optional)
+     * @param  string $origin_url Optional. If set should indicate the origin URL the payer is making the   payment from. If a pay by bank attempt fails and the payment request does not  have a FailureCallbackUrl set then the payer will be redirected to this URL. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitPayByBank'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function submitPayByBankAsync($id, $provider_id, $partial_amount = null, $redirect_to_origin_url = null, $origin_url = null, string $contentType = self::contentTypes['submitPayByBank'][0])
+    {
+        return $this->submitPayByBankAsyncWithHttpInfo($id, $provider_id, $partial_amount, $redirect_to_origin_url, $origin_url, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation submitPayByBankAsyncWithHttpInfo
+     *
+     * Submits a payment initiation request.
+     *
+     * @param  string $id The ID of the payment request the payment initiation is being submitted for. (required)
+     * @param  string $provider_id This is the ID of the institution (bank) that the payer ha chosen. (required)
+     * @param  float $partial_amount Optional. If 0 the full amount is assumed. (optional)
+     * @param  string $redirect_to_origin_url (optional)
+     * @param  string $origin_url Optional. If set should indicate the origin URL the payer is making the   payment from. If a pay by bank attempt fails and the payment request does not  have a FailureCallbackUrl set then the payer will be redirected to this URL. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitPayByBank'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function submitPayByBankAsyncWithHttpInfo($id, $provider_id, $partial_amount = null, $redirect_to_origin_url = null, $origin_url = null, string $contentType = self::contentTypes['submitPayByBank'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentInitiationResponse';
+        $request = $this->submitPayByBankRequest($id, $provider_id, $partial_amount, $redirect_to_origin_url, $origin_url, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'submitPayByBank'
+     *
+     * @param  string $id The ID of the payment request the payment initiation is being submitted for. (required)
+     * @param  string $provider_id This is the ID of the institution (bank) that the payer ha chosen. (required)
+     * @param  float $partial_amount Optional. If 0 the full amount is assumed. (optional)
+     * @param  string $redirect_to_origin_url (optional)
+     * @param  string $origin_url Optional. If set should indicate the origin URL the payer is making the   payment from. If a pay by bank attempt fails and the payment request does not  have a FailureCallbackUrl set then the payer will be redirected to this URL. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitPayByBank'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function submitPayByBankRequest($id, $provider_id, $partial_amount = null, $redirect_to_origin_url = null, $origin_url = null, string $contentType = self::contentTypes['submitPayByBank'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling submitPayByBank'
+            );
+        }
+
+        // verify the required parameter 'provider_id' is set
+        if ($provider_id === null || (is_array($provider_id) && count($provider_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $provider_id when calling submitPayByBank'
+            );
+        }
+
+
+
+
+
+        $resourcePath = '/api/v1/paymentrequests/{id}/pisp';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+        // form params
+        if ($provider_id !== null) {
+            $formParams['ProviderID'] = ObjectSerializer::toFormValue($provider_id);
+        }
+        // form params
+        if ($partial_amount !== null) {
+            $formParams['PartialAmount'] = ObjectSerializer::toFormValue($partial_amount);
+        }
+        // form params
+        if ($redirect_to_origin_url !== null) {
+            $formParams['RedirectToOriginUrl'] = ObjectSerializer::toFormValue($redirect_to_origin_url);
+        }
+        // form params
+        if ($origin_url !== null) {
+            $formParams['OriginUrl'] = ObjectSerializer::toFormValue($origin_url);
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation submitTokenisedCardPayment
+     *
+     * Submits a payment request, using a tokenised card, to a payment gateway.
+     *
+     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
+     * @param  string $tokenised_card_id The ID of the tokenised card to use for the payment. The merchant needs to ensure that  the use of the tokenised card is restricted to the same customer that created it. (optional)
+     * @param  string $payment_initiator Indicates who initiated the card token payment, customer or merchant. (optional)
+     * @param  string $merchant_standard_reason For merchant initiated transactions that correspond to one of the industry standard  reasons should be set. (optional)
+     * @param  string $commerce_indicator For recurring and installment merchant initiated transactions this property should  be set accordingly. For all other transactions it should be left at the default of  \\\&quot;internet\\\&quot;. (optional)
+     * @param  string $card_security_code Not used for merchant initiated transactions. Optional for customer initiated transactions.  If supplied will be sent to the card processor as a check that the customer using the   tokenised card knows the card verification number. (optional)
+     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitTokenisedCardPayment'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse
+     */
+    public function submitTokenisedCardPayment($id, $tokenised_card_id = null, $payment_initiator = null, $merchant_standard_reason = null, $commerce_indicator = null, $card_security_code = null, $partial_amount = null, string $contentType = self::contentTypes['submitTokenisedCardPayment'][0])
+    {
+        list($response) = $this->submitTokenisedCardPaymentWithHttpInfo($id, $tokenised_card_id, $payment_initiator, $merchant_standard_reason, $commerce_indicator, $card_security_code, $partial_amount, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation submitTokenisedCardPaymentWithHttpInfo
+     *
+     * Submits a payment request, using a tokenised card, to a payment gateway.
+     *
+     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
+     * @param  string $tokenised_card_id The ID of the tokenised card to use for the payment. The merchant needs to ensure that  the use of the tokenised card is restricted to the same customer that created it. (optional)
+     * @param  string $payment_initiator Indicates who initiated the card token payment, customer or merchant. (optional)
+     * @param  string $merchant_standard_reason For merchant initiated transactions that correspond to one of the industry standard  reasons should be set. (optional)
+     * @param  string $commerce_indicator For recurring and installment merchant initiated transactions this property should  be set accordingly. For all other transactions it should be left at the default of  \\\&quot;internet\\\&quot;. (optional)
+     * @param  string $card_security_code Not used for merchant initiated transactions. Optional for customer initiated transactions.  If supplied will be sent to the card processor as a check that the customer using the   tokenised card knows the card verification number. (optional)
+     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitTokenisedCardPayment'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function submitTokenisedCardPaymentWithHttpInfo($id, $tokenised_card_id = null, $payment_initiator = null, $merchant_standard_reason = null, $commerce_indicator = null, $card_security_code = null, $partial_amount = null, string $contentType = self::contentTypes['submitTokenisedCardPayment'][0])
+    {
+        $request = $this->submitTokenisedCardPaymentRequest($id, $tokenised_card_id, $payment_initiator, $merchant_standard_reason, $commerce_indicator, $card_security_code, $partial_amount, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation submitTokenisedCardPaymentAsync
+     *
+     * Submits a payment request, using a tokenised card, to a payment gateway.
+     *
+     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
+     * @param  string $tokenised_card_id The ID of the tokenised card to use for the payment. The merchant needs to ensure that  the use of the tokenised card is restricted to the same customer that created it. (optional)
+     * @param  string $payment_initiator Indicates who initiated the card token payment, customer or merchant. (optional)
+     * @param  string $merchant_standard_reason For merchant initiated transactions that correspond to one of the industry standard  reasons should be set. (optional)
+     * @param  string $commerce_indicator For recurring and installment merchant initiated transactions this property should  be set accordingly. For all other transactions it should be left at the default of  \\\&quot;internet\\\&quot;. (optional)
+     * @param  string $card_security_code Not used for merchant initiated transactions. Optional for customer initiated transactions.  If supplied will be sent to the card processor as a check that the customer using the   tokenised card knows the card verification number. (optional)
+     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitTokenisedCardPayment'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function submitTokenisedCardPaymentAsync($id, $tokenised_card_id = null, $payment_initiator = null, $merchant_standard_reason = null, $commerce_indicator = null, $card_security_code = null, $partial_amount = null, string $contentType = self::contentTypes['submitTokenisedCardPayment'][0])
+    {
+        return $this->submitTokenisedCardPaymentAsyncWithHttpInfo($id, $tokenised_card_id, $payment_initiator, $merchant_standard_reason, $commerce_indicator, $card_security_code, $partial_amount, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation submitTokenisedCardPaymentAsyncWithHttpInfo
+     *
+     * Submits a payment request, using a tokenised card, to a payment gateway.
+     *
+     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
+     * @param  string $tokenised_card_id The ID of the tokenised card to use for the payment. The merchant needs to ensure that  the use of the tokenised card is restricted to the same customer that created it. (optional)
+     * @param  string $payment_initiator Indicates who initiated the card token payment, customer or merchant. (optional)
+     * @param  string $merchant_standard_reason For merchant initiated transactions that correspond to one of the industry standard  reasons should be set. (optional)
+     * @param  string $commerce_indicator For recurring and installment merchant initiated transactions this property should  be set accordingly. For all other transactions it should be left at the default of  \\\&quot;internet\\\&quot;. (optional)
+     * @param  string $card_security_code Not used for merchant initiated transactions. Optional for customer initiated transactions.  If supplied will be sent to the card processor as a check that the customer using the   tokenised card knows the card verification number. (optional)
+     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitTokenisedCardPayment'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function submitTokenisedCardPaymentAsyncWithHttpInfo($id, $tokenised_card_id = null, $payment_initiator = null, $merchant_standard_reason = null, $commerce_indicator = null, $card_security_code = null, $partial_amount = null, string $contentType = self::contentTypes['submitTokenisedCardPayment'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse';
+        $request = $this->submitTokenisedCardPaymentRequest($id, $tokenised_card_id, $payment_initiator, $merchant_standard_reason, $commerce_indicator, $card_security_code, $partial_amount, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'submitTokenisedCardPayment'
+     *
+     * @param  string $id The ID of the payment request the card payment is being submitted for. (required)
+     * @param  string $tokenised_card_id The ID of the tokenised card to use for the payment. The merchant needs to ensure that  the use of the tokenised card is restricted to the same customer that created it. (optional)
+     * @param  string $payment_initiator Indicates who initiated the card token payment, customer or merchant. (optional)
+     * @param  string $merchant_standard_reason For merchant initiated transactions that correspond to one of the industry standard  reasons should be set. (optional)
+     * @param  string $commerce_indicator For recurring and installment merchant initiated transactions this property should  be set accordingly. For all other transactions it should be left at the default of  \\\&quot;internet\\\&quot;. (optional)
+     * @param  string $card_security_code Not used for merchant initiated transactions. Optional for customer initiated transactions.  If supplied will be sent to the card processor as a check that the customer using the   tokenised card knows the card verification number. (optional)
+     * @param  float $partial_amount Optional partial payment amount. If not specified then the full payment request  amount will be attempted. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitTokenisedCardPayment'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function submitTokenisedCardPaymentRequest($id, $tokenised_card_id = null, $payment_initiator = null, $merchant_standard_reason = null, $commerce_indicator = null, $card_security_code = null, $partial_amount = null, string $contentType = self::contentTypes['submitTokenisedCardPayment'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling submitTokenisedCardPayment'
+            );
+        }
+
+
+
+
+
+
+
+
+        $resourcePath = '/api/v1/paymentrequests/{id}/card/paywithtoken';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+        // form params
+        if ($tokenised_card_id !== null) {
+            $formParams['TokenisedCardID'] = ObjectSerializer::toFormValue($tokenised_card_id);
+        }
+        // form params
+        if ($payment_initiator !== null) {
+            $formParams['PaymentInitiator'] = ObjectSerializer::toFormValue($payment_initiator);
+        }
+        // form params
+        if ($merchant_standard_reason !== null) {
+            $formParams['MerchantStandardReason'] = ObjectSerializer::toFormValue($merchant_standard_reason);
+        }
+        // form params
+        if ($commerce_indicator !== null) {
+            $formParams['CommerceIndicator'] = ObjectSerializer::toFormValue($commerce_indicator);
+        }
+        // form params
+        if ($card_security_code !== null) {
+            $formParams['CardSecurityCode'] = ObjectSerializer::toFormValue($card_security_code);
+        }
+        // form params
+        if ($partial_amount !== null) {
+            $formParams['PartialAmount'] = ObjectSerializer::toFormValue($partial_amount);
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updatePaymentRequest
+     *
+     * Updates a payment request.
+     *
+     * @param  string $id The ID of the payment request to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestUpdate $no_frixion_money_moov_models_payment_request_update The payment request containing the updated details to apply. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentRequest'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest
+     */
+    public function updatePaymentRequest($id, $no_frixion_money_moov_models_payment_request_update = null, string $contentType = self::contentTypes['updatePaymentRequest'][0])
+    {
+        list($response) = $this->updatePaymentRequestWithHttpInfo($id, $no_frixion_money_moov_models_payment_request_update, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updatePaymentRequestWithHttpInfo
+     *
+     * Updates a payment request.
+     *
+     * @param  string $id The ID of the payment request to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestUpdate $no_frixion_money_moov_models_payment_request_update The payment request containing the updated details to apply. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentRequest'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updatePaymentRequestWithHttpInfo($id, $no_frixion_money_moov_models_payment_request_update = null, string $contentType = self::contentTypes['updatePaymentRequest'][0])
+    {
+        $request = $this->updatePaymentRequestRequest($id, $no_frixion_money_moov_models_payment_request_update, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updatePaymentRequestAsync
+     *
+     * Updates a payment request.
+     *
+     * @param  string $id The ID of the payment request to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestUpdate $no_frixion_money_moov_models_payment_request_update The payment request containing the updated details to apply. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentRequest'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updatePaymentRequestAsync($id, $no_frixion_money_moov_models_payment_request_update = null, string $contentType = self::contentTypes['updatePaymentRequest'][0])
+    {
+        return $this->updatePaymentRequestAsyncWithHttpInfo($id, $no_frixion_money_moov_models_payment_request_update, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updatePaymentRequestAsyncWithHttpInfo
+     *
+     * Updates a payment request.
+     *
+     * @param  string $id The ID of the payment request to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestUpdate $no_frixion_money_moov_models_payment_request_update The payment request containing the updated details to apply. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentRequest'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updatePaymentRequestAsyncWithHttpInfo($id, $no_frixion_money_moov_models_payment_request_update = null, string $contentType = self::contentTypes['updatePaymentRequest'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest';
+        $request = $this->updatePaymentRequestRequest($id, $no_frixion_money_moov_models_payment_request_update, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updatePaymentRequest'
+     *
+     * @param  string $id The ID of the payment request to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestUpdate $no_frixion_money_moov_models_payment_request_update The payment request containing the updated details to apply. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePaymentRequest'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updatePaymentRequestRequest($id, $no_frixion_money_moov_models_payment_request_update = null, string $contentType = self::contentTypes['updatePaymentRequest'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling updatePaymentRequest'
+            );
+        }
+
+
+
+        $resourcePath = '/api/v1/paymentrequests/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($no_frixion_money_moov_models_payment_request_update)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_payment_request_update));
+            } else {
+                $httpBody = $no_frixion_money_moov_models_payment_request_update;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation voidAllCardPayments
+     *
+     * Submits a request to void all payments for a payment request.
+     *
+     * @param  string $id The ID of the payment request to void the payments for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['voidAllCardPayments'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse[]
+     */
+    public function voidAllCardPayments($id, string $contentType = self::contentTypes['voidAllCardPayments'][0])
+    {
+        list($response) = $this->voidAllCardPaymentsWithHttpInfo($id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation voidAllCardPaymentsWithHttpInfo
+     *
+     * Submits a request to void all payments for a payment request.
+     *
+     * @param  string $id The ID of the payment request to void the payments for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['voidAllCardPayments'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse[], HTTP status code, HTTP response headers (array of strings)
+     */
+    public function voidAllCardPaymentsWithHttpInfo($id, string $contentType = self::contentTypes['voidAllCardPayments'][0])
+    {
+        $request = $this->voidAllCardPaymentsRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse[]' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse[]' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse[]', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse[]';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse[]',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation voidAllCardPaymentsAsync
+     *
+     * Submits a request to void all payments for a payment request.
+     *
+     * @param  string $id The ID of the payment request to void the payments for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['voidAllCardPayments'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function voidAllCardPaymentsAsync($id, string $contentType = self::contentTypes['voidAllCardPayments'][0])
+    {
+        return $this->voidAllCardPaymentsAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation voidAllCardPaymentsAsyncWithHttpInfo
+     *
+     * Submits a request to void all payments for a payment request.
+     *
+     * @param  string $id The ID of the payment request to void the payments for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['voidAllCardPayments'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function voidAllCardPaymentsAsyncWithHttpInfo($id, string $contentType = self::contentTypes['voidAllCardPayments'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse[]';
+        $request = $this->voidAllCardPaymentsRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'voidAllCardPayments'
+     *
+     * @param  string $id The ID of the payment request to void the payments for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['voidAllCardPayments'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function voidAllCardPaymentsRequest($id, string $contentType = self::contentTypes['voidAllCardPayments'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling voidAllCardPayments'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/paymentrequests/{id}/card/voidpaymentrequest';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation voidCardPayment
+     *
+     * Submits a request to void a card payment.
+     *
+     * @param  string $id The ID of the payment request a card payment has previously been authorised or captured for. (required)
+     * @param  string $authorization_id The authorisation ID of the card payment to void. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['voidCardPayment'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse
+     */
+    public function voidCardPayment($id, $authorization_id = null, string $contentType = self::contentTypes['voidCardPayment'][0])
+    {
+        list($response) = $this->voidCardPaymentWithHttpInfo($id, $authorization_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation voidCardPaymentWithHttpInfo
+     *
+     * Submits a request to void a card payment.
+     *
+     * @param  string $id The ID of the payment request a card payment has previously been authorised or captured for. (required)
+     * @param  string $authorization_id The authorisation ID of the card payment to void. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['voidCardPayment'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function voidCardPaymentWithHttpInfo($id, $authorization_id = null, string $contentType = self::contentTypes['voidCardPayment'][0])
+    {
+        $request = $this->voidCardPaymentRequest($id, $authorization_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation voidCardPaymentAsync
+     *
+     * Submits a request to void a card payment.
+     *
+     * @param  string $id The ID of the payment request a card payment has previously been authorised or captured for. (required)
+     * @param  string $authorization_id The authorisation ID of the card payment to void. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['voidCardPayment'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function voidCardPaymentAsync($id, $authorization_id = null, string $contentType = self::contentTypes['voidCardPayment'][0])
+    {
+        return $this->voidCardPaymentAsyncWithHttpInfo($id, $authorization_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation voidCardPaymentAsyncWithHttpInfo
+     *
+     * Submits a request to void a card payment.
+     *
+     * @param  string $id The ID of the payment request a card payment has previously been authorised or captured for. (required)
+     * @param  string $authorization_id The authorisation ID of the card payment to void. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['voidCardPayment'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function voidCardPaymentAsyncWithHttpInfo($id, $authorization_id = null, string $contentType = self::contentTypes['voidCardPayment'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCardPaymentResponse';
+        $request = $this->voidCardPaymentRequest($id, $authorization_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'voidCardPayment'
+     *
+     * @param  string $id The ID of the payment request a card payment has previously been authorised or captured for. (required)
+     * @param  string $authorization_id The authorisation ID of the card payment to void. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['voidCardPayment'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function voidCardPaymentRequest($id, $authorization_id = null, string $contentType = self::contentTypes['voidCardPayment'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling voidCardPayment'
+            );
+        }
+
+
+
+        $resourcePath = '/api/v1/paymentrequests/{id}/card/void';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+        // form params
+        if ($authorization_id !== null) {
+            $formParams['authorizationID'] = ObjectSerializer::toFormValue($authorization_id);
+        }
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {

@@ -71,58 +71,58 @@ class PayoutsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiV1PayoutsBatchIdGet' => [
+        'cancelScheduledPayout' => [
             'application/json',
         ],
-        'apiV1PayoutsBatchPost' => [
+        'createBatchPayout' => [
             'application/json',
         ],
-        'apiV1PayoutsBatchSubmitIdPost' => [
+        'createPayout' => [
             'application/json',
         ],
-        'apiV1PayoutsBatchcreatePost' => [
+        'createPayouts' => [
             'application/json',
         ],
-        'apiV1PayoutsBatchdeleteDelete' => [
+        'deletePayout' => [
+            'application/json',
+        ],
+        'deletePayouts' => [
             'application/json-patch+json',
             'application/json',
             'text/json',
             'application/*+json',
         ],
-        'apiV1PayoutsCancelIdPut' => [
+        'getBatchPayout' => [
             'application/json',
         ],
-        'apiV1PayoutsGet' => [
+        'getPayout' => [
             'application/json',
         ],
-        'apiV1PayoutsGetbyinvoiceidInvoiceIDGet' => [
+        'getPayoutForInvoice' => [
             'application/json',
         ],
-        'apiV1PayoutsIdDelete' => [
+        'getPayoutMetrics' => [
             'application/json',
         ],
-        'apiV1PayoutsIdGet' => [
+        'getPayoutStatus' => [
             'application/json',
         ],
-        'apiV1PayoutsIdPut' => [
+        'getPayoutsPaged' => [
             'application/json',
         ],
-        'apiV1PayoutsMetricsGet' => [
+        'rejectPayout' => [
             'application/json',
         ],
-        'apiV1PayoutsPost' => [
+        'sendPayout' => [
             'application/json',
         ],
-        'apiV1PayoutsRejectIdPut' => [
+        'submitBatchPayout' => [
             'application/json',
         ],
-        'apiV1PayoutsSendPost' => [
+        'submitPayout' => [
             'application/json',
         ],
-        'apiV1PayoutsStatusIdGet' => [
-            'application/json',
-        ],
-        'apiV1PayoutsSubmitIdPost' => [
+        'updatePayout' => [
             'application/json',
         ],
     ];
@@ -174,38 +174,38 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsBatchIdGet
+     * Operation cancelScheduledPayout
      *
-     * Gets a list of all the payouts contained in a batch.
+     * Attempts to cancel a scheduled payout.
      *
-     * @param  string $id The ID of the batch payout to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the payout to cancel. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelScheduledPayout'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout
      */
-    public function apiV1PayoutsBatchIdGet($id, string $contentType = self::contentTypes['apiV1PayoutsBatchIdGet'][0])
+    public function cancelScheduledPayout($id, string $contentType = self::contentTypes['cancelScheduledPayout'][0])
     {
-        list($response) = $this->apiV1PayoutsBatchIdGetWithHttpInfo($id, $contentType);
+        list($response) = $this->cancelScheduledPayoutWithHttpInfo($id, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1PayoutsBatchIdGetWithHttpInfo
+     * Operation cancelScheduledPayoutWithHttpInfo
      *
-     * Gets a list of all the payouts contained in a batch.
+     * Attempts to cancel a scheduled payout.
      *
-     * @param  string $id The ID of the batch payout to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the payout to cancel. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelScheduledPayout'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1PayoutsBatchIdGetWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PayoutsBatchIdGet'][0])
+    public function cancelScheduledPayoutWithHttpInfo($id, string $contentType = self::contentTypes['cancelScheduledPayout'][0])
     {
-        $request = $this->apiV1PayoutsBatchIdGetRequest($id, $contentType);
+        $request = $this->cancelScheduledPayoutRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -244,11 +244,11 @@ class PayoutsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout' === '\SplFileObject') {
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout' !== 'string') {
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -266,13 +266,13 @@ class PayoutsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout', []),
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout';
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -305,7 +305,7 @@ class PayoutsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout',
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -316,19 +316,19 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsBatchIdGetAsync
+     * Operation cancelScheduledPayoutAsync
      *
-     * Gets a list of all the payouts contained in a batch.
+     * Attempts to cancel a scheduled payout.
      *
-     * @param  string $id The ID of the batch payout to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the payout to cancel. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelScheduledPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsBatchIdGetAsync($id, string $contentType = self::contentTypes['apiV1PayoutsBatchIdGet'][0])
+    public function cancelScheduledPayoutAsync($id, string $contentType = self::contentTypes['cancelScheduledPayout'][0])
     {
-        return $this->apiV1PayoutsBatchIdGetAsyncWithHttpInfo($id, $contentType)
+        return $this->cancelScheduledPayoutAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -337,20 +337,20 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsBatchIdGetAsyncWithHttpInfo
+     * Operation cancelScheduledPayoutAsyncWithHttpInfo
      *
-     * Gets a list of all the payouts contained in a batch.
+     * Attempts to cancel a scheduled payout.
      *
-     * @param  string $id The ID of the batch payout to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the payout to cancel. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelScheduledPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsBatchIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PayoutsBatchIdGet'][0])
+    public function cancelScheduledPayoutAsyncWithHttpInfo($id, string $contentType = self::contentTypes['cancelScheduledPayout'][0])
     {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout';
-        $request = $this->apiV1PayoutsBatchIdGetRequest($id, $contentType);
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout';
+        $request = $this->cancelScheduledPayoutRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -389,26 +389,26 @@ class PayoutsApi
     }
 
     /**
-     * Create request for operation 'apiV1PayoutsBatchIdGet'
+     * Create request for operation 'cancelScheduledPayout'
      *
-     * @param  string $id The ID of the batch payout to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the payout to cancel. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['cancelScheduledPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1PayoutsBatchIdGetRequest($id, string $contentType = self::contentTypes['apiV1PayoutsBatchIdGet'][0])
+    public function cancelScheduledPayoutRequest($id, string $contentType = self::contentTypes['cancelScheduledPayout'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PayoutsBatchIdGet'
+                'Missing the required parameter $id when calling cancelScheduledPayout'
             );
         }
 
 
-        $resourcePath = '/api/v1/payouts/batch/{id}';
+        $resourcePath = '/api/v1/payouts/cancel/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -478,7 +478,7 @@ class PayoutsApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'GET',
+            'PUT',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -486,38 +486,38 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsBatchPost
+     * Operation createBatchPayout
      *
      * Creates a new batch payout.
      *
      * @param  string[] $request_body The IDs of the payout to include in the batch. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBatchPayout'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout
      */
-    public function apiV1PayoutsBatchPost($request_body = null, string $contentType = self::contentTypes['apiV1PayoutsBatchPost'][0])
+    public function createBatchPayout($request_body = null, string $contentType = self::contentTypes['createBatchPayout'][0])
     {
-        list($response) = $this->apiV1PayoutsBatchPostWithHttpInfo($request_body, $contentType);
+        list($response) = $this->createBatchPayoutWithHttpInfo($request_body, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1PayoutsBatchPostWithHttpInfo
+     * Operation createBatchPayoutWithHttpInfo
      *
      * Creates a new batch payout.
      *
      * @param  string[] $request_body The IDs of the payout to include in the batch. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBatchPayout'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1PayoutsBatchPostWithHttpInfo($request_body = null, string $contentType = self::contentTypes['apiV1PayoutsBatchPost'][0])
+    public function createBatchPayoutWithHttpInfo($request_body = null, string $contentType = self::contentTypes['createBatchPayout'][0])
     {
-        $request = $this->apiV1PayoutsBatchPostRequest($request_body, $contentType);
+        $request = $this->createBatchPayoutRequest($request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -628,19 +628,19 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsBatchPostAsync
+     * Operation createBatchPayoutAsync
      *
      * Creates a new batch payout.
      *
      * @param  string[] $request_body The IDs of the payout to include in the batch. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBatchPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsBatchPostAsync($request_body = null, string $contentType = self::contentTypes['apiV1PayoutsBatchPost'][0])
+    public function createBatchPayoutAsync($request_body = null, string $contentType = self::contentTypes['createBatchPayout'][0])
     {
-        return $this->apiV1PayoutsBatchPostAsyncWithHttpInfo($request_body, $contentType)
+        return $this->createBatchPayoutAsyncWithHttpInfo($request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -649,20 +649,20 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsBatchPostAsyncWithHttpInfo
+     * Operation createBatchPayoutAsyncWithHttpInfo
      *
      * Creates a new batch payout.
      *
      * @param  string[] $request_body The IDs of the payout to include in the batch. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBatchPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsBatchPostAsyncWithHttpInfo($request_body = null, string $contentType = self::contentTypes['apiV1PayoutsBatchPost'][0])
+    public function createBatchPayoutAsyncWithHttpInfo($request_body = null, string $contentType = self::contentTypes['createBatchPayout'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout';
-        $request = $this->apiV1PayoutsBatchPostRequest($request_body, $contentType);
+        $request = $this->createBatchPayoutRequest($request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -701,15 +701,15 @@ class PayoutsApi
     }
 
     /**
-     * Create request for operation 'apiV1PayoutsBatchPost'
+     * Create request for operation 'createBatchPayout'
      *
      * @param  string[] $request_body The IDs of the payout to include in the batch. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createBatchPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1PayoutsBatchPostRequest($request_body = null, string $contentType = self::contentTypes['apiV1PayoutsBatchPost'][0])
+    public function createBatchPayoutRequest($request_body = null, string $contentType = self::contentTypes['createBatchPayout'][0])
     {
 
 
@@ -791,37 +791,38 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsBatchSubmitIdPost
+     * Operation createPayout
      *
-     * Submits a batch payout for processing.
+     * Creates a new payout.
      *
-     * @param  string $id The ID of the batch payout to submit. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchSubmitIdPost'] to see the possible values for this operation
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate $no_frixion_money_moov_models_payout_create The object containing the details of the payout to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPayout'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout
      */
-    public function apiV1PayoutsBatchSubmitIdPost($id, string $contentType = self::contentTypes['apiV1PayoutsBatchSubmitIdPost'][0])
+    public function createPayout($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['createPayout'][0])
     {
-        $this->apiV1PayoutsBatchSubmitIdPostWithHttpInfo($id, $contentType);
+        list($response) = $this->createPayoutWithHttpInfo($no_frixion_money_moov_models_payout_create, $contentType);
+        return $response;
     }
 
     /**
-     * Operation apiV1PayoutsBatchSubmitIdPostWithHttpInfo
+     * Operation createPayoutWithHttpInfo
      *
-     * Submits a batch payout for processing.
+     * Creates a new payout.
      *
-     * @param  string $id The ID of the batch payout to submit. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchSubmitIdPost'] to see the possible values for this operation
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate $no_frixion_money_moov_models_payout_create The object containing the details of the payout to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPayout'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1PayoutsBatchSubmitIdPostWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PayoutsBatchSubmitIdPost'][0])
+    public function createPayoutWithHttpInfo($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['createPayout'][0])
     {
-        $request = $this->apiV1PayoutsBatchSubmitIdPostRequest($id, $contentType);
+        $request = $this->createPayoutRequest($no_frixion_money_moov_models_payout_create, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -858,29 +859,93 @@ class PayoutsApi
                 );
             }
 
-            return [null, $statusCode, $response->getHeaders()];
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
     }
 
     /**
-     * Operation apiV1PayoutsBatchSubmitIdPostAsync
+     * Operation createPayoutAsync
      *
-     * Submits a batch payout for processing.
+     * Creates a new payout.
      *
-     * @param  string $id The ID of the batch payout to submit. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchSubmitIdPost'] to see the possible values for this operation
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate $no_frixion_money_moov_models_payout_create The object containing the details of the payout to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsBatchSubmitIdPostAsync($id, string $contentType = self::contentTypes['apiV1PayoutsBatchSubmitIdPost'][0])
+    public function createPayoutAsync($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['createPayout'][0])
     {
-        return $this->apiV1PayoutsBatchSubmitIdPostAsyncWithHttpInfo($id, $contentType)
+        return $this->createPayoutAsyncWithHttpInfo($no_frixion_money_moov_models_payout_create, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -889,26 +954,39 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsBatchSubmitIdPostAsyncWithHttpInfo
+     * Operation createPayoutAsyncWithHttpInfo
      *
-     * Submits a batch payout for processing.
+     * Creates a new payout.
      *
-     * @param  string $id The ID of the batch payout to submit. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchSubmitIdPost'] to see the possible values for this operation
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate $no_frixion_money_moov_models_payout_create The object containing the details of the payout to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsBatchSubmitIdPostAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PayoutsBatchSubmitIdPost'][0])
+    public function createPayoutAsyncWithHttpInfo($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['createPayout'][0])
     {
-        $returnType = '';
-        $request = $this->apiV1PayoutsBatchSubmitIdPostRequest($id, $contentType);
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout';
+        $request = $this->createPayoutRequest($no_frixion_money_moov_models_payout_create, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -928,26 +1006,20 @@ class PayoutsApi
     }
 
     /**
-     * Create request for operation 'apiV1PayoutsBatchSubmitIdPost'
+     * Create request for operation 'createPayout'
      *
-     * @param  string $id The ID of the batch payout to submit. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchSubmitIdPost'] to see the possible values for this operation
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate $no_frixion_money_moov_models_payout_create The object containing the details of the payout to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1PayoutsBatchSubmitIdPostRequest($id, string $contentType = self::contentTypes['apiV1PayoutsBatchSubmitIdPost'][0])
+    public function createPayoutRequest($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['createPayout'][0])
     {
 
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PayoutsBatchSubmitIdPost'
-            );
-        }
 
 
-        $resourcePath = '/api/v1/payouts/batch/submit/{id}';
+        $resourcePath = '/api/v1/payouts';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -956,24 +1028,23 @@ class PayoutsApi
 
 
 
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
-            [],
+            ['text/plain', 'application/json', 'text/json', ],
             $contentType,
             $multipart
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($no_frixion_money_moov_models_payout_create)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_payout_create));
+            } else {
+                $httpBody = $no_frixion_money_moov_models_payout_create;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -1025,38 +1096,38 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsBatchcreatePost
+     * Operation createPayouts
      *
      * Creates payouts.
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate[] $no_frixion_money_moov_models_payout_create A list of objects containing the details of the payouts to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchcreatePost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPayouts'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutsPayoutsCreateResponse
      */
-    public function apiV1PayoutsBatchcreatePost($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['apiV1PayoutsBatchcreatePost'][0])
+    public function createPayouts($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['createPayouts'][0])
     {
-        list($response) = $this->apiV1PayoutsBatchcreatePostWithHttpInfo($no_frixion_money_moov_models_payout_create, $contentType);
+        list($response) = $this->createPayoutsWithHttpInfo($no_frixion_money_moov_models_payout_create, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1PayoutsBatchcreatePostWithHttpInfo
+     * Operation createPayoutsWithHttpInfo
      *
      * Creates payouts.
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate[] $no_frixion_money_moov_models_payout_create A list of objects containing the details of the payouts to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchcreatePost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPayouts'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutsPayoutsCreateResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1PayoutsBatchcreatePostWithHttpInfo($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['apiV1PayoutsBatchcreatePost'][0])
+    public function createPayoutsWithHttpInfo($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['createPayouts'][0])
     {
-        $request = $this->apiV1PayoutsBatchcreatePostRequest($no_frixion_money_moov_models_payout_create, $contentType);
+        $request = $this->createPayoutsRequest($no_frixion_money_moov_models_payout_create, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1167,19 +1238,19 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsBatchcreatePostAsync
+     * Operation createPayoutsAsync
      *
      * Creates payouts.
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate[] $no_frixion_money_moov_models_payout_create A list of objects containing the details of the payouts to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchcreatePost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPayouts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsBatchcreatePostAsync($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['apiV1PayoutsBatchcreatePost'][0])
+    public function createPayoutsAsync($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['createPayouts'][0])
     {
-        return $this->apiV1PayoutsBatchcreatePostAsyncWithHttpInfo($no_frixion_money_moov_models_payout_create, $contentType)
+        return $this->createPayoutsAsyncWithHttpInfo($no_frixion_money_moov_models_payout_create, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1188,20 +1259,20 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsBatchcreatePostAsyncWithHttpInfo
+     * Operation createPayoutsAsyncWithHttpInfo
      *
      * Creates payouts.
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate[] $no_frixion_money_moov_models_payout_create A list of objects containing the details of the payouts to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchcreatePost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPayouts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsBatchcreatePostAsyncWithHttpInfo($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['apiV1PayoutsBatchcreatePost'][0])
+    public function createPayoutsAsyncWithHttpInfo($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['createPayouts'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutsPayoutsCreateResponse';
-        $request = $this->apiV1PayoutsBatchcreatePostRequest($no_frixion_money_moov_models_payout_create, $contentType);
+        $request = $this->createPayoutsRequest($no_frixion_money_moov_models_payout_create, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1240,15 +1311,15 @@ class PayoutsApi
     }
 
     /**
-     * Create request for operation 'apiV1PayoutsBatchcreatePost'
+     * Create request for operation 'createPayouts'
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate[] $no_frixion_money_moov_models_payout_create A list of objects containing the details of the payouts to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchcreatePost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createPayouts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1PayoutsBatchcreatePostRequest($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['apiV1PayoutsBatchcreatePost'][0])
+    public function createPayoutsRequest($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['createPayouts'][0])
     {
 
 
@@ -1330,37 +1401,37 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsBatchdeleteDelete
+     * Operation deletePayout
      *
-     * Deletes a list of payout records.
+     * Deletes a payout record.
      *
-     * @param  string[] $request_body The IDs of the payouts to be deleted (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchdeleteDelete'] to see the possible values for this operation
+     * @param  string $id The ID of the payment record to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePayout'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function apiV1PayoutsBatchdeleteDelete($request_body = null, string $contentType = self::contentTypes['apiV1PayoutsBatchdeleteDelete'][0])
+    public function deletePayout($id, string $contentType = self::contentTypes['deletePayout'][0])
     {
-        $this->apiV1PayoutsBatchdeleteDeleteWithHttpInfo($request_body, $contentType);
+        $this->deletePayoutWithHttpInfo($id, $contentType);
     }
 
     /**
-     * Operation apiV1PayoutsBatchdeleteDeleteWithHttpInfo
+     * Operation deletePayoutWithHttpInfo
      *
-     * Deletes a list of payout records.
+     * Deletes a payout record.
      *
-     * @param  string[] $request_body The IDs of the payouts to be deleted (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchdeleteDelete'] to see the possible values for this operation
+     * @param  string $id The ID of the payment record to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePayout'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1PayoutsBatchdeleteDeleteWithHttpInfo($request_body = null, string $contentType = self::contentTypes['apiV1PayoutsBatchdeleteDelete'][0])
+    public function deletePayoutWithHttpInfo($id, string $contentType = self::contentTypes['deletePayout'][0])
     {
-        $request = $this->apiV1PayoutsBatchdeleteDeleteRequest($request_body, $contentType);
+        $request = $this->deletePayoutRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1407,19 +1478,19 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsBatchdeleteDeleteAsync
+     * Operation deletePayoutAsync
      *
-     * Deletes a list of payout records.
+     * Deletes a payout record.
      *
-     * @param  string[] $request_body The IDs of the payouts to be deleted (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchdeleteDelete'] to see the possible values for this operation
+     * @param  string $id The ID of the payment record to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsBatchdeleteDeleteAsync($request_body = null, string $contentType = self::contentTypes['apiV1PayoutsBatchdeleteDelete'][0])
+    public function deletePayoutAsync($id, string $contentType = self::contentTypes['deletePayout'][0])
     {
-        return $this->apiV1PayoutsBatchdeleteDeleteAsyncWithHttpInfo($request_body, $contentType)
+        return $this->deletePayoutAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1428,20 +1499,20 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsBatchdeleteDeleteAsyncWithHttpInfo
+     * Operation deletePayoutAsyncWithHttpInfo
      *
-     * Deletes a list of payout records.
+     * Deletes a payout record.
      *
-     * @param  string[] $request_body The IDs of the payouts to be deleted (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchdeleteDelete'] to see the possible values for this operation
+     * @param  string $id The ID of the payment record to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsBatchdeleteDeleteAsyncWithHttpInfo($request_body = null, string $contentType = self::contentTypes['apiV1PayoutsBatchdeleteDelete'][0])
+    public function deletePayoutAsyncWithHttpInfo($id, string $contentType = self::contentTypes['deletePayout'][0])
     {
         $returnType = '';
-        $request = $this->apiV1PayoutsBatchdeleteDeleteRequest($request_body, $contentType);
+        $request = $this->deletePayoutRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1467,15 +1538,249 @@ class PayoutsApi
     }
 
     /**
-     * Create request for operation 'apiV1PayoutsBatchdeleteDelete'
+     * Create request for operation 'deletePayout'
      *
-     * @param  string[] $request_body The IDs of the payouts to be deleted (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsBatchdeleteDelete'] to see the possible values for this operation
+     * @param  string $id The ID of the payment record to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1PayoutsBatchdeleteDeleteRequest($request_body = null, string $contentType = self::contentTypes['apiV1PayoutsBatchdeleteDelete'][0])
+    public function deletePayoutRequest($id, string $contentType = self::contentTypes['deletePayout'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling deletePayout'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/payouts/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            [],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deletePayouts
+     *
+     * Deletes a list of payout records.
+     *
+     * @param  string[] $request_body The IDs of the payouts to be deleted (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePayouts'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deletePayouts($request_body = null, string $contentType = self::contentTypes['deletePayouts'][0])
+    {
+        $this->deletePayoutsWithHttpInfo($request_body, $contentType);
+    }
+
+    /**
+     * Operation deletePayoutsWithHttpInfo
+     *
+     * Deletes a list of payout records.
+     *
+     * @param  string[] $request_body The IDs of the payouts to be deleted (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePayouts'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deletePayoutsWithHttpInfo($request_body = null, string $contentType = self::contentTypes['deletePayouts'][0])
+    {
+        $request = $this->deletePayoutsRequest($request_body, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deletePayoutsAsync
+     *
+     * Deletes a list of payout records.
+     *
+     * @param  string[] $request_body The IDs of the payouts to be deleted (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePayouts'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deletePayoutsAsync($request_body = null, string $contentType = self::contentTypes['deletePayouts'][0])
+    {
+        return $this->deletePayoutsAsyncWithHttpInfo($request_body, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deletePayoutsAsyncWithHttpInfo
+     *
+     * Deletes a list of payout records.
+     *
+     * @param  string[] $request_body The IDs of the payouts to be deleted (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePayouts'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deletePayoutsAsyncWithHttpInfo($request_body = null, string $contentType = self::contentTypes['deletePayouts'][0])
+    {
+        $returnType = '';
+        $request = $this->deletePayoutsRequest($request_body, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deletePayouts'
+     *
+     * @param  string[] $request_body The IDs of the payouts to be deleted (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deletePayouts'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deletePayoutsRequest($request_body = null, string $contentType = self::contentTypes['deletePayouts'][0])
     {
 
 
@@ -1557,38 +1862,38 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsCancelIdPut
+     * Operation getBatchPayout
      *
-     * Attempts to cancel a scheduled payout.
+     * Gets a list of all the payouts contained in a batch.
      *
-     * @param  string $id The ID of the payout to cancel. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsCancelIdPut'] to see the possible values for this operation
+     * @param  string $id The ID of the batch payout to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBatchPayout'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionDataModelsPayoutEntity
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout
      */
-    public function apiV1PayoutsCancelIdPut($id, string $contentType = self::contentTypes['apiV1PayoutsCancelIdPut'][0])
+    public function getBatchPayout($id, string $contentType = self::contentTypes['getBatchPayout'][0])
     {
-        list($response) = $this->apiV1PayoutsCancelIdPutWithHttpInfo($id, $contentType);
+        list($response) = $this->getBatchPayoutWithHttpInfo($id, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1PayoutsCancelIdPutWithHttpInfo
+     * Operation getBatchPayoutWithHttpInfo
      *
-     * Attempts to cancel a scheduled payout.
+     * Gets a list of all the payouts contained in a batch.
      *
-     * @param  string $id The ID of the payout to cancel. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsCancelIdPut'] to see the possible values for this operation
+     * @param  string $id The ID of the batch payout to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBatchPayout'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionDataModelsPayoutEntity, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1PayoutsCancelIdPutWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PayoutsCancelIdPut'][0])
+    public function getBatchPayoutWithHttpInfo($id, string $contentType = self::contentTypes['getBatchPayout'][0])
     {
-        $request = $this->apiV1PayoutsCancelIdPutRequest($id, $contentType);
+        $request = $this->getBatchPayoutRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1627,11 +1932,11 @@ class PayoutsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionDataModelsPayoutEntity' === '\SplFileObject') {
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionDataModelsPayoutEntity' !== 'string') {
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1649,13 +1954,13 @@ class PayoutsApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionDataModelsPayoutEntity', []),
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Nofrixion\Client\Model\NoFrixionDataModelsPayoutEntity';
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1688,7 +1993,7 @@ class PayoutsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionDataModelsPayoutEntity',
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1699,19 +2004,19 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsCancelIdPutAsync
+     * Operation getBatchPayoutAsync
      *
-     * Attempts to cancel a scheduled payout.
+     * Gets a list of all the payouts contained in a batch.
      *
-     * @param  string $id The ID of the payout to cancel. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsCancelIdPut'] to see the possible values for this operation
+     * @param  string $id The ID of the batch payout to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBatchPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsCancelIdPutAsync($id, string $contentType = self::contentTypes['apiV1PayoutsCancelIdPut'][0])
+    public function getBatchPayoutAsync($id, string $contentType = self::contentTypes['getBatchPayout'][0])
     {
-        return $this->apiV1PayoutsCancelIdPutAsyncWithHttpInfo($id, $contentType)
+        return $this->getBatchPayoutAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1720,20 +2025,20 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsCancelIdPutAsyncWithHttpInfo
+     * Operation getBatchPayoutAsyncWithHttpInfo
      *
-     * Attempts to cancel a scheduled payout.
+     * Gets a list of all the payouts contained in a batch.
      *
-     * @param  string $id The ID of the payout to cancel. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsCancelIdPut'] to see the possible values for this operation
+     * @param  string $id The ID of the batch payout to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBatchPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsCancelIdPutAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PayoutsCancelIdPut'][0])
+    public function getBatchPayoutAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getBatchPayout'][0])
     {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionDataModelsPayoutEntity';
-        $request = $this->apiV1PayoutsCancelIdPutRequest($id, $contentType);
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBatchPayout';
+        $request = $this->getBatchPayoutRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1772,26 +2077,26 @@ class PayoutsApi
     }
 
     /**
-     * Create request for operation 'apiV1PayoutsCancelIdPut'
+     * Create request for operation 'getBatchPayout'
      *
-     * @param  string $id The ID of the payout to cancel. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsCancelIdPut'] to see the possible values for this operation
+     * @param  string $id The ID of the batch payout to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBatchPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1PayoutsCancelIdPutRequest($id, string $contentType = self::contentTypes['apiV1PayoutsCancelIdPut'][0])
+    public function getBatchPayoutRequest($id, string $contentType = self::contentTypes['getBatchPayout'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PayoutsCancelIdPut'
+                'Missing the required parameter $id when calling getBatchPayout'
             );
         }
 
 
-        $resourcePath = '/api/v1/payouts/cancel/{id}';
+        $resourcePath = '/api/v1/payouts/batch/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1861,7 +2166,7 @@ class PayoutsApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'PUT',
+            'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -1869,7 +2174,1355 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsGet
+     * Operation getPayout
+     *
+     * Gets a single payout.
+     *
+     * @param  string $id The ID of the payout record to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayout'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout
+     */
+    public function getPayout($id, string $contentType = self::contentTypes['getPayout'][0])
+    {
+        list($response) = $this->getPayoutWithHttpInfo($id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getPayoutWithHttpInfo
+     *
+     * Gets a single payout.
+     *
+     * @param  string $id The ID of the payout record to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayout'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getPayoutWithHttpInfo($id, string $contentType = self::contentTypes['getPayout'][0])
+    {
+        $request = $this->getPayoutRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getPayoutAsync
+     *
+     * Gets a single payout.
+     *
+     * @param  string $id The ID of the payout record to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayout'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPayoutAsync($id, string $contentType = self::contentTypes['getPayout'][0])
+    {
+        return $this->getPayoutAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getPayoutAsyncWithHttpInfo
+     *
+     * Gets a single payout.
+     *
+     * @param  string $id The ID of the payout record to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayout'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPayoutAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getPayout'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout';
+        $request = $this->getPayoutRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getPayout'
+     *
+     * @param  string $id The ID of the payout record to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayout'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getPayoutRequest($id, string $contentType = self::contentTypes['getPayout'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling getPayout'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/payouts/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getPayoutForInvoice
+     *
+     * Gets a payout by its invoice ID.
+     *
+     * @param  string $invoice_id The invoice ID of the payout to retrieve. Useful when the              payout has been created by an external application such as Xero. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutForInvoice'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest
+     */
+    public function getPayoutForInvoice($invoice_id, string $contentType = self::contentTypes['getPayoutForInvoice'][0])
+    {
+        list($response) = $this->getPayoutForInvoiceWithHttpInfo($invoice_id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getPayoutForInvoiceWithHttpInfo
+     *
+     * Gets a payout by its invoice ID.
+     *
+     * @param  string $invoice_id The invoice ID of the payout to retrieve. Useful when the              payout has been created by an external application such as Xero. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutForInvoice'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getPayoutForInvoiceWithHttpInfo($invoice_id, string $contentType = self::contentTypes['getPayoutForInvoice'][0])
+    {
+        $request = $this->getPayoutForInvoiceRequest($invoice_id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getPayoutForInvoiceAsync
+     *
+     * Gets a payout by its invoice ID.
+     *
+     * @param  string $invoice_id The invoice ID of the payout to retrieve. Useful when the              payout has been created by an external application such as Xero. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutForInvoice'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPayoutForInvoiceAsync($invoice_id, string $contentType = self::contentTypes['getPayoutForInvoice'][0])
+    {
+        return $this->getPayoutForInvoiceAsyncWithHttpInfo($invoice_id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getPayoutForInvoiceAsyncWithHttpInfo
+     *
+     * Gets a payout by its invoice ID.
+     *
+     * @param  string $invoice_id The invoice ID of the payout to retrieve. Useful when the              payout has been created by an external application such as Xero. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutForInvoice'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPayoutForInvoiceAsyncWithHttpInfo($invoice_id, string $contentType = self::contentTypes['getPayoutForInvoice'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest';
+        $request = $this->getPayoutForInvoiceRequest($invoice_id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getPayoutForInvoice'
+     *
+     * @param  string $invoice_id The invoice ID of the payout to retrieve. Useful when the              payout has been created by an external application such as Xero. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutForInvoice'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getPayoutForInvoiceRequest($invoice_id, string $contentType = self::contentTypes['getPayoutForInvoice'][0])
+    {
+
+        // verify the required parameter 'invoice_id' is set
+        if ($invoice_id === null || (is_array($invoice_id) && count($invoice_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $invoice_id when calling getPayoutForInvoice'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/payouts/getbyinvoiceid/{invoiceID}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($invoice_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'invoiceID' . '}',
+                ObjectSerializer::toPathValue($invoice_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getPayoutMetrics
+     *
+     * Gets a list of all payout metrics for a specific merchant.
+     *
+     * @param  string $merchant_id Required. The ID of the merchant to get the payout metrics for. (optional)
+     * @param  \DateTime $from_date The date filter to apply to retrieve payouts created after this date as metrics. (optional)
+     * @param  \DateTime $to_date The date filter to apply to retrieve payouts created up until this date as metrics. (optional)
+     * @param  string $search The text filter to apply to retrieve payouts with a similar title, description, merchant name or contact information as metrics. (optional)
+     * @param  string $currency The currency filter to apply to retrieve payouts with this currency as metrics. (optional)
+     * @param  float $min_amount The amount filter to apply to retrieve payouts that exceed this amount as metrics. (optional)
+     * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount as metrics. (optional)
+     * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags as metrics. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutMetrics'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutMetrics
+     */
+    public function getPayoutMetrics($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['getPayoutMetrics'][0])
+    {
+        list($response) = $this->getPayoutMetricsWithHttpInfo($merchant_id, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getPayoutMetricsWithHttpInfo
+     *
+     * Gets a list of all payout metrics for a specific merchant.
+     *
+     * @param  string $merchant_id Required. The ID of the merchant to get the payout metrics for. (optional)
+     * @param  \DateTime $from_date The date filter to apply to retrieve payouts created after this date as metrics. (optional)
+     * @param  \DateTime $to_date The date filter to apply to retrieve payouts created up until this date as metrics. (optional)
+     * @param  string $search The text filter to apply to retrieve payouts with a similar title, description, merchant name or contact information as metrics. (optional)
+     * @param  string $currency The currency filter to apply to retrieve payouts with this currency as metrics. (optional)
+     * @param  float $min_amount The amount filter to apply to retrieve payouts that exceed this amount as metrics. (optional)
+     * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount as metrics. (optional)
+     * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags as metrics. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutMetrics'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutMetrics, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getPayoutMetricsWithHttpInfo($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['getPayoutMetrics'][0])
+    {
+        $request = $this->getPayoutMetricsRequest($merchant_id, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutMetrics' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutMetrics' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutMetrics', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutMetrics';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutMetrics',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getPayoutMetricsAsync
+     *
+     * Gets a list of all payout metrics for a specific merchant.
+     *
+     * @param  string $merchant_id Required. The ID of the merchant to get the payout metrics for. (optional)
+     * @param  \DateTime $from_date The date filter to apply to retrieve payouts created after this date as metrics. (optional)
+     * @param  \DateTime $to_date The date filter to apply to retrieve payouts created up until this date as metrics. (optional)
+     * @param  string $search The text filter to apply to retrieve payouts with a similar title, description, merchant name or contact information as metrics. (optional)
+     * @param  string $currency The currency filter to apply to retrieve payouts with this currency as metrics. (optional)
+     * @param  float $min_amount The amount filter to apply to retrieve payouts that exceed this amount as metrics. (optional)
+     * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount as metrics. (optional)
+     * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags as metrics. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutMetrics'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPayoutMetricsAsync($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['getPayoutMetrics'][0])
+    {
+        return $this->getPayoutMetricsAsyncWithHttpInfo($merchant_id, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getPayoutMetricsAsyncWithHttpInfo
+     *
+     * Gets a list of all payout metrics for a specific merchant.
+     *
+     * @param  string $merchant_id Required. The ID of the merchant to get the payout metrics for. (optional)
+     * @param  \DateTime $from_date The date filter to apply to retrieve payouts created after this date as metrics. (optional)
+     * @param  \DateTime $to_date The date filter to apply to retrieve payouts created up until this date as metrics. (optional)
+     * @param  string $search The text filter to apply to retrieve payouts with a similar title, description, merchant name or contact information as metrics. (optional)
+     * @param  string $currency The currency filter to apply to retrieve payouts with this currency as metrics. (optional)
+     * @param  float $min_amount The amount filter to apply to retrieve payouts that exceed this amount as metrics. (optional)
+     * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount as metrics. (optional)
+     * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags as metrics. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutMetrics'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPayoutMetricsAsyncWithHttpInfo($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['getPayoutMetrics'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutMetrics';
+        $request = $this->getPayoutMetricsRequest($merchant_id, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getPayoutMetrics'
+     *
+     * @param  string $merchant_id Required. The ID of the merchant to get the payout metrics for. (optional)
+     * @param  \DateTime $from_date The date filter to apply to retrieve payouts created after this date as metrics. (optional)
+     * @param  \DateTime $to_date The date filter to apply to retrieve payouts created up until this date as metrics. (optional)
+     * @param  string $search The text filter to apply to retrieve payouts with a similar title, description, merchant name or contact information as metrics. (optional)
+     * @param  string $currency The currency filter to apply to retrieve payouts with this currency as metrics. (optional)
+     * @param  float $min_amount The amount filter to apply to retrieve payouts that exceed this amount as metrics. (optional)
+     * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount as metrics. (optional)
+     * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags as metrics. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutMetrics'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getPayoutMetricsRequest($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['getPayoutMetrics'][0])
+    {
+
+
+
+
+
+
+
+
+
+
+        $resourcePath = '/api/v1/payouts/metrics';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $merchant_id,
+            'merchantID', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $from_date,
+            'fromDate', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $to_date,
+            'toDate', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $search,
+            'search', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $currency,
+            'currency', // param base name
+            'string', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $min_amount,
+            'minAmount', // param base name
+            'number', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $max_amount,
+            'maxAmount', // param base name
+            'number', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $tags,
+            'tags', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getPayoutStatus
+     *
+     * Gets a single payout status from.
+     *
+     * @param  string $id The ID of the payout record to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutStatus'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout
+     */
+    public function getPayoutStatus($id, string $contentType = self::contentTypes['getPayoutStatus'][0])
+    {
+        list($response) = $this->getPayoutStatusWithHttpInfo($id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getPayoutStatusWithHttpInfo
+     *
+     * Gets a single payout status from.
+     *
+     * @param  string $id The ID of the payout record to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutStatus'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getPayoutStatusWithHttpInfo($id, string $contentType = self::contentTypes['getPayoutStatus'][0])
+    {
+        $request = $this->getPayoutStatusRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getPayoutStatusAsync
+     *
+     * Gets a single payout status from.
+     *
+     * @param  string $id The ID of the payout record to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutStatus'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPayoutStatusAsync($id, string $contentType = self::contentTypes['getPayoutStatus'][0])
+    {
+        return $this->getPayoutStatusAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getPayoutStatusAsyncWithHttpInfo
+     *
+     * Gets a single payout status from.
+     *
+     * @param  string $id The ID of the payout record to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutStatus'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getPayoutStatusAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getPayoutStatus'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout';
+        $request = $this->getPayoutStatusRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getPayoutStatus'
+     *
+     * @param  string $id The ID of the payout record to retrieve. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutStatus'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getPayoutStatusRequest($id, string $contentType = self::contentTypes['getPayoutStatus'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling getPayoutStatus'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/payouts/status/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getPayoutsPaged
      *
      * Gets a list of all payouts for a specific merchant.
      *
@@ -1885,20 +3538,20 @@ class PayoutsApi
      * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount. (optional)
      * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags. (optional)
      * @param  string $sort Optional expression to sort the order of the payouts. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutsPaged'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPayoutPageResponse
      */
-    public function apiV1PayoutsGet($merchant_id = null, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['apiV1PayoutsGet'][0])
+    public function getPayoutsPaged($merchant_id = null, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['getPayoutsPaged'][0])
     {
-        list($response) = $this->apiV1PayoutsGetWithHttpInfo($merchant_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
+        list($response) = $this->getPayoutsPagedWithHttpInfo($merchant_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1PayoutsGetWithHttpInfo
+     * Operation getPayoutsPagedWithHttpInfo
      *
      * Gets a list of all payouts for a specific merchant.
      *
@@ -1914,15 +3567,15 @@ class PayoutsApi
      * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount. (optional)
      * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags. (optional)
      * @param  string $sort Optional expression to sort the order of the payouts. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutsPaged'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPayoutPageResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1PayoutsGetWithHttpInfo($merchant_id = null, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['apiV1PayoutsGet'][0])
+    public function getPayoutsPagedWithHttpInfo($merchant_id = null, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['getPayoutsPaged'][0])
     {
-        $request = $this->apiV1PayoutsGetRequest($merchant_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
+        $request = $this->getPayoutsPagedRequest($merchant_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2033,7 +3686,7 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsGetAsync
+     * Operation getPayoutsPagedAsync
      *
      * Gets a list of all payouts for a specific merchant.
      *
@@ -2049,14 +3702,14 @@ class PayoutsApi
      * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount. (optional)
      * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags. (optional)
      * @param  string $sort Optional expression to sort the order of the payouts. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutsPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsGetAsync($merchant_id = null, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['apiV1PayoutsGet'][0])
+    public function getPayoutsPagedAsync($merchant_id = null, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['getPayoutsPaged'][0])
     {
-        return $this->apiV1PayoutsGetAsyncWithHttpInfo($merchant_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType)
+        return $this->getPayoutsPagedAsyncWithHttpInfo($merchant_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2065,7 +3718,7 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsGetAsyncWithHttpInfo
+     * Operation getPayoutsPagedAsyncWithHttpInfo
      *
      * Gets a list of all payouts for a specific merchant.
      *
@@ -2081,15 +3734,15 @@ class PayoutsApi
      * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount. (optional)
      * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags. (optional)
      * @param  string $sort Optional expression to sort the order of the payouts. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutsPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsGetAsyncWithHttpInfo($merchant_id = null, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['apiV1PayoutsGet'][0])
+    public function getPayoutsPagedAsyncWithHttpInfo($merchant_id = null, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['getPayoutsPaged'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingPayoutPageResponse';
-        $request = $this->apiV1PayoutsGetRequest($merchant_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
+        $request = $this->getPayoutsPagedRequest($merchant_id, $page_number, $page_size, $statuses, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $sort, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2128,7 +3781,7 @@ class PayoutsApi
     }
 
     /**
-     * Create request for operation 'apiV1PayoutsGet'
+     * Create request for operation 'getPayoutsPaged'
      *
      * @param  string $merchant_id Required. The ID of the merchant to get the payouts for. (optional)
      * @param  int $page_number The page number from where records are retrieved. (optional)
@@ -2142,12 +3795,12 @@ class PayoutsApi
      * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount. (optional)
      * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags. (optional)
      * @param  string $sort Optional expression to sort the order of the payouts. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getPayoutsPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1PayoutsGetRequest($merchant_id = null, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['apiV1PayoutsGet'][0])
+    public function getPayoutsPagedRequest($merchant_id = null, $page_number = null, $page_size = null, $statuses = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, $sort = null, string $contentType = self::contentTypes['getPayoutsPaged'][0])
     {
 
 
@@ -2341,584 +3994,40 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsGetbyinvoiceidInvoiceIDGet
+     * Operation rejectPayout
      *
-     * Gets a payout by its invoice ID.
+     * Rejects the authorisation for a payout.
      *
-     * @param  string $invoice_id The invoice ID of the payout to retrieve. Useful when the              payout has been created by an external application such as Xero. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsGetbyinvoiceidInvoiceIDGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest
-     */
-    public function apiV1PayoutsGetbyinvoiceidInvoiceIDGet($invoice_id, string $contentType = self::contentTypes['apiV1PayoutsGetbyinvoiceidInvoiceIDGet'][0])
-    {
-        list($response) = $this->apiV1PayoutsGetbyinvoiceidInvoiceIDGetWithHttpInfo($invoice_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PayoutsGetbyinvoiceidInvoiceIDGetWithHttpInfo
-     *
-     * Gets a payout by its invoice ID.
-     *
-     * @param  string $invoice_id The invoice ID of the payout to retrieve. Useful when the              payout has been created by an external application such as Xero. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsGetbyinvoiceidInvoiceIDGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PayoutsGetbyinvoiceidInvoiceIDGetWithHttpInfo($invoice_id, string $contentType = self::contentTypes['apiV1PayoutsGetbyinvoiceidInvoiceIDGet'][0])
-    {
-        $request = $this->apiV1PayoutsGetbyinvoiceidInvoiceIDGetRequest($invoice_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PayoutsGetbyinvoiceidInvoiceIDGetAsync
-     *
-     * Gets a payout by its invoice ID.
-     *
-     * @param  string $invoice_id The invoice ID of the payout to retrieve. Useful when the              payout has been created by an external application such as Xero. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsGetbyinvoiceidInvoiceIDGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PayoutsGetbyinvoiceidInvoiceIDGetAsync($invoice_id, string $contentType = self::contentTypes['apiV1PayoutsGetbyinvoiceidInvoiceIDGet'][0])
-    {
-        return $this->apiV1PayoutsGetbyinvoiceidInvoiceIDGetAsyncWithHttpInfo($invoice_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PayoutsGetbyinvoiceidInvoiceIDGetAsyncWithHttpInfo
-     *
-     * Gets a payout by its invoice ID.
-     *
-     * @param  string $invoice_id The invoice ID of the payout to retrieve. Useful when the              payout has been created by an external application such as Xero. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsGetbyinvoiceidInvoiceIDGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PayoutsGetbyinvoiceidInvoiceIDGetAsyncWithHttpInfo($invoice_id, string $contentType = self::contentTypes['apiV1PayoutsGetbyinvoiceidInvoiceIDGet'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequest';
-        $request = $this->apiV1PayoutsGetbyinvoiceidInvoiceIDGetRequest($invoice_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PayoutsGetbyinvoiceidInvoiceIDGet'
-     *
-     * @param  string $invoice_id The invoice ID of the payout to retrieve. Useful when the              payout has been created by an external application such as Xero. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsGetbyinvoiceidInvoiceIDGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PayoutsGetbyinvoiceidInvoiceIDGetRequest($invoice_id, string $contentType = self::contentTypes['apiV1PayoutsGetbyinvoiceidInvoiceIDGet'][0])
-    {
-
-        // verify the required parameter 'invoice_id' is set
-        if ($invoice_id === null || (is_array($invoice_id) && count($invoice_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $invoice_id when calling apiV1PayoutsGetbyinvoiceidInvoiceIDGet'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/payouts/getbyinvoiceid/{invoiceID}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($invoice_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'invoiceID' . '}',
-                ObjectSerializer::toPathValue($invoice_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PayoutsIdDelete
-     *
-     * Deletes a payout record.
-     *
-     * @param  string $id The ID of the payment record to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function apiV1PayoutsIdDelete($id, string $contentType = self::contentTypes['apiV1PayoutsIdDelete'][0])
-    {
-        $this->apiV1PayoutsIdDeleteWithHttpInfo($id, $contentType);
-    }
-
-    /**
-     * Operation apiV1PayoutsIdDeleteWithHttpInfo
-     *
-     * Deletes a payout record.
-     *
-     * @param  string $id The ID of the payment record to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PayoutsIdDeleteWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PayoutsIdDelete'][0])
-    {
-        $request = $this->apiV1PayoutsIdDeleteRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PayoutsIdDeleteAsync
-     *
-     * Deletes a payout record.
-     *
-     * @param  string $id The ID of the payment record to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PayoutsIdDeleteAsync($id, string $contentType = self::contentTypes['apiV1PayoutsIdDelete'][0])
-    {
-        return $this->apiV1PayoutsIdDeleteAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PayoutsIdDeleteAsyncWithHttpInfo
-     *
-     * Deletes a payout record.
-     *
-     * @param  string $id The ID of the payment record to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PayoutsIdDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PayoutsIdDelete'][0])
-    {
-        $returnType = '';
-        $request = $this->apiV1PayoutsIdDeleteRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PayoutsIdDelete'
-     *
-     * @param  string $id The ID of the payment record to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PayoutsIdDeleteRequest($id, string $contentType = self::contentTypes['apiV1PayoutsIdDelete'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PayoutsIdDelete'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/payouts/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            [],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PayoutsIdGet
-     *
-     * Gets a single payout.
-     *
-     * @param  string $id The ID of the payout record to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the payout to reject. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutReject $no_frixion_money_moov_models_payout_reject Reason for rejection. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rejectPayout'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout
      */
-    public function apiV1PayoutsIdGet($id, string $contentType = self::contentTypes['apiV1PayoutsIdGet'][0])
+    public function rejectPayout($id, $no_frixion_money_moov_models_payout_reject = null, string $contentType = self::contentTypes['rejectPayout'][0])
     {
-        list($response) = $this->apiV1PayoutsIdGetWithHttpInfo($id, $contentType);
+        list($response) = $this->rejectPayoutWithHttpInfo($id, $no_frixion_money_moov_models_payout_reject, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1PayoutsIdGetWithHttpInfo
+     * Operation rejectPayoutWithHttpInfo
      *
-     * Gets a single payout.
+     * Rejects the authorisation for a payout.
      *
-     * @param  string $id The ID of the payout record to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the payout to reject. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutReject $no_frixion_money_moov_models_payout_reject Reason for rejection. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rejectPayout'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1PayoutsIdGetWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PayoutsIdGet'][0])
+    public function rejectPayoutWithHttpInfo($id, $no_frixion_money_moov_models_payout_reject = null, string $contentType = self::contentTypes['rejectPayout'][0])
     {
-        $request = $this->apiV1PayoutsIdGetRequest($id, $contentType);
+        $request = $this->rejectPayoutRequest($id, $no_frixion_money_moov_models_payout_reject, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -3029,19 +4138,20 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsIdGetAsync
+     * Operation rejectPayoutAsync
      *
-     * Gets a single payout.
+     * Rejects the authorisation for a payout.
      *
-     * @param  string $id The ID of the payout record to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the payout to reject. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutReject $no_frixion_money_moov_models_payout_reject Reason for rejection. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rejectPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsIdGetAsync($id, string $contentType = self::contentTypes['apiV1PayoutsIdGet'][0])
+    public function rejectPayoutAsync($id, $no_frixion_money_moov_models_payout_reject = null, string $contentType = self::contentTypes['rejectPayout'][0])
     {
-        return $this->apiV1PayoutsIdGetAsyncWithHttpInfo($id, $contentType)
+        return $this->rejectPayoutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_payout_reject, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -3050,20 +4160,21 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsIdGetAsyncWithHttpInfo
+     * Operation rejectPayoutAsyncWithHttpInfo
      *
-     * Gets a single payout.
+     * Rejects the authorisation for a payout.
      *
-     * @param  string $id The ID of the payout record to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the payout to reject. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutReject $no_frixion_money_moov_models_payout_reject Reason for rejection. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rejectPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PayoutsIdGet'][0])
+    public function rejectPayoutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_payout_reject = null, string $contentType = self::contentTypes['rejectPayout'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout';
-        $request = $this->apiV1PayoutsIdGetRequest($id, $contentType);
+        $request = $this->rejectPayoutRequest($id, $no_frixion_money_moov_models_payout_reject, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -3102,1380 +4213,22 @@ class PayoutsApi
     }
 
     /**
-     * Create request for operation 'apiV1PayoutsIdGet'
+     * Create request for operation 'rejectPayout'
      *
-     * @param  string $id The ID of the payout record to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the payout to reject. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutReject $no_frixion_money_moov_models_payout_reject Reason for rejection. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['rejectPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1PayoutsIdGetRequest($id, string $contentType = self::contentTypes['apiV1PayoutsIdGet'][0])
+    public function rejectPayoutRequest($id, $no_frixion_money_moov_models_payout_reject = null, string $contentType = self::contentTypes['rejectPayout'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PayoutsIdGet'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/payouts/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PayoutsIdPut
-     *
-     * Updates a payout record.
-     *
-     * @param  string $id The ID of the payout to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutUpdate $no_frixion_money_moov_models_payout_update The object containing the details of payout to update. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsIdPut'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout
-     */
-    public function apiV1PayoutsIdPut($id, $no_frixion_money_moov_models_payout_update = null, string $contentType = self::contentTypes['apiV1PayoutsIdPut'][0])
-    {
-        list($response) = $this->apiV1PayoutsIdPutWithHttpInfo($id, $no_frixion_money_moov_models_payout_update, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PayoutsIdPutWithHttpInfo
-     *
-     * Updates a payout record.
-     *
-     * @param  string $id The ID of the payout to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutUpdate $no_frixion_money_moov_models_payout_update The object containing the details of payout to update. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsIdPut'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PayoutsIdPutWithHttpInfo($id, $no_frixion_money_moov_models_payout_update = null, string $contentType = self::contentTypes['apiV1PayoutsIdPut'][0])
-    {
-        $request = $this->apiV1PayoutsIdPutRequest($id, $no_frixion_money_moov_models_payout_update, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PayoutsIdPutAsync
-     *
-     * Updates a payout record.
-     *
-     * @param  string $id The ID of the payout to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutUpdate $no_frixion_money_moov_models_payout_update The object containing the details of payout to update. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsIdPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PayoutsIdPutAsync($id, $no_frixion_money_moov_models_payout_update = null, string $contentType = self::contentTypes['apiV1PayoutsIdPut'][0])
-    {
-        return $this->apiV1PayoutsIdPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_payout_update, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PayoutsIdPutAsyncWithHttpInfo
-     *
-     * Updates a payout record.
-     *
-     * @param  string $id The ID of the payout to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutUpdate $no_frixion_money_moov_models_payout_update The object containing the details of payout to update. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsIdPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PayoutsIdPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_payout_update = null, string $contentType = self::contentTypes['apiV1PayoutsIdPut'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout';
-        $request = $this->apiV1PayoutsIdPutRequest($id, $no_frixion_money_moov_models_payout_update, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PayoutsIdPut'
-     *
-     * @param  string $id The ID of the payout to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutUpdate $no_frixion_money_moov_models_payout_update The object containing the details of payout to update. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsIdPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PayoutsIdPutRequest($id, $no_frixion_money_moov_models_payout_update = null, string $contentType = self::contentTypes['apiV1PayoutsIdPut'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PayoutsIdPut'
-            );
-        }
-
-
-
-        $resourcePath = '/api/v1/payouts/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($no_frixion_money_moov_models_payout_update)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_payout_update));
-            } else {
-                $httpBody = $no_frixion_money_moov_models_payout_update;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'PUT',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PayoutsMetricsGet
-     *
-     * Gets a list of all payouts for a specific merchant.
-     *
-     * @param  string $merchant_id Required. The ID of the merchant to get the payout metrics for. (optional)
-     * @param  \DateTime $from_date The date filter to apply to retrieve payouts created after this date as metrics. (optional)
-     * @param  \DateTime $to_date The date filter to apply to retrieve payouts created up until this date as metrics. (optional)
-     * @param  string $search The text filter to apply to retrieve payouts with a similar title, description, merchant name or contact information as metrics. (optional)
-     * @param  string $currency The currency filter to apply to retrieve payouts with this currency as metrics. (optional)
-     * @param  float $min_amount The amount filter to apply to retrieve payouts that exceed this amount as metrics. (optional)
-     * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount as metrics. (optional)
-     * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags as metrics. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsMetricsGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutMetrics
-     */
-    public function apiV1PayoutsMetricsGet($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['apiV1PayoutsMetricsGet'][0])
-    {
-        list($response) = $this->apiV1PayoutsMetricsGetWithHttpInfo($merchant_id, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PayoutsMetricsGetWithHttpInfo
-     *
-     * Gets a list of all payouts for a specific merchant.
-     *
-     * @param  string $merchant_id Required. The ID of the merchant to get the payout metrics for. (optional)
-     * @param  \DateTime $from_date The date filter to apply to retrieve payouts created after this date as metrics. (optional)
-     * @param  \DateTime $to_date The date filter to apply to retrieve payouts created up until this date as metrics. (optional)
-     * @param  string $search The text filter to apply to retrieve payouts with a similar title, description, merchant name or contact information as metrics. (optional)
-     * @param  string $currency The currency filter to apply to retrieve payouts with this currency as metrics. (optional)
-     * @param  float $min_amount The amount filter to apply to retrieve payouts that exceed this amount as metrics. (optional)
-     * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount as metrics. (optional)
-     * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags as metrics. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsMetricsGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutMetrics, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PayoutsMetricsGetWithHttpInfo($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['apiV1PayoutsMetricsGet'][0])
-    {
-        $request = $this->apiV1PayoutsMetricsGetRequest($merchant_id, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutMetrics' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutMetrics' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutMetrics', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutMetrics';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutMetrics',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PayoutsMetricsGetAsync
-     *
-     * Gets a list of all payouts for a specific merchant.
-     *
-     * @param  string $merchant_id Required. The ID of the merchant to get the payout metrics for. (optional)
-     * @param  \DateTime $from_date The date filter to apply to retrieve payouts created after this date as metrics. (optional)
-     * @param  \DateTime $to_date The date filter to apply to retrieve payouts created up until this date as metrics. (optional)
-     * @param  string $search The text filter to apply to retrieve payouts with a similar title, description, merchant name or contact information as metrics. (optional)
-     * @param  string $currency The currency filter to apply to retrieve payouts with this currency as metrics. (optional)
-     * @param  float $min_amount The amount filter to apply to retrieve payouts that exceed this amount as metrics. (optional)
-     * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount as metrics. (optional)
-     * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags as metrics. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsMetricsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PayoutsMetricsGetAsync($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['apiV1PayoutsMetricsGet'][0])
-    {
-        return $this->apiV1PayoutsMetricsGetAsyncWithHttpInfo($merchant_id, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PayoutsMetricsGetAsyncWithHttpInfo
-     *
-     * Gets a list of all payouts for a specific merchant.
-     *
-     * @param  string $merchant_id Required. The ID of the merchant to get the payout metrics for. (optional)
-     * @param  \DateTime $from_date The date filter to apply to retrieve payouts created after this date as metrics. (optional)
-     * @param  \DateTime $to_date The date filter to apply to retrieve payouts created up until this date as metrics. (optional)
-     * @param  string $search The text filter to apply to retrieve payouts with a similar title, description, merchant name or contact information as metrics. (optional)
-     * @param  string $currency The currency filter to apply to retrieve payouts with this currency as metrics. (optional)
-     * @param  float $min_amount The amount filter to apply to retrieve payouts that exceed this amount as metrics. (optional)
-     * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount as metrics. (optional)
-     * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags as metrics. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsMetricsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PayoutsMetricsGetAsyncWithHttpInfo($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['apiV1PayoutsMetricsGet'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutMetrics';
-        $request = $this->apiV1PayoutsMetricsGetRequest($merchant_id, $from_date, $to_date, $search, $currency, $min_amount, $max_amount, $tags, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PayoutsMetricsGet'
-     *
-     * @param  string $merchant_id Required. The ID of the merchant to get the payout metrics for. (optional)
-     * @param  \DateTime $from_date The date filter to apply to retrieve payouts created after this date as metrics. (optional)
-     * @param  \DateTime $to_date The date filter to apply to retrieve payouts created up until this date as metrics. (optional)
-     * @param  string $search The text filter to apply to retrieve payouts with a similar title, description, merchant name or contact information as metrics. (optional)
-     * @param  string $currency The currency filter to apply to retrieve payouts with this currency as metrics. (optional)
-     * @param  float $min_amount The amount filter to apply to retrieve payouts that exceed this amount as metrics. (optional)
-     * @param  float $max_amount The amount filter to apply to retrieve payouts that don&#39;t exceed this amount as metrics. (optional)
-     * @param  string[] $tags The tag filter to apply to retrieve payouts with at least one of these tags as metrics. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsMetricsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PayoutsMetricsGetRequest($merchant_id = null, $from_date = null, $to_date = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $tags = null, string $contentType = self::contentTypes['apiV1PayoutsMetricsGet'][0])
-    {
-
-
-
-
-
-
-
-
-
-
-        $resourcePath = '/api/v1/payouts/metrics';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $merchant_id,
-            'merchantID', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $from_date,
-            'fromDate', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $to_date,
-            'toDate', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $search,
-            'search', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $currency,
-            'currency', // param base name
-            'string', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $min_amount,
-            'minAmount', // param base name
-            'number', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $max_amount,
-            'maxAmount', // param base name
-            'number', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $tags,
-            'tags', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PayoutsPost
-     *
-     * Creates a new payout.
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate $no_frixion_money_moov_models_payout_create The object containing the details of the payout to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout
-     */
-    public function apiV1PayoutsPost($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['apiV1PayoutsPost'][0])
-    {
-        list($response) = $this->apiV1PayoutsPostWithHttpInfo($no_frixion_money_moov_models_payout_create, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PayoutsPostWithHttpInfo
-     *
-     * Creates a new payout.
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate $no_frixion_money_moov_models_payout_create The object containing the details of the payout to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PayoutsPostWithHttpInfo($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['apiV1PayoutsPost'][0])
-    {
-        $request = $this->apiV1PayoutsPostRequest($no_frixion_money_moov_models_payout_create, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PayoutsPostAsync
-     *
-     * Creates a new payout.
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate $no_frixion_money_moov_models_payout_create The object containing the details of the payout to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PayoutsPostAsync($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['apiV1PayoutsPost'][0])
-    {
-        return $this->apiV1PayoutsPostAsyncWithHttpInfo($no_frixion_money_moov_models_payout_create, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PayoutsPostAsyncWithHttpInfo
-     *
-     * Creates a new payout.
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate $no_frixion_money_moov_models_payout_create The object containing the details of the payout to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PayoutsPostAsyncWithHttpInfo($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['apiV1PayoutsPost'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout';
-        $request = $this->apiV1PayoutsPostRequest($no_frixion_money_moov_models_payout_create, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PayoutsPost'
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate $no_frixion_money_moov_models_payout_create The object containing the details of the payout to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PayoutsPostRequest($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['apiV1PayoutsPost'][0])
-    {
-
-
-
-        $resourcePath = '/api/v1/payouts';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($no_frixion_money_moov_models_payout_create)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_payout_create));
-            } else {
-                $httpBody = $no_frixion_money_moov_models_payout_create;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PayoutsRejectIdPut
-     *
-     * Rejects the authorisation for a payout.
-     *
-     * @param  string $id The ID of the payout to reject. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutReject $no_frixion_money_moov_models_payout_reject Reason for rejection. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsRejectIdPut'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionDataModelsPayoutEntity
-     */
-    public function apiV1PayoutsRejectIdPut($id, $no_frixion_money_moov_models_payout_reject = null, string $contentType = self::contentTypes['apiV1PayoutsRejectIdPut'][0])
-    {
-        list($response) = $this->apiV1PayoutsRejectIdPutWithHttpInfo($id, $no_frixion_money_moov_models_payout_reject, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1PayoutsRejectIdPutWithHttpInfo
-     *
-     * Rejects the authorisation for a payout.
-     *
-     * @param  string $id The ID of the payout to reject. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutReject $no_frixion_money_moov_models_payout_reject Reason for rejection. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsRejectIdPut'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionDataModelsPayoutEntity, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PayoutsRejectIdPutWithHttpInfo($id, $no_frixion_money_moov_models_payout_reject = null, string $contentType = self::contentTypes['apiV1PayoutsRejectIdPut'][0])
-    {
-        $request = $this->apiV1PayoutsRejectIdPutRequest($id, $no_frixion_money_moov_models_payout_reject, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionDataModelsPayoutEntity' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionDataModelsPayoutEntity' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionDataModelsPayoutEntity', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionDataModelsPayoutEntity';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionDataModelsPayoutEntity',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PayoutsRejectIdPutAsync
-     *
-     * Rejects the authorisation for a payout.
-     *
-     * @param  string $id The ID of the payout to reject. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutReject $no_frixion_money_moov_models_payout_reject Reason for rejection. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsRejectIdPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PayoutsRejectIdPutAsync($id, $no_frixion_money_moov_models_payout_reject = null, string $contentType = self::contentTypes['apiV1PayoutsRejectIdPut'][0])
-    {
-        return $this->apiV1PayoutsRejectIdPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_payout_reject, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PayoutsRejectIdPutAsyncWithHttpInfo
-     *
-     * Rejects the authorisation for a payout.
-     *
-     * @param  string $id The ID of the payout to reject. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutReject $no_frixion_money_moov_models_payout_reject Reason for rejection. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsRejectIdPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PayoutsRejectIdPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_payout_reject = null, string $contentType = self::contentTypes['apiV1PayoutsRejectIdPut'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionDataModelsPayoutEntity';
-        $request = $this->apiV1PayoutsRejectIdPutRequest($id, $no_frixion_money_moov_models_payout_reject, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PayoutsRejectIdPut'
-     *
-     * @param  string $id The ID of the payout to reject. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutReject $no_frixion_money_moov_models_payout_reject Reason for rejection. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsRejectIdPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PayoutsRejectIdPutRequest($id, $no_frixion_money_moov_models_payout_reject = null, string $contentType = self::contentTypes['apiV1PayoutsRejectIdPut'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PayoutsRejectIdPut'
+                'Missing the required parameter $id when calling rejectPayout'
             );
         }
 
@@ -4566,38 +4319,38 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsSendPost
+     * Operation sendPayout
      *
      * Creates and submits a payout for a trusted caller.
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate $no_frixion_money_moov_models_payout_create The object containing the details of the payout to create and submit. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsSendPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendPayout'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout
      */
-    public function apiV1PayoutsSendPost($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['apiV1PayoutsSendPost'][0])
+    public function sendPayout($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['sendPayout'][0])
     {
-        list($response) = $this->apiV1PayoutsSendPostWithHttpInfo($no_frixion_money_moov_models_payout_create, $contentType);
+        list($response) = $this->sendPayoutWithHttpInfo($no_frixion_money_moov_models_payout_create, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1PayoutsSendPostWithHttpInfo
+     * Operation sendPayoutWithHttpInfo
      *
      * Creates and submits a payout for a trusted caller.
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate $no_frixion_money_moov_models_payout_create The object containing the details of the payout to create and submit. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsSendPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendPayout'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1PayoutsSendPostWithHttpInfo($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['apiV1PayoutsSendPost'][0])
+    public function sendPayoutWithHttpInfo($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['sendPayout'][0])
     {
-        $request = $this->apiV1PayoutsSendPostRequest($no_frixion_money_moov_models_payout_create, $contentType);
+        $request = $this->sendPayoutRequest($no_frixion_money_moov_models_payout_create, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -4708,19 +4461,19 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsSendPostAsync
+     * Operation sendPayoutAsync
      *
      * Creates and submits a payout for a trusted caller.
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate $no_frixion_money_moov_models_payout_create The object containing the details of the payout to create and submit. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsSendPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsSendPostAsync($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['apiV1PayoutsSendPost'][0])
+    public function sendPayoutAsync($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['sendPayout'][0])
     {
-        return $this->apiV1PayoutsSendPostAsyncWithHttpInfo($no_frixion_money_moov_models_payout_create, $contentType)
+        return $this->sendPayoutAsyncWithHttpInfo($no_frixion_money_moov_models_payout_create, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -4729,20 +4482,20 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsSendPostAsyncWithHttpInfo
+     * Operation sendPayoutAsyncWithHttpInfo
      *
      * Creates and submits a payout for a trusted caller.
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate $no_frixion_money_moov_models_payout_create The object containing the details of the payout to create and submit. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsSendPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsSendPostAsyncWithHttpInfo($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['apiV1PayoutsSendPost'][0])
+    public function sendPayoutAsyncWithHttpInfo($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['sendPayout'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout';
-        $request = $this->apiV1PayoutsSendPostRequest($no_frixion_money_moov_models_payout_create, $contentType);
+        $request = $this->sendPayoutRequest($no_frixion_money_moov_models_payout_create, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -4781,15 +4534,15 @@ class PayoutsApi
     }
 
     /**
-     * Create request for operation 'apiV1PayoutsSendPost'
+     * Create request for operation 'sendPayout'
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate $no_frixion_money_moov_models_payout_create The object containing the details of the payout to create and submit. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsSendPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['sendPayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1PayoutsSendPostRequest($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['apiV1PayoutsSendPost'][0])
+    public function sendPayoutRequest($no_frixion_money_moov_models_payout_create = null, string $contentType = self::contentTypes['sendPayout'][0])
     {
 
 
@@ -4871,38 +4624,508 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsStatusIdGet
+     * Operation submitBatchPayout
      *
-     * Gets a single payout status from.
+     * Submits a batch payout for processing.
      *
-     * @param  string $id The ID of the payout record to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsStatusIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the batch payout to submit. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitBatchPayout'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function submitBatchPayout($id, string $contentType = self::contentTypes['submitBatchPayout'][0])
+    {
+        $this->submitBatchPayoutWithHttpInfo($id, $contentType);
+    }
+
+    /**
+     * Operation submitBatchPayoutWithHttpInfo
+     *
+     * Submits a batch payout for processing.
+     *
+     * @param  string $id The ID of the batch payout to submit. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitBatchPayout'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function submitBatchPayoutWithHttpInfo($id, string $contentType = self::contentTypes['submitBatchPayout'][0])
+    {
+        $request = $this->submitBatchPayoutRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation submitBatchPayoutAsync
+     *
+     * Submits a batch payout for processing.
+     *
+     * @param  string $id The ID of the batch payout to submit. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitBatchPayout'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function submitBatchPayoutAsync($id, string $contentType = self::contentTypes['submitBatchPayout'][0])
+    {
+        return $this->submitBatchPayoutAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation submitBatchPayoutAsyncWithHttpInfo
+     *
+     * Submits a batch payout for processing.
+     *
+     * @param  string $id The ID of the batch payout to submit. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitBatchPayout'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function submitBatchPayoutAsyncWithHttpInfo($id, string $contentType = self::contentTypes['submitBatchPayout'][0])
+    {
+        $returnType = '';
+        $request = $this->submitBatchPayoutRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'submitBatchPayout'
+     *
+     * @param  string $id The ID of the batch payout to submit. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitBatchPayout'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function submitBatchPayoutRequest($id, string $contentType = self::contentTypes['submitBatchPayout'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling submitBatchPayout'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/payouts/batch/submit/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            [],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation submitPayout
+     *
+     * Submits a payout for processing.
+     *
+     * @param  string $id The ID of the payout to submit. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitPayout'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function submitPayout($id, string $contentType = self::contentTypes['submitPayout'][0])
+    {
+        $this->submitPayoutWithHttpInfo($id, $contentType);
+    }
+
+    /**
+     * Operation submitPayoutWithHttpInfo
+     *
+     * Submits a payout for processing.
+     *
+     * @param  string $id The ID of the payout to submit. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitPayout'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function submitPayoutWithHttpInfo($id, string $contentType = self::contentTypes['submitPayout'][0])
+    {
+        $request = $this->submitPayoutRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation submitPayoutAsync
+     *
+     * Submits a payout for processing.
+     *
+     * @param  string $id The ID of the payout to submit. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitPayout'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function submitPayoutAsync($id, string $contentType = self::contentTypes['submitPayout'][0])
+    {
+        return $this->submitPayoutAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation submitPayoutAsyncWithHttpInfo
+     *
+     * Submits a payout for processing.
+     *
+     * @param  string $id The ID of the payout to submit. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitPayout'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function submitPayoutAsyncWithHttpInfo($id, string $contentType = self::contentTypes['submitPayout'][0])
+    {
+        $returnType = '';
+        $request = $this->submitPayoutRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'submitPayout'
+     *
+     * @param  string $id The ID of the payout to submit. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['submitPayout'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function submitPayoutRequest($id, string $contentType = self::contentTypes['submitPayout'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling submitPayout'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/payouts/submit/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            [],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updatePayout
+     *
+     * Updates a payout record.
+     *
+     * @param  string $id The ID of the payout to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutUpdate $no_frixion_money_moov_models_payout_update The object containing the details of payout to update. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePayout'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout
      */
-    public function apiV1PayoutsStatusIdGet($id, string $contentType = self::contentTypes['apiV1PayoutsStatusIdGet'][0])
+    public function updatePayout($id, $no_frixion_money_moov_models_payout_update = null, string $contentType = self::contentTypes['updatePayout'][0])
     {
-        list($response) = $this->apiV1PayoutsStatusIdGetWithHttpInfo($id, $contentType);
+        list($response) = $this->updatePayoutWithHttpInfo($id, $no_frixion_money_moov_models_payout_update, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1PayoutsStatusIdGetWithHttpInfo
+     * Operation updatePayoutWithHttpInfo
      *
-     * Gets a single payout status from.
+     * Updates a payout record.
      *
-     * @param  string $id The ID of the payout record to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsStatusIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the payout to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutUpdate $no_frixion_money_moov_models_payout_update The object containing the details of payout to update. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePayout'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1PayoutsStatusIdGetWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PayoutsStatusIdGet'][0])
+    public function updatePayoutWithHttpInfo($id, $no_frixion_money_moov_models_payout_update = null, string $contentType = self::contentTypes['updatePayout'][0])
     {
-        $request = $this->apiV1PayoutsStatusIdGetRequest($id, $contentType);
+        $request = $this->updatePayoutRequest($id, $no_frixion_money_moov_models_payout_update, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -5013,19 +5236,20 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsStatusIdGetAsync
+     * Operation updatePayoutAsync
      *
-     * Gets a single payout status from.
+     * Updates a payout record.
      *
-     * @param  string $id The ID of the payout record to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsStatusIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the payout to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutUpdate $no_frixion_money_moov_models_payout_update The object containing the details of payout to update. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsStatusIdGetAsync($id, string $contentType = self::contentTypes['apiV1PayoutsStatusIdGet'][0])
+    public function updatePayoutAsync($id, $no_frixion_money_moov_models_payout_update = null, string $contentType = self::contentTypes['updatePayout'][0])
     {
-        return $this->apiV1PayoutsStatusIdGetAsyncWithHttpInfo($id, $contentType)
+        return $this->updatePayoutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_payout_update, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -5034,20 +5258,21 @@ class PayoutsApi
     }
 
     /**
-     * Operation apiV1PayoutsStatusIdGetAsyncWithHttpInfo
+     * Operation updatePayoutAsyncWithHttpInfo
      *
-     * Gets a single payout status from.
+     * Updates a payout record.
      *
-     * @param  string $id The ID of the payout record to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsStatusIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the payout to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutUpdate $no_frixion_money_moov_models_payout_update The object containing the details of payout to update. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1PayoutsStatusIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PayoutsStatusIdGet'][0])
+    public function updatePayoutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_payout_update = null, string $contentType = self::contentTypes['updatePayout'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout';
-        $request = $this->apiV1PayoutsStatusIdGetRequest($id, $contentType);
+        $request = $this->updatePayoutRequest($id, $no_frixion_money_moov_models_payout_update, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -5086,26 +5311,28 @@ class PayoutsApi
     }
 
     /**
-     * Create request for operation 'apiV1PayoutsStatusIdGet'
+     * Create request for operation 'updatePayout'
      *
-     * @param  string $id The ID of the payout record to retrieve. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsStatusIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the payout to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutUpdate $no_frixion_money_moov_models_payout_update The object containing the details of payout to update. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updatePayout'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1PayoutsStatusIdGetRequest($id, string $contentType = self::contentTypes['apiV1PayoutsStatusIdGet'][0])
+    public function updatePayoutRequest($id, $no_frixion_money_moov_models_payout_update = null, string $contentType = self::contentTypes['updatePayout'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PayoutsStatusIdGet'
+                'Missing the required parameter $id when calling updatePayout'
             );
         }
 
 
-        $resourcePath = '/api/v1/payouts/status/{id}';
+
+        $resourcePath = '/api/v1/payouts/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -5131,7 +5358,14 @@ class PayoutsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($no_frixion_money_moov_models_payout_update)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_payout_update));
+            } else {
+                $httpBody = $no_frixion_money_moov_models_payout_update;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
@@ -5175,241 +5409,7 @@ class PayoutsApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1PayoutsSubmitIdPost
-     *
-     * Submits a payout for processing.
-     *
-     * @param  string $id The ID of the payout to submit. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsSubmitIdPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function apiV1PayoutsSubmitIdPost($id, string $contentType = self::contentTypes['apiV1PayoutsSubmitIdPost'][0])
-    {
-        $this->apiV1PayoutsSubmitIdPostWithHttpInfo($id, $contentType);
-    }
-
-    /**
-     * Operation apiV1PayoutsSubmitIdPostWithHttpInfo
-     *
-     * Submits a payout for processing.
-     *
-     * @param  string $id The ID of the payout to submit. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsSubmitIdPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1PayoutsSubmitIdPostWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PayoutsSubmitIdPost'][0])
-    {
-        $request = $this->apiV1PayoutsSubmitIdPostRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1PayoutsSubmitIdPostAsync
-     *
-     * Submits a payout for processing.
-     *
-     * @param  string $id The ID of the payout to submit. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsSubmitIdPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PayoutsSubmitIdPostAsync($id, string $contentType = self::contentTypes['apiV1PayoutsSubmitIdPost'][0])
-    {
-        return $this->apiV1PayoutsSubmitIdPostAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1PayoutsSubmitIdPostAsyncWithHttpInfo
-     *
-     * Submits a payout for processing.
-     *
-     * @param  string $id The ID of the payout to submit. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsSubmitIdPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1PayoutsSubmitIdPostAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1PayoutsSubmitIdPost'][0])
-    {
-        $returnType = '';
-        $request = $this->apiV1PayoutsSubmitIdPostRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1PayoutsSubmitIdPost'
-     *
-     * @param  string $id The ID of the payout to submit. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1PayoutsSubmitIdPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1PayoutsSubmitIdPostRequest($id, string $contentType = self::contentTypes['apiV1PayoutsSubmitIdPost'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1PayoutsSubmitIdPost'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/payouts/submit/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            [],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
+            'PUT',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

@@ -71,10 +71,10 @@ class TransactionsApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiV1TransactionsAccountIDGet' => [
+        'getTransactionsForAccountPaged' => [
             'application/json',
         ],
-        'apiV1TransactionsGet' => [
+        'getTransactionsPaged' => [
             'application/json',
         ],
     ];
@@ -126,7 +126,7 @@ class TransactionsApi
     }
 
     /**
-     * Operation apiV1TransactionsAccountIDGet
+     * Operation getTransactionsForAccountPaged
      *
      * Get a list of the transactions for a single payment account.
      *
@@ -138,20 +138,20 @@ class TransactionsApi
      * @param  string $credit_type A credit filter to apply to the transactions to retrieve. (optional)
      * @param  string $search The text filter to apply to retrieve transactions with a similar account name, description, their reference, your reference, etc. (optional)
      * @param  string $sort Optional expression to sort the order of the transactions. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TransactionsAccountIDGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTransactionsForAccountPaged'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransactionPageResponse
      */
-    public function apiV1TransactionsAccountIDGet($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['apiV1TransactionsAccountIDGet'][0])
+    public function getTransactionsForAccountPaged($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['getTransactionsForAccountPaged'][0])
     {
-        list($response) = $this->apiV1TransactionsAccountIDGetWithHttpInfo($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort, $contentType);
+        list($response) = $this->getTransactionsForAccountPagedWithHttpInfo($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1TransactionsAccountIDGetWithHttpInfo
+     * Operation getTransactionsForAccountPagedWithHttpInfo
      *
      * Get a list of the transactions for a single payment account.
      *
@@ -163,15 +163,15 @@ class TransactionsApi
      * @param  string $credit_type A credit filter to apply to the transactions to retrieve. (optional)
      * @param  string $search The text filter to apply to retrieve transactions with a similar account name, description, their reference, your reference, etc. (optional)
      * @param  string $sort Optional expression to sort the order of the transactions. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TransactionsAccountIDGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTransactionsForAccountPaged'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransactionPageResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1TransactionsAccountIDGetWithHttpInfo($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['apiV1TransactionsAccountIDGet'][0])
+    public function getTransactionsForAccountPagedWithHttpInfo($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['getTransactionsForAccountPaged'][0])
     {
-        $request = $this->apiV1TransactionsAccountIDGetRequest($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort, $contentType);
+        $request = $this->getTransactionsForAccountPagedRequest($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -282,7 +282,7 @@ class TransactionsApi
     }
 
     /**
-     * Operation apiV1TransactionsAccountIDGetAsync
+     * Operation getTransactionsForAccountPagedAsync
      *
      * Get a list of the transactions for a single payment account.
      *
@@ -294,14 +294,14 @@ class TransactionsApi
      * @param  string $credit_type A credit filter to apply to the transactions to retrieve. (optional)
      * @param  string $search The text filter to apply to retrieve transactions with a similar account name, description, their reference, your reference, etc. (optional)
      * @param  string $sort Optional expression to sort the order of the transactions. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TransactionsAccountIDGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTransactionsForAccountPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1TransactionsAccountIDGetAsync($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['apiV1TransactionsAccountIDGet'][0])
+    public function getTransactionsForAccountPagedAsync($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['getTransactionsForAccountPaged'][0])
     {
-        return $this->apiV1TransactionsAccountIDGetAsyncWithHttpInfo($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort, $contentType)
+        return $this->getTransactionsForAccountPagedAsyncWithHttpInfo($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -310,7 +310,7 @@ class TransactionsApi
     }
 
     /**
-     * Operation apiV1TransactionsAccountIDGetAsyncWithHttpInfo
+     * Operation getTransactionsForAccountPagedAsyncWithHttpInfo
      *
      * Get a list of the transactions for a single payment account.
      *
@@ -322,15 +322,15 @@ class TransactionsApi
      * @param  string $credit_type A credit filter to apply to the transactions to retrieve. (optional)
      * @param  string $search The text filter to apply to retrieve transactions with a similar account name, description, their reference, your reference, etc. (optional)
      * @param  string $sort Optional expression to sort the order of the transactions. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TransactionsAccountIDGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTransactionsForAccountPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1TransactionsAccountIDGetAsyncWithHttpInfo($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['apiV1TransactionsAccountIDGet'][0])
+    public function getTransactionsForAccountPagedAsyncWithHttpInfo($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['getTransactionsForAccountPaged'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransactionPageResponse';
-        $request = $this->apiV1TransactionsAccountIDGetRequest($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort, $contentType);
+        $request = $this->getTransactionsForAccountPagedRequest($account_id, $from_date, $page_number, $page_size, $to_date, $credit_type, $search, $sort, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -369,7 +369,7 @@ class TransactionsApi
     }
 
     /**
-     * Create request for operation 'apiV1TransactionsAccountIDGet'
+     * Create request for operation 'getTransactionsForAccountPaged'
      *
      * @param  string $account_id The ID of the account to retrieve transactions for. (required)
      * @param  \DateTime $from_date The start date to retrieve transactions from. (optional)
@@ -379,18 +379,18 @@ class TransactionsApi
      * @param  string $credit_type A credit filter to apply to the transactions to retrieve. (optional)
      * @param  string $search The text filter to apply to retrieve transactions with a similar account name, description, their reference, your reference, etc. (optional)
      * @param  string $sort Optional expression to sort the order of the transactions. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TransactionsAccountIDGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTransactionsForAccountPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1TransactionsAccountIDGetRequest($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['apiV1TransactionsAccountIDGet'][0])
+    public function getTransactionsForAccountPagedRequest($account_id, $from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, $search = null, $sort = null, string $contentType = self::contentTypes['getTransactionsForAccountPaged'][0])
     {
 
         // verify the required parameter 'account_id' is set
         if ($account_id === null || (is_array($account_id) && count($account_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $account_id when calling apiV1TransactionsAccountIDGet'
+                'Missing the required parameter $account_id when calling getTransactionsForAccountPaged'
             );
         }
 
@@ -543,7 +543,7 @@ class TransactionsApi
     }
 
     /**
-     * Operation apiV1TransactionsGet
+     * Operation getTransactionsPaged
      *
      * Get a list of the transactions for all payment accounts a user has access to.
      *
@@ -552,20 +552,20 @@ class TransactionsApi
      * @param  int $page_size The number of transactions per page. (optional, default to 20)
      * @param  \DateTime $to_date The end date to retrieve transactions from. (optional)
      * @param  string $credit_type A credit filter to apply to the transactions to retrieve. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TransactionsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTransactionsPaged'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransactionPageResponse
      */
-    public function apiV1TransactionsGet($from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, string $contentType = self::contentTypes['apiV1TransactionsGet'][0])
+    public function getTransactionsPaged($from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, string $contentType = self::contentTypes['getTransactionsPaged'][0])
     {
-        list($response) = $this->apiV1TransactionsGetWithHttpInfo($from_date, $page_number, $page_size, $to_date, $credit_type, $contentType);
+        list($response) = $this->getTransactionsPagedWithHttpInfo($from_date, $page_number, $page_size, $to_date, $credit_type, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1TransactionsGetWithHttpInfo
+     * Operation getTransactionsPagedWithHttpInfo
      *
      * Get a list of the transactions for all payment accounts a user has access to.
      *
@@ -574,15 +574,15 @@ class TransactionsApi
      * @param  int $page_size The number of transactions per page. (optional, default to 20)
      * @param  \DateTime $to_date The end date to retrieve transactions from. (optional)
      * @param  string $credit_type A credit filter to apply to the transactions to retrieve. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TransactionsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTransactionsPaged'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransactionPageResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1TransactionsGetWithHttpInfo($from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, string $contentType = self::contentTypes['apiV1TransactionsGet'][0])
+    public function getTransactionsPagedWithHttpInfo($from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, string $contentType = self::contentTypes['getTransactionsPaged'][0])
     {
-        $request = $this->apiV1TransactionsGetRequest($from_date, $page_number, $page_size, $to_date, $credit_type, $contentType);
+        $request = $this->getTransactionsPagedRequest($from_date, $page_number, $page_size, $to_date, $credit_type, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -693,7 +693,7 @@ class TransactionsApi
     }
 
     /**
-     * Operation apiV1TransactionsGetAsync
+     * Operation getTransactionsPagedAsync
      *
      * Get a list of the transactions for all payment accounts a user has access to.
      *
@@ -702,14 +702,14 @@ class TransactionsApi
      * @param  int $page_size The number of transactions per page. (optional, default to 20)
      * @param  \DateTime $to_date The end date to retrieve transactions from. (optional)
      * @param  string $credit_type A credit filter to apply to the transactions to retrieve. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TransactionsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTransactionsPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1TransactionsGetAsync($from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, string $contentType = self::contentTypes['apiV1TransactionsGet'][0])
+    public function getTransactionsPagedAsync($from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, string $contentType = self::contentTypes['getTransactionsPaged'][0])
     {
-        return $this->apiV1TransactionsGetAsyncWithHttpInfo($from_date, $page_number, $page_size, $to_date, $credit_type, $contentType)
+        return $this->getTransactionsPagedAsyncWithHttpInfo($from_date, $page_number, $page_size, $to_date, $credit_type, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -718,7 +718,7 @@ class TransactionsApi
     }
 
     /**
-     * Operation apiV1TransactionsGetAsyncWithHttpInfo
+     * Operation getTransactionsPagedAsyncWithHttpInfo
      *
      * Get a list of the transactions for all payment accounts a user has access to.
      *
@@ -727,15 +727,15 @@ class TransactionsApi
      * @param  int $page_size The number of transactions per page. (optional, default to 20)
      * @param  \DateTime $to_date The end date to retrieve transactions from. (optional)
      * @param  string $credit_type A credit filter to apply to the transactions to retrieve. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TransactionsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTransactionsPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1TransactionsGetAsyncWithHttpInfo($from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, string $contentType = self::contentTypes['apiV1TransactionsGet'][0])
+    public function getTransactionsPagedAsyncWithHttpInfo($from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, string $contentType = self::contentTypes['getTransactionsPaged'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTransactionPageResponse';
-        $request = $this->apiV1TransactionsGetRequest($from_date, $page_number, $page_size, $to_date, $credit_type, $contentType);
+        $request = $this->getTransactionsPagedRequest($from_date, $page_number, $page_size, $to_date, $credit_type, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -774,19 +774,19 @@ class TransactionsApi
     }
 
     /**
-     * Create request for operation 'apiV1TransactionsGet'
+     * Create request for operation 'getTransactionsPaged'
      *
      * @param  \DateTime $from_date The start date to retrieve transactions from. (optional)
      * @param  int $page_number The page number to retrieve. (optional)
      * @param  int $page_size The number of transactions per page. (optional, default to 20)
      * @param  \DateTime $to_date The end date to retrieve transactions from. (optional)
      * @param  string $credit_type A credit filter to apply to the transactions to retrieve. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TransactionsGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTransactionsPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1TransactionsGetRequest($from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, string $contentType = self::contentTypes['apiV1TransactionsGet'][0])
+    public function getTransactionsPagedRequest($from_date = null, $page_number = null, $page_size = 20, $to_date = null, $credit_type = null, string $contentType = self::contentTypes['getTransactionsPaged'][0])
     {
 
 

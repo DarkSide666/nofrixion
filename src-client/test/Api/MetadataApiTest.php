@@ -72,72 +72,72 @@ class MetadataApiTest extends TestCase
     }
 
     /**
-     * Test case for apiV1MetadataHeightGet
+     * Test case for getBitcoinBlockHeight
      *
      * Gets the current Bitcoin blockchain height. In sandbox the testnet height is returned..
      *
      */
-    public function testApiV1MetadataHeightGet()
+    public function testGetBitcoinBlockHeight()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1MetadataProblemGet
+     * Test case for problem
      *
      * Returns an example problem response..
      *
      */
-    public function testApiV1MetadataProblemGet()
+    public function testProblem()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1MetadataProblemnotificationGet
+     * Test case for problemNotification
      *
      * Triggers a webhook with the problem details in the payload..
      *
      */
-    public function testApiV1MetadataProblemnotificationGet()
+    public function testProblemNotification()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1MetadataVersionGet
+     * Test case for version
      *
      * Gets the current version of the MoneyMoov API..
      *
      */
-    public function testApiV1MetadataVersionGet()
+    public function testVersion()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1MetadataWhoamiGet
+     * Test case for whoAmI
      *
      * Returns the profile of the requesting user..
      *
      */
-    public function testApiV1MetadataWhoamiGet()
+    public function testWhoAmI()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1MetadataWhoamimerchantGet
+     * Test case for whoAmIMerchant
      *
      * Returns the name of the merchant that authentication token was issued for..
      *
      */
-    public function testApiV1MetadataWhoamimerchantGet()
+    public function testWhoAmIMerchant()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

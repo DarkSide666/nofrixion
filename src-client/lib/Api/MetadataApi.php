@@ -71,22 +71,22 @@ class MetadataApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiV1MetadataHeightGet' => [
+        'getBitcoinBlockHeight' => [
             'application/json',
         ],
-        'apiV1MetadataProblemGet' => [
+        'problem' => [
             'application/json',
         ],
-        'apiV1MetadataProblemnotificationGet' => [
+        'problemNotification' => [
             'application/json',
         ],
-        'apiV1MetadataVersionGet' => [
+        'version' => [
             'application/json',
         ],
-        'apiV1MetadataWhoamiGet' => [
+        'whoAmI' => [
             'application/json',
         ],
-        'apiV1MetadataWhoamimerchantGet' => [
+        'whoAmIMerchant' => [
             'application/json',
         ],
     ];
@@ -138,36 +138,36 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataHeightGet
+     * Operation getBitcoinBlockHeight
      *
      * Gets the current Bitcoin blockchain height. In sandbox the testnet height is returned.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataHeightGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBitcoinBlockHeight'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return int
      */
-    public function apiV1MetadataHeightGet(string $contentType = self::contentTypes['apiV1MetadataHeightGet'][0])
+    public function getBitcoinBlockHeight(string $contentType = self::contentTypes['getBitcoinBlockHeight'][0])
     {
-        list($response) = $this->apiV1MetadataHeightGetWithHttpInfo($contentType);
+        list($response) = $this->getBitcoinBlockHeightWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1MetadataHeightGetWithHttpInfo
+     * Operation getBitcoinBlockHeightWithHttpInfo
      *
      * Gets the current Bitcoin blockchain height. In sandbox the testnet height is returned.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataHeightGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBitcoinBlockHeight'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of int, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1MetadataHeightGetWithHttpInfo(string $contentType = self::contentTypes['apiV1MetadataHeightGet'][0])
+    public function getBitcoinBlockHeightWithHttpInfo(string $contentType = self::contentTypes['getBitcoinBlockHeight'][0])
     {
-        $request = $this->apiV1MetadataHeightGetRequest($contentType);
+        $request = $this->getBitcoinBlockHeightRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -278,18 +278,18 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataHeightGetAsync
+     * Operation getBitcoinBlockHeightAsync
      *
      * Gets the current Bitcoin blockchain height. In sandbox the testnet height is returned.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataHeightGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBitcoinBlockHeight'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1MetadataHeightGetAsync(string $contentType = self::contentTypes['apiV1MetadataHeightGet'][0])
+    public function getBitcoinBlockHeightAsync(string $contentType = self::contentTypes['getBitcoinBlockHeight'][0])
     {
-        return $this->apiV1MetadataHeightGetAsyncWithHttpInfo($contentType)
+        return $this->getBitcoinBlockHeightAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -298,19 +298,19 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataHeightGetAsyncWithHttpInfo
+     * Operation getBitcoinBlockHeightAsyncWithHttpInfo
      *
      * Gets the current Bitcoin blockchain height. In sandbox the testnet height is returned.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataHeightGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBitcoinBlockHeight'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1MetadataHeightGetAsyncWithHttpInfo(string $contentType = self::contentTypes['apiV1MetadataHeightGet'][0])
+    public function getBitcoinBlockHeightAsyncWithHttpInfo(string $contentType = self::contentTypes['getBitcoinBlockHeight'][0])
     {
         $returnType = 'int';
-        $request = $this->apiV1MetadataHeightGetRequest($contentType);
+        $request = $this->getBitcoinBlockHeightRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -349,14 +349,14 @@ class MetadataApi
     }
 
     /**
-     * Create request for operation 'apiV1MetadataHeightGet'
+     * Create request for operation 'getBitcoinBlockHeight'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataHeightGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBitcoinBlockHeight'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1MetadataHeightGetRequest(string $contentType = self::contentTypes['apiV1MetadataHeightGet'][0])
+    public function getBitcoinBlockHeightRequest(string $contentType = self::contentTypes['getBitcoinBlockHeight'][0])
     {
 
 
@@ -430,35 +430,35 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataProblemGet
+     * Operation problem
      *
      * Returns an example problem response.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataProblemGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['problem'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function apiV1MetadataProblemGet(string $contentType = self::contentTypes['apiV1MetadataProblemGet'][0])
+    public function problem(string $contentType = self::contentTypes['problem'][0])
     {
-        $this->apiV1MetadataProblemGetWithHttpInfo($contentType);
+        $this->problemWithHttpInfo($contentType);
     }
 
     /**
-     * Operation apiV1MetadataProblemGetWithHttpInfo
+     * Operation problemWithHttpInfo
      *
      * Returns an example problem response.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataProblemGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['problem'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1MetadataProblemGetWithHttpInfo(string $contentType = self::contentTypes['apiV1MetadataProblemGet'][0])
+    public function problemWithHttpInfo(string $contentType = self::contentTypes['problem'][0])
     {
-        $request = $this->apiV1MetadataProblemGetRequest($contentType);
+        $request = $this->problemRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -505,18 +505,18 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataProblemGetAsync
+     * Operation problemAsync
      *
      * Returns an example problem response.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataProblemGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['problem'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1MetadataProblemGetAsync(string $contentType = self::contentTypes['apiV1MetadataProblemGet'][0])
+    public function problemAsync(string $contentType = self::contentTypes['problem'][0])
     {
-        return $this->apiV1MetadataProblemGetAsyncWithHttpInfo($contentType)
+        return $this->problemAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -525,19 +525,19 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataProblemGetAsyncWithHttpInfo
+     * Operation problemAsyncWithHttpInfo
      *
      * Returns an example problem response.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataProblemGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['problem'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1MetadataProblemGetAsyncWithHttpInfo(string $contentType = self::contentTypes['apiV1MetadataProblemGet'][0])
+    public function problemAsyncWithHttpInfo(string $contentType = self::contentTypes['problem'][0])
     {
         $returnType = '';
-        $request = $this->apiV1MetadataProblemGetRequest($contentType);
+        $request = $this->problemRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -563,14 +563,14 @@ class MetadataApi
     }
 
     /**
-     * Create request for operation 'apiV1MetadataProblemGet'
+     * Create request for operation 'problem'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataProblemGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['problem'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1MetadataProblemGetRequest(string $contentType = self::contentTypes['apiV1MetadataProblemGet'][0])
+    public function problemRequest(string $contentType = self::contentTypes['problem'][0])
     {
 
 
@@ -644,41 +644,41 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataProblemnotificationGet
+     * Operation problemNotification
      *
      * Triggers a webhook with the problem details in the payload.
      *
      * @param  string $url The URL to send the HTTP POST request to with the problem notification. (optional)
      * @param  string $id Optional. If the id and secret are set the notification request will have the              HMAC HTTP authentication headers added. (optional)
      * @param  string $secret Optional. If the id and secret are set the notification request will have the              HMAC HTTP authentication headers added. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataProblemnotificationGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['problemNotification'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function apiV1MetadataProblemnotificationGet($url = null, $id = null, $secret = null, string $contentType = self::contentTypes['apiV1MetadataProblemnotificationGet'][0])
+    public function problemNotification($url = null, $id = null, $secret = null, string $contentType = self::contentTypes['problemNotification'][0])
     {
-        $this->apiV1MetadataProblemnotificationGetWithHttpInfo($url, $id, $secret, $contentType);
+        $this->problemNotificationWithHttpInfo($url, $id, $secret, $contentType);
     }
 
     /**
-     * Operation apiV1MetadataProblemnotificationGetWithHttpInfo
+     * Operation problemNotificationWithHttpInfo
      *
      * Triggers a webhook with the problem details in the payload.
      *
      * @param  string $url The URL to send the HTTP POST request to with the problem notification. (optional)
      * @param  string $id Optional. If the id and secret are set the notification request will have the              HMAC HTTP authentication headers added. (optional)
      * @param  string $secret Optional. If the id and secret are set the notification request will have the              HMAC HTTP authentication headers added. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataProblemnotificationGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['problemNotification'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1MetadataProblemnotificationGetWithHttpInfo($url = null, $id = null, $secret = null, string $contentType = self::contentTypes['apiV1MetadataProblemnotificationGet'][0])
+    public function problemNotificationWithHttpInfo($url = null, $id = null, $secret = null, string $contentType = self::contentTypes['problemNotification'][0])
     {
-        $request = $this->apiV1MetadataProblemnotificationGetRequest($url, $id, $secret, $contentType);
+        $request = $this->problemNotificationRequest($url, $id, $secret, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -725,21 +725,21 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataProblemnotificationGetAsync
+     * Operation problemNotificationAsync
      *
      * Triggers a webhook with the problem details in the payload.
      *
      * @param  string $url The URL to send the HTTP POST request to with the problem notification. (optional)
      * @param  string $id Optional. If the id and secret are set the notification request will have the              HMAC HTTP authentication headers added. (optional)
      * @param  string $secret Optional. If the id and secret are set the notification request will have the              HMAC HTTP authentication headers added. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataProblemnotificationGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['problemNotification'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1MetadataProblemnotificationGetAsync($url = null, $id = null, $secret = null, string $contentType = self::contentTypes['apiV1MetadataProblemnotificationGet'][0])
+    public function problemNotificationAsync($url = null, $id = null, $secret = null, string $contentType = self::contentTypes['problemNotification'][0])
     {
-        return $this->apiV1MetadataProblemnotificationGetAsyncWithHttpInfo($url, $id, $secret, $contentType)
+        return $this->problemNotificationAsyncWithHttpInfo($url, $id, $secret, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -748,22 +748,22 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataProblemnotificationGetAsyncWithHttpInfo
+     * Operation problemNotificationAsyncWithHttpInfo
      *
      * Triggers a webhook with the problem details in the payload.
      *
      * @param  string $url The URL to send the HTTP POST request to with the problem notification. (optional)
      * @param  string $id Optional. If the id and secret are set the notification request will have the              HMAC HTTP authentication headers added. (optional)
      * @param  string $secret Optional. If the id and secret are set the notification request will have the              HMAC HTTP authentication headers added. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataProblemnotificationGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['problemNotification'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1MetadataProblemnotificationGetAsyncWithHttpInfo($url = null, $id = null, $secret = null, string $contentType = self::contentTypes['apiV1MetadataProblemnotificationGet'][0])
+    public function problemNotificationAsyncWithHttpInfo($url = null, $id = null, $secret = null, string $contentType = self::contentTypes['problemNotification'][0])
     {
         $returnType = '';
-        $request = $this->apiV1MetadataProblemnotificationGetRequest($url, $id, $secret, $contentType);
+        $request = $this->problemNotificationRequest($url, $id, $secret, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -789,17 +789,17 @@ class MetadataApi
     }
 
     /**
-     * Create request for operation 'apiV1MetadataProblemnotificationGet'
+     * Create request for operation 'problemNotification'
      *
      * @param  string $url The URL to send the HTTP POST request to with the problem notification. (optional)
      * @param  string $id Optional. If the id and secret are set the notification request will have the              HMAC HTTP authentication headers added. (optional)
      * @param  string $secret Optional. If the id and secret are set the notification request will have the              HMAC HTTP authentication headers added. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataProblemnotificationGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['problemNotification'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1MetadataProblemnotificationGetRequest($url = null, $id = null, $secret = null, string $contentType = self::contentTypes['apiV1MetadataProblemnotificationGet'][0])
+    public function problemNotificationRequest($url = null, $id = null, $secret = null, string $contentType = self::contentTypes['problemNotification'][0])
     {
 
 
@@ -903,36 +903,36 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataVersionGet
+     * Operation version
      *
      * Gets the current version of the MoneyMoov API.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataVersionGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['version'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsNoFrixionVersion
      */
-    public function apiV1MetadataVersionGet(string $contentType = self::contentTypes['apiV1MetadataVersionGet'][0])
+    public function version(string $contentType = self::contentTypes['version'][0])
     {
-        list($response) = $this->apiV1MetadataVersionGetWithHttpInfo($contentType);
+        list($response) = $this->versionWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1MetadataVersionGetWithHttpInfo
+     * Operation versionWithHttpInfo
      *
      * Gets the current version of the MoneyMoov API.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataVersionGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['version'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsNoFrixionVersion, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1MetadataVersionGetWithHttpInfo(string $contentType = self::contentTypes['apiV1MetadataVersionGet'][0])
+    public function versionWithHttpInfo(string $contentType = self::contentTypes['version'][0])
     {
-        $request = $this->apiV1MetadataVersionGetRequest($contentType);
+        $request = $this->versionRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1043,18 +1043,18 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataVersionGetAsync
+     * Operation versionAsync
      *
      * Gets the current version of the MoneyMoov API.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataVersionGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['version'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1MetadataVersionGetAsync(string $contentType = self::contentTypes['apiV1MetadataVersionGet'][0])
+    public function versionAsync(string $contentType = self::contentTypes['version'][0])
     {
-        return $this->apiV1MetadataVersionGetAsyncWithHttpInfo($contentType)
+        return $this->versionAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1063,19 +1063,19 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataVersionGetAsyncWithHttpInfo
+     * Operation versionAsyncWithHttpInfo
      *
      * Gets the current version of the MoneyMoov API.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataVersionGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['version'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1MetadataVersionGetAsyncWithHttpInfo(string $contentType = self::contentTypes['apiV1MetadataVersionGet'][0])
+    public function versionAsyncWithHttpInfo(string $contentType = self::contentTypes['version'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsNoFrixionVersion';
-        $request = $this->apiV1MetadataVersionGetRequest($contentType);
+        $request = $this->versionRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1114,14 +1114,14 @@ class MetadataApi
     }
 
     /**
-     * Create request for operation 'apiV1MetadataVersionGet'
+     * Create request for operation 'version'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataVersionGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['version'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1MetadataVersionGetRequest(string $contentType = self::contentTypes['apiV1MetadataVersionGet'][0])
+    public function versionRequest(string $contentType = self::contentTypes['version'][0])
     {
 
 
@@ -1195,36 +1195,36 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataWhoamiGet
+     * Operation whoAmI
      *
      * Returns the profile of the requesting user.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataWhoamiGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['whoAmI'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser
      */
-    public function apiV1MetadataWhoamiGet(string $contentType = self::contentTypes['apiV1MetadataWhoamiGet'][0])
+    public function whoAmI(string $contentType = self::contentTypes['whoAmI'][0])
     {
-        list($response) = $this->apiV1MetadataWhoamiGetWithHttpInfo($contentType);
+        list($response) = $this->whoAmIWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1MetadataWhoamiGetWithHttpInfo
+     * Operation whoAmIWithHttpInfo
      *
      * Returns the profile of the requesting user.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataWhoamiGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['whoAmI'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1MetadataWhoamiGetWithHttpInfo(string $contentType = self::contentTypes['apiV1MetadataWhoamiGet'][0])
+    public function whoAmIWithHttpInfo(string $contentType = self::contentTypes['whoAmI'][0])
     {
-        $request = $this->apiV1MetadataWhoamiGetRequest($contentType);
+        $request = $this->whoAmIRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1335,18 +1335,18 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataWhoamiGetAsync
+     * Operation whoAmIAsync
      *
      * Returns the profile of the requesting user.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataWhoamiGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['whoAmI'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1MetadataWhoamiGetAsync(string $contentType = self::contentTypes['apiV1MetadataWhoamiGet'][0])
+    public function whoAmIAsync(string $contentType = self::contentTypes['whoAmI'][0])
     {
-        return $this->apiV1MetadataWhoamiGetAsyncWithHttpInfo($contentType)
+        return $this->whoAmIAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1355,19 +1355,19 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataWhoamiGetAsyncWithHttpInfo
+     * Operation whoAmIAsyncWithHttpInfo
      *
      * Returns the profile of the requesting user.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataWhoamiGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['whoAmI'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1MetadataWhoamiGetAsyncWithHttpInfo(string $contentType = self::contentTypes['apiV1MetadataWhoamiGet'][0])
+    public function whoAmIAsyncWithHttpInfo(string $contentType = self::contentTypes['whoAmI'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser';
-        $request = $this->apiV1MetadataWhoamiGetRequest($contentType);
+        $request = $this->whoAmIRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1406,14 +1406,14 @@ class MetadataApi
     }
 
     /**
-     * Create request for operation 'apiV1MetadataWhoamiGet'
+     * Create request for operation 'whoAmI'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataWhoamiGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['whoAmI'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1MetadataWhoamiGetRequest(string $contentType = self::contentTypes['apiV1MetadataWhoamiGet'][0])
+    public function whoAmIRequest(string $contentType = self::contentTypes['whoAmI'][0])
     {
 
 
@@ -1487,36 +1487,36 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataWhoamimerchantGet
+     * Operation whoAmIMerchant
      *
      * Returns the name of the merchant that authentication token was issued for.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataWhoamimerchantGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['whoAmIMerchant'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMerchant
      */
-    public function apiV1MetadataWhoamimerchantGet(string $contentType = self::contentTypes['apiV1MetadataWhoamimerchantGet'][0])
+    public function whoAmIMerchant(string $contentType = self::contentTypes['whoAmIMerchant'][0])
     {
-        list($response) = $this->apiV1MetadataWhoamimerchantGetWithHttpInfo($contentType);
+        list($response) = $this->whoAmIMerchantWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1MetadataWhoamimerchantGetWithHttpInfo
+     * Operation whoAmIMerchantWithHttpInfo
      *
      * Returns the name of the merchant that authentication token was issued for.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataWhoamimerchantGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['whoAmIMerchant'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMerchant, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1MetadataWhoamimerchantGetWithHttpInfo(string $contentType = self::contentTypes['apiV1MetadataWhoamimerchantGet'][0])
+    public function whoAmIMerchantWithHttpInfo(string $contentType = self::contentTypes['whoAmIMerchant'][0])
     {
-        $request = $this->apiV1MetadataWhoamimerchantGetRequest($contentType);
+        $request = $this->whoAmIMerchantRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1627,18 +1627,18 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataWhoamimerchantGetAsync
+     * Operation whoAmIMerchantAsync
      *
      * Returns the name of the merchant that authentication token was issued for.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataWhoamimerchantGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['whoAmIMerchant'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1MetadataWhoamimerchantGetAsync(string $contentType = self::contentTypes['apiV1MetadataWhoamimerchantGet'][0])
+    public function whoAmIMerchantAsync(string $contentType = self::contentTypes['whoAmIMerchant'][0])
     {
-        return $this->apiV1MetadataWhoamimerchantGetAsyncWithHttpInfo($contentType)
+        return $this->whoAmIMerchantAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1647,19 +1647,19 @@ class MetadataApi
     }
 
     /**
-     * Operation apiV1MetadataWhoamimerchantGetAsyncWithHttpInfo
+     * Operation whoAmIMerchantAsyncWithHttpInfo
      *
      * Returns the name of the merchant that authentication token was issued for.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataWhoamimerchantGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['whoAmIMerchant'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1MetadataWhoamimerchantGetAsyncWithHttpInfo(string $contentType = self::contentTypes['apiV1MetadataWhoamimerchantGet'][0])
+    public function whoAmIMerchantAsyncWithHttpInfo(string $contentType = self::contentTypes['whoAmIMerchant'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMerchant';
-        $request = $this->apiV1MetadataWhoamimerchantGetRequest($contentType);
+        $request = $this->whoAmIMerchantRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1698,14 +1698,14 @@ class MetadataApi
     }
 
     /**
-     * Create request for operation 'apiV1MetadataWhoamimerchantGet'
+     * Create request for operation 'whoAmIMerchant'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MetadataWhoamimerchantGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['whoAmIMerchant'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1MetadataWhoamimerchantGetRequest(string $contentType = self::contentTypes['apiV1MetadataWhoamimerchantGet'][0])
+    public function whoAmIMerchantRequest(string $contentType = self::contentTypes['whoAmIMerchant'][0])
     {
 
 

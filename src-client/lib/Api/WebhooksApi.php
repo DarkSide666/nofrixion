@@ -71,16 +71,16 @@ class WebhooksApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiV1WebhooksIdDelete' => [
+        'createWebhook' => [
             'application/json',
         ],
-        'apiV1WebhooksIdPut' => [
+        'deleteWebhook' => [
             'application/json',
         ],
-        'apiV1WebhooksMerchantIDGet' => [
+        'getWebhooks' => [
             'application/json',
         ],
-        'apiV1WebhooksPost' => [
+        'updateWebhook' => [
             'application/json',
         ],
     ];
@@ -132,274 +132,38 @@ class WebhooksApi
     }
 
     /**
-     * Operation apiV1WebhooksIdDelete
+     * Operation createWebhook
      *
-     * Deletes a webhook.
+     * Creates a webhook for the given merchant.
      *
-     * @param  string $id The ID of the webhook to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksIdDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function apiV1WebhooksIdDelete($id, string $contentType = self::contentTypes['apiV1WebhooksIdDelete'][0])
-    {
-        $this->apiV1WebhooksIdDeleteWithHttpInfo($id, $contentType);
-    }
-
-    /**
-     * Operation apiV1WebhooksIdDeleteWithHttpInfo
-     *
-     * Deletes a webhook.
-     *
-     * @param  string $id The ID of the webhook to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksIdDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1WebhooksIdDeleteWithHttpInfo($id, string $contentType = self::contentTypes['apiV1WebhooksIdDelete'][0])
-    {
-        $request = $this->apiV1WebhooksIdDeleteRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1WebhooksIdDeleteAsync
-     *
-     * Deletes a webhook.
-     *
-     * @param  string $id The ID of the webhook to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1WebhooksIdDeleteAsync($id, string $contentType = self::contentTypes['apiV1WebhooksIdDelete'][0])
-    {
-        return $this->apiV1WebhooksIdDeleteAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1WebhooksIdDeleteAsyncWithHttpInfo
-     *
-     * Deletes a webhook.
-     *
-     * @param  string $id The ID of the webhook to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1WebhooksIdDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1WebhooksIdDelete'][0])
-    {
-        $returnType = '';
-        $request = $this->apiV1WebhooksIdDeleteRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1WebhooksIdDelete'
-     *
-     * @param  string $id The ID of the webhook to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1WebhooksIdDeleteRequest($id, string $contentType = self::contentTypes['apiV1WebhooksIdDelete'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1WebhooksIdDelete'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/webhooks/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            [],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1WebhooksIdPut
-     *
-     * Updates a webhook for the given merchant.
-     *
-     * @param  string $id The id of the webhook to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be updated. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksIdPut'] to see the possible values for this operation
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be created. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWebhook'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhook
      */
-    public function apiV1WebhooksIdPut($id, $no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['apiV1WebhooksIdPut'][0])
+    public function createWebhook($no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['createWebhook'][0])
     {
-        list($response) = $this->apiV1WebhooksIdPutWithHttpInfo($id, $no_frixion_money_moov_models_webhook_create, $contentType);
+        list($response) = $this->createWebhookWithHttpInfo($no_frixion_money_moov_models_webhook_create, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1WebhooksIdPutWithHttpInfo
+     * Operation createWebhookWithHttpInfo
      *
-     * Updates a webhook for the given merchant.
+     * Creates a webhook for the given merchant.
      *
-     * @param  string $id The id of the webhook to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be updated. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksIdPut'] to see the possible values for this operation
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be created. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWebhook'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhook, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1WebhooksIdPutWithHttpInfo($id, $no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['apiV1WebhooksIdPut'][0])
+    public function createWebhookWithHttpInfo($no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['createWebhook'][0])
     {
-        $request = $this->apiV1WebhooksIdPutRequest($id, $no_frixion_money_moov_models_webhook_create, $contentType);
+        $request = $this->createWebhookRequest($no_frixion_money_moov_models_webhook_create, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -510,20 +274,19 @@ class WebhooksApi
     }
 
     /**
-     * Operation apiV1WebhooksIdPutAsync
+     * Operation createWebhookAsync
      *
-     * Updates a webhook for the given merchant.
+     * Creates a webhook for the given merchant.
      *
-     * @param  string $id The id of the webhook to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be updated. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksIdPut'] to see the possible values for this operation
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be created. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1WebhooksIdPutAsync($id, $no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['apiV1WebhooksIdPut'][0])
+    public function createWebhookAsync($no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['createWebhook'][0])
     {
-        return $this->apiV1WebhooksIdPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_webhook_create, $contentType)
+        return $this->createWebhookAsyncWithHttpInfo($no_frixion_money_moov_models_webhook_create, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -532,21 +295,20 @@ class WebhooksApi
     }
 
     /**
-     * Operation apiV1WebhooksIdPutAsyncWithHttpInfo
+     * Operation createWebhookAsyncWithHttpInfo
      *
-     * Updates a webhook for the given merchant.
+     * Creates a webhook for the given merchant.
      *
-     * @param  string $id The id of the webhook to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be updated. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksIdPut'] to see the possible values for this operation
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be created. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1WebhooksIdPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['apiV1WebhooksIdPut'][0])
+    public function createWebhookAsyncWithHttpInfo($no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['createWebhook'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhook';
-        $request = $this->apiV1WebhooksIdPutRequest($id, $no_frixion_money_moov_models_webhook_create, $contentType);
+        $request = $this->createWebhookRequest($no_frixion_money_moov_models_webhook_create, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -585,28 +347,20 @@ class WebhooksApi
     }
 
     /**
-     * Create request for operation 'apiV1WebhooksIdPut'
+     * Create request for operation 'createWebhook'
      *
-     * @param  string $id The id of the webhook to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be updated. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksIdPut'] to see the possible values for this operation
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be created. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1WebhooksIdPutRequest($id, $no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['apiV1WebhooksIdPut'][0])
+    public function createWebhookRequest($no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['createWebhook'][0])
     {
 
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1WebhooksIdPut'
-            );
-        }
 
 
-
-        $resourcePath = '/api/v1/webhooks/{id}';
+        $resourcePath = '/api/v1/webhooks';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -615,14 +369,6 @@ class WebhooksApi
 
 
 
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -683,7 +429,7 @@ class WebhooksApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'PUT',
+            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
@@ -691,38 +437,272 @@ class WebhooksApi
     }
 
     /**
-     * Operation apiV1WebhooksMerchantIDGet
+     * Operation deleteWebhook
+     *
+     * Deletes a webhook.
+     *
+     * @param  string $id The ID of the webhook to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWebhook'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deleteWebhook($id, string $contentType = self::contentTypes['deleteWebhook'][0])
+    {
+        $this->deleteWebhookWithHttpInfo($id, $contentType);
+    }
+
+    /**
+     * Operation deleteWebhookWithHttpInfo
+     *
+     * Deletes a webhook.
+     *
+     * @param  string $id The ID of the webhook to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWebhook'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteWebhookWithHttpInfo($id, string $contentType = self::contentTypes['deleteWebhook'][0])
+    {
+        $request = $this->deleteWebhookRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteWebhookAsync
+     *
+     * Deletes a webhook.
+     *
+     * @param  string $id The ID of the webhook to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWebhook'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteWebhookAsync($id, string $contentType = self::contentTypes['deleteWebhook'][0])
+    {
+        return $this->deleteWebhookAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteWebhookAsyncWithHttpInfo
+     *
+     * Deletes a webhook.
+     *
+     * @param  string $id The ID of the webhook to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWebhook'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteWebhookAsyncWithHttpInfo($id, string $contentType = self::contentTypes['deleteWebhook'][0])
+    {
+        $returnType = '';
+        $request = $this->deleteWebhookRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteWebhook'
+     *
+     * @param  string $id The ID of the webhook to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteWebhook'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteWebhookRequest($id, string $contentType = self::contentTypes['deleteWebhook'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling deleteWebhook'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/webhooks/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            [],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getWebhooks
      *
      * Get all configured webhooks for a merchant.
      *
      * @param  string $merchant_id The ID of the merchant to get the webhooks for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksMerchantIDGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWebhooks'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhook[]
      */
-    public function apiV1WebhooksMerchantIDGet($merchant_id, string $contentType = self::contentTypes['apiV1WebhooksMerchantIDGet'][0])
+    public function getWebhooks($merchant_id, string $contentType = self::contentTypes['getWebhooks'][0])
     {
-        list($response) = $this->apiV1WebhooksMerchantIDGetWithHttpInfo($merchant_id, $contentType);
+        list($response) = $this->getWebhooksWithHttpInfo($merchant_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1WebhooksMerchantIDGetWithHttpInfo
+     * Operation getWebhooksWithHttpInfo
      *
      * Get all configured webhooks for a merchant.
      *
      * @param  string $merchant_id The ID of the merchant to get the webhooks for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksMerchantIDGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWebhooks'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhook[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1WebhooksMerchantIDGetWithHttpInfo($merchant_id, string $contentType = self::contentTypes['apiV1WebhooksMerchantIDGet'][0])
+    public function getWebhooksWithHttpInfo($merchant_id, string $contentType = self::contentTypes['getWebhooks'][0])
     {
-        $request = $this->apiV1WebhooksMerchantIDGetRequest($merchant_id, $contentType);
+        $request = $this->getWebhooksRequest($merchant_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -833,19 +813,19 @@ class WebhooksApi
     }
 
     /**
-     * Operation apiV1WebhooksMerchantIDGetAsync
+     * Operation getWebhooksAsync
      *
      * Get all configured webhooks for a merchant.
      *
      * @param  string $merchant_id The ID of the merchant to get the webhooks for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksMerchantIDGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWebhooks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1WebhooksMerchantIDGetAsync($merchant_id, string $contentType = self::contentTypes['apiV1WebhooksMerchantIDGet'][0])
+    public function getWebhooksAsync($merchant_id, string $contentType = self::contentTypes['getWebhooks'][0])
     {
-        return $this->apiV1WebhooksMerchantIDGetAsyncWithHttpInfo($merchant_id, $contentType)
+        return $this->getWebhooksAsyncWithHttpInfo($merchant_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -854,20 +834,20 @@ class WebhooksApi
     }
 
     /**
-     * Operation apiV1WebhooksMerchantIDGetAsyncWithHttpInfo
+     * Operation getWebhooksAsyncWithHttpInfo
      *
      * Get all configured webhooks for a merchant.
      *
      * @param  string $merchant_id The ID of the merchant to get the webhooks for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksMerchantIDGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWebhooks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1WebhooksMerchantIDGetAsyncWithHttpInfo($merchant_id, string $contentType = self::contentTypes['apiV1WebhooksMerchantIDGet'][0])
+    public function getWebhooksAsyncWithHttpInfo($merchant_id, string $contentType = self::contentTypes['getWebhooks'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhook[]';
-        $request = $this->apiV1WebhooksMerchantIDGetRequest($merchant_id, $contentType);
+        $request = $this->getWebhooksRequest($merchant_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -906,21 +886,21 @@ class WebhooksApi
     }
 
     /**
-     * Create request for operation 'apiV1WebhooksMerchantIDGet'
+     * Create request for operation 'getWebhooks'
      *
      * @param  string $merchant_id The ID of the merchant to get the webhooks for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksMerchantIDGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getWebhooks'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1WebhooksMerchantIDGetRequest($merchant_id, string $contentType = self::contentTypes['apiV1WebhooksMerchantIDGet'][0])
+    public function getWebhooksRequest($merchant_id, string $contentType = self::contentTypes['getWebhooks'][0])
     {
 
         // verify the required parameter 'merchant_id' is set
         if ($merchant_id === null || (is_array($merchant_id) && count($merchant_id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $merchant_id when calling apiV1WebhooksMerchantIDGet'
+                'Missing the required parameter $merchant_id when calling getWebhooks'
             );
         }
 
@@ -1003,38 +983,40 @@ class WebhooksApi
     }
 
     /**
-     * Operation apiV1WebhooksPost
+     * Operation updateWebhook
      *
-     * Creates a webhook for the given merchant.
+     * Updates a webhook for the given merchant.
      *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be created. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksPost'] to see the possible values for this operation
+     * @param  string $id The id of the webhook to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be updated. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWebhook'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhook
      */
-    public function apiV1WebhooksPost($no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['apiV1WebhooksPost'][0])
+    public function updateWebhook($id, $no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['updateWebhook'][0])
     {
-        list($response) = $this->apiV1WebhooksPostWithHttpInfo($no_frixion_money_moov_models_webhook_create, $contentType);
+        list($response) = $this->updateWebhookWithHttpInfo($id, $no_frixion_money_moov_models_webhook_create, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1WebhooksPostWithHttpInfo
+     * Operation updateWebhookWithHttpInfo
      *
-     * Creates a webhook for the given merchant.
+     * Updates a webhook for the given merchant.
      *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be created. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksPost'] to see the possible values for this operation
+     * @param  string $id The id of the webhook to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be updated. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWebhook'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhook, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1WebhooksPostWithHttpInfo($no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['apiV1WebhooksPost'][0])
+    public function updateWebhookWithHttpInfo($id, $no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['updateWebhook'][0])
     {
-        $request = $this->apiV1WebhooksPostRequest($no_frixion_money_moov_models_webhook_create, $contentType);
+        $request = $this->updateWebhookRequest($id, $no_frixion_money_moov_models_webhook_create, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1145,19 +1127,20 @@ class WebhooksApi
     }
 
     /**
-     * Operation apiV1WebhooksPostAsync
+     * Operation updateWebhookAsync
      *
-     * Creates a webhook for the given merchant.
+     * Updates a webhook for the given merchant.
      *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be created. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksPost'] to see the possible values for this operation
+     * @param  string $id The id of the webhook to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be updated. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1WebhooksPostAsync($no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['apiV1WebhooksPost'][0])
+    public function updateWebhookAsync($id, $no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['updateWebhook'][0])
     {
-        return $this->apiV1WebhooksPostAsyncWithHttpInfo($no_frixion_money_moov_models_webhook_create, $contentType)
+        return $this->updateWebhookAsyncWithHttpInfo($id, $no_frixion_money_moov_models_webhook_create, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1166,20 +1149,21 @@ class WebhooksApi
     }
 
     /**
-     * Operation apiV1WebhooksPostAsyncWithHttpInfo
+     * Operation updateWebhookAsyncWithHttpInfo
      *
-     * Creates a webhook for the given merchant.
+     * Updates a webhook for the given merchant.
      *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be created. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksPost'] to see the possible values for this operation
+     * @param  string $id The id of the webhook to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be updated. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1WebhooksPostAsyncWithHttpInfo($no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['apiV1WebhooksPost'][0])
+    public function updateWebhookAsyncWithHttpInfo($id, $no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['updateWebhook'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhook';
-        $request = $this->apiV1WebhooksPostRequest($no_frixion_money_moov_models_webhook_create, $contentType);
+        $request = $this->updateWebhookRequest($id, $no_frixion_money_moov_models_webhook_create, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1218,20 +1202,28 @@ class WebhooksApi
     }
 
     /**
-     * Create request for operation 'apiV1WebhooksPost'
+     * Create request for operation 'updateWebhook'
      *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be created. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1WebhooksPost'] to see the possible values for this operation
+     * @param  string $id The id of the webhook to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsWebhookCreate $no_frixion_money_moov_models_webhook_create The WebHookRequest to be updated. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateWebhook'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1WebhooksPostRequest($no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['apiV1WebhooksPost'][0])
+    public function updateWebhookRequest($id, $no_frixion_money_moov_models_webhook_create = null, string $contentType = self::contentTypes['updateWebhook'][0])
     {
 
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling updateWebhook'
+            );
+        }
 
 
-        $resourcePath = '/api/v1/webhooks';
+
+        $resourcePath = '/api/v1/webhooks/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1240,6 +1232,14 @@ class WebhooksApi
 
 
 
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
 
 
         $headers = $this->headerSelector->selectHeaders(
@@ -1300,7 +1300,7 @@ class WebhooksApi
         $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
-            'POST',
+            'PUT',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

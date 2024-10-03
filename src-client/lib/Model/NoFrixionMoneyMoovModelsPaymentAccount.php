@@ -85,7 +85,8 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'last_transaction' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsLastTransaction',
         'created_by' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser',
         'default_payment_rail' => 'string',
-        'rules' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleMinimal[]'
+        'rules' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleMinimal[]',
+        'is_archived' => 'bool'
     ];
 
     /**
@@ -124,7 +125,8 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'last_transaction' => null,
         'created_by' => null,
         'default_payment_rail' => null,
-        'rules' => null
+        'rules' => null,
+        'is_archived' => null
     ];
 
     /**
@@ -161,7 +163,8 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'last_transaction' => false,
         'created_by' => false,
         'default_payment_rail' => false,
-        'rules' => true
+        'rules' => true,
+        'is_archived' => false
     ];
 
     /**
@@ -278,7 +281,8 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'last_transaction' => 'lastTransaction',
         'created_by' => 'createdBy',
         'default_payment_rail' => 'defaultPaymentRail',
-        'rules' => 'rules'
+        'rules' => 'rules',
+        'is_archived' => 'isArchived'
     ];
 
     /**
@@ -315,7 +319,8 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'last_transaction' => 'setLastTransaction',
         'created_by' => 'setCreatedBy',
         'default_payment_rail' => 'setDefaultPaymentRail',
-        'rules' => 'setRules'
+        'rules' => 'setRules',
+        'is_archived' => 'setIsArchived'
     ];
 
     /**
@@ -352,7 +357,8 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'last_transaction' => 'getLastTransaction',
         'created_by' => 'getCreatedBy',
         'default_payment_rail' => 'getDefaultPaymentRail',
-        'rules' => 'getRules'
+        'rules' => 'getRules',
+        'is_archived' => 'getIsArchived'
     ];
 
     /**
@@ -564,6 +570,7 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         $this->setIfExists('created_by', $data ?? [], null);
         $this->setIfExists('default_payment_rail', $data ?? [], null);
         $this->setIfExists('rules', $data ?? [], null);
+        $this->setIfExists('is_archived', $data ?? [], null);
     }
 
     /**
@@ -1573,6 +1580,33 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
             }
         }
         $this->container['rules'] = $rules;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_archived
+     *
+     * @return bool|null
+     */
+    public function getIsArchived()
+    {
+        return $this->container['is_archived'];
+    }
+
+    /**
+     * Sets is_archived
+     *
+     * @param bool|null $is_archived Indicates whether the account is archived. Archived accounts are not displayed in the UI.  If an account receives a payment it will be automatically unarchived.
+     *
+     * @return self
+     */
+    public function setIsArchived($is_archived)
+    {
+        if (is_null($is_archived)) {
+            throw new \InvalidArgumentException('non-nullable is_archived cannot be null');
+        }
+        $this->container['is_archived'] = $is_archived;
 
         return $this;
     }

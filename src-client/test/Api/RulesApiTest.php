@@ -72,84 +72,84 @@ class RulesApiTest extends TestCase
     }
 
     /**
-     * Test case for apiV1RulesGet
-     *
-     * Gets all the rules for a merchant..
-     *
-     */
-    public function testApiV1RulesGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1RulesIdDelete
-     *
-     * Deletes a rule and any associated events..
-     *
-     */
-    public function testApiV1RulesIdDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1RulesIdDisablePut
-     *
-     * Disables a rule..
-     *
-     */
-    public function testApiV1RulesIdDisablePut()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1RulesIdEventsGet
-     *
-     * Gets a list of the events for a single rule..
-     *
-     */
-    public function testApiV1RulesIdEventsGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1RulesIdGet
-     *
-     * Get a single rule by ID..
-     *
-     */
-    public function testApiV1RulesIdGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1RulesIdPut
-     *
-     * Update an existing rule..
-     *
-     */
-    public function testApiV1RulesIdPut()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1RulesPost
+     * Test case for createRule
      *
      * Creates a new rule for a MoneyMoov payment account..
      *
      */
-    public function testApiV1RulesPost()
+    public function testCreateRule()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteRule
+     *
+     * Deletes a rule and any associated events..
+     *
+     */
+    public function testDeleteRule()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for disableRule
+     *
+     * Disables a rule..
+     *
+     */
+    public function testDisableRule()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getRule
+     *
+     * Get a single rule by ID..
+     *
+     */
+    public function testGetRule()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getRuleEvents
+     *
+     * Gets a list of the events for a single rule..
+     *
+     */
+    public function testGetRuleEvents()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getRulesPaged
+     *
+     * Gets all the rules for a merchant..
+     *
+     */
+    public function testGetRulesPaged()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateRule
+     *
+     * Update an existing rule..
+     *
+     */
+    public function testUpdateRule()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

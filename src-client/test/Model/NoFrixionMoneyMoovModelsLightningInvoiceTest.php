@@ -1,6 +1,6 @@
 <?php
 /**
- * NoFrixionDataModelsRoleEntityTest
+ * NoFrixionMoneyMoovModelsLightningInvoiceTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace Nofrixion\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * NoFrixionDataModelsRoleEntityTest Class Doc Comment
+ * NoFrixionMoneyMoovModelsLightningInvoiceTest Class Doc Comment
  *
  * @category    Class
- * @description NoFrixionDataModelsRoleEntity
+ * @description NoFrixionMoneyMoovModelsLightningInvoice
  * @package     Nofrixion\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class NoFrixionDataModelsRoleEntityTest extends TestCase
+class NoFrixionMoneyMoovModelsLightningInvoiceTest extends TestCase
 {
 
     /**
@@ -71,27 +71,9 @@ class NoFrixionDataModelsRoleEntityTest extends TestCase
     }
 
     /**
-     * Test "NoFrixionDataModelsRoleEntity"
+     * Test "NoFrixionMoneyMoovModelsLightningInvoice"
      */
-    public function testNoFrixionDataModelsRoleEntity()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "id"
-     */
-    public function testPropertyId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "name"
-     */
-    public function testPropertyName()
+    public function testNoFrixionMoneyMoovModelsLightningInvoice()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -107,63 +89,27 @@ class NoFrixionDataModelsRoleEntityTest extends TestCase
     }
 
     /**
-     * Test attribute "merchant_id"
+     * Test attribute "payment_request"
      */
-    public function testPropertyMerchantId()
+    public function testPropertyPaymentRequest()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "merchant_permissions"
+     * Test attribute "r_hash"
      */
-    public function testPropertyMerchantPermissions()
+    public function testPropertyRHash()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "account_permissions"
+     * Test attribute "expires_at"
      */
-    public function testPropertyAccountPermissions()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "inserted"
-     */
-    public function testPropertyInserted()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "last_updated"
-     */
-    public function testPropertyLastUpdated()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "merchant"
-     */
-    public function testPropertyMerchant()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "users"
-     */
-    public function testPropertyUsers()
+    public function testPropertyExpiresAt()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

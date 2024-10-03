@@ -72,168 +72,180 @@ class AccountsApiTest extends TestCase
     }
 
     /**
-     * Test case for apiV1AccountsAccountIDPayoutsGet
-     *
-     * Gets a list of all payouts for a specific account..
-     *
-     */
-    public function testApiV1AccountsAccountIDPayoutsGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1AccountsAccountIDStatementsIdGet
-     *
-     * Gets the specified statement from the user's cache..
-     *
-     */
-    public function testApiV1AccountsAccountIDStatementsIdGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1AccountsAccountIDStatementsPost
-     *
-     * Sends a message to the transaction statement queue to generate a statement with the supplied parameters..
-     *
-     */
-    public function testApiV1AccountsAccountIDStatementsPost()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1AccountsAccountIDTransactionsGet
-     *
-     * Get a list of the transactions for a single payment account..
-     *
-     */
-    public function testApiV1AccountsAccountIDTransactionsGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1AccountsAccountIDTransactionsIdGet
-     *
-     * Get a transaction..
-     *
-     */
-    public function testApiV1AccountsAccountIDTransactionsIdGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1AccountsArchiveIdDelete
+     * Test case for archiveAccount
      *
      * Sets the specified account as archived..
      *
      */
-    public function testApiV1AccountsArchiveIdDelete()
+    public function testArchiveAccount()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1AccountsGet
-     *
-     * Get a list of all payment accounts the user has access to..
-     *
-     */
-    public function testApiV1AccountsGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1AccountsIdPut
-     *
-     * Updates an account record..
-     *
-     */
-    public function testApiV1AccountsIdPut()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1AccountsPagedGet
-     *
-     * Get a paged list of all payment accounts the user has access to for a specific merchant..
-     *
-     */
-    public function testApiV1AccountsPagedGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1AccountsPost
-     *
-     * Creates a new merchant payment account..
-     *
-     */
-    public function testApiV1AccountsPost()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1AccountsStatementsDelete
+     * Test case for clearAccountStatements
      *
      * Clears the cached user statements for a user..
      *
      */
-    public function testApiV1AccountsStatementsDelete()
+    public function testClearAccountStatements()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1AccountsStatementsGet
+     * Test case for createAccount
      *
-     * Gets all active statement generation requests for the user..
+     * Creates a new merchant payment account..
      *
      */
-    public function testApiV1AccountsStatementsGet()
+    public function testCreateAccount()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1AccountsUnarchiveIdPut
+     * Test case for generateAccountStatement
      *
-     * Sets the specified account as unarchived / active..
+     * Sends a message to the transaction statement queue to generate a statement with the supplied parameters..
      *
      */
-    public function testApiV1AccountsUnarchiveIdPut()
+    public function testGenerateAccountStatement()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getAccountAsync
+     * Test case for getAccount
      *
      * Get an account..
      *
      */
-    public function testGetAccountAsync()
+    public function testGetAccount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getAccountPayouts
+     *
+     * Gets a list of all payouts for a specific account..
+     *
+     */
+    public function testGetAccountPayouts()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getAccountStatement
+     *
+     * Gets the specified statement from the user's cache..
+     *
+     */
+    public function testGetAccountStatement()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getAccountTransactionsPaged
+     *
+     * Get a list of the transactions for a single payment account..
+     *
+     */
+    public function testGetAccountTransactionsPaged()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getAccounts
+     *
+     * Get a list of all payment accounts the user has access to..
+     *
+     */
+    public function testGetAccounts()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getAccountsPaged
+     *
+     * Get a paged list of all payment accounts the user has access to for a specific merchant..
+     *
+     */
+    public function testGetAccountsPaged()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getAllAccountStatements
+     *
+     * Gets all active statement generation requests for the user..
+     *
+     */
+    public function testGetAllAccountStatements()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getTransactionForAccount
+     *
+     * Get a transaction..
+     *
+     */
+    public function testGetTransactionForAccount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for topupAccount
+     *
+     * SANDBOX ONLY. Top-ups a payment account with the amount provided..
+     *
+     */
+    public function testTopupAccount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for unarchiveAccount
+     *
+     * Sets the specified account as unarchived / active..
+     *
+     */
+    public function testUnarchiveAccount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateAccount
+     *
+     * Updates an account record..
+     *
+     */
+    public function testUpdateAccount()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

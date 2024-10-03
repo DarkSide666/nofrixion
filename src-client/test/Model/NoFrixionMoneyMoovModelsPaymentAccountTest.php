@@ -339,4 +339,13 @@ class NoFrixionMoneyMoovModelsPaymentAccountTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "is_archived"
+     */
+    public function testPropertyIsArchived()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

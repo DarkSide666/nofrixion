@@ -72,36 +72,36 @@ class MandatesApiTest extends TestCase
     }
 
     /**
-     * Test case for apiV1MandatesGet
-     *
-     * Gets all mandates from a specific merchant with the supplied parameters..
-     *
-     */
-    public function testApiV1MandatesGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MandatesIdGet
-     *
-     * Gets a specific mandate's information..
-     *
-     */
-    public function testApiV1MandatesIdGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1MandatesPost
+     * Test case for createMandate
      *
      * Creates a Direct Debit mandate..
      *
      */
-    public function testApiV1MandatesPost()
+    public function testCreateMandate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMandate
+     *
+     * Gets a specific mandate's information..
+     *
+     */
+    public function testGetMandate()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getMandatesPaged
+     *
+     * Gets all mandates from a specific merchant with the supplied parameters..
+     *
+     */
+    public function testGetMandatesPaged()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

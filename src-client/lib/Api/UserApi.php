@@ -71,13 +71,13 @@ class UserApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiV1UserGet' => [
+        'getUser' => [
             'application/json',
         ],
-        'apiV1UserIdPut' => [
+        'getUsers' => [
             'application/json',
         ],
-        'apiV1UserMerchantIDUsersGet' => [
+        'updateUser' => [
             'application/json',
         ],
     ];
@@ -129,36 +129,36 @@ class UserApi
     }
 
     /**
-     * Operation apiV1UserGet
+     * Operation getUser
      *
      * Get the profile for the authenticated user.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1UserGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser
      */
-    public function apiV1UserGet(string $contentType = self::contentTypes['apiV1UserGet'][0])
+    public function getUser(string $contentType = self::contentTypes['getUser'][0])
     {
-        list($response) = $this->apiV1UserGetWithHttpInfo($contentType);
+        list($response) = $this->getUserWithHttpInfo($contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1UserGetWithHttpInfo
+     * Operation getUserWithHttpInfo
      *
      * Get the profile for the authenticated user.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1UserGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1UserGetWithHttpInfo(string $contentType = self::contentTypes['apiV1UserGet'][0])
+    public function getUserWithHttpInfo(string $contentType = self::contentTypes['getUser'][0])
     {
-        $request = $this->apiV1UserGetRequest($contentType);
+        $request = $this->getUserRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -269,18 +269,18 @@ class UserApi
     }
 
     /**
-     * Operation apiV1UserGetAsync
+     * Operation getUserAsync
      *
      * Get the profile for the authenticated user.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1UserGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1UserGetAsync(string $contentType = self::contentTypes['apiV1UserGet'][0])
+    public function getUserAsync(string $contentType = self::contentTypes['getUser'][0])
     {
-        return $this->apiV1UserGetAsyncWithHttpInfo($contentType)
+        return $this->getUserAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -289,19 +289,19 @@ class UserApi
     }
 
     /**
-     * Operation apiV1UserGetAsyncWithHttpInfo
+     * Operation getUserAsyncWithHttpInfo
      *
      * Get the profile for the authenticated user.
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1UserGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1UserGetAsyncWithHttpInfo(string $contentType = self::contentTypes['apiV1UserGet'][0])
+    public function getUserAsyncWithHttpInfo(string $contentType = self::contentTypes['getUser'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser';
-        $request = $this->apiV1UserGetRequest($contentType);
+        $request = $this->getUserRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -340,14 +340,14 @@ class UserApi
     }
 
     /**
-     * Create request for operation 'apiV1UserGet'
+     * Create request for operation 'getUser'
      *
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1UserGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUser'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1UserGetRequest(string $contentType = self::contentTypes['apiV1UserGet'][0])
+    public function getUserRequest(string $contentType = self::contentTypes['getUser'][0])
     {
 
 
@@ -421,40 +421,38 @@ class UserApi
     }
 
     /**
-     * Operation apiV1UserIdPut
+     * Operation getUsers
      *
-     * Updates a user record and optionally accepts an invite to join a merchant.
+     * Gets all users including invitees for a merchant.
      *
-     * @param  string $id id (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserUpdate $no_frixion_money_moov_models_user_update no_frixion_money_moov_models_user_update (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1UserIdPut'] to see the possible values for this operation
+     * @param  string $merchant_id The ID of the merchant to get the user roles for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUsers'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser
      */
-    public function apiV1UserIdPut($id, $no_frixion_money_moov_models_user_update = null, string $contentType = self::contentTypes['apiV1UserIdPut'][0])
+    public function getUsers($merchant_id, string $contentType = self::contentTypes['getUsers'][0])
     {
-        list($response) = $this->apiV1UserIdPutWithHttpInfo($id, $no_frixion_money_moov_models_user_update, $contentType);
+        list($response) = $this->getUsersWithHttpInfo($merchant_id, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1UserIdPutWithHttpInfo
+     * Operation getUsersWithHttpInfo
      *
-     * Updates a user record and optionally accepts an invite to join a merchant.
+     * Gets all users including invitees for a merchant.
      *
-     * @param  string $id (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserUpdate $no_frixion_money_moov_models_user_update (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1UserIdPut'] to see the possible values for this operation
+     * @param  string $merchant_id The ID of the merchant to get the user roles for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUsers'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1UserIdPutWithHttpInfo($id, $no_frixion_money_moov_models_user_update = null, string $contentType = self::contentTypes['apiV1UserIdPut'][0])
+    public function getUsersWithHttpInfo($merchant_id, string $contentType = self::contentTypes['getUsers'][0])
     {
-        $request = $this->apiV1UserIdPutRequest($id, $no_frixion_money_moov_models_user_update, $contentType);
+        $request = $this->getUsersRequest($merchant_id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -565,20 +563,19 @@ class UserApi
     }
 
     /**
-     * Operation apiV1UserIdPutAsync
+     * Operation getUsersAsync
      *
-     * Updates a user record and optionally accepts an invite to join a merchant.
+     * Gets all users including invitees for a merchant.
      *
-     * @param  string $id (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserUpdate $no_frixion_money_moov_models_user_update (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1UserIdPut'] to see the possible values for this operation
+     * @param  string $merchant_id The ID of the merchant to get the user roles for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUsers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1UserIdPutAsync($id, $no_frixion_money_moov_models_user_update = null, string $contentType = self::contentTypes['apiV1UserIdPut'][0])
+    public function getUsersAsync($merchant_id, string $contentType = self::contentTypes['getUsers'][0])
     {
-        return $this->apiV1UserIdPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_user_update, $contentType)
+        return $this->getUsersAsyncWithHttpInfo($merchant_id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -587,21 +584,20 @@ class UserApi
     }
 
     /**
-     * Operation apiV1UserIdPutAsyncWithHttpInfo
+     * Operation getUsersAsyncWithHttpInfo
      *
-     * Updates a user record and optionally accepts an invite to join a merchant.
+     * Gets all users including invitees for a merchant.
      *
-     * @param  string $id (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserUpdate $no_frixion_money_moov_models_user_update (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1UserIdPut'] to see the possible values for this operation
+     * @param  string $merchant_id The ID of the merchant to get the user roles for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUsers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1UserIdPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_user_update = null, string $contentType = self::contentTypes['apiV1UserIdPut'][0])
+    public function getUsersAsyncWithHttpInfo($merchant_id, string $contentType = self::contentTypes['getUsers'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser';
-        $request = $this->apiV1UserIdPutRequest($id, $no_frixion_money_moov_models_user_update, $contentType);
+        $request = $this->getUsersRequest($merchant_id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -640,22 +636,338 @@ class UserApi
     }
 
     /**
-     * Create request for operation 'apiV1UserIdPut'
+     * Create request for operation 'getUsers'
      *
-     * @param  string $id (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserUpdate $no_frixion_money_moov_models_user_update (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1UserIdPut'] to see the possible values for this operation
+     * @param  string $merchant_id The ID of the merchant to get the user roles for. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUsers'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1UserIdPutRequest($id, $no_frixion_money_moov_models_user_update = null, string $contentType = self::contentTypes['apiV1UserIdPut'][0])
+    public function getUsersRequest($merchant_id, string $contentType = self::contentTypes['getUsers'][0])
+    {
+
+        // verify the required parameter 'merchant_id' is set
+        if ($merchant_id === null || (is_array($merchant_id) && count($merchant_id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $merchant_id when calling getUsers'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/user/{merchantID}/users';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($merchant_id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'merchantID' . '}',
+                ObjectSerializer::toPathValue($merchant_id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation updateUser
+     *
+     * Updates a user record and optionally accepts an invite to join a merchant.
+     *
+     * @param  string $id id (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserUpdate $no_frixion_money_moov_models_user_update no_frixion_money_moov_models_user_update (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUser'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser
+     */
+    public function updateUser($id, $no_frixion_money_moov_models_user_update = null, string $contentType = self::contentTypes['updateUser'][0])
+    {
+        list($response) = $this->updateUserWithHttpInfo($id, $no_frixion_money_moov_models_user_update, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation updateUserWithHttpInfo
+     *
+     * Updates a user record and optionally accepts an invite to join a merchant.
+     *
+     * @param  string $id (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserUpdate $no_frixion_money_moov_models_user_update (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUser'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function updateUserWithHttpInfo($id, $no_frixion_money_moov_models_user_update = null, string $contentType = self::contentTypes['updateUser'][0])
+    {
+        $request = $this->updateUserRequest($id, $no_frixion_money_moov_models_user_update, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation updateUserAsync
+     *
+     * Updates a user record and optionally accepts an invite to join a merchant.
+     *
+     * @param  string $id (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserUpdate $no_frixion_money_moov_models_user_update (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUser'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateUserAsync($id, $no_frixion_money_moov_models_user_update = null, string $contentType = self::contentTypes['updateUser'][0])
+    {
+        return $this->updateUserAsyncWithHttpInfo($id, $no_frixion_money_moov_models_user_update, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation updateUserAsyncWithHttpInfo
+     *
+     * Updates a user record and optionally accepts an invite to join a merchant.
+     *
+     * @param  string $id (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserUpdate $no_frixion_money_moov_models_user_update (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUser'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function updateUserAsyncWithHttpInfo($id, $no_frixion_money_moov_models_user_update = null, string $contentType = self::contentTypes['updateUser'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser';
+        $request = $this->updateUserRequest($id, $no_frixion_money_moov_models_user_update, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'updateUser'
+     *
+     * @param  string $id (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserUpdate $no_frixion_money_moov_models_user_update (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateUser'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function updateUserRequest($id, $no_frixion_money_moov_models_user_update = null, string $contentType = self::contentTypes['updateUser'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1UserIdPut'
+                'Missing the required parameter $id when calling updateUser'
             );
         }
 
@@ -739,318 +1051,6 @@ class UserApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'PUT',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1UserMerchantIDUsersGet
-     *
-     * Gets all users including invitees for a merchant.
-     *
-     * @param  string $merchant_id The ID of the merchant to get the user roles for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1UserMerchantIDUsersGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser
-     */
-    public function apiV1UserMerchantIDUsersGet($merchant_id, string $contentType = self::contentTypes['apiV1UserMerchantIDUsersGet'][0])
-    {
-        list($response) = $this->apiV1UserMerchantIDUsersGetWithHttpInfo($merchant_id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1UserMerchantIDUsersGetWithHttpInfo
-     *
-     * Gets all users including invitees for a merchant.
-     *
-     * @param  string $merchant_id The ID of the merchant to get the user roles for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1UserMerchantIDUsersGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1UserMerchantIDUsersGetWithHttpInfo($merchant_id, string $contentType = self::contentTypes['apiV1UserMerchantIDUsersGet'][0])
-    {
-        $request = $this->apiV1UserMerchantIDUsersGetRequest($merchant_id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1UserMerchantIDUsersGetAsync
-     *
-     * Gets all users including invitees for a merchant.
-     *
-     * @param  string $merchant_id The ID of the merchant to get the user roles for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1UserMerchantIDUsersGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1UserMerchantIDUsersGetAsync($merchant_id, string $contentType = self::contentTypes['apiV1UserMerchantIDUsersGet'][0])
-    {
-        return $this->apiV1UserMerchantIDUsersGetAsyncWithHttpInfo($merchant_id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1UserMerchantIDUsersGetAsyncWithHttpInfo
-     *
-     * Gets all users including invitees for a merchant.
-     *
-     * @param  string $merchant_id The ID of the merchant to get the user roles for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1UserMerchantIDUsersGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1UserMerchantIDUsersGetAsyncWithHttpInfo($merchant_id, string $contentType = self::contentTypes['apiV1UserMerchantIDUsersGet'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser';
-        $request = $this->apiV1UserMerchantIDUsersGetRequest($merchant_id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1UserMerchantIDUsersGet'
-     *
-     * @param  string $merchant_id The ID of the merchant to get the user roles for. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1UserMerchantIDUsersGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1UserMerchantIDUsersGetRequest($merchant_id, string $contentType = self::contentTypes['apiV1UserMerchantIDUsersGet'][0])
-    {
-
-        // verify the required parameter 'merchant_id' is set
-        if ($merchant_id === null || (is_array($merchant_id) && count($merchant_id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $merchant_id when calling apiV1UserMerchantIDUsersGet'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/user/{merchantID}/users';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($merchant_id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'merchantID' . '}',
-                ObjectSerializer::toPathValue($merchant_id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

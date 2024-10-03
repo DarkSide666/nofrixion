@@ -72,312 +72,324 @@ class PaymentRequestsApiTest extends TestCase
     }
 
     /**
-     * Test case for apiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet
-     *
-     * Gets a list of the tokenised cards stored for a single customer..
-     *
-     */
-    public function testApiV1PaymentrequestsCardCustomertokensCustomerEmailAddressGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsCardCustomertokensIdDelete
-     *
-     * Deletes a single card token..
-     *
-     */
-    public function testApiV1PaymentrequestsCardCustomertokensIdDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet
-     *
-     * Gets a list of the tokenised cards stored for a single customer..
-     *
-     */
-    public function testApiV1PaymentrequestsCardCustomertokensMerchantIDCustomerEmailAddressGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete
-     *
-     * Deletes all the card tokens for a customer..
-     *
-     */
-    public function testApiV1PaymentrequestsCardCustomertokensRemoveallCustomerEmailAddressDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete
-     *
-     * Deletes all the card tokens for a customer..
-     *
-     */
-    public function testApiV1PaymentrequestsCardCustomertokensRemoveallMerchantIDCustomerEmailAddressDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsGet
-     *
-     * Gets a list of all payment requests..
-     *
-     */
-    public function testApiV1PaymentrequestsGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsGetbyorderidOrderIDGet
-     *
-     * Gets a payment request by its order ID..
-     *
-     */
-    public function testApiV1PaymentrequestsGetbyorderidOrderIDGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsIdCardAuthenticationsetupPost
-     *
-     * Set up payer authentication for a card payment..
-     *
-     */
-    public function testApiV1PaymentrequestsIdCardAuthenticationsetupPost()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsIdCardCapturePost
+     * Test case for captureCardPayment
      *
      * Submits a request to capture a previously authorised card payment..
      *
      */
-    public function testApiV1PaymentrequestsIdCardCapturePost()
+    public function testCaptureCardPayment()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1PaymentrequestsIdCardPaywithtokenPost
-     *
-     * Submits a payment request, using a tokenised card, to a payment gateway..
-     *
-     */
-    public function testApiV1PaymentrequestsIdCardPaywithtokenPost()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsIdCardPost
-     *
-     * Submit a payment authorisation request to the card gateway..
-     *
-     */
-    public function testApiV1PaymentrequestsIdCardPost()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsIdCardPublickeyGet
-     *
-     * Gets the public key to encrypt card details with when submitting an authorisation..
-     *
-     */
-    public function testApiV1PaymentrequestsIdCardPublickeyGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsIdCardRefundPartialRefundAmountPost
-     *
-     * Submits a request to refund a card payment..
-     *
-     */
-    public function testApiV1PaymentrequestsIdCardRefundPartialRefundAmountPost()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsIdCardVoidPost
-     *
-     * Submits a request to void a card payment..
-     *
-     */
-    public function testApiV1PaymentrequestsIdCardVoidPost()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsIdCardVoidpaymentrequestPost
-     *
-     * Submits a request to void all payments for a payment request..
-     *
-     */
-    public function testApiV1PaymentrequestsIdCardVoidpaymentrequestPost()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsIdDelete
-     *
-     * Deletes a payment request, along with its keys and addresses, if there's  no payment event associated with it..
-     *
-     */
-    public function testApiV1PaymentrequestsIdDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsIdEventsGet
-     *
-     * Gets a payment requests's events..
-     *
-     */
-    public function testApiV1PaymentrequestsIdEventsGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsIdGet
-     *
-     * Gets a payment request..
-     *
-     */
-    public function testApiV1PaymentrequestsIdGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsIdMinimalGet
-     *
-     * Gets a minimal representation of a payment request..
-     *
-     */
-    public function testApiV1PaymentrequestsIdMinimalGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsIdPispPost
-     *
-     * Submits a payment initiation request..
-     *
-     */
-    public function testApiV1PaymentrequestsIdPispPost()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsIdPispSandboxcallbackPut
-     *
-     * This action simulates a payment initiation callback from a bank to authorise a payment in a sandbox environment..
-     *
-     */
-    public function testApiV1PaymentrequestsIdPispSandboxcallbackPut()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsIdPut
-     *
-     * Updates a payment request..
-     *
-     */
-    public function testApiV1PaymentrequestsIdPut()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsIdResultGet
-     *
-     * Gets a payment request result..
-     *
-     */
-    public function testApiV1PaymentrequestsIdResultGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsMetricsGet
-     *
-     * Gets payment request metrics of a merchant..
-     *
-     */
-    public function testApiV1PaymentrequestsMetricsGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PaymentrequestsPayondemandPost
+     * Test case for createAndPayPaymentRequest
      *
      * Creates a payment request record and processes the payment..
      *
      */
-    public function testApiV1PaymentrequestsPayondemandPost()
+    public function testCreateAndPayPaymentRequest()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1PaymentrequestsPost
+     * Test case for createPaymentRequest
      *
      * Creates a payment request record..
      *
      */
-    public function testApiV1PaymentrequestsPost()
+    public function testCreatePaymentRequest()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteAllTokenisedCards
+     *
+     * Deletes all the card tokens for a customer..
+     *
+     */
+    public function testDeleteAllTokenisedCards()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteAllTokenisedCardsForMerchant
+     *
+     * Deletes all the card tokens for a customer..
+     *
+     */
+    public function testDeleteAllTokenisedCardsForMerchant()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deletePaymentRequest
+     *
+     * Deletes a payment request, along with its keys and addresses, if there's  no payment event associated with it..
+     *
+     */
+    public function testDeletePaymentRequest()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteTokenisedCard
+     *
+     * Deletes a single card token..
+     *
+     */
+    public function testDeleteTokenisedCard()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getAllPaymentRequestsPaged
+     *
+     * Gets a list of all payment requests..
+     *
+     */
+    public function testGetAllPaymentRequestsPaged()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getLightningInvoice
+     *
+     * Gets a Bitcoin Lightning invoice for a payment request..
+     *
+     */
+    public function testGetLightningInvoice()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getPaymentRequest
+     *
+     * Gets a payment request..
+     *
+     */
+    public function testGetPaymentRequest()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getPaymentRequestEvents
+     *
+     * Gets a payment requests's events..
+     *
+     */
+    public function testGetPaymentRequestEvents()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getPaymentRequestForOrder
+     *
+     * Gets a payment request by its order ID..
+     *
+     */
+    public function testGetPaymentRequestForOrder()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getPaymentRequestMetricsForMerchant
+     *
+     * Gets payment request metrics of a merchant..
+     *
+     */
+    public function testGetPaymentRequestMetricsForMerchant()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getPaymentRequestMinimal
+     *
+     * Gets a minimal representation of a payment request..
+     *
+     */
+    public function testGetPaymentRequestMinimal()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getPaymentRequestResult
+     *
+     * Gets a payment request result..
+     *
+     */
+    public function testGetPaymentRequestResult()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getPublicKeyForCardPayment
+     *
+     * Gets the public key to encrypt card details with when submitting an authorisation..
+     *
+     */
+    public function testGetPublicKeyForCardPayment()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getTokenisedCards
+     *
+     * Gets a list of the tokenised cards stored for a single customer..
+     *
+     */
+    public function testGetTokenisedCards()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getTokenisedCardsForMerchant
+     *
+     * Gets a list of the tokenised cards stored for a single customer..
+     *
+     */
+    public function testGetTokenisedCardsForMerchant()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for refundCardPayment
+     *
+     * Submits a request to refund a card payment..
+     *
+     */
+    public function testRefundCardPayment()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for setupCardPayerAuthentication
+     *
+     * Set up payer authentication for a card payment..
+     *
+     */
+    public function testSetupCardPayerAuthentication()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for simulatePayByBankCallback
+     *
+     * This action simulates a payment initiation callback from a bank to authorise a payment in a sandbox environment..
+     *
+     */
+    public function testSimulatePayByBankCallback()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for submitCardPayment
+     *
+     * Submit a payment authorisation request to the card gateway..
+     *
+     */
+    public function testSubmitCardPayment()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for submitPayByBank
+     *
+     * Submits a payment initiation request..
+     *
+     */
+    public function testSubmitPayByBank()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for submitTokenisedCardPayment
+     *
+     * Submits a payment request, using a tokenised card, to a payment gateway..
+     *
+     */
+    public function testSubmitTokenisedCardPayment()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updatePaymentRequest
+     *
+     * Updates a payment request..
+     *
+     */
+    public function testUpdatePaymentRequest()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for voidAllCardPayments
+     *
+     * Submits a request to void all payments for a payment request..
+     *
+     */
+    public function testVoidAllCardPayments()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for voidCardPayment
+     *
+     * Submits a request to void a card payment..
+     *
+     */
+    public function testVoidCardPayment()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

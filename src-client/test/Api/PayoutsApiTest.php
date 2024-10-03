@@ -72,204 +72,204 @@ class PayoutsApiTest extends TestCase
     }
 
     /**
-     * Test case for apiV1PayoutsBatchIdGet
-     *
-     * Gets a list of all the payouts contained in a batch..
-     *
-     */
-    public function testApiV1PayoutsBatchIdGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PayoutsBatchPost
-     *
-     * Creates a new batch payout..
-     *
-     */
-    public function testApiV1PayoutsBatchPost()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PayoutsBatchSubmitIdPost
-     *
-     * Submits a batch payout for processing..
-     *
-     */
-    public function testApiV1PayoutsBatchSubmitIdPost()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PayoutsBatchcreatePost
-     *
-     * Creates payouts..
-     *
-     */
-    public function testApiV1PayoutsBatchcreatePost()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PayoutsBatchdeleteDelete
-     *
-     * Deletes a list of payout records..
-     *
-     */
-    public function testApiV1PayoutsBatchdeleteDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PayoutsCancelIdPut
+     * Test case for cancelScheduledPayout
      *
      * Attempts to cancel a scheduled payout..
      *
      */
-    public function testApiV1PayoutsCancelIdPut()
+    public function testCancelScheduledPayout()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1PayoutsGet
+     * Test case for createBatchPayout
      *
-     * Gets a list of all payouts for a specific merchant..
+     * Creates a new batch payout..
      *
      */
-    public function testApiV1PayoutsGet()
+    public function testCreateBatchPayout()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1PayoutsGetbyinvoiceidInvoiceIDGet
-     *
-     * Gets a payout by its invoice ID..
-     *
-     */
-    public function testApiV1PayoutsGetbyinvoiceidInvoiceIDGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PayoutsIdDelete
-     *
-     * Deletes a payout record..
-     *
-     */
-    public function testApiV1PayoutsIdDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PayoutsIdGet
-     *
-     * Gets a single payout..
-     *
-     */
-    public function testApiV1PayoutsIdGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PayoutsIdPut
-     *
-     * Updates a payout record..
-     *
-     */
-    public function testApiV1PayoutsIdPut()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PayoutsMetricsGet
-     *
-     * Gets a list of all payouts for a specific merchant..
-     *
-     */
-    public function testApiV1PayoutsMetricsGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1PayoutsPost
+     * Test case for createPayout
      *
      * Creates a new payout..
      *
      */
-    public function testApiV1PayoutsPost()
+    public function testCreatePayout()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1PayoutsRejectIdPut
+     * Test case for createPayouts
      *
-     * Rejects the authorisation for a payout..
+     * Creates payouts..
      *
      */
-    public function testApiV1PayoutsRejectIdPut()
+    public function testCreatePayouts()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1PayoutsSendPost
+     * Test case for deletePayout
      *
-     * Creates and submits a payout for a trusted caller..
+     * Deletes a payout record..
      *
      */
-    public function testApiV1PayoutsSendPost()
+    public function testDeletePayout()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1PayoutsStatusIdGet
+     * Test case for deletePayouts
+     *
+     * Deletes a list of payout records..
+     *
+     */
+    public function testDeletePayouts()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getBatchPayout
+     *
+     * Gets a list of all the payouts contained in a batch..
+     *
+     */
+    public function testGetBatchPayout()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getPayout
+     *
+     * Gets a single payout..
+     *
+     */
+    public function testGetPayout()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getPayoutForInvoice
+     *
+     * Gets a payout by its invoice ID..
+     *
+     */
+    public function testGetPayoutForInvoice()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getPayoutMetrics
+     *
+     * Gets a list of all payout metrics for a specific merchant..
+     *
+     */
+    public function testGetPayoutMetrics()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getPayoutStatus
      *
      * Gets a single payout status from..
      *
      */
-    public function testApiV1PayoutsStatusIdGet()
+    public function testGetPayoutStatus()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1PayoutsSubmitIdPost
+     * Test case for getPayoutsPaged
+     *
+     * Gets a list of all payouts for a specific merchant..
+     *
+     */
+    public function testGetPayoutsPaged()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for rejectPayout
+     *
+     * Rejects the authorisation for a payout..
+     *
+     */
+    public function testRejectPayout()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for sendPayout
+     *
+     * Creates and submits a payout for a trusted caller..
+     *
+     */
+    public function testSendPayout()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for submitBatchPayout
+     *
+     * Submits a batch payout for processing..
+     *
+     */
+    public function testSubmitBatchPayout()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for submitPayout
      *
      * Submits a payout for processing..
      *
      */
-    public function testApiV1PayoutsSubmitIdPost()
+    public function testSubmitPayout()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updatePayout
+     *
+     * Updates a payout record..
+     *
+     */
+    public function testUpdatePayout()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

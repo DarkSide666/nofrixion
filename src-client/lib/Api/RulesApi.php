@@ -71,25 +71,25 @@ class RulesApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiV1RulesGet' => [
+        'createRule' => [
             'application/json',
         ],
-        'apiV1RulesIdDelete' => [
+        'deleteRule' => [
             'application/json',
         ],
-        'apiV1RulesIdDisablePut' => [
+        'disableRule' => [
             'application/json',
         ],
-        'apiV1RulesIdEventsGet' => [
+        'getRule' => [
             'application/json',
         ],
-        'apiV1RulesIdGet' => [
+        'getRuleEvents' => [
             'application/json',
         ],
-        'apiV1RulesIdPut' => [
+        'getRulesPaged' => [
             'application/json',
         ],
-        'apiV1RulesPost' => [
+        'updateRule' => [
             'application/json',
         ],
     ];
@@ -141,7 +141,1449 @@ class RulesApi
     }
 
     /**
-     * Operation apiV1RulesGet
+     * Operation createRule
+     *
+     * Creates a new rule for a MoneyMoov payment account.
+     *
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleCreate $no_frixion_money_moov_models_rule_create The model of the new rule to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRule'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule
+     */
+    public function createRule($no_frixion_money_moov_models_rule_create = null, string $contentType = self::contentTypes['createRule'][0])
+    {
+        list($response) = $this->createRuleWithHttpInfo($no_frixion_money_moov_models_rule_create, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createRuleWithHttpInfo
+     *
+     * Creates a new rule for a MoneyMoov payment account.
+     *
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleCreate $no_frixion_money_moov_models_rule_create The model of the new rule to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRule'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createRuleWithHttpInfo($no_frixion_money_moov_models_rule_create = null, string $contentType = self::contentTypes['createRule'][0])
+    {
+        $request = $this->createRuleRequest($no_frixion_money_moov_models_rule_create, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createRuleAsync
+     *
+     * Creates a new rule for a MoneyMoov payment account.
+     *
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleCreate $no_frixion_money_moov_models_rule_create The model of the new rule to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createRuleAsync($no_frixion_money_moov_models_rule_create = null, string $contentType = self::contentTypes['createRule'][0])
+    {
+        return $this->createRuleAsyncWithHttpInfo($no_frixion_money_moov_models_rule_create, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createRuleAsyncWithHttpInfo
+     *
+     * Creates a new rule for a MoneyMoov payment account.
+     *
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleCreate $no_frixion_money_moov_models_rule_create The model of the new rule to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createRuleAsyncWithHttpInfo($no_frixion_money_moov_models_rule_create = null, string $contentType = self::contentTypes['createRule'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule';
+        $request = $this->createRuleRequest($no_frixion_money_moov_models_rule_create, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createRule'
+     *
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleCreate $no_frixion_money_moov_models_rule_create The model of the new rule to create. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createRule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createRuleRequest($no_frixion_money_moov_models_rule_create = null, string $contentType = self::contentTypes['createRule'][0])
+    {
+
+
+
+        $resourcePath = '/api/v1/rules';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($no_frixion_money_moov_models_rule_create)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_rule_create));
+            } else {
+                $httpBody = $no_frixion_money_moov_models_rule_create;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteRule
+     *
+     * Deletes a rule and any associated events.
+     *
+     * @param  string $id The ID of the rule to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteRule'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deleteRule($id, string $contentType = self::contentTypes['deleteRule'][0])
+    {
+        $this->deleteRuleWithHttpInfo($id, $contentType);
+    }
+
+    /**
+     * Operation deleteRuleWithHttpInfo
+     *
+     * Deletes a rule and any associated events.
+     *
+     * @param  string $id The ID of the rule to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteRule'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteRuleWithHttpInfo($id, string $contentType = self::contentTypes['deleteRule'][0])
+    {
+        $request = $this->deleteRuleRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteRuleAsync
+     *
+     * Deletes a rule and any associated events.
+     *
+     * @param  string $id The ID of the rule to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteRule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteRuleAsync($id, string $contentType = self::contentTypes['deleteRule'][0])
+    {
+        return $this->deleteRuleAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteRuleAsyncWithHttpInfo
+     *
+     * Deletes a rule and any associated events.
+     *
+     * @param  string $id The ID of the rule to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteRule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteRuleAsyncWithHttpInfo($id, string $contentType = self::contentTypes['deleteRule'][0])
+    {
+        $returnType = '';
+        $request = $this->deleteRuleRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteRule'
+     *
+     * @param  string $id The ID of the rule to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteRule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteRuleRequest($id, string $contentType = self::contentTypes['deleteRule'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling deleteRule'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/rules/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            [],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation disableRule
+     *
+     * Disables a rule.
+     *
+     * @param  string $id The ID of the rule to disable. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['disableRule'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function disableRule($id, string $contentType = self::contentTypes['disableRule'][0])
+    {
+        $this->disableRuleWithHttpInfo($id, $contentType);
+    }
+
+    /**
+     * Operation disableRuleWithHttpInfo
+     *
+     * Disables a rule.
+     *
+     * @param  string $id The ID of the rule to disable. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['disableRule'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function disableRuleWithHttpInfo($id, string $contentType = self::contentTypes['disableRule'][0])
+    {
+        $request = $this->disableRuleRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation disableRuleAsync
+     *
+     * Disables a rule.
+     *
+     * @param  string $id The ID of the rule to disable. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['disableRule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function disableRuleAsync($id, string $contentType = self::contentTypes['disableRule'][0])
+    {
+        return $this->disableRuleAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation disableRuleAsyncWithHttpInfo
+     *
+     * Disables a rule.
+     *
+     * @param  string $id The ID of the rule to disable. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['disableRule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function disableRuleAsyncWithHttpInfo($id, string $contentType = self::contentTypes['disableRule'][0])
+    {
+        $returnType = '';
+        $request = $this->disableRuleRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'disableRule'
+     *
+     * @param  string $id The ID of the rule to disable. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['disableRule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function disableRuleRequest($id, string $contentType = self::contentTypes['disableRule'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling disableRule'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/rules/{id}/disable';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            [],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'PUT',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getRule
+     *
+     * Get a single rule by ID.
+     *
+     * @param  string $id The ID of the rule to get. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRule'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule
+     */
+    public function getRule($id, string $contentType = self::contentTypes['getRule'][0])
+    {
+        list($response) = $this->getRuleWithHttpInfo($id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getRuleWithHttpInfo
+     *
+     * Get a single rule by ID.
+     *
+     * @param  string $id The ID of the rule to get. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRule'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getRuleWithHttpInfo($id, string $contentType = self::contentTypes['getRule'][0])
+    {
+        $request = $this->getRuleRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getRuleAsync
+     *
+     * Get a single rule by ID.
+     *
+     * @param  string $id The ID of the rule to get. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getRuleAsync($id, string $contentType = self::contentTypes['getRule'][0])
+    {
+        return $this->getRuleAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getRuleAsyncWithHttpInfo
+     *
+     * Get a single rule by ID.
+     *
+     * @param  string $id The ID of the rule to get. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getRuleAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getRule'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule';
+        $request = $this->getRuleRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getRule'
+     *
+     * @param  string $id The ID of the rule to get. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRule'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getRuleRequest($id, string $contentType = self::contentTypes['getRule'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling getRule'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/rules/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getRuleEvents
+     *
+     * Gets a list of the events for a single rule.
+     *
+     * @param  string $id The ID of the rule to get the events for. (required)
+     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
+     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
+     * @param  string[] $event_types List of event types to filter the rule events based on type (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRuleEvents'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRuleEventsPageResponse
+     */
+    public function getRuleEvents($id, $page = 1, $size = 20, $event_types = null, string $contentType = self::contentTypes['getRuleEvents'][0])
+    {
+        list($response) = $this->getRuleEventsWithHttpInfo($id, $page, $size, $event_types, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getRuleEventsWithHttpInfo
+     *
+     * Gets a list of the events for a single rule.
+     *
+     * @param  string $id The ID of the rule to get the events for. (required)
+     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
+     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
+     * @param  string[] $event_types List of event types to filter the rule events based on type (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRuleEvents'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRuleEventsPageResponse, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getRuleEventsWithHttpInfo($id, $page = 1, $size = 20, $event_types = null, string $contentType = self::contentTypes['getRuleEvents'][0])
+    {
+        $request = $this->getRuleEventsRequest($id, $page, $size, $event_types, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRuleEventsPageResponse' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRuleEventsPageResponse' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRuleEventsPageResponse', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRuleEventsPageResponse';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRuleEventsPageResponse',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getRuleEventsAsync
+     *
+     * Gets a list of the events for a single rule.
+     *
+     * @param  string $id The ID of the rule to get the events for. (required)
+     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
+     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
+     * @param  string[] $event_types List of event types to filter the rule events based on type (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRuleEvents'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getRuleEventsAsync($id, $page = 1, $size = 20, $event_types = null, string $contentType = self::contentTypes['getRuleEvents'][0])
+    {
+        return $this->getRuleEventsAsyncWithHttpInfo($id, $page, $size, $event_types, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getRuleEventsAsyncWithHttpInfo
+     *
+     * Gets a list of the events for a single rule.
+     *
+     * @param  string $id The ID of the rule to get the events for. (required)
+     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
+     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
+     * @param  string[] $event_types List of event types to filter the rule events based on type (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRuleEvents'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getRuleEventsAsyncWithHttpInfo($id, $page = 1, $size = 20, $event_types = null, string $contentType = self::contentTypes['getRuleEvents'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRuleEventsPageResponse';
+        $request = $this->getRuleEventsRequest($id, $page, $size, $event_types, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getRuleEvents'
+     *
+     * @param  string $id The ID of the rule to get the events for. (required)
+     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
+     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
+     * @param  string[] $event_types List of event types to filter the rule events based on type (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRuleEvents'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getRuleEventsRequest($id, $page = 1, $size = 20, $event_types = null, string $contentType = self::contentTypes['getRuleEvents'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling getRuleEvents'
+            );
+        }
+
+
+
+
+
+        $resourcePath = '/api/v1/rules/{id}/events';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $page,
+            'page', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $size,
+            'size', // param base name
+            'integer', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $event_types,
+            'eventTypes', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
+        ) ?? []);
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getRulesPaged
      *
      * Gets all the rules for a merchant.
      *
@@ -151,20 +1593,20 @@ class RulesApi
      * @param  string $sort The field(s) to sort by (optional)
      * @param  string $search The search filter (optional)
      * @param  bool $archived_only If set to true, returns only archived rules (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRulesPaged'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRulesPageResponse
      */
-    public function apiV1RulesGet($merchant_id = null, $page = 1, $size = 20, $sort = null, $search = null, $archived_only = false, string $contentType = self::contentTypes['apiV1RulesGet'][0])
+    public function getRulesPaged($merchant_id = null, $page = 1, $size = 20, $sort = null, $search = null, $archived_only = false, string $contentType = self::contentTypes['getRulesPaged'][0])
     {
-        list($response) = $this->apiV1RulesGetWithHttpInfo($merchant_id, $page, $size, $sort, $search, $archived_only, $contentType);
+        list($response) = $this->getRulesPagedWithHttpInfo($merchant_id, $page, $size, $sort, $search, $archived_only, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1RulesGetWithHttpInfo
+     * Operation getRulesPagedWithHttpInfo
      *
      * Gets all the rules for a merchant.
      *
@@ -174,15 +1616,15 @@ class RulesApi
      * @param  string $sort The field(s) to sort by (optional)
      * @param  string $search The search filter (optional)
      * @param  bool $archived_only If set to true, returns only archived rules (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRulesPaged'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRulesPageResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1RulesGetWithHttpInfo($merchant_id = null, $page = 1, $size = 20, $sort = null, $search = null, $archived_only = false, string $contentType = self::contentTypes['apiV1RulesGet'][0])
+    public function getRulesPagedWithHttpInfo($merchant_id = null, $page = 1, $size = 20, $sort = null, $search = null, $archived_only = false, string $contentType = self::contentTypes['getRulesPaged'][0])
     {
-        $request = $this->apiV1RulesGetRequest($merchant_id, $page, $size, $sort, $search, $archived_only, $contentType);
+        $request = $this->getRulesPagedRequest($merchant_id, $page, $size, $sort, $search, $archived_only, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -293,7 +1735,7 @@ class RulesApi
     }
 
     /**
-     * Operation apiV1RulesGetAsync
+     * Operation getRulesPagedAsync
      *
      * Gets all the rules for a merchant.
      *
@@ -303,14 +1745,14 @@ class RulesApi
      * @param  string $sort The field(s) to sort by (optional)
      * @param  string $search The search filter (optional)
      * @param  bool $archived_only If set to true, returns only archived rules (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRulesPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1RulesGetAsync($merchant_id = null, $page = 1, $size = 20, $sort = null, $search = null, $archived_only = false, string $contentType = self::contentTypes['apiV1RulesGet'][0])
+    public function getRulesPagedAsync($merchant_id = null, $page = 1, $size = 20, $sort = null, $search = null, $archived_only = false, string $contentType = self::contentTypes['getRulesPaged'][0])
     {
-        return $this->apiV1RulesGetAsyncWithHttpInfo($merchant_id, $page, $size, $sort, $search, $archived_only, $contentType)
+        return $this->getRulesPagedAsyncWithHttpInfo($merchant_id, $page, $size, $sort, $search, $archived_only, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -319,7 +1761,7 @@ class RulesApi
     }
 
     /**
-     * Operation apiV1RulesGetAsyncWithHttpInfo
+     * Operation getRulesPagedAsyncWithHttpInfo
      *
      * Gets all the rules for a merchant.
      *
@@ -329,15 +1771,15 @@ class RulesApi
      * @param  string $sort The field(s) to sort by (optional)
      * @param  string $search The search filter (optional)
      * @param  bool $archived_only If set to true, returns only archived rules (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRulesPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1RulesGetAsyncWithHttpInfo($merchant_id = null, $page = 1, $size = 20, $sort = null, $search = null, $archived_only = false, string $contentType = self::contentTypes['apiV1RulesGet'][0])
+    public function getRulesPagedAsyncWithHttpInfo($merchant_id = null, $page = 1, $size = 20, $sort = null, $search = null, $archived_only = false, string $contentType = self::contentTypes['getRulesPaged'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRulesPageResponse';
-        $request = $this->apiV1RulesGetRequest($merchant_id, $page, $size, $sort, $search, $archived_only, $contentType);
+        $request = $this->getRulesPagedRequest($merchant_id, $page, $size, $sort, $search, $archived_only, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -376,7 +1818,7 @@ class RulesApi
     }
 
     /**
-     * Create request for operation 'apiV1RulesGet'
+     * Create request for operation 'getRulesPaged'
      *
      * @param  string $merchant_id The merchant ID to retrieve the rules for. (optional)
      * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
@@ -384,12 +1826,12 @@ class RulesApi
      * @param  string $sort The field(s) to sort by (optional)
      * @param  string $search The search filter (optional)
      * @param  bool $archived_only If set to true, returns only archived rules (optional, default to false)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRulesPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1RulesGetRequest($merchant_id = null, $page = 1, $size = 20, $sort = null, $search = null, $archived_only = false, string $contentType = self::contentTypes['apiV1RulesGet'][0])
+    public function getRulesPagedRequest($merchant_id = null, $page = 1, $size = 20, $sort = null, $search = null, $archived_only = false, string $contentType = self::contentTypes['getRulesPaged'][0])
     {
 
 
@@ -523,863 +1965,40 @@ class RulesApi
     }
 
     /**
-     * Operation apiV1RulesIdDelete
+     * Operation updateRule
      *
-     * Deletes a rule and any associated events.
+     * Update an existing rule.
      *
-     * @param  string $id The ID of the rule to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function apiV1RulesIdDelete($id, string $contentType = self::contentTypes['apiV1RulesIdDelete'][0])
-    {
-        $this->apiV1RulesIdDeleteWithHttpInfo($id, $contentType);
-    }
-
-    /**
-     * Operation apiV1RulesIdDeleteWithHttpInfo
-     *
-     * Deletes a rule and any associated events.
-     *
-     * @param  string $id The ID of the rule to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1RulesIdDeleteWithHttpInfo($id, string $contentType = self::contentTypes['apiV1RulesIdDelete'][0])
-    {
-        $request = $this->apiV1RulesIdDeleteRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1RulesIdDeleteAsync
-     *
-     * Deletes a rule and any associated events.
-     *
-     * @param  string $id The ID of the rule to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1RulesIdDeleteAsync($id, string $contentType = self::contentTypes['apiV1RulesIdDelete'][0])
-    {
-        return $this->apiV1RulesIdDeleteAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1RulesIdDeleteAsyncWithHttpInfo
-     *
-     * Deletes a rule and any associated events.
-     *
-     * @param  string $id The ID of the rule to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1RulesIdDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1RulesIdDelete'][0])
-    {
-        $returnType = '';
-        $request = $this->apiV1RulesIdDeleteRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1RulesIdDelete'
-     *
-     * @param  string $id The ID of the rule to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1RulesIdDeleteRequest($id, string $contentType = self::contentTypes['apiV1RulesIdDelete'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1RulesIdDelete'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/rules/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            [],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1RulesIdDisablePut
-     *
-     * Disables a rule.
-     *
-     * @param  string $id The ID of the rule to disable. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdDisablePut'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function apiV1RulesIdDisablePut($id, string $contentType = self::contentTypes['apiV1RulesIdDisablePut'][0])
-    {
-        $this->apiV1RulesIdDisablePutWithHttpInfo($id, $contentType);
-    }
-
-    /**
-     * Operation apiV1RulesIdDisablePutWithHttpInfo
-     *
-     * Disables a rule.
-     *
-     * @param  string $id The ID of the rule to disable. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdDisablePut'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1RulesIdDisablePutWithHttpInfo($id, string $contentType = self::contentTypes['apiV1RulesIdDisablePut'][0])
-    {
-        $request = $this->apiV1RulesIdDisablePutRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1RulesIdDisablePutAsync
-     *
-     * Disables a rule.
-     *
-     * @param  string $id The ID of the rule to disable. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdDisablePut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1RulesIdDisablePutAsync($id, string $contentType = self::contentTypes['apiV1RulesIdDisablePut'][0])
-    {
-        return $this->apiV1RulesIdDisablePutAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1RulesIdDisablePutAsyncWithHttpInfo
-     *
-     * Disables a rule.
-     *
-     * @param  string $id The ID of the rule to disable. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdDisablePut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1RulesIdDisablePutAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1RulesIdDisablePut'][0])
-    {
-        $returnType = '';
-        $request = $this->apiV1RulesIdDisablePutRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1RulesIdDisablePut'
-     *
-     * @param  string $id The ID of the rule to disable. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdDisablePut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1RulesIdDisablePutRequest($id, string $contentType = self::contentTypes['apiV1RulesIdDisablePut'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1RulesIdDisablePut'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/rules/{id}/disable';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            [],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'PUT',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1RulesIdEventsGet
-     *
-     * Gets a list of the events for a single rule.
-     *
-     * @param  string $id The ID of the rule to get the events for. (required)
-     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
-     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
-     * @param  string[] $event_types List of event types to filter the rule events based on type (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdEventsGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRuleEventsPageResponse
-     */
-    public function apiV1RulesIdEventsGet($id, $page = 1, $size = 20, $event_types = null, string $contentType = self::contentTypes['apiV1RulesIdEventsGet'][0])
-    {
-        list($response) = $this->apiV1RulesIdEventsGetWithHttpInfo($id, $page, $size, $event_types, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1RulesIdEventsGetWithHttpInfo
-     *
-     * Gets a list of the events for a single rule.
-     *
-     * @param  string $id The ID of the rule to get the events for. (required)
-     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
-     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
-     * @param  string[] $event_types List of event types to filter the rule events based on type (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdEventsGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRuleEventsPageResponse, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1RulesIdEventsGetWithHttpInfo($id, $page = 1, $size = 20, $event_types = null, string $contentType = self::contentTypes['apiV1RulesIdEventsGet'][0])
-    {
-        $request = $this->apiV1RulesIdEventsGetRequest($id, $page, $size, $event_types, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRuleEventsPageResponse' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRuleEventsPageResponse' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRuleEventsPageResponse', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRuleEventsPageResponse';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRuleEventsPageResponse',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1RulesIdEventsGetAsync
-     *
-     * Gets a list of the events for a single rule.
-     *
-     * @param  string $id The ID of the rule to get the events for. (required)
-     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
-     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
-     * @param  string[] $event_types List of event types to filter the rule events based on type (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdEventsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1RulesIdEventsGetAsync($id, $page = 1, $size = 20, $event_types = null, string $contentType = self::contentTypes['apiV1RulesIdEventsGet'][0])
-    {
-        return $this->apiV1RulesIdEventsGetAsyncWithHttpInfo($id, $page, $size, $event_types, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1RulesIdEventsGetAsyncWithHttpInfo
-     *
-     * Gets a list of the events for a single rule.
-     *
-     * @param  string $id The ID of the rule to get the events for. (required)
-     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
-     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
-     * @param  string[] $event_types List of event types to filter the rule events based on type (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdEventsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1RulesIdEventsGetAsyncWithHttpInfo($id, $page = 1, $size = 20, $event_types = null, string $contentType = self::contentTypes['apiV1RulesIdEventsGet'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingRuleEventsPageResponse';
-        $request = $this->apiV1RulesIdEventsGetRequest($id, $page, $size, $event_types, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1RulesIdEventsGet'
-     *
-     * @param  string $id The ID of the rule to get the events for. (required)
-     * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
-     * @param  int $size The number of records to be retrieved from a page. (optional, default to 20)
-     * @param  string[] $event_types List of event types to filter the rule events based on type (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdEventsGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1RulesIdEventsGetRequest($id, $page = 1, $size = 20, $event_types = null, string $contentType = self::contentTypes['apiV1RulesIdEventsGet'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1RulesIdEventsGet'
-            );
-        }
-
-
-
-
-
-        $resourcePath = '/api/v1/rules/{id}/events';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $page,
-            'page', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $size,
-            'size', // param base name
-            'integer', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-        // query params
-        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
-            $event_types,
-            'eventTypes', // param base name
-            'array', // openApiType
-            'form', // style
-            true, // explode
-            false // required
-        ) ?? []);
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1RulesIdGet
-     *
-     * Get a single rule by ID.
-     *
-     * @param  string $id The ID of the rule to get. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the rule to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleUpdate $no_frixion_money_moov_models_rule_update The model with the updated rule fields. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateRule'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule
      */
-    public function apiV1RulesIdGet($id, string $contentType = self::contentTypes['apiV1RulesIdGet'][0])
+    public function updateRule($id, $no_frixion_money_moov_models_rule_update = null, string $contentType = self::contentTypes['updateRule'][0])
     {
-        list($response) = $this->apiV1RulesIdGetWithHttpInfo($id, $contentType);
+        list($response) = $this->updateRuleWithHttpInfo($id, $no_frixion_money_moov_models_rule_update, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1RulesIdGetWithHttpInfo
+     * Operation updateRuleWithHttpInfo
      *
-     * Get a single rule by ID.
+     * Update an existing rule.
      *
-     * @param  string $id The ID of the rule to get. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the rule to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleUpdate $no_frixion_money_moov_models_rule_update The model with the updated rule fields. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateRule'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1RulesIdGetWithHttpInfo($id, string $contentType = self::contentTypes['apiV1RulesIdGet'][0])
+    public function updateRuleWithHttpInfo($id, $no_frixion_money_moov_models_rule_update = null, string $contentType = self::contentTypes['updateRule'][0])
     {
-        $request = $this->apiV1RulesIdGetRequest($id, $contentType);
+        $request = $this->updateRuleRequest($id, $no_frixion_money_moov_models_rule_update, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1490,19 +2109,20 @@ class RulesApi
     }
 
     /**
-     * Operation apiV1RulesIdGetAsync
+     * Operation updateRuleAsync
      *
-     * Get a single rule by ID.
+     * Update an existing rule.
      *
-     * @param  string $id The ID of the rule to get. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the rule to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleUpdate $no_frixion_money_moov_models_rule_update The model with the updated rule fields. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateRule'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1RulesIdGetAsync($id, string $contentType = self::contentTypes['apiV1RulesIdGet'][0])
+    public function updateRuleAsync($id, $no_frixion_money_moov_models_rule_update = null, string $contentType = self::contentTypes['updateRule'][0])
     {
-        return $this->apiV1RulesIdGetAsyncWithHttpInfo($id, $contentType)
+        return $this->updateRuleAsyncWithHttpInfo($id, $no_frixion_money_moov_models_rule_update, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1511,20 +2131,21 @@ class RulesApi
     }
 
     /**
-     * Operation apiV1RulesIdGetAsyncWithHttpInfo
+     * Operation updateRuleAsyncWithHttpInfo
      *
-     * Get a single rule by ID.
+     * Update an existing rule.
      *
-     * @param  string $id The ID of the rule to get. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the rule to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleUpdate $no_frixion_money_moov_models_rule_update The model with the updated rule fields. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateRule'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1RulesIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1RulesIdGet'][0])
+    public function updateRuleAsyncWithHttpInfo($id, $no_frixion_money_moov_models_rule_update = null, string $contentType = self::contentTypes['updateRule'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule';
-        $request = $this->apiV1RulesIdGetRequest($id, $contentType);
+        $request = $this->updateRuleRequest($id, $no_frixion_money_moov_models_rule_update, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1563,338 +2184,22 @@ class RulesApi
     }
 
     /**
-     * Create request for operation 'apiV1RulesIdGet'
+     * Create request for operation 'updateRule'
      *
-     * @param  string $id The ID of the rule to get. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdGet'] to see the possible values for this operation
+     * @param  string $id The ID of the rule to update. (required)
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleUpdate $no_frixion_money_moov_models_rule_update The model with the updated rule fields. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['updateRule'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1RulesIdGetRequest($id, string $contentType = self::contentTypes['apiV1RulesIdGet'][0])
+    public function updateRuleRequest($id, $no_frixion_money_moov_models_rule_update = null, string $contentType = self::contentTypes['updateRule'][0])
     {
 
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1RulesIdGet'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/rules/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1RulesIdPut
-     *
-     * Update an existing rule.
-     *
-     * @param  string $id The ID of the rule to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleUpdate $no_frixion_money_moov_models_rule_update The model with the updated rule fields. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdPut'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule
-     */
-    public function apiV1RulesIdPut($id, $no_frixion_money_moov_models_rule_update = null, string $contentType = self::contentTypes['apiV1RulesIdPut'][0])
-    {
-        list($response) = $this->apiV1RulesIdPutWithHttpInfo($id, $no_frixion_money_moov_models_rule_update, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1RulesIdPutWithHttpInfo
-     *
-     * Update an existing rule.
-     *
-     * @param  string $id The ID of the rule to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleUpdate $no_frixion_money_moov_models_rule_update The model with the updated rule fields. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdPut'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1RulesIdPutWithHttpInfo($id, $no_frixion_money_moov_models_rule_update = null, string $contentType = self::contentTypes['apiV1RulesIdPut'][0])
-    {
-        $request = $this->apiV1RulesIdPutRequest($id, $no_frixion_money_moov_models_rule_update, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1RulesIdPutAsync
-     *
-     * Update an existing rule.
-     *
-     * @param  string $id The ID of the rule to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleUpdate $no_frixion_money_moov_models_rule_update The model with the updated rule fields. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1RulesIdPutAsync($id, $no_frixion_money_moov_models_rule_update = null, string $contentType = self::contentTypes['apiV1RulesIdPut'][0])
-    {
-        return $this->apiV1RulesIdPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_rule_update, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1RulesIdPutAsyncWithHttpInfo
-     *
-     * Update an existing rule.
-     *
-     * @param  string $id The ID of the rule to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleUpdate $no_frixion_money_moov_models_rule_update The model with the updated rule fields. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1RulesIdPutAsyncWithHttpInfo($id, $no_frixion_money_moov_models_rule_update = null, string $contentType = self::contentTypes['apiV1RulesIdPut'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule';
-        $request = $this->apiV1RulesIdPutRequest($id, $no_frixion_money_moov_models_rule_update, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1RulesIdPut'
-     *
-     * @param  string $id The ID of the rule to update. (required)
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleUpdate $no_frixion_money_moov_models_rule_update The model with the updated rule fields. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesIdPut'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1RulesIdPutRequest($id, $no_frixion_money_moov_models_rule_update = null, string $contentType = self::contentTypes['apiV1RulesIdPut'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1RulesIdPut'
+                'Missing the required parameter $id when calling updateRule'
             );
         }
 
@@ -1978,311 +2283,6 @@ class RulesApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'PUT',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1RulesPost
-     *
-     * Creates a new rule for a MoneyMoov payment account.
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleCreate $no_frixion_money_moov_models_rule_create The model of the new rule to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule
-     */
-    public function apiV1RulesPost($no_frixion_money_moov_models_rule_create = null, string $contentType = self::contentTypes['apiV1RulesPost'][0])
-    {
-        list($response) = $this->apiV1RulesPostWithHttpInfo($no_frixion_money_moov_models_rule_create, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1RulesPostWithHttpInfo
-     *
-     * Creates a new rule for a MoneyMoov payment account.
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleCreate $no_frixion_money_moov_models_rule_create The model of the new rule to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1RulesPostWithHttpInfo($no_frixion_money_moov_models_rule_create = null, string $contentType = self::contentTypes['apiV1RulesPost'][0])
-    {
-        $request = $this->apiV1RulesPostRequest($no_frixion_money_moov_models_rule_create, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1RulesPostAsync
-     *
-     * Creates a new rule for a MoneyMoov payment account.
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleCreate $no_frixion_money_moov_models_rule_create The model of the new rule to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1RulesPostAsync($no_frixion_money_moov_models_rule_create = null, string $contentType = self::contentTypes['apiV1RulesPost'][0])
-    {
-        return $this->apiV1RulesPostAsyncWithHttpInfo($no_frixion_money_moov_models_rule_create, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1RulesPostAsyncWithHttpInfo
-     *
-     * Creates a new rule for a MoneyMoov payment account.
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleCreate $no_frixion_money_moov_models_rule_create The model of the new rule to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1RulesPostAsyncWithHttpInfo($no_frixion_money_moov_models_rule_create = null, string $contentType = self::contentTypes['apiV1RulesPost'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRule';
-        $request = $this->apiV1RulesPostRequest($no_frixion_money_moov_models_rule_create, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1RulesPost'
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleCreate $no_frixion_money_moov_models_rule_create The model of the new rule to create. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1RulesPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1RulesPostRequest($no_frixion_money_moov_models_rule_create = null, string $contentType = self::contentTypes['apiV1RulesPost'][0])
-    {
-
-
-
-        $resourcePath = '/api/v1/rules';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($no_frixion_money_moov_models_rule_create)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_rule_create));
-            } else {
-                $httpBody = $no_frixion_money_moov_models_rule_create;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

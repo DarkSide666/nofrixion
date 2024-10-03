@@ -71,10 +71,10 @@ class TokensApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiV1TokensIdDelete' => [
+        'createMerchantToken' => [
             'application/json',
         ],
-        'apiV1TokensPost' => [
+        'deleteToken' => [
             'application/json',
         ],
     ];
@@ -126,272 +126,38 @@ class TokensApi
     }
 
     /**
-     * Operation apiV1TokensIdDelete
-     *
-     * Deletes a merchant API token.
-     *
-     * @param  string $id The ID of the token to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TokensIdDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return void
-     */
-    public function apiV1TokensIdDelete($id, string $contentType = self::contentTypes['apiV1TokensIdDelete'][0])
-    {
-        $this->apiV1TokensIdDeleteWithHttpInfo($id, $contentType);
-    }
-
-    /**
-     * Operation apiV1TokensIdDeleteWithHttpInfo
-     *
-     * Deletes a merchant API token.
-     *
-     * @param  string $id The ID of the token to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TokensIdDelete'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1TokensIdDeleteWithHttpInfo($id, string $contentType = self::contentTypes['apiV1TokensIdDelete'][0])
-    {
-        $request = $this->apiV1TokensIdDeleteRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            return [null, $statusCode, $response->getHeaders()];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1TokensIdDeleteAsync
-     *
-     * Deletes a merchant API token.
-     *
-     * @param  string $id The ID of the token to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TokensIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1TokensIdDeleteAsync($id, string $contentType = self::contentTypes['apiV1TokensIdDelete'][0])
-    {
-        return $this->apiV1TokensIdDeleteAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1TokensIdDeleteAsyncWithHttpInfo
-     *
-     * Deletes a merchant API token.
-     *
-     * @param  string $id The ID of the token to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TokensIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1TokensIdDeleteAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1TokensIdDelete'][0])
-    {
-        $returnType = '';
-        $request = $this->apiV1TokensIdDeleteRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1TokensIdDelete'
-     *
-     * @param  string $id The ID of the token to delete. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TokensIdDelete'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1TokensIdDeleteRequest($id, string $contentType = self::contentTypes['apiV1TokensIdDelete'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1TokensIdDelete'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/tokens/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            [],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1TokensPost
+     * Operation createMerchantToken
      *
      * Creates a new merchant API token.
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTokenAdd $no_frixion_money_moov_models_token_add The details of the merchant token to add. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TokensPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMerchantToken'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMerchantToken
      */
-    public function apiV1TokensPost($no_frixion_money_moov_models_token_add = null, string $contentType = self::contentTypes['apiV1TokensPost'][0])
+    public function createMerchantToken($no_frixion_money_moov_models_token_add = null, string $contentType = self::contentTypes['createMerchantToken'][0])
     {
-        list($response) = $this->apiV1TokensPostWithHttpInfo($no_frixion_money_moov_models_token_add, $contentType);
+        list($response) = $this->createMerchantTokenWithHttpInfo($no_frixion_money_moov_models_token_add, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1TokensPostWithHttpInfo
+     * Operation createMerchantTokenWithHttpInfo
      *
      * Creates a new merchant API token.
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTokenAdd $no_frixion_money_moov_models_token_add The details of the merchant token to add. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TokensPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMerchantToken'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMerchantToken, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1TokensPostWithHttpInfo($no_frixion_money_moov_models_token_add = null, string $contentType = self::contentTypes['apiV1TokensPost'][0])
+    public function createMerchantTokenWithHttpInfo($no_frixion_money_moov_models_token_add = null, string $contentType = self::contentTypes['createMerchantToken'][0])
     {
-        $request = $this->apiV1TokensPostRequest($no_frixion_money_moov_models_token_add, $contentType);
+        $request = $this->createMerchantTokenRequest($no_frixion_money_moov_models_token_add, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -502,19 +268,19 @@ class TokensApi
     }
 
     /**
-     * Operation apiV1TokensPostAsync
+     * Operation createMerchantTokenAsync
      *
      * Creates a new merchant API token.
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTokenAdd $no_frixion_money_moov_models_token_add The details of the merchant token to add. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TokensPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMerchantToken'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1TokensPostAsync($no_frixion_money_moov_models_token_add = null, string $contentType = self::contentTypes['apiV1TokensPost'][0])
+    public function createMerchantTokenAsync($no_frixion_money_moov_models_token_add = null, string $contentType = self::contentTypes['createMerchantToken'][0])
     {
-        return $this->apiV1TokensPostAsyncWithHttpInfo($no_frixion_money_moov_models_token_add, $contentType)
+        return $this->createMerchantTokenAsyncWithHttpInfo($no_frixion_money_moov_models_token_add, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -523,20 +289,20 @@ class TokensApi
     }
 
     /**
-     * Operation apiV1TokensPostAsyncWithHttpInfo
+     * Operation createMerchantTokenAsyncWithHttpInfo
      *
      * Creates a new merchant API token.
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTokenAdd $no_frixion_money_moov_models_token_add The details of the merchant token to add. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TokensPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMerchantToken'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1TokensPostAsyncWithHttpInfo($no_frixion_money_moov_models_token_add = null, string $contentType = self::contentTypes['apiV1TokensPost'][0])
+    public function createMerchantTokenAsyncWithHttpInfo($no_frixion_money_moov_models_token_add = null, string $contentType = self::contentTypes['createMerchantToken'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMerchantToken';
-        $request = $this->apiV1TokensPostRequest($no_frixion_money_moov_models_token_add, $contentType);
+        $request = $this->createMerchantTokenRequest($no_frixion_money_moov_models_token_add, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -575,15 +341,15 @@ class TokensApi
     }
 
     /**
-     * Create request for operation 'apiV1TokensPost'
+     * Create request for operation 'createMerchantToken'
      *
      * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTokenAdd $no_frixion_money_moov_models_token_add The details of the merchant token to add. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1TokensPost'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMerchantToken'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1TokensPostRequest($no_frixion_money_moov_models_token_add = null, string $contentType = self::contentTypes['apiV1TokensPost'][0])
+    public function createMerchantTokenRequest($no_frixion_money_moov_models_token_add = null, string $contentType = self::contentTypes['createMerchantToken'][0])
     {
 
 
@@ -658,6 +424,240 @@ class TokensApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation deleteToken
+     *
+     * Deletes a merchant API token.
+     *
+     * @param  string $id The ID of the token to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteToken'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return void
+     */
+    public function deleteToken($id, string $contentType = self::contentTypes['deleteToken'][0])
+    {
+        $this->deleteTokenWithHttpInfo($id, $contentType);
+    }
+
+    /**
+     * Operation deleteTokenWithHttpInfo
+     *
+     * Deletes a merchant API token.
+     *
+     * @param  string $id The ID of the token to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteToken'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function deleteTokenWithHttpInfo($id, string $contentType = self::contentTypes['deleteToken'][0])
+    {
+        $request = $this->deleteTokenRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            return [null, $statusCode, $response->getHeaders()];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deleteTokenAsync
+     *
+     * Deletes a merchant API token.
+     *
+     * @param  string $id The ID of the token to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteToken'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteTokenAsync($id, string $contentType = self::contentTypes['deleteToken'][0])
+    {
+        return $this->deleteTokenAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deleteTokenAsyncWithHttpInfo
+     *
+     * Deletes a merchant API token.
+     *
+     * @param  string $id The ID of the token to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteToken'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function deleteTokenAsyncWithHttpInfo($id, string $contentType = self::contentTypes['deleteToken'][0])
+    {
+        $returnType = '';
+        $request = $this->deleteTokenRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deleteToken'
+     *
+     * @param  string $id The ID of the token to delete. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteToken'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function deleteTokenRequest($id, string $contentType = self::contentTypes['deleteToken'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling deleteToken'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/tokens/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            [],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'DELETE',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

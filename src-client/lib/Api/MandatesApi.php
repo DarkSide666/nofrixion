@@ -71,13 +71,13 @@ class MandatesApi
 
     /** @var string[] $contentTypes **/
     public const contentTypes = [
-        'apiV1MandatesGet' => [
+        'createMandate' => [
             'application/json',
         ],
-        'apiV1MandatesIdGet' => [
+        'getMandate' => [
             'application/json',
         ],
-        'apiV1MandatesPost' => [
+        'getMandatesPaged' => [
             'application/json',
         ],
     ];
@@ -129,7 +129,624 @@ class MandatesApi
     }
 
     /**
-     * Operation apiV1MandatesGet
+     * Operation createMandate
+     *
+     * Creates a Direct Debit mandate.
+     *
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandateCreate $no_frixion_money_moov_models_mandates_mandate_create Mandate, customer and bank account information model. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMandate'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate
+     */
+    public function createMandate($no_frixion_money_moov_models_mandates_mandate_create = null, string $contentType = self::contentTypes['createMandate'][0])
+    {
+        list($response) = $this->createMandateWithHttpInfo($no_frixion_money_moov_models_mandates_mandate_create, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation createMandateWithHttpInfo
+     *
+     * Creates a Direct Debit mandate.
+     *
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandateCreate $no_frixion_money_moov_models_mandates_mandate_create Mandate, customer and bank account information model. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMandate'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function createMandateWithHttpInfo($no_frixion_money_moov_models_mandates_mandate_create = null, string $contentType = self::contentTypes['createMandate'][0])
+    {
+        $request = $this->createMandateRequest($no_frixion_money_moov_models_mandates_mandate_create, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation createMandateAsync
+     *
+     * Creates a Direct Debit mandate.
+     *
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandateCreate $no_frixion_money_moov_models_mandates_mandate_create Mandate, customer and bank account information model. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMandate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createMandateAsync($no_frixion_money_moov_models_mandates_mandate_create = null, string $contentType = self::contentTypes['createMandate'][0])
+    {
+        return $this->createMandateAsyncWithHttpInfo($no_frixion_money_moov_models_mandates_mandate_create, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation createMandateAsyncWithHttpInfo
+     *
+     * Creates a Direct Debit mandate.
+     *
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandateCreate $no_frixion_money_moov_models_mandates_mandate_create Mandate, customer and bank account information model. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMandate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function createMandateAsyncWithHttpInfo($no_frixion_money_moov_models_mandates_mandate_create = null, string $contentType = self::contentTypes['createMandate'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate';
+        $request = $this->createMandateRequest($no_frixion_money_moov_models_mandates_mandate_create, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'createMandate'
+     *
+     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandateCreate $no_frixion_money_moov_models_mandates_mandate_create Mandate, customer and bank account information model. (optional)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['createMandate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function createMandateRequest($no_frixion_money_moov_models_mandates_mandate_create = null, string $contentType = self::contentTypes['createMandate'][0])
+    {
+
+
+
+        $resourcePath = '/api/v1/mandates';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (isset($no_frixion_money_moov_models_mandates_mandate_create)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_mandates_mandate_create));
+            } else {
+                $httpBody = $no_frixion_money_moov_models_mandates_mandate_create;
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'POST',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getMandate
+     *
+     * Gets a specific mandate&#39;s information.
+     *
+     * @param  string $id ID of the mandate to retrieve information from. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMandate'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate
+     */
+    public function getMandate($id, string $contentType = self::contentTypes['getMandate'][0])
+    {
+        list($response) = $this->getMandateWithHttpInfo($id, $contentType);
+        return $response;
+    }
+
+    /**
+     * Operation getMandateWithHttpInfo
+     *
+     * Gets a specific mandate&#39;s information.
+     *
+     * @param  string $id ID of the mandate to retrieve information from. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMandate'] to see the possible values for this operation
+     *
+     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \InvalidArgumentException
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function getMandateWithHttpInfo($id, string $contentType = self::contentTypes['getMandate'][0])
+    {
+        $request = $this->getMandateRequest($id, $contentType);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
+                );
+            } catch (ConnectException $e) {
+                throw new ApiException(
+                    "[{$e->getCode()}] {$e->getMessage()}",
+                    (int) $e->getCode(),
+                    null,
+                    null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation getMandateAsync
+     *
+     * Gets a specific mandate&#39;s information.
+     *
+     * @param  string $id ID of the mandate to retrieve information from. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMandate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getMandateAsync($id, string $contentType = self::contentTypes['getMandate'][0])
+    {
+        return $this->getMandateAsyncWithHttpInfo($id, $contentType)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation getMandateAsyncWithHttpInfo
+     *
+     * Gets a specific mandate&#39;s information.
+     *
+     * @param  string $id ID of the mandate to retrieve information from. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMandate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function getMandateAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getMandate'][0])
+    {
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate';
+        $request = $this->getMandateRequest($id, $contentType);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        (string) $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'getMandate'
+     *
+     * @param  string $id ID of the mandate to retrieve information from. (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMandate'] to see the possible values for this operation
+     *
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Request
+     */
+    public function getMandateRequest($id, string $contentType = self::contentTypes['getMandate'][0])
+    {
+
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $id when calling getMandate'
+            );
+        }
+
+
+        $resourcePath = '/api/v1/mandates/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+
+        $headers = $this->headerSelector->selectHeaders(
+            ['text/plain', 'application/json', 'text/json', ],
+            $contentType,
+            $multipart
+        );
+
+        // for model (json/xml)
+        if (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
+                    foreach ($formParamValueItems as $formParamValueItem) {
+                        $multipartContents[] = [
+                            'name' => $formParamName,
+                            'contents' => $formParamValueItem
+                        ];
+                    }
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
+                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
+            } else {
+                // for HTTP post (form)
+                $httpBody = ObjectSerializer::buildQuery($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $operationHost = $this->config->getHost();
+        $query = ObjectSerializer::buildQuery($queryParams);
+        return new Request(
+            'GET',
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    /**
+     * Operation getMandatesPaged
      *
      * Gets all mandates from a specific merchant with the supplied parameters.
      *
@@ -144,20 +761,20 @@ class MandatesApi
      * @param  float $min_amount The amount filter to apply to retrieve mandates that exceed this amount. (optional)
      * @param  float $max_amount The amount filter to apply to retrieve mandates that don&#39;t exceed this amount. (optional)
      * @param  string $sort Optional expression to sort the order of the mandates. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MandatesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMandatesPaged'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingMerchantDirectDebitMandatePageResponse
      */
-    public function apiV1MandatesGet($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $sort = null, string $contentType = self::contentTypes['apiV1MandatesGet'][0])
+    public function getMandatesPaged($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $sort = null, string $contentType = self::contentTypes['getMandatesPaged'][0])
     {
-        list($response) = $this->apiV1MandatesGetWithHttpInfo($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $sort, $contentType);
+        list($response) = $this->getMandatesPagedWithHttpInfo($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $sort, $contentType);
         return $response;
     }
 
     /**
-     * Operation apiV1MandatesGetWithHttpInfo
+     * Operation getMandatesPagedWithHttpInfo
      *
      * Gets all mandates from a specific merchant with the supplied parameters.
      *
@@ -172,15 +789,15 @@ class MandatesApi
      * @param  float $min_amount The amount filter to apply to retrieve mandates that exceed this amount. (optional)
      * @param  float $max_amount The amount filter to apply to retrieve mandates that don&#39;t exceed this amount. (optional)
      * @param  string $sort Optional expression to sort the order of the mandates. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MandatesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMandatesPaged'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionBizBizModelsPagingMerchantDirectDebitMandatePageResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function apiV1MandatesGetWithHttpInfo($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $sort = null, string $contentType = self::contentTypes['apiV1MandatesGet'][0])
+    public function getMandatesPagedWithHttpInfo($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $sort = null, string $contentType = self::contentTypes['getMandatesPaged'][0])
     {
-        $request = $this->apiV1MandatesGetRequest($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $sort, $contentType);
+        $request = $this->getMandatesPagedRequest($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $sort, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -291,7 +908,7 @@ class MandatesApi
     }
 
     /**
-     * Operation apiV1MandatesGetAsync
+     * Operation getMandatesPagedAsync
      *
      * Gets all mandates from a specific merchant with the supplied parameters.
      *
@@ -306,14 +923,14 @@ class MandatesApi
      * @param  float $min_amount The amount filter to apply to retrieve mandates that exceed this amount. (optional)
      * @param  float $max_amount The amount filter to apply to retrieve mandates that don&#39;t exceed this amount. (optional)
      * @param  string $sort Optional expression to sort the order of the mandates. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MandatesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMandatesPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1MandatesGetAsync($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $sort = null, string $contentType = self::contentTypes['apiV1MandatesGet'][0])
+    public function getMandatesPagedAsync($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $sort = null, string $contentType = self::contentTypes['getMandatesPaged'][0])
     {
-        return $this->apiV1MandatesGetAsyncWithHttpInfo($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $sort, $contentType)
+        return $this->getMandatesPagedAsyncWithHttpInfo($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $sort, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -322,7 +939,7 @@ class MandatesApi
     }
 
     /**
-     * Operation apiV1MandatesGetAsyncWithHttpInfo
+     * Operation getMandatesPagedAsyncWithHttpInfo
      *
      * Gets all mandates from a specific merchant with the supplied parameters.
      *
@@ -337,15 +954,15 @@ class MandatesApi
      * @param  float $min_amount The amount filter to apply to retrieve mandates that exceed this amount. (optional)
      * @param  float $max_amount The amount filter to apply to retrieve mandates that don&#39;t exceed this amount. (optional)
      * @param  string $sort Optional expression to sort the order of the mandates. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MandatesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMandatesPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function apiV1MandatesGetAsyncWithHttpInfo($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $sort = null, string $contentType = self::contentTypes['apiV1MandatesGet'][0])
+    public function getMandatesPagedAsyncWithHttpInfo($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $sort = null, string $contentType = self::contentTypes['getMandatesPaged'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionBizBizModelsPagingMerchantDirectDebitMandatePageResponse';
-        $request = $this->apiV1MandatesGetRequest($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $sort, $contentType);
+        $request = $this->getMandatesPagedRequest($merchant_id, $page, $size, $from_date, $to_date, $status, $search, $currency, $min_amount, $max_amount, $sort, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -384,7 +1001,7 @@ class MandatesApi
     }
 
     /**
-     * Create request for operation 'apiV1MandatesGet'
+     * Create request for operation 'getMandatesPaged'
      *
      * @param  string $merchant_id ID of the merchant to retrieve mandates for. (optional)
      * @param  int $page The page number from where records are retrieved. Note that the paging starts from page 1.              If a 0 is supplied it will be treated as a 1 and the first page is returned. (optional, default to 1)
@@ -397,12 +1014,12 @@ class MandatesApi
      * @param  float $min_amount The amount filter to apply to retrieve mandates that exceed this amount. (optional)
      * @param  float $max_amount The amount filter to apply to retrieve mandates that don&#39;t exceed this amount. (optional)
      * @param  string $sort Optional expression to sort the order of the mandates. Example \&quot;Amount desc,Inserted asc\&quot;. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MandatesGet'] to see the possible values for this operation
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMandatesPaged'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function apiV1MandatesGetRequest($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $sort = null, string $contentType = self::contentTypes['apiV1MandatesGet'][0])
+    public function getMandatesPagedRequest($merchant_id = null, $page = 1, $size = 20, $from_date = null, $to_date = null, $status = null, $search = null, $currency = null, $min_amount = null, $max_amount = null, $sort = null, string $contentType = self::contentTypes['getMandatesPaged'][0])
     {
 
 
@@ -579,623 +1196,6 @@ class MandatesApi
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1MandatesIdGet
-     *
-     * Gets a specific mandate&#39;s information.
-     *
-     * @param  string $id ID of the mandate to retrieve information from. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MandatesIdGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate
-     */
-    public function apiV1MandatesIdGet($id, string $contentType = self::contentTypes['apiV1MandatesIdGet'][0])
-    {
-        list($response) = $this->apiV1MandatesIdGetWithHttpInfo($id, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1MandatesIdGetWithHttpInfo
-     *
-     * Gets a specific mandate&#39;s information.
-     *
-     * @param  string $id ID of the mandate to retrieve information from. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MandatesIdGet'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1MandatesIdGetWithHttpInfo($id, string $contentType = self::contentTypes['apiV1MandatesIdGet'][0])
-    {
-        $request = $this->apiV1MandatesIdGetRequest($id, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1MandatesIdGetAsync
-     *
-     * Gets a specific mandate&#39;s information.
-     *
-     * @param  string $id ID of the mandate to retrieve information from. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MandatesIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1MandatesIdGetAsync($id, string $contentType = self::contentTypes['apiV1MandatesIdGet'][0])
-    {
-        return $this->apiV1MandatesIdGetAsyncWithHttpInfo($id, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1MandatesIdGetAsyncWithHttpInfo
-     *
-     * Gets a specific mandate&#39;s information.
-     *
-     * @param  string $id ID of the mandate to retrieve information from. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MandatesIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1MandatesIdGetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['apiV1MandatesIdGet'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate';
-        $request = $this->apiV1MandatesIdGetRequest($id, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1MandatesIdGet'
-     *
-     * @param  string $id ID of the mandate to retrieve information from. (required)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MandatesIdGet'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1MandatesIdGetRequest($id, string $contentType = self::contentTypes['apiV1MandatesIdGet'][0])
-    {
-
-        // verify the required parameter 'id' is set
-        if ($id === null || (is_array($id) && count($id) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $id when calling apiV1MandatesIdGet'
-            );
-        }
-
-
-        $resourcePath = '/api/v1/mandates/{id}';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-        // path params
-        if ($id !== null) {
-            $resourcePath = str_replace(
-                '{' . 'id' . '}',
-                ObjectSerializer::toPathValue($id),
-                $resourcePath
-            );
-        }
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
-            $headers,
-            $httpBody
-        );
-    }
-
-    /**
-     * Operation apiV1MandatesPost
-     *
-     * Creates a Direct Debit mandate.
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandateCreate $no_frixion_money_moov_models_mandates_mandate_create Mandate, customer and bank account information model. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MandatesPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate
-     */
-    public function apiV1MandatesPost($no_frixion_money_moov_models_mandates_mandate_create = null, string $contentType = self::contentTypes['apiV1MandatesPost'][0])
-    {
-        list($response) = $this->apiV1MandatesPostWithHttpInfo($no_frixion_money_moov_models_mandates_mandate_create, $contentType);
-        return $response;
-    }
-
-    /**
-     * Operation apiV1MandatesPostWithHttpInfo
-     *
-     * Creates a Direct Debit mandate.
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandateCreate $no_frixion_money_moov_models_mandates_mandate_create Mandate, customer and bank account information model. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MandatesPost'] to see the possible values for this operation
-     *
-     * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
-     * @throws \InvalidArgumentException
-     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function apiV1MandatesPostWithHttpInfo($no_frixion_money_moov_models_mandates_mandate_create = null, string $contentType = self::contentTypes['apiV1MandatesPost'][0])
-    {
-        $request = $this->apiV1MandatesPostRequest($no_frixion_money_moov_models_mandates_mandate_create, $contentType);
-
-        try {
-            $options = $this->createHttpClientOption();
-            try {
-                $response = $this->client->send($request, $options);
-            } catch (RequestException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
-                    $e->getResponse() ? (string) $e->getResponse()->getBody() : null
-                );
-            } catch (ConnectException $e) {
-                throw new ApiException(
-                    "[{$e->getCode()}] {$e->getMessage()}",
-                    (int) $e->getCode(),
-                    null,
-                    null
-                );
-            }
-
-            $statusCode = $response->getStatusCode();
-
-            if ($statusCode < 200 || $statusCode > 299) {
-                throw new ApiException(
-                    sprintf(
-                        '[%d] Error connecting to the API (%s)',
-                        $statusCode,
-                        (string) $request->getUri()
-                    ),
-                    $statusCode,
-                    $response->getHeaders(),
-                    (string) $response->getBody()
-                );
-            }
-
-            switch($statusCode) {
-                case 200:
-                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate' === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate' !== 'string') {
-                            try {
-                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                            } catch (\JsonException $exception) {
-                                throw new ApiException(
-                                    sprintf(
-                                        'Error JSON decoding server response (%s)',
-                                        $request->getUri()
-                                    ),
-                                    $statusCode,
-                                    $response->getHeaders(),
-                                    $content
-                                );
-                            }
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate', []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-            }
-
-            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate';
-            if ($returnType === '\SplFileObject') {
-                $content = $response->getBody(); //stream goes to serializer
-            } else {
-                $content = (string) $response->getBody();
-                if ($returnType !== 'string') {
-                    try {
-                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
-                    } catch (\JsonException $exception) {
-                        throw new ApiException(
-                            sprintf(
-                                'Error JSON decoding server response (%s)',
-                                $request->getUri()
-                            ),
-                            $statusCode,
-                            $response->getHeaders(),
-                            $content
-                        );
-                    }
-                }
-            }
-
-            return [
-                ObjectSerializer::deserialize($content, $returnType, []),
-                $response->getStatusCode(),
-                $response->getHeaders()
-            ];
-
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-                case 200:
-                    $data = ObjectSerializer::deserialize(
-                        $e->getResponseBody(),
-                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate',
-                        $e->getResponseHeaders()
-                    );
-                    $e->setResponseObject($data);
-                    break;
-            }
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation apiV1MandatesPostAsync
-     *
-     * Creates a Direct Debit mandate.
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandateCreate $no_frixion_money_moov_models_mandates_mandate_create Mandate, customer and bank account information model. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MandatesPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1MandatesPostAsync($no_frixion_money_moov_models_mandates_mandate_create = null, string $contentType = self::contentTypes['apiV1MandatesPost'][0])
-    {
-        return $this->apiV1MandatesPostAsyncWithHttpInfo($no_frixion_money_moov_models_mandates_mandate_create, $contentType)
-            ->then(
-                function ($response) {
-                    return $response[0];
-                }
-            );
-    }
-
-    /**
-     * Operation apiV1MandatesPostAsyncWithHttpInfo
-     *
-     * Creates a Direct Debit mandate.
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandateCreate $no_frixion_money_moov_models_mandates_mandate_create Mandate, customer and bank account information model. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MandatesPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Promise\PromiseInterface
-     */
-    public function apiV1MandatesPostAsyncWithHttpInfo($no_frixion_money_moov_models_mandates_mandate_create = null, string $contentType = self::contentTypes['apiV1MandatesPost'][0])
-    {
-        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandate';
-        $request = $this->apiV1MandatesPostRequest($no_frixion_money_moov_models_mandates_mandate_create, $contentType);
-
-        return $this->client
-            ->sendAsync($request, $this->createHttpClientOption())
-            ->then(
-                function ($response) use ($returnType) {
-                    if ($returnType === '\SplFileObject') {
-                        $content = $response->getBody(); //stream goes to serializer
-                    } else {
-                        $content = (string) $response->getBody();
-                        if ($returnType !== 'string') {
-                            $content = json_decode($content);
-                        }
-                    }
-
-                    return [
-                        ObjectSerializer::deserialize($content, $returnType, []),
-                        $response->getStatusCode(),
-                        $response->getHeaders()
-                    ];
-                },
-                function ($exception) {
-                    $response = $exception->getResponse();
-                    $statusCode = $response->getStatusCode();
-                    throw new ApiException(
-                        sprintf(
-                            '[%d] Error connecting to the API (%s)',
-                            $statusCode,
-                            $exception->getRequest()->getUri()
-                        ),
-                        $statusCode,
-                        $response->getHeaders(),
-                        (string) $response->getBody()
-                    );
-                }
-            );
-    }
-
-    /**
-     * Create request for operation 'apiV1MandatesPost'
-     *
-     * @param  \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMandatesMandateCreate $no_frixion_money_moov_models_mandates_mandate_create Mandate, customer and bank account information model. (optional)
-     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['apiV1MandatesPost'] to see the possible values for this operation
-     *
-     * @throws \InvalidArgumentException
-     * @return \GuzzleHttp\Psr7\Request
-     */
-    public function apiV1MandatesPostRequest($no_frixion_money_moov_models_mandates_mandate_create = null, string $contentType = self::contentTypes['apiV1MandatesPost'][0])
-    {
-
-
-
-        $resourcePath = '/api/v1/mandates';
-        $formParams = [];
-        $queryParams = [];
-        $headerParams = [];
-        $httpBody = '';
-        $multipart = false;
-
-
-
-
-
-        $headers = $this->headerSelector->selectHeaders(
-            ['text/plain', 'application/json', 'text/json', ],
-            $contentType,
-            $multipart
-        );
-
-        // for model (json/xml)
-        if (isset($no_frixion_money_moov_models_mandates_mandate_create)) {
-            if (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the body
-                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($no_frixion_money_moov_models_mandates_mandate_create));
-            } else {
-                $httpBody = $no_frixion_money_moov_models_mandates_mandate_create;
-            }
-        } elseif (count($formParams) > 0) {
-            if ($multipart) {
-                $multipartContents = [];
-                foreach ($formParams as $formParamName => $formParamValue) {
-                    $formParamValueItems = is_array($formParamValue) ? $formParamValue : [$formParamValue];
-                    foreach ($formParamValueItems as $formParamValueItem) {
-                        $multipartContents[] = [
-                            'name' => $formParamName,
-                            'contents' => $formParamValueItem
-                        ];
-                    }
-                }
-                // for HTTP post (form)
-                $httpBody = new MultipartStream($multipartContents);
-
-            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
-                # if Content-Type contains "application/json", json_encode the form parameters
-                $httpBody = \GuzzleHttp\Utils::jsonEncode($formParams);
-            } else {
-                // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($formParams);
-            }
-        }
-
-        // this endpoint requires API key authentication
-        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
-        if ($apiKey !== null) {
-            $headers['Authorization'] = $apiKey;
-        }
-
-        $defaultHeaders = [];
-        if ($this->config->getUserAgent()) {
-            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
-        }
-
-        $headers = array_merge(
-            $defaultHeaders,
-            $headerParams,
-            $headers
-        );
-
-        $operationHost = $this->config->getHost();
-        $query = ObjectSerializer::buildQuery($queryParams);
-        return new Request(
-            'POST',
             $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody

@@ -72,48 +72,48 @@ class UserInvitesApiTest extends TestCase
     }
 
     /**
-     * Test case for apiV1UserinvitesIdDelete
-     *
-     * Deletes user invite..
-     *
-     */
-    public function testApiV1UserinvitesIdDelete()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1UserinvitesIdGet
-     *
-     * Gets a user invite by ID..
-     *
-     */
-    public function testApiV1UserinvitesIdGet()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1UserinvitesIdPut
-     *
-     * Resend, or request a resend, of a user invite..
-     *
-     */
-    public function testApiV1UserinvitesIdPut()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1UserinvitesPost
+     * Test case for createUserInvite
      *
      * Creates a new user invite and optionally sends the invitee an email with the details..
      *
      */
-    public function testApiV1UserinvitesPost()
+    public function testCreateUserInvite()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for deleteUserInvite
+     *
+     * Deletes user invite..
+     *
+     */
+    public function testDeleteUserInvite()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for getUserInvite
+     *
+     * Gets a user invite by ID..
+     *
+     */
+    public function testGetUserInvite()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for resendUserInvite
+     *
+     * Resend, or request a resend, of a user invite..
+     *
+     */
+    public function testResendUserInvite()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

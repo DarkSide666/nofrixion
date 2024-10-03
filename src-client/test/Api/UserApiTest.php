@@ -72,36 +72,36 @@ class UserApiTest extends TestCase
     }
 
     /**
-     * Test case for apiV1UserGet
+     * Test case for getUser
      *
      * Get the profile for the authenticated user..
      *
      */
-    public function testApiV1UserGet()
+    public function testGetUser()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for apiV1UserIdPut
-     *
-     * Updates a user record and optionally accepts an invite to join a merchant..
-     *
-     */
-    public function testApiV1UserIdPut()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for apiV1UserMerchantIDUsersGet
+     * Test case for getUsers
      *
      * Gets all users including invitees for a merchant..
      *
      */
-    public function testApiV1UserMerchantIDUsersGet()
+    public function testGetUsers()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for updateUser
+     *
+     * Updates a user record and optionally accepts an invite to join a merchant..
+     *
+     */
+    public function testUpdateUser()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
