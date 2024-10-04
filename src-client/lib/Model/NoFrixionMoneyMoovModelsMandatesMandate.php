@@ -71,8 +71,8 @@ class NoFrixionMoneyMoovModelsMandatesMandate implements ModelInterface, ArrayAc
         'customer_city' => 'string',
         'customer_email_address' => 'string',
         'customer_iban' => 'string',
-        'customer_account_number' => 'int',
-        'customer_sort_code' => 'int',
+        'customer_account_number' => 'string',
+        'customer_sort_code' => 'string',
         'reference' => 'string',
         'is_recurring' => 'bool',
         'currency' => 'string',
@@ -105,8 +105,8 @@ class NoFrixionMoneyMoovModelsMandatesMandate implements ModelInterface, ArrayAc
         'customer_city' => null,
         'customer_email_address' => null,
         'customer_iban' => null,
-        'customer_account_number' => 'int32',
-        'customer_sort_code' => 'int32',
+        'customer_account_number' => null,
+        'customer_sort_code' => null,
         'reference' => null,
         'is_recurring' => null,
         'currency' => null,
@@ -1004,7 +1004,7 @@ class NoFrixionMoneyMoovModelsMandatesMandate implements ModelInterface, ArrayAc
     /**
      * Gets customer_account_number
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCustomerAccountNumber()
     {
@@ -1014,7 +1014,7 @@ class NoFrixionMoneyMoovModelsMandatesMandate implements ModelInterface, ArrayAc
     /**
      * Sets customer_account_number
      *
-     * @param int|null $customer_account_number Customer's account number in case of GBP account.
+     * @param string|null $customer_account_number Customer's account number in case of GBP account.
      *
      * @return self
      */
@@ -1038,7 +1038,7 @@ class NoFrixionMoneyMoovModelsMandatesMandate implements ModelInterface, ArrayAc
     /**
      * Gets customer_sort_code
      *
-     * @return int|null
+     * @return string|null
      */
     public function getCustomerSortCode()
     {
@@ -1048,7 +1048,7 @@ class NoFrixionMoneyMoovModelsMandatesMandate implements ModelInterface, ArrayAc
     /**
      * Sets customer_sort_code
      *
-     * @param int|null $customer_sort_code Customer's sort code in case of GBP account.
+     * @param string|null $customer_sort_code Customer's sort code in case of GBP account.
      *
      * @return self
      */

@@ -73,7 +73,8 @@ class NoFrixionMoneyMoovModelsTransaction implements ModelInterface, ArrayAccess
         'counterparty_summary' => 'string',
         'balance' => 'float',
         'rule_id' => 'string',
-        'payout_id' => 'string'
+        'payout_id' => 'string',
+        'virtual_iban' => 'string'
     ];
 
     /**
@@ -100,7 +101,8 @@ class NoFrixionMoneyMoovModelsTransaction implements ModelInterface, ArrayAccess
         'counterparty_summary' => null,
         'balance' => 'double',
         'rule_id' => 'uuid',
-        'payout_id' => 'uuid'
+        'payout_id' => 'uuid',
+        'virtual_iban' => null
     ];
 
     /**
@@ -125,7 +127,8 @@ class NoFrixionMoneyMoovModelsTransaction implements ModelInterface, ArrayAccess
         'counterparty_summary' => true,
         'balance' => false,
         'rule_id' => true,
-        'payout_id' => true
+        'payout_id' => true,
+        'virtual_iban' => true
     ];
 
     /**
@@ -230,7 +233,8 @@ class NoFrixionMoneyMoovModelsTransaction implements ModelInterface, ArrayAccess
         'counterparty_summary' => 'counterpartySummary',
         'balance' => 'balance',
         'rule_id' => 'ruleID',
-        'payout_id' => 'payoutID'
+        'payout_id' => 'payoutID',
+        'virtual_iban' => 'virtualIBAN'
     ];
 
     /**
@@ -255,7 +259,8 @@ class NoFrixionMoneyMoovModelsTransaction implements ModelInterface, ArrayAccess
         'counterparty_summary' => 'setCounterpartySummary',
         'balance' => 'setBalance',
         'rule_id' => 'setRuleId',
-        'payout_id' => 'setPayoutId'
+        'payout_id' => 'setPayoutId',
+        'virtual_iban' => 'setVirtualIban'
     ];
 
     /**
@@ -280,7 +285,8 @@ class NoFrixionMoneyMoovModelsTransaction implements ModelInterface, ArrayAccess
         'counterparty_summary' => 'getCounterpartySummary',
         'balance' => 'getBalance',
         'rule_id' => 'getRuleId',
-        'payout_id' => 'getPayoutId'
+        'payout_id' => 'getPayoutId',
+        'virtual_iban' => 'getVirtualIban'
     ];
 
     /**
@@ -415,6 +421,7 @@ class NoFrixionMoneyMoovModelsTransaction implements ModelInterface, ArrayAccess
         $this->setIfExists('balance', $data ?? [], null);
         $this->setIfExists('rule_id', $data ?? [], null);
         $this->setIfExists('payout_id', $data ?? [], null);
+        $this->setIfExists('virtual_iban', $data ?? [], null);
     }
 
     /**
@@ -1001,6 +1008,40 @@ class NoFrixionMoneyMoovModelsTransaction implements ModelInterface, ArrayAccess
             }
         }
         $this->container['payout_id'] = $payout_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets virtual_iban
+     *
+     * @return string|null
+     */
+    public function getVirtualIban()
+    {
+        return $this->container['virtual_iban'];
+    }
+
+    /**
+     * Sets virtual_iban
+     *
+     * @param string|null $virtual_iban If set it indicates the  payin was to a virtual IBAN.
+     *
+     * @return self
+     */
+    public function setVirtualIban($virtual_iban)
+    {
+        if (is_null($virtual_iban)) {
+            array_push($this->openAPINullablesSetToNull, 'virtual_iban');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('virtual_iban', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['virtual_iban'] = $virtual_iban;
 
         return $this;
     }

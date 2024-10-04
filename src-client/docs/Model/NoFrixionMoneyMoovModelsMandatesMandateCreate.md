@@ -13,8 +13,8 @@ Name | Type | Description | Notes
 **city** | **string** | Customer&#39;s city. |
 **country_code** | **string** | 2-character country code of the customer&#39;s bank account. |
 **iban** | **string** | IBAN of the customer&#39;s bank account in case of EUR account. | [optional]
-**account_number** | **int** | Account number of the customer&#39;s bank account in case of GBP account. | [optional]
-**sort_code** | **int** | Sort code of the customer&#39;s bank account in case of GBP account. | [optional]
+**account_number** | **string** | Account number of the customer&#39;s bank account in case of GBP account. | [optional]
+**sort_code** | **string** | Sort code of the customer&#39;s bank account in case of GBP account. | [optional]
 **email_address** | **string** | Customer&#39;s email address. |
 **reference** | **string** | Field that you can use as reference. | [optional]
 **is_recurring** | **bool** | Indicates whether this mandate is single-use or recurring. | [optional]

@@ -60,9 +60,10 @@ class NoFrixionMoneyMoovModelsPaymentAccountCreate implements ModelInterface, Ar
         'merchant_id' => 'string',
         'currency' => 'string',
         'account_name' => 'string',
-        'physical_account_id' => 'string',
+        'supplier_physical_account_id' => 'string',
         'account_type' => 'string',
-        'tribe_account_id' => 'string'
+        'tribe_account_id' => 'string',
+        'physical_account_id' => 'string'
     ];
 
     /**
@@ -76,9 +77,10 @@ class NoFrixionMoneyMoovModelsPaymentAccountCreate implements ModelInterface, Ar
         'merchant_id' => 'uuid',
         'currency' => null,
         'account_name' => null,
-        'physical_account_id' => 'uuid',
+        'supplier_physical_account_id' => 'uuid',
         'account_type' => null,
-        'tribe_account_id' => null
+        'tribe_account_id' => null,
+        'physical_account_id' => 'uuid'
     ];
 
     /**
@@ -90,9 +92,10 @@ class NoFrixionMoneyMoovModelsPaymentAccountCreate implements ModelInterface, Ar
         'merchant_id' => false,
         'currency' => false,
         'account_name' => true,
-        'physical_account_id' => false,
+        'supplier_physical_account_id' => false,
         'account_type' => true,
-        'tribe_account_id' => true
+        'tribe_account_id' => true,
+        'physical_account_id' => true
     ];
 
     /**
@@ -184,9 +187,10 @@ class NoFrixionMoneyMoovModelsPaymentAccountCreate implements ModelInterface, Ar
         'merchant_id' => 'merchantID',
         'currency' => 'currency',
         'account_name' => 'accountName',
-        'physical_account_id' => 'physicalAccountID',
+        'supplier_physical_account_id' => 'supplierPhysicalAccountID',
         'account_type' => 'accountType',
-        'tribe_account_id' => 'tribeAccountId'
+        'tribe_account_id' => 'tribeAccountId',
+        'physical_account_id' => 'physicalAccountID'
     ];
 
     /**
@@ -198,9 +202,10 @@ class NoFrixionMoneyMoovModelsPaymentAccountCreate implements ModelInterface, Ar
         'merchant_id' => 'setMerchantId',
         'currency' => 'setCurrency',
         'account_name' => 'setAccountName',
-        'physical_account_id' => 'setPhysicalAccountId',
+        'supplier_physical_account_id' => 'setSupplierPhysicalAccountId',
         'account_type' => 'setAccountType',
-        'tribe_account_id' => 'setTribeAccountId'
+        'tribe_account_id' => 'setTribeAccountId',
+        'physical_account_id' => 'setPhysicalAccountId'
     ];
 
     /**
@@ -212,9 +217,10 @@ class NoFrixionMoneyMoovModelsPaymentAccountCreate implements ModelInterface, Ar
         'merchant_id' => 'getMerchantId',
         'currency' => 'getCurrency',
         'account_name' => 'getAccountName',
-        'physical_account_id' => 'getPhysicalAccountId',
+        'supplier_physical_account_id' => 'getSupplierPhysicalAccountId',
         'account_type' => 'getAccountType',
-        'tribe_account_id' => 'getTribeAccountId'
+        'tribe_account_id' => 'getTribeAccountId',
+        'physical_account_id' => 'getPhysicalAccountId'
     ];
 
     /**
@@ -313,9 +319,10 @@ class NoFrixionMoneyMoovModelsPaymentAccountCreate implements ModelInterface, Ar
         $this->setIfExists('merchant_id', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('account_name', $data ?? [], null);
-        $this->setIfExists('physical_account_id', $data ?? [], null);
+        $this->setIfExists('supplier_physical_account_id', $data ?? [], null);
         $this->setIfExists('account_type', $data ?? [], null);
         $this->setIfExists('tribe_account_id', $data ?? [], null);
+        $this->setIfExists('physical_account_id', $data ?? [], null);
     }
 
     /**
@@ -477,28 +484,28 @@ class NoFrixionMoneyMoovModelsPaymentAccountCreate implements ModelInterface, Ar
     }
 
     /**
-     * Gets physical_account_id
+     * Gets supplier_physical_account_id
      *
      * @return string|null
      */
-    public function getPhysicalAccountId()
+    public function getSupplierPhysicalAccountId()
     {
-        return $this->container['physical_account_id'];
+        return $this->container['supplier_physical_account_id'];
     }
 
     /**
-     * Sets physical_account_id
+     * Sets supplier_physical_account_id
      *
-     * @param string|null $physical_account_id For internal use only. Leave empty unless requested otherwise.
+     * @param string|null $supplier_physical_account_id For internal use only. Leave empty unless requested otherwise.
      *
      * @return self
      */
-    public function setPhysicalAccountId($physical_account_id)
+    public function setSupplierPhysicalAccountId($supplier_physical_account_id)
     {
-        if (is_null($physical_account_id)) {
-            throw new \InvalidArgumentException('non-nullable physical_account_id cannot be null');
+        if (is_null($supplier_physical_account_id)) {
+            throw new \InvalidArgumentException('non-nullable supplier_physical_account_id cannot be null');
         }
-        $this->container['physical_account_id'] = $physical_account_id;
+        $this->container['supplier_physical_account_id'] = $supplier_physical_account_id;
 
         return $this;
     }
@@ -577,6 +584,40 @@ class NoFrixionMoneyMoovModelsPaymentAccountCreate implements ModelInterface, Ar
             }
         }
         $this->container['tribe_account_id'] = $tribe_account_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets physical_account_id
+     *
+     * @return string|null
+     */
+    public function getPhysicalAccountId()
+    {
+        return $this->container['physical_account_id'];
+    }
+
+    /**
+     * Sets physical_account_id
+     *
+     * @param string|null $physical_account_id For EUR accounts this can be set to the ID of another account that will act as the  backing phyiscal account. The new account will then act as a Virtual account, able to   receive funds but the transactions will be recorded aginst the backing physical account.
+     *
+     * @return self
+     */
+    public function setPhysicalAccountId($physical_account_id)
+    {
+        if (is_null($physical_account_id)) {
+            array_push($this->openAPINullablesSetToNull, 'physical_account_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('physical_account_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['physical_account_id'] = $physical_account_id;
 
         return $this;
     }

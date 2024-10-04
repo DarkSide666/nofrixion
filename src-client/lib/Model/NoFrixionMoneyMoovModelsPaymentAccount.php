@@ -86,7 +86,9 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'created_by' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser',
         'default_payment_rail' => 'string',
         'rules' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleMinimal[]',
-        'is_archived' => 'bool'
+        'is_archived' => 'bool',
+        'physical_account_id' => 'string',
+        'is_virtual' => 'bool'
     ];
 
     /**
@@ -126,7 +128,9 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'created_by' => null,
         'default_payment_rail' => null,
         'rules' => null,
-        'is_archived' => null
+        'is_archived' => null,
+        'physical_account_id' => 'uuid',
+        'is_virtual' => null
     ];
 
     /**
@@ -164,7 +168,9 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'created_by' => false,
         'default_payment_rail' => false,
         'rules' => true,
-        'is_archived' => false
+        'is_archived' => false,
+        'physical_account_id' => true,
+        'is_virtual' => false
     ];
 
     /**
@@ -282,7 +288,9 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'created_by' => 'createdBy',
         'default_payment_rail' => 'defaultPaymentRail',
         'rules' => 'rules',
-        'is_archived' => 'isArchived'
+        'is_archived' => 'isArchived',
+        'physical_account_id' => 'physicalAccountID',
+        'is_virtual' => 'isVirtual'
     ];
 
     /**
@@ -320,7 +328,9 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'created_by' => 'setCreatedBy',
         'default_payment_rail' => 'setDefaultPaymentRail',
         'rules' => 'setRules',
-        'is_archived' => 'setIsArchived'
+        'is_archived' => 'setIsArchived',
+        'physical_account_id' => 'setPhysicalAccountId',
+        'is_virtual' => 'setIsVirtual'
     ];
 
     /**
@@ -358,7 +368,9 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'created_by' => 'getCreatedBy',
         'default_payment_rail' => 'getDefaultPaymentRail',
         'rules' => 'getRules',
-        'is_archived' => 'getIsArchived'
+        'is_archived' => 'getIsArchived',
+        'physical_account_id' => 'getPhysicalAccountId',
+        'is_virtual' => 'getIsVirtual'
     ];
 
     /**
@@ -571,6 +583,8 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         $this->setIfExists('default_payment_rail', $data ?? [], null);
         $this->setIfExists('rules', $data ?? [], null);
         $this->setIfExists('is_archived', $data ?? [], null);
+        $this->setIfExists('physical_account_id', $data ?? [], null);
+        $this->setIfExists('is_virtual', $data ?? [], null);
     }
 
     /**
@@ -1607,6 +1621,67 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
             throw new \InvalidArgumentException('non-nullable is_archived cannot be null');
         }
         $this->container['is_archived'] = $is_archived;
+
+        return $this;
+    }
+
+    /**
+     * Gets physical_account_id
+     *
+     * @return string|null
+     */
+    public function getPhysicalAccountId()
+    {
+        return $this->container['physical_account_id'];
+    }
+
+    /**
+     * Sets physical_account_id
+     *
+     * @param string|null $physical_account_id If non-null it indicates that the account is a virtual account and this ID represents the   backing physical account.
+     *
+     * @return self
+     */
+    public function setPhysicalAccountId($physical_account_id)
+    {
+        if (is_null($physical_account_id)) {
+            array_push($this->openAPINullablesSetToNull, 'physical_account_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('physical_account_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['physical_account_id'] = $physical_account_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_virtual
+     *
+     * @return bool|null
+     */
+    public function getIsVirtual()
+    {
+        return $this->container['is_virtual'];
+    }
+
+    /**
+     * Sets is_virtual
+     *
+     * @param bool|null $is_virtual is_virtual
+     *
+     * @return self
+     */
+    public function setIsVirtual($is_virtual)
+    {
+        if (is_null($is_virtual)) {
+            throw new \InvalidArgumentException('non-nullable is_virtual cannot be null');
+        }
+        $this->container['is_virtual'] = $is_virtual;
 
         return $this;
     }

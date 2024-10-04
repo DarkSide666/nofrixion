@@ -21,5 +21,6 @@ Name | Type | Description | Notes
 **balance** | **float** | Balance left on the account after the transaction. | [optional]
 **rule_id** | **string** | ID of the rule that resulted in the transaction. | [optional]
 **payout_id** | **string** | ID of the payout that resulted in the transaction. | [optional]
+**virtual_iban** | **string** | If set it indicates the  payin was to a virtual IBAN. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

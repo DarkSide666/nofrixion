@@ -66,8 +66,8 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
         'city' => 'string',
         'country_code' => 'string',
         'iban' => 'string',
-        'account_number' => 'int',
-        'sort_code' => 'int',
+        'account_number' => 'string',
+        'sort_code' => 'string',
         'email_address' => 'string',
         'reference' => 'string',
         'is_recurring' => 'bool',
@@ -92,8 +92,8 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
         'city' => null,
         'country_code' => null,
         'iban' => null,
-        'account_number' => 'int32',
-        'sort_code' => 'int32',
+        'account_number' => null,
+        'sort_code' => null,
         'email_address' => 'email',
         'reference' => null,
         'is_recurring' => null,
@@ -499,6 +499,22 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
             $invalidProperties[] = "invalid value for 'iban', the character length must be smaller than or equal to 34.";
         }
 
+        if (!is_null($this->container['account_number']) && (mb_strlen($this->container['account_number']) > 8)) {
+            $invalidProperties[] = "invalid value for 'account_number', the character length must be smaller than or equal to 8.";
+        }
+
+        if (!is_null($this->container['account_number']) && !preg_match("/^[0-9]*$/", $this->container['account_number'])) {
+            $invalidProperties[] = "invalid value for 'account_number', must be conform to the pattern /^[0-9]*$/.";
+        }
+
+        if (!is_null($this->container['sort_code']) && (mb_strlen($this->container['sort_code']) > 6)) {
+            $invalidProperties[] = "invalid value for 'sort_code', the character length must be smaller than or equal to 6.";
+        }
+
+        if (!is_null($this->container['sort_code']) && !preg_match("/^[0-9\\-]*$/", $this->container['sort_code'])) {
+            $invalidProperties[] = "invalid value for 'sort_code', must be conform to the pattern /^[0-9\\-]*$/.";
+        }
+
         if ($this->container['email_address'] === null) {
             $invalidProperties[] = "'email_address' can't be null";
         }
@@ -868,7 +884,7 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
     /**
      * Gets account_number
      *
-     * @return int|null
+     * @return string|null
      */
     public function getAccountNumber()
     {
@@ -878,7 +894,7 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
     /**
      * Sets account_number
      *
-     * @param int|null $account_number Account number of the customer's bank account in case of GBP account.
+     * @param string|null $account_number Account number of the customer's bank account in case of GBP account.
      *
      * @return self
      */
@@ -894,7 +910,12 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-
+        if (!is_null($account_number) && (mb_strlen($account_number) > 8)) {
+            throw new \InvalidArgumentException('invalid length for $account_number when calling NoFrixionMoneyMoovModelsMandatesMandateCreate., must be smaller than or equal to 8.');
+        }
+        if (!is_null($account_number) && (!preg_match("/^[0-9]*$/", ObjectSerializer::toString($account_number)))) {
+            throw new \InvalidArgumentException("invalid value for \$account_number when calling NoFrixionMoneyMoovModelsMandatesMandateCreate., must conform to the pattern /^[0-9]*$/.");
+        }
 
         $this->container['account_number'] = $account_number;
 
@@ -904,7 +925,7 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
     /**
      * Gets sort_code
      *
-     * @return int|null
+     * @return string|null
      */
     public function getSortCode()
     {
@@ -914,7 +935,7 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
     /**
      * Sets sort_code
      *
-     * @param int|null $sort_code Sort code of the customer's bank account in case of GBP account.
+     * @param string|null $sort_code Sort code of the customer's bank account in case of GBP account.
      *
      * @return self
      */
@@ -930,7 +951,12 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-
+        if (!is_null($sort_code) && (mb_strlen($sort_code) > 6)) {
+            throw new \InvalidArgumentException('invalid length for $sort_code when calling NoFrixionMoneyMoovModelsMandatesMandateCreate., must be smaller than or equal to 6.');
+        }
+        if (!is_null($sort_code) && (!preg_match("/^[0-9\\-]*$/", ObjectSerializer::toString($sort_code)))) {
+            throw new \InvalidArgumentException("invalid value for \$sort_code when calling NoFrixionMoneyMoovModelsMandatesMandateCreate., must conform to the pattern /^[0-9\\-]*$/.");
+        }
 
         $this->container['sort_code'] = $sort_code;
 

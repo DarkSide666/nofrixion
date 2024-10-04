@@ -107,9 +107,9 @@ class NoFrixionMoneyMoovModelsPaymentAccountCreateTest extends TestCase
     }
 
     /**
-     * Test attribute "physical_account_id"
+     * Test attribute "supplier_physical_account_id"
      */
-    public function testPropertyPhysicalAccountId()
+    public function testPropertySupplierPhysicalAccountId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -128,6 +128,15 @@ class NoFrixionMoneyMoovModelsPaymentAccountCreateTest extends TestCase
      * Test attribute "tribe_account_id"
      */
     public function testPropertyTribeAccountId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "physical_account_id"
+     */
+    public function testPropertyPhysicalAccountId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
