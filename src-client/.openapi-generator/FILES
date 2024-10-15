@@ -28,6 +28,7 @@ docs/Model/NoFrixionBizBizModelsPagingRulesPageResponse.md
 docs/Model/NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse.md
 docs/Model/NoFrixionBizBizModelsPaymentsCardPaymentResponse.md
 docs/Model/NoFrixionBizBizModelsPaymentsCardPublicKey.md
+docs/Model/NoFrixionBizBizModelsPaymentsCountry.md
 docs/Model/NoFrixionMoneyMoovApiFeaturesPayoutsFailedPayout.md
 docs/Model/NoFrixionMoneyMoovModelsAccountIdentifier.md
 docs/Model/NoFrixionMoneyMoovModelsAccountIdentifierCreate.md
@@ -132,7 +133,6 @@ docs/Model/NoFrixionMoneyMoovModelsUserUpdate.md
 docs/Model/NoFrixionMoneyMoovModelsWebhook.md
 docs/Model/NoFrixionMoneyMoovModelsWebhookCreate.md
 git_push.sh
-lib/ApiException.php
 lib/Api/AccountsApi.php
 lib/Api/BeneficiariesApi.php
 lib/Api/MandatesApi.php
@@ -148,6 +148,7 @@ lib/Api/TransactionsApi.php
 lib/Api/UserApi.php
 lib/Api/UserInvitesApi.php
 lib/Api/WebhooksApi.php
+lib/ApiException.php
 lib/Configuration.php
 lib/HeaderSelector.php
 lib/Model/MicrosoftAspNetCoreMvcProblemDetails.php
@@ -160,6 +161,7 @@ lib/Model/NoFrixionBizBizModelsPagingRulesPageResponse.php
 lib/Model/NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse.php
 lib/Model/NoFrixionBizBizModelsPaymentsCardPaymentResponse.php
 lib/Model/NoFrixionBizBizModelsPaymentsCardPublicKey.php
+lib/Model/NoFrixionBizBizModelsPaymentsCountry.php
 lib/Model/NoFrixionMoneyMoovApiFeaturesPayoutsFailedPayout.php
 lib/Model/NoFrixionMoneyMoovModelsAccountIdentifier.php
 lib/Model/NoFrixionMoneyMoovModelsAccountIdentifierCreate.php
@@ -289,6 +291,7 @@ test/Model/NoFrixionBizBizModelsPagingRulesPageResponseTest.php
 test/Model/NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponseTest.php
 test/Model/NoFrixionBizBizModelsPaymentsCardPaymentResponseTest.php
 test/Model/NoFrixionBizBizModelsPaymentsCardPublicKeyTest.php
+test/Model/NoFrixionBizBizModelsPaymentsCountryTest.php
 test/Model/NoFrixionMoneyMoovApiFeaturesPayoutsFailedPayoutTest.php
 test/Model/NoFrixionMoneyMoovModelsAccountIdentifierCreateTest.php
 test/Model/NoFrixionMoneyMoovModelsAccountIdentifierTest.php

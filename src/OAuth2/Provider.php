@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Nofrixion\Oauth2;
+namespace Nofrixion\OAuth2;
 
 use Nofrixion\Environment\Environment;
 use Nofrixion\Exception\InvalidArgumentException;

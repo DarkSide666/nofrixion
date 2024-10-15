@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **currency** | **string** | The currency of the payment request. | [optional]
 **customer_id** | **string** | An optional customer identifier for the payment request. This field is sent to the   payer&#39;s bank when using payment initiation. The restriction in the available characters  is due to some banks rejecting requests when ones outside the set are used. | [optional]
 **order_id** | **string** | An optional order ID for the payment request. If the request is for an invoice this  is the most appropriate field for the invoice ID. | [optional]
-**payment_method_types** | **string** | The payment methods that the payment request supports. When setting using form data  should be supplied as a comma separated list, for example \&quot;card, pisp, lightning\&quot;. | [optional]
+**payment_methods** | **string[]** | The payment methods that the payment request supports. | [optional]
 **description** | **string** | An optional description for the payment request. If set this field will appear  on the transaction record for some card processors. | [optional]
 **pisp_account_id** | **string** | The payment account ID to use to receive payment initiation payments. This must match one of your  NoFrixion payment account IDs. This can be left blank to use your default payment account. | [optional]
 **shipping_first_name** | **string** | Optionally the first name of the customer&#39;s shipping address. | [optional]

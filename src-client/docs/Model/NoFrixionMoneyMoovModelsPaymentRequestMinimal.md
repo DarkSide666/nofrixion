@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **callback_url** | **string** |  | [optional]
 **card_stripe_payment_intent_secret** | **string** |  | [optional]
 **jwk** | **string** | The jwk containing the public key | [optional]
-**payment_methods** | **string** | The payment methods that the payment request supports. When setting using form data  should be supplied as a comma separated list, for example \&quot;card, pisp, lightning, applePay\&quot;. | [optional]
+**payment_methods_list** | **string[]** | The payment methods that the payment request supports. | [optional]
 **pisp_error** | **string** | This is the error returned from the bank which is recorded in payment request events. | [optional]
 **priority_bank_id** | **string** |  | [optional]
 **google_pay_merchant_id** | **string** | Merchant ID from Google Pay | [optional]

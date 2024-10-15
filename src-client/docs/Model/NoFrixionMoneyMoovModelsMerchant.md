@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **web_hook_limit** | **int** | The maximum number of web hooks that can be created for the Merchant.  To increase the limit contact support. | [optional]
 **display_qr_on_hosted_pay** | **bool** | Indicates if a QR Code containing the payment link should be displayed  on the hosted payment page. | [optional]
 **modulr_customer_id** | **string** | For internal use only. | [optional]
-**supported_payment_methods** | **string** | The payment methods that are configured and supported for this merchant.  Returned as a comma-separated list of PaymentMethodTypeEnum values. | [optional]
+**supported_payment_methods_list** | **string[]** | The payment methods that are configured and supported for this merchant. | [optional]
 **your_role** | **string** | The role of the identity that loaded the merchant record. | [optional]
 **user_roles** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserRole[]**](NoFrixionMoneyMoovModelsUserRole.md) | The list of users that have been assigned a role on the merchant. | [optional]
 **tags** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTag[]**](NoFrixionMoneyMoovModelsTag.md) | An optional list of descriptive tags that can be used on merchant entities  such as payment requests. | [optional]
