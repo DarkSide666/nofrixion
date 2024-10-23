@@ -168,18 +168,6 @@ class PaymentRequestsApiTest extends TestCase
     }
 
     /**
-     * Test case for getDirectDebitForm
-     *
-     * Serves a form to initiate a direct debit payment..
-     *
-     */
-    public function testGetDirectDebitForm()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test case for getLightningInvoice
      *
      * Gets a Bitcoin Lightning invoice for a payment request..
@@ -342,18 +330,6 @@ class PaymentRequestsApiTest extends TestCase
      *
      */
     public function testSubmitCardPayment()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test case for submitDirectDebit
-     *
-     * Processes information submitted through the direct debit payment form..
-     *
-     */
-    public function testSubmitDirectDebit()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

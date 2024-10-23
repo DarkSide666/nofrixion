@@ -88,7 +88,6 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'customer_email_address' => 'string',
         'card_stripe_payment_intent_id' => 'string',
         'card_stripe_payment_intent_secret' => 'string',
-        'merchant' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMerchant',
         'addresses' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestAddress[]',
         'events' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestEvent[]',
         'tokenised_cards' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCardCustomerToken[]',
@@ -100,7 +99,6 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'title' => 'string',
         'partial_payment_steps' => 'string',
         'payrun_id' => 'string',
-        'billing_address' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestAddress',
         'shipping_address' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestAddress',
         'notification_email_addresses' => 'string',
         'payment_attempts' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestPaymentAttempt[]',
@@ -153,7 +151,6 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'customer_email_address' => 'email',
         'card_stripe_payment_intent_id' => null,
         'card_stripe_payment_intent_secret' => null,
-        'merchant' => null,
         'addresses' => null,
         'events' => null,
         'tokenised_cards' => null,
@@ -165,7 +162,6 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'title' => null,
         'partial_payment_steps' => null,
         'payrun_id' => 'uuid',
-        'billing_address' => null,
         'shipping_address' => null,
         'notification_email_addresses' => null,
         'payment_attempts' => null,
@@ -216,7 +212,6 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'customer_email_address' => true,
         'card_stripe_payment_intent_id' => true,
         'card_stripe_payment_intent_secret' => true,
-        'merchant' => false,
         'addresses' => true,
         'events' => true,
         'tokenised_cards' => true,
@@ -228,7 +223,6 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'title' => true,
         'partial_payment_steps' => true,
         'payrun_id' => true,
-        'billing_address' => false,
         'shipping_address' => false,
         'notification_email_addresses' => true,
         'payment_attempts' => true,
@@ -359,7 +353,6 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'customer_email_address' => 'customerEmailAddress',
         'card_stripe_payment_intent_id' => 'cardStripePaymentIntentID',
         'card_stripe_payment_intent_secret' => 'cardStripePaymentIntentSecret',
-        'merchant' => 'merchant',
         'addresses' => 'addresses',
         'events' => 'events',
         'tokenised_cards' => 'tokenisedCards',
@@ -371,7 +364,6 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'title' => 'title',
         'partial_payment_steps' => 'partialPaymentSteps',
         'payrun_id' => 'payrunID',
-        'billing_address' => 'billingAddress',
         'shipping_address' => 'shippingAddress',
         'notification_email_addresses' => 'notificationEmailAddresses',
         'payment_attempts' => 'paymentAttempts',
@@ -422,7 +414,6 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'customer_email_address' => 'setCustomerEmailAddress',
         'card_stripe_payment_intent_id' => 'setCardStripePaymentIntentId',
         'card_stripe_payment_intent_secret' => 'setCardStripePaymentIntentSecret',
-        'merchant' => 'setMerchant',
         'addresses' => 'setAddresses',
         'events' => 'setEvents',
         'tokenised_cards' => 'setTokenisedCards',
@@ -434,7 +425,6 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'title' => 'setTitle',
         'partial_payment_steps' => 'setPartialPaymentSteps',
         'payrun_id' => 'setPayrunId',
-        'billing_address' => 'setBillingAddress',
         'shipping_address' => 'setShippingAddress',
         'notification_email_addresses' => 'setNotificationEmailAddresses',
         'payment_attempts' => 'setPaymentAttempts',
@@ -485,7 +475,6 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'customer_email_address' => 'getCustomerEmailAddress',
         'card_stripe_payment_intent_id' => 'getCardStripePaymentIntentId',
         'card_stripe_payment_intent_secret' => 'getCardStripePaymentIntentSecret',
-        'merchant' => 'getMerchant',
         'addresses' => 'getAddresses',
         'events' => 'getEvents',
         'tokenised_cards' => 'getTokenisedCards',
@@ -497,7 +486,6 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'title' => 'getTitle',
         'partial_payment_steps' => 'getPartialPaymentSteps',
         'payrun_id' => 'getPayrunId',
-        'billing_address' => 'getBillingAddress',
         'shipping_address' => 'getShippingAddress',
         'notification_email_addresses' => 'getNotificationEmailAddresses',
         'payment_attempts' => 'getPaymentAttempts',
@@ -745,7 +733,6 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         $this->setIfExists('customer_email_address', $data ?? [], null);
         $this->setIfExists('card_stripe_payment_intent_id', $data ?? [], null);
         $this->setIfExists('card_stripe_payment_intent_secret', $data ?? [], null);
-        $this->setIfExists('merchant', $data ?? [], null);
         $this->setIfExists('addresses', $data ?? [], null);
         $this->setIfExists('events', $data ?? [], null);
         $this->setIfExists('tokenised_cards', $data ?? [], null);
@@ -757,7 +744,6 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         $this->setIfExists('title', $data ?? [], null);
         $this->setIfExists('partial_payment_steps', $data ?? [], null);
         $this->setIfExists('payrun_id', $data ?? [], null);
-        $this->setIfExists('billing_address', $data ?? [], null);
         $this->setIfExists('shipping_address', $data ?? [], null);
         $this->setIfExists('notification_email_addresses', $data ?? [], null);
         $this->setIfExists('payment_attempts', $data ?? [], null);
@@ -1867,33 +1853,6 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
     }
 
     /**
-     * Gets merchant
-     *
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMerchant|null
-     */
-    public function getMerchant()
-    {
-        return $this->container['merchant'];
-    }
-
-    /**
-     * Sets merchant
-     *
-     * @param \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMerchant|null $merchant merchant
-     *
-     * @return self
-     */
-    public function setMerchant($merchant)
-    {
-        if (is_null($merchant)) {
-            throw new \InvalidArgumentException('non-nullable merchant cannot be null');
-        }
-        $this->container['merchant'] = $merchant;
-
-        return $this;
-    }
-
-    /**
      * Gets addresses
      *
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestAddress[]|null
@@ -2256,33 +2215,6 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
             }
         }
         $this->container['payrun_id'] = $payrun_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets billing_address
-     *
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestAddress|null
-     */
-    public function getBillingAddress()
-    {
-        return $this->container['billing_address'];
-    }
-
-    /**
-     * Sets billing_address
-     *
-     * @param \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentRequestAddress|null $billing_address billing_address
-     *
-     * @return self
-     */
-    public function setBillingAddress($billing_address)
-    {
-        if (is_null($billing_address)) {
-            throw new \InvalidArgumentException('non-nullable billing_address cannot be null');
-        }
-        $this->container['billing_address'] = $billing_address;
 
         return $this;
     }

@@ -148,7 +148,6 @@ Class | Method | HTTP request | Description
 *PaymentRequestsApi* | [**deletePaymentRequest**](docs/Api/PaymentRequestsApi.md#deletepaymentrequest) | **DELETE** /api/v1/paymentrequests/{id} | Deletes a payment request, along with its keys and addresses, if there&#39;s  no payment event associated with it.
 *PaymentRequestsApi* | [**deleteTokenisedCard**](docs/Api/PaymentRequestsApi.md#deletetokenisedcard) | **DELETE** /api/v1/paymentrequests/card/customertokens/{id} | Deletes a single card token.
 *PaymentRequestsApi* | [**getAllPaymentRequestsPaged**](docs/Api/PaymentRequestsApi.md#getallpaymentrequestspaged) | **GET** /api/v1/paymentrequests | Gets a list of all payment requests.
-*PaymentRequestsApi* | [**getDirectDebitForm**](docs/Api/PaymentRequestsApi.md#getdirectdebitform) | **GET** /api/v1/paymentrequests/{id}/directdebit/allinone | Serves a form to initiate a direct debit payment.
 *PaymentRequestsApi* | [**getLightningInvoice**](docs/Api/PaymentRequestsApi.md#getlightninginvoice) | **GET** /api/v1/paymentrequests/{id}/lightning/{partialAmount} | Gets a Bitcoin Lightning invoice for a payment request.
 *PaymentRequestsApi* | [**getPaymentRequest**](docs/Api/PaymentRequestsApi.md#getpaymentrequest) | **GET** /api/v1/paymentrequests/{id} | Gets a payment request.
 *PaymentRequestsApi* | [**getPaymentRequestEvents**](docs/Api/PaymentRequestsApi.md#getpaymentrequestevents) | **GET** /api/v1/paymentrequests/{id}/events | Gets a payment requests&#39;s events.
@@ -163,7 +162,6 @@ Class | Method | HTTP request | Description
 *PaymentRequestsApi* | [**setupCardPayerAuthentication**](docs/Api/PaymentRequestsApi.md#setupcardpayerauthentication) | **POST** /api/v1/paymentrequests/{id}/card/authenticationsetup | Set up payer authentication for a card payment.
 *PaymentRequestsApi* | [**simulatePayByBankCallback**](docs/Api/PaymentRequestsApi.md#simulatepaybybankcallback) | **PUT** /api/v1/paymentrequests/{id}/pisp/sandboxcallback | This action simulates a payment initiation callback from a bank to authorise a payment in a sandbox environment.
 *PaymentRequestsApi* | [**submitCardPayment**](docs/Api/PaymentRequestsApi.md#submitcardpayment) | **POST** /api/v1/paymentrequests/{id}/card | Submit a payment authorisation request to the card gateway.
-*PaymentRequestsApi* | [**submitDirectDebit**](docs/Api/PaymentRequestsApi.md#submitdirectdebit) | **POST** /api/v1/paymentrequests/{id}/directdebit/allinone | Processes information submitted through the direct debit payment form.
 *PaymentRequestsApi* | [**submitDirectDebitForMandate**](docs/Api/PaymentRequestsApi.md#submitdirectdebitformandate) | **POST** /api/v1/paymentrequests/{id}/directdebit | Submits a Direct Debit payment attempt.
 *PaymentRequestsApi* | [**submitPayByBank**](docs/Api/PaymentRequestsApi.md#submitpaybybank) | **POST** /api/v1/paymentrequests/{id}/pisp | Submits a payment initiation request.
 *PaymentRequestsApi* | [**submitTokenisedCardPayment**](docs/Api/PaymentRequestsApi.md#submittokenisedcardpayment) | **POST** /api/v1/paymentrequests/{id}/card/paywithtoken | Submits a payment request, using a tokenised card, to a payment gateway.
@@ -223,7 +221,6 @@ Class | Method | HTTP request | Description
 - [NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse](docs/Model/NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse.md)
 - [NoFrixionBizBizModelsPaymentsCardPaymentResponse](docs/Model/NoFrixionBizBizModelsPaymentsCardPaymentResponse.md)
 - [NoFrixionBizBizModelsPaymentsCardPublicKey](docs/Model/NoFrixionBizBizModelsPaymentsCardPublicKey.md)
-- [NoFrixionBizBizModelsPaymentsCountry](docs/Model/NoFrixionBizBizModelsPaymentsCountry.md)
 - [NoFrixionMoneyMoovApiFeaturesPayoutsFailedPayout](docs/Model/NoFrixionMoneyMoovApiFeaturesPayoutsFailedPayout.md)
 - [NoFrixionMoneyMoovModelsAccountIdentifier](docs/Model/NoFrixionMoneyMoovModelsAccountIdentifier.md)
 - [NoFrixionMoneyMoovModelsAccountIdentifierCreate](docs/Model/NoFrixionMoneyMoovModelsAccountIdentifierCreate.md)
@@ -305,6 +302,7 @@ Class | Method | HTTP request | Description
 - [NoFrixionMoneyMoovModelsPayoutReject](docs/Model/NoFrixionMoneyMoovModelsPayoutReject.md)
 - [NoFrixionMoneyMoovModelsPayoutUpdate](docs/Model/NoFrixionMoneyMoovModelsPayoutUpdate.md)
 - [NoFrixionMoneyMoovModelsPayoutsPayoutsCreateResponse](docs/Model/NoFrixionMoneyMoovModelsPayoutsPayoutsCreateResponse.md)
+- [NoFrixionMoneyMoovModelsReport](docs/Model/NoFrixionMoneyMoovModelsReport.md)
 - [NoFrixionMoneyMoovModelsReportResult](docs/Model/NoFrixionMoneyMoovModelsReportResult.md)
 - [NoFrixionMoneyMoovModelsRule](docs/Model/NoFrixionMoneyMoovModelsRule.md)
 - [NoFrixionMoneyMoovModelsRuleCreate](docs/Model/NoFrixionMoneyMoovModelsRuleCreate.md)
@@ -317,6 +315,7 @@ Class | Method | HTTP request | Description
 - [NoFrixionMoneyMoovModelsTokenAdd](docs/Model/NoFrixionMoneyMoovModelsTokenAdd.md)
 - [NoFrixionMoneyMoovModelsTransaction](docs/Model/NoFrixionMoneyMoovModelsTransaction.md)
 - [NoFrixionMoneyMoovModelsTransactionPageResponse](docs/Model/NoFrixionMoneyMoovModelsTransactionPageResponse.md)
+- [NoFrixionMoneyMoovModelsTribeLoad](docs/Model/NoFrixionMoneyMoovModelsTribeLoad.md)
 - [NoFrixionMoneyMoovModelsUser](docs/Model/NoFrixionMoneyMoovModelsUser.md)
 - [NoFrixionMoneyMoovModelsUserInvite](docs/Model/NoFrixionMoneyMoovModelsUserInvite.md)
 - [NoFrixionMoneyMoovModelsUserInviteCreate](docs/Model/NoFrixionMoneyMoovModelsUserInviteCreate.md)

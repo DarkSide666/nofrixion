@@ -71,8 +71,7 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
         'email_address' => 'string',
         'reference' => 'string',
         'is_recurring' => 'bool',
-        'currency' => 'string',
-        'amount' => 'float'
+        'currency' => 'string'
     ];
 
     /**
@@ -97,8 +96,7 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
         'email_address' => 'email',
         'reference' => null,
         'is_recurring' => null,
-        'currency' => null,
-        'amount' => 'double'
+        'currency' => null
     ];
 
     /**
@@ -121,8 +119,7 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
         'email_address' => false,
         'reference' => true,
         'is_recurring' => true,
-        'currency' => false,
-        'amount' => false
+        'currency' => false
     ];
 
     /**
@@ -225,8 +222,7 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
         'email_address' => 'emailAddress',
         'reference' => 'reference',
         'is_recurring' => 'isRecurring',
-        'currency' => 'currency',
-        'amount' => 'amount'
+        'currency' => 'currency'
     ];
 
     /**
@@ -249,8 +245,7 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
         'email_address' => 'setEmailAddress',
         'reference' => 'setReference',
         'is_recurring' => 'setIsRecurring',
-        'currency' => 'setCurrency',
-        'amount' => 'setAmount'
+        'currency' => 'setCurrency'
     ];
 
     /**
@@ -273,8 +268,7 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
         'email_address' => 'getEmailAddress',
         'reference' => 'getReference',
         'is_recurring' => 'getIsRecurring',
-        'currency' => 'getCurrency',
-        'amount' => 'getAmount'
+        'currency' => 'getCurrency'
     ];
 
     /**
@@ -368,7 +362,6 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('is_recurring', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('amount', $data ?? [], null);
     }
 
     /**
@@ -538,9 +531,6 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
             );
         }
 
-        if ($this->container['amount'] === null) {
-            $invalidProperties[] = "'amount' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -1100,33 +1090,6 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreate implements ModelInterface, A
             );
         }
         $this->container['currency'] = $currency;
-
-        return $this;
-    }
-
-    /**
-     * Gets amount
-     *
-     * @return float
-     */
-    public function getAmount()
-    {
-        return $this->container['amount'];
-    }
-
-    /**
-     * Sets amount
-     *
-     * @param float $amount Amount of the mandate.
-     *
-     * @return self
-     */
-    public function setAmount($amount)
-    {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
-        $this->container['amount'] = $amount;
 
         return $this;
     }

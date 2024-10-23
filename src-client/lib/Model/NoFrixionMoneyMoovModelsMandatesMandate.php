@@ -76,7 +76,6 @@ class NoFrixionMoneyMoovModelsMandatesMandate implements ModelInterface, ArrayAc
         'reference' => 'string',
         'is_recurring' => 'bool',
         'currency' => 'string',
-        'amount' => 'float',
         'approved_at' => '\DateTime',
         'supplier_status' => 'string',
         'status' => 'string',
@@ -110,7 +109,6 @@ class NoFrixionMoneyMoovModelsMandatesMandate implements ModelInterface, ArrayAc
         'reference' => null,
         'is_recurring' => null,
         'currency' => null,
-        'amount' => 'double',
         'approved_at' => 'date-time',
         'supplier_status' => null,
         'status' => null,
@@ -142,7 +140,6 @@ class NoFrixionMoneyMoovModelsMandatesMandate implements ModelInterface, ArrayAc
         'reference' => true,
         'is_recurring' => false,
         'currency' => false,
-        'amount' => false,
         'approved_at' => true,
         'supplier_status' => true,
         'status' => false,
@@ -254,7 +251,6 @@ class NoFrixionMoneyMoovModelsMandatesMandate implements ModelInterface, ArrayAc
         'reference' => 'reference',
         'is_recurring' => 'isRecurring',
         'currency' => 'currency',
-        'amount' => 'amount',
         'approved_at' => 'approvedAt',
         'supplier_status' => 'supplierStatus',
         'status' => 'status',
@@ -286,7 +282,6 @@ class NoFrixionMoneyMoovModelsMandatesMandate implements ModelInterface, ArrayAc
         'reference' => 'setReference',
         'is_recurring' => 'setIsRecurring',
         'currency' => 'setCurrency',
-        'amount' => 'setAmount',
         'approved_at' => 'setApprovedAt',
         'supplier_status' => 'setSupplierStatus',
         'status' => 'setStatus',
@@ -318,7 +313,6 @@ class NoFrixionMoneyMoovModelsMandatesMandate implements ModelInterface, ArrayAc
         'reference' => 'getReference',
         'is_recurring' => 'getIsRecurring',
         'currency' => 'getCurrency',
-        'amount' => 'getAmount',
         'approved_at' => 'getApprovedAt',
         'supplier_status' => 'getSupplierStatus',
         'status' => 'getStatus',
@@ -486,7 +480,6 @@ class NoFrixionMoneyMoovModelsMandatesMandate implements ModelInterface, ArrayAc
         $this->setIfExists('reference', $data ?? [], null);
         $this->setIfExists('is_recurring', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
-        $this->setIfExists('amount', $data ?? [], null);
         $this->setIfExists('approved_at', $data ?? [], null);
         $this->setIfExists('supplier_status', $data ?? [], null);
         $this->setIfExists('status', $data ?? [], null);
@@ -1163,33 +1156,6 @@ class NoFrixionMoneyMoovModelsMandatesMandate implements ModelInterface, ArrayAc
             );
         }
         $this->container['currency'] = $currency;
-
-        return $this;
-    }
-
-    /**
-     * Gets amount
-     *
-     * @return float|null
-     */
-    public function getAmount()
-    {
-        return $this->container['amount'];
-    }
-
-    /**
-     * Sets amount
-     *
-     * @param float|null $amount Amount of this mandate.
-     *
-     * @return self
-     */
-    public function setAmount($amount)
-    {
-        if (is_null($amount)) {
-            throw new \InvalidArgumentException('non-nullable amount cannot be null');
-        }
-        $this->container['amount'] = $amount;
 
         return $this;
     }

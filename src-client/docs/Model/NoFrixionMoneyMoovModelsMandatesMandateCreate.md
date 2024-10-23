@@ -19,6 +19,5 @@ Name | Type | Description | Notes
 **reference** | **string** | Field that you can use as reference. | [optional]
 **is_recurring** | **bool** | Indicates whether this mandate is single-use or recurring. | [optional]
 **currency** | **string** | Currency of the mandate. |
-**amount** | **float** | Amount of the mandate. |
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

@@ -359,15 +359,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestTest extends TestCase
     }
 
     /**
-     * Test attribute "merchant"
-     */
-    public function testPropertyMerchant()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "addresses"
      */
     public function testPropertyAddresses()
@@ -461,15 +452,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestTest extends TestCase
      * Test attribute "payrun_id"
      */
     public function testPropertyPayrunId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "billing_address"
-     */
-    public function testPropertyBillingAddress()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

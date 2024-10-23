@@ -1,6 +1,6 @@
 <?php
 /**
- * NoFrixionBizBizModelsPaymentsCountryTest
+ * NoFrixionMoneyMoovModelsTribeLoadTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace Nofrixion\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * NoFrixionBizBizModelsPaymentsCountryTest Class Doc Comment
+ * NoFrixionMoneyMoovModelsTribeLoadTest Class Doc Comment
  *
  * @category    Class
- * @description NoFrixionBizBizModelsPaymentsCountry
+ * @description NoFrixionMoneyMoovModelsTribeLoad
  * @package     Nofrixion\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class NoFrixionBizBizModelsPaymentsCountryTest extends TestCase
+class NoFrixionMoneyMoovModelsTribeLoadTest extends TestCase
 {
 
     /**
@@ -71,27 +71,54 @@ class NoFrixionBizBizModelsPaymentsCountryTest extends TestCase
     }
 
     /**
-     * Test "NoFrixionBizBizModelsPaymentsCountry"
+     * Test "NoFrixionMoneyMoovModelsTribeLoad"
      */
-    public function testNoFrixionBizBizModelsPaymentsCountry()
+    public function testNoFrixionMoneyMoovModelsTribeLoad()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "code"
+     * Test attribute "transaction"
      */
-    public function testPropertyCode()
+    public function testPropertyTransaction()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "failure_reason"
      */
-    public function testPropertyName()
+    public function testPropertyFailureReason()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "id"
+     */
+    public function testPropertyId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "merchant_id"
+     */
+    public function testPropertyMerchantId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "inserted"
+     */
+    public function testPropertyInserted()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

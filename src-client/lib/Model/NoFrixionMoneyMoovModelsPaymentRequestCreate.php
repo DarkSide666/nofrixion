@@ -90,9 +90,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestCreate implements ModelInterface, Ar
         'card_no_payer_authentication' => 'bool',
         'partial_payment_method' => 'string',
         'customer_email_address' => 'string',
-        'payment_processor' => 'string',
-        'lightning_invoice' => 'string',
-        'lightning_invoice_expires_at' => '\DateTime',
         'notification_email_addresses' => 'string',
         'priority_bank_id' => 'string',
         'title' => 'string',
@@ -143,9 +140,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestCreate implements ModelInterface, Ar
         'card_no_payer_authentication' => null,
         'partial_payment_method' => null,
         'customer_email_address' => null,
-        'payment_processor' => null,
-        'lightning_invoice' => null,
-        'lightning_invoice_expires_at' => 'date-time',
         'notification_email_addresses' => 'email',
         'priority_bank_id' => 'uuid',
         'title' => null,
@@ -194,9 +188,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestCreate implements ModelInterface, Ar
         'card_no_payer_authentication' => false,
         'partial_payment_method' => false,
         'customer_email_address' => true,
-        'payment_processor' => false,
-        'lightning_invoice' => true,
-        'lightning_invoice_expires_at' => true,
         'notification_email_addresses' => true,
         'priority_bank_id' => true,
         'title' => true,
@@ -325,9 +316,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestCreate implements ModelInterface, Ar
         'card_no_payer_authentication' => 'cardNoPayerAuthentication',
         'partial_payment_method' => 'partialPaymentMethod',
         'customer_email_address' => 'customerEmailAddress',
-        'payment_processor' => 'paymentProcessor',
-        'lightning_invoice' => 'lightningInvoice',
-        'lightning_invoice_expires_at' => 'lightningInvoiceExpiresAt',
         'notification_email_addresses' => 'notificationEmailAddresses',
         'priority_bank_id' => 'priorityBankID',
         'title' => 'title',
@@ -376,9 +364,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestCreate implements ModelInterface, Ar
         'card_no_payer_authentication' => 'setCardNoPayerAuthentication',
         'partial_payment_method' => 'setPartialPaymentMethod',
         'customer_email_address' => 'setCustomerEmailAddress',
-        'payment_processor' => 'setPaymentProcessor',
-        'lightning_invoice' => 'setLightningInvoice',
-        'lightning_invoice_expires_at' => 'setLightningInvoiceExpiresAt',
         'notification_email_addresses' => 'setNotificationEmailAddresses',
         'priority_bank_id' => 'setPriorityBankId',
         'title' => 'setTitle',
@@ -427,9 +412,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestCreate implements ModelInterface, Ar
         'card_no_payer_authentication' => 'getCardNoPayerAuthentication',
         'partial_payment_method' => 'getPartialPaymentMethod',
         'customer_email_address' => 'getCustomerEmailAddress',
-        'payment_processor' => 'getPaymentProcessor',
-        'lightning_invoice' => 'getLightningInvoice',
-        'lightning_invoice_expires_at' => 'getLightningInvoiceExpiresAt',
         'notification_email_addresses' => 'getNotificationEmailAddresses',
         'priority_bank_id' => 'getPriorityBankId',
         'title' => 'getTitle',
@@ -497,23 +479,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestCreate implements ModelInterface, Ar
     public const CARD_CREATE_TOKEN_MODE_USER_CONSENT_REQUIRED = 'UserConsentRequired';
     public const PARTIAL_PAYMENT_METHOD_NONE = 'None';
     public const PARTIAL_PAYMENT_METHOD_PARTIAL = 'Partial';
-    public const PAYMENT_PROCESSOR_NONE = 'None';
-    public const PAYMENT_PROCESSOR_CYBER_SOURCE = 'CyberSource';
-    public const PAYMENT_PROCESSOR_CHECKOUT = 'Checkout';
-    public const PAYMENT_PROCESSOR_STRIPE = 'Stripe';
-    public const PAYMENT_PROCESSOR_MODULR = 'Modulr';
-    public const PAYMENT_PROCESSOR_PLAID = 'Plaid';
-    public const PAYMENT_PROCESSOR_YAPILY = 'Yapily';
-    public const PAYMENT_PROCESSOR_NOFRIXION = 'Nofrixion';
-    public const PAYMENT_PROCESSOR_BITCOIN = 'Bitcoin';
-    public const PAYMENT_PROCESSOR_BITCOIN_TESTNET = 'BitcoinTestnet';
-    public const PAYMENT_PROCESSOR_BANKING_CIRCLE = 'BankingCircle';
-    public const PAYMENT_PROCESSOR_BANKING_CIRCLE_AGENCY = 'BankingCircleAgency';
-    public const PAYMENT_PROCESSOR_SIMULATOR = 'Simulator';
-    public const PAYMENT_PROCESSOR_LIGHTNING = 'Lightning';
-    public const PAYMENT_PROCESSOR_LIGHTNING_TESTNET = 'LightningTestnet';
-    public const PAYMENT_PROCESSOR_BANKING_CIRCLE_DIRECT_DEBIT = 'BankingCircleDirectDebit';
-    public const PAYMENT_PROCESSOR_TRIBE = 'Tribe';
 
     /**
      * Gets allowable values of the enum
@@ -577,34 +542,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestCreate implements ModelInterface, Ar
     }
 
     /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getPaymentProcessorAllowableValues()
-    {
-        return [
-            self::PAYMENT_PROCESSOR_NONE,
-            self::PAYMENT_PROCESSOR_CYBER_SOURCE,
-            self::PAYMENT_PROCESSOR_CHECKOUT,
-            self::PAYMENT_PROCESSOR_STRIPE,
-            self::PAYMENT_PROCESSOR_MODULR,
-            self::PAYMENT_PROCESSOR_PLAID,
-            self::PAYMENT_PROCESSOR_YAPILY,
-            self::PAYMENT_PROCESSOR_NOFRIXION,
-            self::PAYMENT_PROCESSOR_BITCOIN,
-            self::PAYMENT_PROCESSOR_BITCOIN_TESTNET,
-            self::PAYMENT_PROCESSOR_BANKING_CIRCLE,
-            self::PAYMENT_PROCESSOR_BANKING_CIRCLE_AGENCY,
-            self::PAYMENT_PROCESSOR_SIMULATOR,
-            self::PAYMENT_PROCESSOR_LIGHTNING,
-            self::PAYMENT_PROCESSOR_LIGHTNING_TESTNET,
-            self::PAYMENT_PROCESSOR_BANKING_CIRCLE_DIRECT_DEBIT,
-            self::PAYMENT_PROCESSOR_TRIBE,
-        ];
-    }
-
-    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -652,9 +589,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestCreate implements ModelInterface, Ar
         $this->setIfExists('card_no_payer_authentication', $data ?? [], null);
         $this->setIfExists('partial_payment_method', $data ?? [], null);
         $this->setIfExists('customer_email_address', $data ?? [], null);
-        $this->setIfExists('payment_processor', $data ?? [], null);
-        $this->setIfExists('lightning_invoice', $data ?? [], null);
-        $this->setIfExists('lightning_invoice_expires_at', $data ?? [], null);
         $this->setIfExists('notification_email_addresses', $data ?? [], null);
         $this->setIfExists('priority_bank_id', $data ?? [], null);
         $this->setIfExists('title', $data ?? [], null);
@@ -765,15 +699,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestCreate implements ModelInterface, Ar
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'partial_payment_method', must be one of '%s'",
                 $this->container['partial_payment_method'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getPaymentProcessorAllowableValues();
-        if (!is_null($this->container['payment_processor']) && !in_array($this->container['payment_processor'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'payment_processor', must be one of '%s'",
-                $this->container['payment_processor'],
                 implode("', '", $allowedValues)
             );
         }
@@ -1926,111 +1851,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestCreate implements ModelInterface, Ar
             }
         }
         $this->container['customer_email_address'] = $customer_email_address;
-
-        return $this;
-    }
-
-    /**
-     * Gets payment_processor
-     *
-     * @return string|null
-     */
-    public function getPaymentProcessor()
-    {
-        return $this->container['payment_processor'];
-    }
-
-    /**
-     * Sets payment_processor
-     *
-     * @param string|null $payment_processor Lists the supported card and PIS processors.
-     *
-     * @return self
-     */
-    public function setPaymentProcessor($payment_processor)
-    {
-        if (is_null($payment_processor)) {
-            throw new \InvalidArgumentException('non-nullable payment_processor cannot be null');
-        }
-        $allowedValues = $this->getPaymentProcessorAllowableValues();
-        if (!in_array($payment_processor, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'payment_processor', must be one of '%s'",
-                    $payment_processor,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['payment_processor'] = $payment_processor;
-
-        return $this;
-    }
-
-    /**
-     * Gets lightning_invoice
-     *
-     * @return string|null
-     */
-    public function getLightningInvoice()
-    {
-        return $this->container['lightning_invoice'];
-    }
-
-    /**
-     * Sets lightning_invoice
-     *
-     * @param string|null $lightning_invoice lightning_invoice
-     *
-     * @return self
-     */
-    public function setLightningInvoice($lightning_invoice)
-    {
-        if (is_null($lightning_invoice)) {
-            array_push($this->openAPINullablesSetToNull, 'lightning_invoice');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('lightning_invoice', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['lightning_invoice'] = $lightning_invoice;
-
-        return $this;
-    }
-
-    /**
-     * Gets lightning_invoice_expires_at
-     *
-     * @return \DateTime|null
-     */
-    public function getLightningInvoiceExpiresAt()
-    {
-        return $this->container['lightning_invoice_expires_at'];
-    }
-
-    /**
-     * Sets lightning_invoice_expires_at
-     *
-     * @param \DateTime|null $lightning_invoice_expires_at lightning_invoice_expires_at
-     *
-     * @return self
-     */
-    public function setLightningInvoiceExpiresAt($lightning_invoice_expires_at)
-    {
-        if (is_null($lightning_invoice_expires_at)) {
-            array_push($this->openAPINullablesSetToNull, 'lightning_invoice_expires_at');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('lightning_invoice_expires_at', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['lightning_invoice_expires_at'] = $lightning_invoice_expires_at;
 
         return $this;
     }

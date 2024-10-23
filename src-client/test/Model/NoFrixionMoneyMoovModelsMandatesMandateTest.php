@@ -242,15 +242,6 @@ class NoFrixionMoneyMoovModelsMandatesMandateTest extends TestCase
     }
 
     /**
-     * Test attribute "amount"
-     */
-    public function testPropertyAmount()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "approved_at"
      */
     public function testPropertyApprovedAt()

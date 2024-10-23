@@ -110,7 +110,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'payment_processor' => 'string',
         'events' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutEvent[]',
         'rule' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleMinimal',
-        'payment_rail' => 'string'
+        'payment_rail' => 'string',
+        'nonce' => 'string'
     ];
 
     /**
@@ -174,7 +175,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'payment_processor' => null,
         'events' => null,
         'rule' => null,
-        'payment_rail' => null
+        'payment_rail' => null,
+        'nonce' => null
     ];
 
     /**
@@ -236,7 +238,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'payment_processor' => false,
         'events' => true,
         'rule' => false,
-        'payment_rail' => false
+        'payment_rail' => false,
+        'nonce' => true
     ];
 
     /**
@@ -378,7 +381,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'payment_processor' => 'paymentProcessor',
         'events' => 'events',
         'rule' => 'rule',
-        'payment_rail' => 'paymentRail'
+        'payment_rail' => 'paymentRail',
+        'nonce' => 'nonce'
     ];
 
     /**
@@ -440,7 +444,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'payment_processor' => 'setPaymentProcessor',
         'events' => 'setEvents',
         'rule' => 'setRule',
-        'payment_rail' => 'setPaymentRail'
+        'payment_rail' => 'setPaymentRail',
+        'nonce' => 'setNonce'
     ];
 
     /**
@@ -502,7 +507,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'payment_processor' => 'getPaymentProcessor',
         'events' => 'getEvents',
         'rule' => 'getRule',
-        'payment_rail' => 'getPaymentRail'
+        'payment_rail' => 'getPaymentRail',
+        'nonce' => 'getNonce'
     ];
 
     /**
@@ -774,6 +780,7 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('events', $data ?? [], null);
         $this->setIfExists('rule', $data ?? [], null);
         $this->setIfExists('payment_rail', $data ?? [], null);
+        $this->setIfExists('nonce', $data ?? [], null);
     }
 
     /**
@@ -2610,6 +2617,40 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
             );
         }
         $this->container['payment_rail'] = $payment_rail;
+
+        return $this;
+    }
+
+    /**
+     * Gets nonce
+     *
+     * @return string|null
+     */
+    public function getNonce()
+    {
+        return $this->container['nonce'];
+    }
+
+    /**
+     * Sets nonce
+     *
+     * @param string|null $nonce nonce
+     *
+     * @return self
+     */
+    public function setNonce($nonce)
+    {
+        if (is_null($nonce)) {
+            array_push($this->openAPINullablesSetToNull, 'nonce');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('nonce', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['nonce'] = $nonce;
 
         return $this;
     }

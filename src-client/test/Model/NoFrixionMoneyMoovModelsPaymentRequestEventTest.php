@@ -161,24 +161,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestEventTest extends TestCase
     }
 
     /**
-     * Test attribute "raw_response"
-     */
-    public function testPropertyRawResponse()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "raw_response_hash"
-     */
-    public function testPropertyRawResponseHash()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "card_request_id"
      */
     public function testPropertyCardRequestId()
@@ -260,15 +242,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestEventTest extends TestCase
     }
 
     /**
-     * Test attribute "pisp_token"
-     */
-    public function testPropertyPispToken()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "payment_processor_name"
      */
     public function testPropertyPaymentProcessorName()
@@ -323,15 +296,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestEventTest extends TestCase
     }
 
     /**
-     * Test attribute "tokenised_card_id"
-     */
-    public function testPropertyTokenisedCardId()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "origin_url"
      */
     public function testPropertyOriginUrl()
@@ -362,6 +326,69 @@ class NoFrixionMoneyMoovModelsPaymentRequestEventTest extends TestCase
      * Test attribute "direct_debit_payment_reference"
      */
     public function testPropertyDirectDebitPaymentReference()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "drirect_debit_mandate_id"
+     */
+    public function testPropertyDrirectDebitMandateId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "card_scheme"
+     */
+    public function testPropertyCardScheme()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "card_expiry_year"
+     */
+    public function testPropertyCardExpiryYear()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "card_expiry_month"
+     */
+    public function testPropertyCardExpiryMonth()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "card_last_four_digits"
+     */
+    public function testPropertyCardLastFourDigits()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "card_issuer"
+     */
+    public function testPropertyCardIssuer()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "card_issuer_country"
+     */
+    public function testPropertyCardIssuerCountry()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

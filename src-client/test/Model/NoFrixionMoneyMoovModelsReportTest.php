@@ -1,6 +1,6 @@
 <?php
 /**
- * NoFrixionMoneyMoovModelsMandatesMandateCreateTest
+ * NoFrixionMoneyMoovModelsReportTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace Nofrixion\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * NoFrixionMoneyMoovModelsMandatesMandateCreateTest Class Doc Comment
+ * NoFrixionMoneyMoovModelsReportTest Class Doc Comment
  *
  * @category    Class
- * @description NoFrixionMoneyMoovModelsMandatesMandateCreate
+ * @description NoFrixionMoneyMoovModelsReport
  * @package     Nofrixion\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class NoFrixionMoneyMoovModelsMandatesMandateCreateTest extends TestCase
+class NoFrixionMoneyMoovModelsReportTest extends TestCase
 {
 
     /**
@@ -71,9 +71,18 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreateTest extends TestCase
     }
 
     /**
-     * Test "NoFrixionMoneyMoovModelsMandatesMandateCreate"
+     * Test "NoFrixionMoneyMoovModelsReport"
      */
-    public function testNoFrixionMoneyMoovModelsMandatesMandateCreate()
+    public function testNoFrixionMoneyMoovModelsReport()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "id"
+     */
+    public function testPropertyId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -89,126 +98,108 @@ class NoFrixionMoneyMoovModelsMandatesMandateCreateTest extends TestCase
     }
 
     /**
-     * Test attribute "first_name"
+     * Test attribute "created_by_user_id"
      */
-    public function testPropertyFirstName()
+    public function testPropertyCreatedByUserId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "last_name"
+     * Test attribute "report_type"
      */
-    public function testPropertyLastName()
+    public function testPropertyReportType()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "address_line1"
+     * Test attribute "report_name"
      */
-    public function testPropertyAddressLine1()
+    public function testPropertyReportName()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "address_line2"
+     * Test attribute "description"
      */
-    public function testPropertyAddressLine2()
+    public function testPropertyDescription()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "postal_code"
+     * Test attribute "inserted"
      */
-    public function testPropertyPostalCode()
+    public function testPropertyInserted()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "city"
+     * Test attribute "last_updated"
      */
-    public function testPropertyCity()
+    public function testPropertyLastUpdated()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "country_code"
+     * Test attribute "cron_expression"
      */
-    public function testPropertyCountryCode()
+    public function testPropertyCronExpression()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "iban"
+     * Test attribute "status"
      */
-    public function testPropertyIban()
+    public function testPropertyStatus()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "account_number"
+     * Test attribute "last_completed_at"
      */
-    public function testPropertyAccountNumber()
+    public function testPropertyLastCompletedAt()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "sort_code"
+     * Test attribute "statement_number"
      */
-    public function testPropertySortCode()
+    public function testPropertyStatementNumber()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "email_address"
+     * Test attribute "is_disabled"
      */
-    public function testPropertyEmailAddress()
+    public function testPropertyIsDisabled()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "reference"
+     * Test attribute "error"
      */
-    public function testPropertyReference()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "is_recurring"
-     */
-    public function testPropertyIsRecurring()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "currency"
-     */
-    public function testPropertyCurrency()
+    public function testPropertyError()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

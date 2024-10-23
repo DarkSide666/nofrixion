@@ -564,4 +564,13 @@ class NoFrixionMoneyMoovModelsPayoutTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "nonce"
+     */
+    public function testPropertyNonce()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

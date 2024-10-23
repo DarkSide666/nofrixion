@@ -22,7 +22,6 @@ Name | Type | Description | Notes
 **reference** | **string** | Reference assigned to this mandate. | [optional]
 **is_recurring** | **bool** | Whether this mandate is single-use or recurring. | [optional]
 **currency** | **string** | Currency of this mandate. | [optional]
-**amount** | **float** | Amount of this mandate. | [optional]
 **approved_at** | **\DateTime** | Date at which the supplier approved this mandate. | [optional]
 **supplier_status** | **string** | Last status that the supplier reported for this mandate. | [optional]
 **status** | **string** | General status of this mandate. | [optional]

@@ -278,6 +278,7 @@ class NoFrixionMoneyMoovModelsWebhookCreate implements ModelInterface, ArrayAcce
     public const TYPE_TRANSACTION_PAYIN = 'TransactionPayin';
     public const TYPE_TRANSACTION_PAYOUT = 'TransactionPayout';
     public const TYPE_REPORT = 'Report';
+    public const TYPE_TRIBE_LOAD = 'TribeLoad';
 
     /**
      * Gets allowable values of the enum
@@ -295,6 +296,7 @@ class NoFrixionMoneyMoovModelsWebhookCreate implements ModelInterface, ArrayAcce
             self::TYPE_TRANSACTION_PAYIN,
             self::TYPE_TRANSACTION_PAYOUT,
             self::TYPE_REPORT,
+            self::TYPE_TRIBE_LOAD,
         ];
     }
 

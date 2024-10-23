@@ -66,8 +66,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
         'status' => 'string',
         'error_reason' => 'string',
         'error_message' => 'string',
-        'raw_response' => 'string',
-        'raw_response_hash' => 'string',
         'card_request_id' => 'string',
         'card_transaction_id' => 'string',
         'card_token_customer_id' => 'string',
@@ -77,18 +75,23 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
         'pisp_payment_service_provider_id' => 'string',
         'pisp_payment_initiation_id' => 'string',
         'pisp_redirect_url' => 'string',
-        'pisp_token' => 'string',
         'payment_processor_name' => 'string',
         'pisp_bank_status' => 'string',
         'wallet_name' => 'string',
         'refund_payout_id' => 'string',
         'apple_pay_transaction_id' => 'string',
         'pisp_payment_institution_name' => 'string',
-        'tokenised_card_id' => 'string',
         'origin_url' => 'string',
         'reconciled_transaction_id' => 'string',
         'direct_debit_payment_id' => 'string',
-        'direct_debit_payment_reference' => 'string'
+        'direct_debit_payment_reference' => 'string',
+        'drirect_debit_mandate_id' => 'string',
+        'card_scheme' => 'string',
+        'card_expiry_year' => 'int',
+        'card_expiry_month' => 'int',
+        'card_last_four_digits' => 'string',
+        'card_issuer' => 'string',
+        'card_issuer_country' => 'string'
     ];
 
     /**
@@ -108,8 +111,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
         'status' => null,
         'error_reason' => null,
         'error_message' => null,
-        'raw_response' => null,
-        'raw_response_hash' => null,
         'card_request_id' => null,
         'card_transaction_id' => null,
         'card_token_customer_id' => null,
@@ -119,18 +120,23 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
         'pisp_payment_service_provider_id' => null,
         'pisp_payment_initiation_id' => null,
         'pisp_redirect_url' => null,
-        'pisp_token' => null,
         'payment_processor_name' => null,
         'pisp_bank_status' => null,
         'wallet_name' => null,
         'refund_payout_id' => 'uuid',
         'apple_pay_transaction_id' => null,
         'pisp_payment_institution_name' => null,
-        'tokenised_card_id' => 'uuid',
         'origin_url' => null,
         'reconciled_transaction_id' => 'uuid',
         'direct_debit_payment_id' => null,
-        'direct_debit_payment_reference' => null
+        'direct_debit_payment_reference' => null,
+        'drirect_debit_mandate_id' => 'uuid',
+        'card_scheme' => null,
+        'card_expiry_year' => 'int32',
+        'card_expiry_month' => 'int32',
+        'card_last_four_digits' => null,
+        'card_issuer' => null,
+        'card_issuer_country' => null
     ];
 
     /**
@@ -148,8 +154,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
         'status' => true,
         'error_reason' => true,
         'error_message' => true,
-        'raw_response' => true,
-        'raw_response_hash' => true,
         'card_request_id' => true,
         'card_transaction_id' => true,
         'card_token_customer_id' => true,
@@ -159,18 +163,23 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
         'pisp_payment_service_provider_id' => true,
         'pisp_payment_initiation_id' => true,
         'pisp_redirect_url' => true,
-        'pisp_token' => true,
         'payment_processor_name' => false,
         'pisp_bank_status' => true,
         'wallet_name' => true,
         'refund_payout_id' => true,
         'apple_pay_transaction_id' => true,
         'pisp_payment_institution_name' => true,
-        'tokenised_card_id' => true,
         'origin_url' => true,
         'reconciled_transaction_id' => true,
         'direct_debit_payment_id' => true,
-        'direct_debit_payment_reference' => true
+        'direct_debit_payment_reference' => true,
+        'drirect_debit_mandate_id' => true,
+        'card_scheme' => true,
+        'card_expiry_year' => true,
+        'card_expiry_month' => true,
+        'card_last_four_digits' => true,
+        'card_issuer' => true,
+        'card_issuer_country' => true
     ];
 
     /**
@@ -268,8 +277,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
         'status' => 'status',
         'error_reason' => 'errorReason',
         'error_message' => 'errorMessage',
-        'raw_response' => 'rawResponse',
-        'raw_response_hash' => 'rawResponseHash',
         'card_request_id' => 'cardRequestID',
         'card_transaction_id' => 'cardTransactionID',
         'card_token_customer_id' => 'cardTokenCustomerID',
@@ -279,18 +286,23 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
         'pisp_payment_service_provider_id' => 'pispPaymentServiceProviderID',
         'pisp_payment_initiation_id' => 'pispPaymentInitiationID',
         'pisp_redirect_url' => 'pispRedirectUrl',
-        'pisp_token' => 'pispToken',
         'payment_processor_name' => 'paymentProcessorName',
         'pisp_bank_status' => 'pispBankStatus',
         'wallet_name' => 'walletName',
         'refund_payout_id' => 'refundPayoutID',
         'apple_pay_transaction_id' => 'applePayTransactionID',
         'pisp_payment_institution_name' => 'pispPaymentInstitutionName',
-        'tokenised_card_id' => 'tokenisedCardID',
         'origin_url' => 'originUrl',
         'reconciled_transaction_id' => 'reconciledTransactionID',
         'direct_debit_payment_id' => 'directDebitPaymentID',
-        'direct_debit_payment_reference' => 'directDebitPaymentReference'
+        'direct_debit_payment_reference' => 'directDebitPaymentReference',
+        'drirect_debit_mandate_id' => 'drirectDebitMandateID',
+        'card_scheme' => 'cardScheme',
+        'card_expiry_year' => 'cardExpiryYear',
+        'card_expiry_month' => 'cardExpiryMonth',
+        'card_last_four_digits' => 'cardLastFourDigits',
+        'card_issuer' => 'cardIssuer',
+        'card_issuer_country' => 'cardIssuerCountry'
     ];
 
     /**
@@ -308,8 +320,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
         'status' => 'setStatus',
         'error_reason' => 'setErrorReason',
         'error_message' => 'setErrorMessage',
-        'raw_response' => 'setRawResponse',
-        'raw_response_hash' => 'setRawResponseHash',
         'card_request_id' => 'setCardRequestId',
         'card_transaction_id' => 'setCardTransactionId',
         'card_token_customer_id' => 'setCardTokenCustomerId',
@@ -319,18 +329,23 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
         'pisp_payment_service_provider_id' => 'setPispPaymentServiceProviderId',
         'pisp_payment_initiation_id' => 'setPispPaymentInitiationId',
         'pisp_redirect_url' => 'setPispRedirectUrl',
-        'pisp_token' => 'setPispToken',
         'payment_processor_name' => 'setPaymentProcessorName',
         'pisp_bank_status' => 'setPispBankStatus',
         'wallet_name' => 'setWalletName',
         'refund_payout_id' => 'setRefundPayoutId',
         'apple_pay_transaction_id' => 'setApplePayTransactionId',
         'pisp_payment_institution_name' => 'setPispPaymentInstitutionName',
-        'tokenised_card_id' => 'setTokenisedCardId',
         'origin_url' => 'setOriginUrl',
         'reconciled_transaction_id' => 'setReconciledTransactionId',
         'direct_debit_payment_id' => 'setDirectDebitPaymentId',
-        'direct_debit_payment_reference' => 'setDirectDebitPaymentReference'
+        'direct_debit_payment_reference' => 'setDirectDebitPaymentReference',
+        'drirect_debit_mandate_id' => 'setDrirectDebitMandateId',
+        'card_scheme' => 'setCardScheme',
+        'card_expiry_year' => 'setCardExpiryYear',
+        'card_expiry_month' => 'setCardExpiryMonth',
+        'card_last_four_digits' => 'setCardLastFourDigits',
+        'card_issuer' => 'setCardIssuer',
+        'card_issuer_country' => 'setCardIssuerCountry'
     ];
 
     /**
@@ -348,8 +363,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
         'status' => 'getStatus',
         'error_reason' => 'getErrorReason',
         'error_message' => 'getErrorMessage',
-        'raw_response' => 'getRawResponse',
-        'raw_response_hash' => 'getRawResponseHash',
         'card_request_id' => 'getCardRequestId',
         'card_transaction_id' => 'getCardTransactionId',
         'card_token_customer_id' => 'getCardTokenCustomerId',
@@ -359,18 +372,23 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
         'pisp_payment_service_provider_id' => 'getPispPaymentServiceProviderId',
         'pisp_payment_initiation_id' => 'getPispPaymentInitiationId',
         'pisp_redirect_url' => 'getPispRedirectUrl',
-        'pisp_token' => 'getPispToken',
         'payment_processor_name' => 'getPaymentProcessorName',
         'pisp_bank_status' => 'getPispBankStatus',
         'wallet_name' => 'getWalletName',
         'refund_payout_id' => 'getRefundPayoutId',
         'apple_pay_transaction_id' => 'getApplePayTransactionId',
         'pisp_payment_institution_name' => 'getPispPaymentInstitutionName',
-        'tokenised_card_id' => 'getTokenisedCardId',
         'origin_url' => 'getOriginUrl',
         'reconciled_transaction_id' => 'getReconciledTransactionId',
         'direct_debit_payment_id' => 'getDirectDebitPaymentId',
-        'direct_debit_payment_reference' => 'getDirectDebitPaymentReference'
+        'direct_debit_payment_reference' => 'getDirectDebitPaymentReference',
+        'drirect_debit_mandate_id' => 'getDrirectDebitMandateId',
+        'card_scheme' => 'getCardScheme',
+        'card_expiry_year' => 'getCardExpiryYear',
+        'card_expiry_month' => 'getCardExpiryMonth',
+        'card_last_four_digits' => 'getCardLastFourDigits',
+        'card_issuer' => 'getCardIssuer',
+        'card_issuer_country' => 'getCardIssuerCountry'
     ];
 
     /**
@@ -581,8 +599,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('error_reason', $data ?? [], null);
         $this->setIfExists('error_message', $data ?? [], null);
-        $this->setIfExists('raw_response', $data ?? [], null);
-        $this->setIfExists('raw_response_hash', $data ?? [], null);
         $this->setIfExists('card_request_id', $data ?? [], null);
         $this->setIfExists('card_transaction_id', $data ?? [], null);
         $this->setIfExists('card_token_customer_id', $data ?? [], null);
@@ -592,18 +608,23 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
         $this->setIfExists('pisp_payment_service_provider_id', $data ?? [], null);
         $this->setIfExists('pisp_payment_initiation_id', $data ?? [], null);
         $this->setIfExists('pisp_redirect_url', $data ?? [], null);
-        $this->setIfExists('pisp_token', $data ?? [], null);
         $this->setIfExists('payment_processor_name', $data ?? [], null);
         $this->setIfExists('pisp_bank_status', $data ?? [], null);
         $this->setIfExists('wallet_name', $data ?? [], null);
         $this->setIfExists('refund_payout_id', $data ?? [], null);
         $this->setIfExists('apple_pay_transaction_id', $data ?? [], null);
         $this->setIfExists('pisp_payment_institution_name', $data ?? [], null);
-        $this->setIfExists('tokenised_card_id', $data ?? [], null);
         $this->setIfExists('origin_url', $data ?? [], null);
         $this->setIfExists('reconciled_transaction_id', $data ?? [], null);
         $this->setIfExists('direct_debit_payment_id', $data ?? [], null);
         $this->setIfExists('direct_debit_payment_reference', $data ?? [], null);
+        $this->setIfExists('drirect_debit_mandate_id', $data ?? [], null);
+        $this->setIfExists('card_scheme', $data ?? [], null);
+        $this->setIfExists('card_expiry_year', $data ?? [], null);
+        $this->setIfExists('card_expiry_month', $data ?? [], null);
+        $this->setIfExists('card_last_four_digits', $data ?? [], null);
+        $this->setIfExists('card_issuer', $data ?? [], null);
+        $this->setIfExists('card_issuer_country', $data ?? [], null);
     }
 
     /**
@@ -972,74 +993,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
     }
 
     /**
-     * Gets raw_response
-     *
-     * @return string|null
-     */
-    public function getRawResponse()
-    {
-        return $this->container['raw_response'];
-    }
-
-    /**
-     * Sets raw_response
-     *
-     * @param string|null $raw_response raw_response
-     *
-     * @return self
-     */
-    public function setRawResponse($raw_response)
-    {
-        if (is_null($raw_response)) {
-            array_push($this->openAPINullablesSetToNull, 'raw_response');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('raw_response', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['raw_response'] = $raw_response;
-
-        return $this;
-    }
-
-    /**
-     * Gets raw_response_hash
-     *
-     * @return string|null
-     */
-    public function getRawResponseHash()
-    {
-        return $this->container['raw_response_hash'];
-    }
-
-    /**
-     * Sets raw_response_hash
-     *
-     * @param string|null $raw_response_hash raw_response_hash
-     *
-     * @return self
-     */
-    public function setRawResponseHash($raw_response_hash)
-    {
-        if (is_null($raw_response_hash)) {
-            array_push($this->openAPINullablesSetToNull, 'raw_response_hash');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('raw_response_hash', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['raw_response_hash'] = $raw_response_hash;
-
-        return $this;
-    }
-
-    /**
      * Gets card_request_id
      *
      * @return string|null
@@ -1346,40 +1299,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
     }
 
     /**
-     * Gets pisp_token
-     *
-     * @return string|null
-     */
-    public function getPispToken()
-    {
-        return $this->container['pisp_token'];
-    }
-
-    /**
-     * Sets pisp_token
-     *
-     * @param string|null $pisp_token For payment initiation providers that use an OAuth, or other, token to create a session  between submitting and finalising a payment initiation attempt.
-     *
-     * @return self
-     */
-    public function setPispToken($pisp_token)
-    {
-        if (is_null($pisp_token)) {
-            array_push($this->openAPINullablesSetToNull, 'pisp_token');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('pisp_token', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['pisp_token'] = $pisp_token;
-
-        return $this;
-    }
-
-    /**
      * Gets payment_processor_name
      *
      * @return string|null
@@ -1597,40 +1516,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
     }
 
     /**
-     * Gets tokenised_card_id
-     *
-     * @return string|null
-     */
-    public function getTokenisedCardId()
-    {
-        return $this->container['tokenised_card_id'];
-    }
-
-    /**
-     * Sets tokenised_card_id
-     *
-     * @param string|null $tokenised_card_id If a reusable card token was generated as part of the event this will hold the ID  of the tokenised card record that can be used with the pay with card token method.
-     *
-     * @return self
-     */
-    public function setTokenisedCardId($tokenised_card_id)
-    {
-        if (is_null($tokenised_card_id)) {
-            array_push($this->openAPINullablesSetToNull, 'tokenised_card_id');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('tokenised_card_id', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['tokenised_card_id'] = $tokenised_card_id;
-
-        return $this;
-    }
-
-    /**
      * Gets origin_url
      *
      * @return string|null
@@ -1762,6 +1647,244 @@ class NoFrixionMoneyMoovModelsPaymentRequestEvent implements ModelInterface, Arr
             }
         }
         $this->container['direct_debit_payment_reference'] = $direct_debit_payment_reference;
+
+        return $this;
+    }
+
+    /**
+     * Gets drirect_debit_mandate_id
+     *
+     * @return string|null
+     */
+    public function getDrirectDebitMandateId()
+    {
+        return $this->container['drirect_debit_mandate_id'];
+    }
+
+    /**
+     * Sets drirect_debit_mandate_id
+     *
+     * @param string|null $drirect_debit_mandate_id The ID of the mandate that was used wehn requesting payment.
+     *
+     * @return self
+     */
+    public function setDrirectDebitMandateId($drirect_debit_mandate_id)
+    {
+        if (is_null($drirect_debit_mandate_id)) {
+            array_push($this->openAPINullablesSetToNull, 'drirect_debit_mandate_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('drirect_debit_mandate_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['drirect_debit_mandate_id'] = $drirect_debit_mandate_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets card_scheme
+     *
+     * @return string|null
+     */
+    public function getCardScheme()
+    {
+        return $this->container['card_scheme'];
+    }
+
+    /**
+     * Sets card_scheme
+     *
+     * @param string|null $card_scheme For card payment events this field holds the scheme of the payer's card, e.g. Visa, Mastercard, etc.
+     *
+     * @return self
+     */
+    public function setCardScheme($card_scheme)
+    {
+        if (is_null($card_scheme)) {
+            array_push($this->openAPINullablesSetToNull, 'card_scheme');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('card_scheme', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['card_scheme'] = $card_scheme;
+
+        return $this;
+    }
+
+    /**
+     * Gets card_expiry_year
+     *
+     * @return int|null
+     */
+    public function getCardExpiryYear()
+    {
+        return $this->container['card_expiry_year'];
+    }
+
+    /**
+     * Sets card_expiry_year
+     *
+     * @param int|null $card_expiry_year For card payment events this field holds the payer's card expiry year.
+     *
+     * @return self
+     */
+    public function setCardExpiryYear($card_expiry_year)
+    {
+        if (is_null($card_expiry_year)) {
+            array_push($this->openAPINullablesSetToNull, 'card_expiry_year');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('card_expiry_year', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['card_expiry_year'] = $card_expiry_year;
+
+        return $this;
+    }
+
+    /**
+     * Gets card_expiry_month
+     *
+     * @return int|null
+     */
+    public function getCardExpiryMonth()
+    {
+        return $this->container['card_expiry_month'];
+    }
+
+    /**
+     * Sets card_expiry_month
+     *
+     * @param int|null $card_expiry_month For card payment events this field holds the payer's card expiry month.
+     *
+     * @return self
+     */
+    public function setCardExpiryMonth($card_expiry_month)
+    {
+        if (is_null($card_expiry_month)) {
+            array_push($this->openAPINullablesSetToNull, 'card_expiry_month');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('card_expiry_month', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['card_expiry_month'] = $card_expiry_month;
+
+        return $this;
+    }
+
+    /**
+     * Gets card_last_four_digits
+     *
+     * @return string|null
+     */
+    public function getCardLastFourDigits()
+    {
+        return $this->container['card_last_four_digits'];
+    }
+
+    /**
+     * Sets card_last_four_digits
+     *
+     * @param string|null $card_last_four_digits For card payment events this field holds the payer's card last four digits.
+     *
+     * @return self
+     */
+    public function setCardLastFourDigits($card_last_four_digits)
+    {
+        if (is_null($card_last_four_digits)) {
+            array_push($this->openAPINullablesSetToNull, 'card_last_four_digits');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('card_last_four_digits', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['card_last_four_digits'] = $card_last_four_digits;
+
+        return $this;
+    }
+
+    /**
+     * Gets card_issuer
+     *
+     * @return string|null
+     */
+    public function getCardIssuer()
+    {
+        return $this->container['card_issuer'];
+    }
+
+    /**
+     * Sets card_issuer
+     *
+     * @param string|null $card_issuer For card payment events this field holds the payer's card issuer.
+     *
+     * @return self
+     */
+    public function setCardIssuer($card_issuer)
+    {
+        if (is_null($card_issuer)) {
+            array_push($this->openAPINullablesSetToNull, 'card_issuer');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('card_issuer', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['card_issuer'] = $card_issuer;
+
+        return $this;
+    }
+
+    /**
+     * Gets card_issuer_country
+     *
+     * @return string|null
+     */
+    public function getCardIssuerCountry()
+    {
+        return $this->container['card_issuer_country'];
+    }
+
+    /**
+     * Sets card_issuer_country
+     *
+     * @param string|null $card_issuer_country For card payment events this field holds the payer's card issuer country of origin.
+     *
+     * @return self
+     */
+    public function setCardIssuerCountry($card_issuer_country)
+    {
+        if (is_null($card_issuer_country)) {
+            array_push($this->openAPINullablesSetToNull, 'card_issuer_country');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('card_issuer_country', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['card_issuer_country'] = $card_issuer_country;
 
         return $this;
     }

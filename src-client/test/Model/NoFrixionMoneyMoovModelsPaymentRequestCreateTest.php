@@ -377,33 +377,6 @@ class NoFrixionMoneyMoovModelsPaymentRequestCreateTest extends TestCase
     }
 
     /**
-     * Test attribute "payment_processor"
-     */
-    public function testPropertyPaymentProcessor()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "lightning_invoice"
-     */
-    public function testPropertyLightningInvoice()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "lightning_invoice_expires_at"
-     */
-    public function testPropertyLightningInvoiceExpiresAt()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
      * Test attribute "notification_email_addresses"
      */
     public function testPropertyNotificationEmailAddresses()

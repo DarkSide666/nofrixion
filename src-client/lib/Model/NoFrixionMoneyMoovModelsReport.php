@@ -1,6 +1,6 @@
 <?php
 /**
- * NoFrixionMoneyMoovModelsMerchantToken
+ * NoFrixionMoneyMoovModelsReport
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Nofrixion\Client\ObjectSerializer;
 
 /**
- * NoFrixionMoneyMoovModelsMerchantToken Class Doc Comment
+ * NoFrixionMoneyMoovModelsReport Class Doc Comment
  *
  * @category Class
  * @package  Nofrixion\Client
@@ -40,7 +40,7 @@ use \Nofrixion\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAccess, \JsonSerializable
+class NoFrixionMoneyMoovModelsReport implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
       *
       * @var string
       */
-    protected static $openAPIModelName = 'NoFrixion.MoneyMoov.Models.MerchantToken';
+    protected static $openAPIModelName = 'NoFrixion.MoneyMoov.Models.Report';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,11 +59,18 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
     protected static $openAPITypes = [
         'id' => 'string',
         'merchant_id' => 'string',
+        'created_by_user_id' => 'string',
+        'report_type' => 'string',
+        'report_name' => 'string',
         'description' => 'string',
-        'permissions' => 'string',
         'inserted' => '\DateTime',
         'last_updated' => '\DateTime',
-        'token' => 'string'
+        'cron_expression' => 'string',
+        'status' => 'string',
+        'last_completed_at' => '\DateTime',
+        'statement_number' => 'int',
+        'is_disabled' => 'bool',
+        'error' => 'string'
     ];
 
     /**
@@ -76,11 +83,18 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
     protected static $openAPIFormats = [
         'id' => 'uuid',
         'merchant_id' => 'uuid',
+        'created_by_user_id' => 'uuid',
+        'report_type' => null,
+        'report_name' => null,
         'description' => null,
-        'permissions' => null,
         'inserted' => 'date-time',
         'last_updated' => 'date-time',
-        'token' => null
+        'cron_expression' => null,
+        'status' => null,
+        'last_completed_at' => 'date-time',
+        'statement_number' => 'int32',
+        'is_disabled' => null,
+        'error' => null
     ];
 
     /**
@@ -91,11 +105,18 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
     protected static array $openAPINullables = [
         'id' => false,
         'merchant_id' => false,
+        'created_by_user_id' => true,
+        'report_type' => false,
+        'report_name' => true,
         'description' => true,
-        'permissions' => false,
         'inserted' => false,
         'last_updated' => false,
-        'token' => true
+        'cron_expression' => true,
+        'status' => false,
+        'last_completed_at' => false,
+        'statement_number' => false,
+        'is_disabled' => false,
+        'error' => true
     ];
 
     /**
@@ -186,11 +207,18 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
     protected static $attributeMap = [
         'id' => 'id',
         'merchant_id' => 'merchantID',
+        'created_by_user_id' => 'createdByUserID',
+        'report_type' => 'reportType',
+        'report_name' => 'reportName',
         'description' => 'description',
-        'permissions' => 'permissions',
         'inserted' => 'inserted',
         'last_updated' => 'lastUpdated',
-        'token' => 'token'
+        'cron_expression' => 'cronExpression',
+        'status' => 'status',
+        'last_completed_at' => 'lastCompletedAt',
+        'statement_number' => 'statementNumber',
+        'is_disabled' => 'isDisabled',
+        'error' => 'error'
     ];
 
     /**
@@ -201,11 +229,18 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
     protected static $setters = [
         'id' => 'setId',
         'merchant_id' => 'setMerchantId',
+        'created_by_user_id' => 'setCreatedByUserId',
+        'report_type' => 'setReportType',
+        'report_name' => 'setReportName',
         'description' => 'setDescription',
-        'permissions' => 'setPermissions',
         'inserted' => 'setInserted',
         'last_updated' => 'setLastUpdated',
-        'token' => 'setToken'
+        'cron_expression' => 'setCronExpression',
+        'status' => 'setStatus',
+        'last_completed_at' => 'setLastCompletedAt',
+        'statement_number' => 'setStatementNumber',
+        'is_disabled' => 'setIsDisabled',
+        'error' => 'setError'
     ];
 
     /**
@@ -216,11 +251,18 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
     protected static $getters = [
         'id' => 'getId',
         'merchant_id' => 'getMerchantId',
+        'created_by_user_id' => 'getCreatedByUserId',
+        'report_type' => 'getReportType',
+        'report_name' => 'getReportName',
         'description' => 'getDescription',
-        'permissions' => 'getPermissions',
         'inserted' => 'getInserted',
         'last_updated' => 'getLastUpdated',
-        'token' => 'getToken'
+        'cron_expression' => 'getCronExpression',
+        'status' => 'getStatus',
+        'last_completed_at' => 'getLastCompletedAt',
+        'statement_number' => 'getStatementNumber',
+        'is_disabled' => 'getIsDisabled',
+        'error' => 'getError'
     ];
 
     /**
@@ -264,55 +306,50 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
         return self::$openAPIModelName;
     }
 
-    public const PERMISSIONS_DENY = 'Deny';
-    public const PERMISSIONS_CREATE_PAYMENT_REQUEST = 'CreatePaymentRequest';
-    public const PERMISSIONS_EDIT_PAYMENT_REQUEST = 'EditPaymentRequest';
-    public const PERMISSIONS_DELETE_PAYMENT_REQUEST = 'DeletePaymentRequest';
-    public const PERMISSIONS_CREATE_RULE = 'CreateRule';
-    public const PERMISSIONS_EDIT_RULE = 'EditRule';
-    public const PERMISSIONS_DELETE_RULE = 'DeleteRule';
-    public const PERMISSIONS_CREATE_PAYOUT = 'CreatePayout';
-    public const PERMISSIONS_EDIT_PAYOUT = 'EditPayout';
-    public const PERMISSIONS_DELETE_PAYOUT = 'DeletePayout';
-    public const PERMISSIONS_CREATE_REPORT = 'CreateReport';
-    public const PERMISSIONS_EDIT_REPORT = 'EditReport';
-    public const PERMISSIONS_DELETE_REPORT = 'DeleteReport';
-    public const PERMISSIONS_EXECUTE_REPORT = 'ExecuteReport';
-    public const PERMISSIONS_CREATE_PAYMENT_ACCOUNT = 'CreatePaymentAccount';
-    public const PERMISSIONS_EDIT_PAYMENT_ACCOUNT = 'EditPaymentAccount';
-    public const PERMISSIONS_TRUSTED_SUBMIT_PAYOUT = 'TrustedSubmitPayout';
-    public const PERMISSIONS_OPEN_BANKING_ACCOUNT_INFORMATION = 'OpenBankingAccountInformation';
-    public const PERMISSIONS_CREATE_DIRECT_DEBIT_MANDATE = 'CreateDirectDebitMandate';
-    public const PERMISSIONS_SUBMIT_DIRECT_DEBIT_PAYMENT = 'SubmitDirectDebitPayment';
+    public const REPORT_TYPE_UNKNOWN = 'Unknown';
+    public const REPORT_TYPE_SWIFT_CUSTOMER_STATEMENT = 'SwiftCustomerStatement';
+    public const REPORT_TYPE_CUSTOMER_ACTIVITY = 'CustomerActivity';
+    public const REPORT_TYPE_SAFE_GUARDING_RECONCILIATION = 'SafeGuardingReconciliation';
+    public const REPORT_TYPE_MERCHANT_ACCOUNTS_BALANCE = 'MerchantAccountsBalance';
+    public const REPORT_TYPE_MERCHANT_ACCOUNTS_TRANSACTION = 'MerchantAccountsTransaction';
+    public const REPORT_TYPE_VISION_BLUE_TRANSACTION = 'VisionBlueTransaction';
+    public const REPORT_TYPE_MERCHANT_SAFE_GUARDING_RECONCILIATION = 'MerchantSafeGuardingReconciliation';
+    public const STATUS_NONE = 'None';
+    public const STATUS_COMPLETED = 'Completed';
+    public const STATUS_IN_PROGRESS = 'InProgress';
+    public const STATUS_ERROR = 'Error';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getPermissionsAllowableValues()
+    public function getReportTypeAllowableValues()
     {
         return [
-            self::PERMISSIONS_DENY,
-            self::PERMISSIONS_CREATE_PAYMENT_REQUEST,
-            self::PERMISSIONS_EDIT_PAYMENT_REQUEST,
-            self::PERMISSIONS_DELETE_PAYMENT_REQUEST,
-            self::PERMISSIONS_CREATE_RULE,
-            self::PERMISSIONS_EDIT_RULE,
-            self::PERMISSIONS_DELETE_RULE,
-            self::PERMISSIONS_CREATE_PAYOUT,
-            self::PERMISSIONS_EDIT_PAYOUT,
-            self::PERMISSIONS_DELETE_PAYOUT,
-            self::PERMISSIONS_CREATE_REPORT,
-            self::PERMISSIONS_EDIT_REPORT,
-            self::PERMISSIONS_DELETE_REPORT,
-            self::PERMISSIONS_EXECUTE_REPORT,
-            self::PERMISSIONS_CREATE_PAYMENT_ACCOUNT,
-            self::PERMISSIONS_EDIT_PAYMENT_ACCOUNT,
-            self::PERMISSIONS_TRUSTED_SUBMIT_PAYOUT,
-            self::PERMISSIONS_OPEN_BANKING_ACCOUNT_INFORMATION,
-            self::PERMISSIONS_CREATE_DIRECT_DEBIT_MANDATE,
-            self::PERMISSIONS_SUBMIT_DIRECT_DEBIT_PAYMENT,
+            self::REPORT_TYPE_UNKNOWN,
+            self::REPORT_TYPE_SWIFT_CUSTOMER_STATEMENT,
+            self::REPORT_TYPE_CUSTOMER_ACTIVITY,
+            self::REPORT_TYPE_SAFE_GUARDING_RECONCILIATION,
+            self::REPORT_TYPE_MERCHANT_ACCOUNTS_BALANCE,
+            self::REPORT_TYPE_MERCHANT_ACCOUNTS_TRANSACTION,
+            self::REPORT_TYPE_VISION_BLUE_TRANSACTION,
+            self::REPORT_TYPE_MERCHANT_SAFE_GUARDING_RECONCILIATION,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_NONE,
+            self::STATUS_COMPLETED,
+            self::STATUS_IN_PROGRESS,
+            self::STATUS_ERROR,
         ];
     }
 
@@ -333,11 +370,18 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
     {
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('merchant_id', $data ?? [], null);
+        $this->setIfExists('created_by_user_id', $data ?? [], null);
+        $this->setIfExists('report_type', $data ?? [], null);
+        $this->setIfExists('report_name', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('permissions', $data ?? [], null);
         $this->setIfExists('inserted', $data ?? [], null);
         $this->setIfExists('last_updated', $data ?? [], null);
-        $this->setIfExists('token', $data ?? [], null);
+        $this->setIfExists('cron_expression', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('last_completed_at', $data ?? [], null);
+        $this->setIfExists('statement_number', $data ?? [], null);
+        $this->setIfExists('is_disabled', $data ?? [], null);
+        $this->setIfExists('error', $data ?? [], null);
     }
 
     /**
@@ -367,11 +411,20 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
     {
         $invalidProperties = [];
 
-        $allowedValues = $this->getPermissionsAllowableValues();
-        if (!is_null($this->container['permissions']) && !in_array($this->container['permissions'], $allowedValues, true)) {
+        $allowedValues = $this->getReportTypeAllowableValues();
+        if (!is_null($this->container['report_type']) && !in_array($this->container['report_type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'permissions', must be one of '%s'",
-                $this->container['permissions'],
+                "invalid value '%s' for 'report_type', must be one of '%s'",
+                $this->container['report_type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
                 implode("', '", $allowedValues)
             );
         }
@@ -446,6 +499,111 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
     }
 
     /**
+     * Gets created_by_user_id
+     *
+     * @return string|null
+     */
+    public function getCreatedByUserId()
+    {
+        return $this->container['created_by_user_id'];
+    }
+
+    /**
+     * Sets created_by_user_id
+     *
+     * @param string|null $created_by_user_id created_by_user_id
+     *
+     * @return self
+     */
+    public function setCreatedByUserId($created_by_user_id)
+    {
+        if (is_null($created_by_user_id)) {
+            array_push($this->openAPINullablesSetToNull, 'created_by_user_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('created_by_user_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['created_by_user_id'] = $created_by_user_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets report_type
+     *
+     * @return string|null
+     */
+    public function getReportType()
+    {
+        return $this->container['report_type'];
+    }
+
+    /**
+     * Sets report_type
+     *
+     * @param string|null $report_type report_type
+     *
+     * @return self
+     */
+    public function setReportType($report_type)
+    {
+        if (is_null($report_type)) {
+            throw new \InvalidArgumentException('non-nullable report_type cannot be null');
+        }
+        $allowedValues = $this->getReportTypeAllowableValues();
+        if (!in_array($report_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'report_type', must be one of '%s'",
+                    $report_type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['report_type'] = $report_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets report_name
+     *
+     * @return string|null
+     */
+    public function getReportName()
+    {
+        return $this->container['report_name'];
+    }
+
+    /**
+     * Sets report_name
+     *
+     * @param string|null $report_name report_name
+     *
+     * @return self
+     */
+    public function setReportName($report_name)
+    {
+        if (is_null($report_name)) {
+            array_push($this->openAPINullablesSetToNull, 'report_name');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('report_name', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['report_name'] = $report_name;
+
+        return $this;
+    }
+
+    /**
      * Gets description
      *
      * @return string|null
@@ -475,43 +633,6 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
             }
         }
         $this->container['description'] = $description;
-
-        return $this;
-    }
-
-    /**
-     * Gets permissions
-     *
-     * @return string|null
-     */
-    public function getPermissions()
-    {
-        return $this->container['permissions'];
-    }
-
-    /**
-     * Sets permissions
-     *
-     * @param string|null $permissions permissions
-     *
-     * @return self
-     */
-    public function setPermissions($permissions)
-    {
-        if (is_null($permissions)) {
-            throw new \InvalidArgumentException('non-nullable permissions cannot be null');
-        }
-        $allowedValues = $this->getPermissionsAllowableValues();
-        if (!in_array($permissions, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'permissions', must be one of '%s'",
-                    $permissions,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['permissions'] = $permissions;
 
         return $this;
     }
@@ -571,35 +692,187 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
     }
 
     /**
-     * Gets token
+     * Gets cron_expression
      *
      * @return string|null
      */
-    public function getToken()
+    public function getCronExpression()
     {
-        return $this->container['token'];
+        return $this->container['cron_expression'];
     }
 
     /**
-     * Sets token
+     * Sets cron_expression
      *
-     * @param string|null $token The JWT merchant token. It will only be available when the merchant token is  initially created. The token is not stored by NoFrixion.
+     * @param string|null $cron_expression cron_expression
      *
      * @return self
      */
-    public function setToken($token)
+    public function setCronExpression($cron_expression)
     {
-        if (is_null($token)) {
-            array_push($this->openAPINullablesSetToNull, 'token');
+        if (is_null($cron_expression)) {
+            array_push($this->openAPINullablesSetToNull, 'cron_expression');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('token', $nullablesSetToNull);
+            $index = array_search('cron_expression', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['token'] = $token;
+        $this->container['cron_expression'] = $cron_expression;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string|null $status status
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets last_completed_at
+     *
+     * @return \DateTime|null
+     */
+    public function getLastCompletedAt()
+    {
+        return $this->container['last_completed_at'];
+    }
+
+    /**
+     * Sets last_completed_at
+     *
+     * @param \DateTime|null $last_completed_at last_completed_at
+     *
+     * @return self
+     */
+    public function setLastCompletedAt($last_completed_at)
+    {
+        if (is_null($last_completed_at)) {
+            throw new \InvalidArgumentException('non-nullable last_completed_at cannot be null');
+        }
+        $this->container['last_completed_at'] = $last_completed_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets statement_number
+     *
+     * @return int|null
+     */
+    public function getStatementNumber()
+    {
+        return $this->container['statement_number'];
+    }
+
+    /**
+     * Sets statement_number
+     *
+     * @param int|null $statement_number statement_number
+     *
+     * @return self
+     */
+    public function setStatementNumber($statement_number)
+    {
+        if (is_null($statement_number)) {
+            throw new \InvalidArgumentException('non-nullable statement_number cannot be null');
+        }
+        $this->container['statement_number'] = $statement_number;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_disabled
+     *
+     * @return bool|null
+     */
+    public function getIsDisabled()
+    {
+        return $this->container['is_disabled'];
+    }
+
+    /**
+     * Sets is_disabled
+     *
+     * @param bool|null $is_disabled is_disabled
+     *
+     * @return self
+     */
+    public function setIsDisabled($is_disabled)
+    {
+        if (is_null($is_disabled)) {
+            throw new \InvalidArgumentException('non-nullable is_disabled cannot be null');
+        }
+        $this->container['is_disabled'] = $is_disabled;
+
+        return $this;
+    }
+
+    /**
+     * Gets error
+     *
+     * @return string|null
+     */
+    public function getError()
+    {
+        return $this->container['error'];
+    }
+
+    /**
+     * Sets error
+     *
+     * @param string|null $error error
+     *
+     * @return self
+     */
+    public function setError($error)
+    {
+        if (is_null($error)) {
+            array_push($this->openAPINullablesSetToNull, 'error');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('error', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['error'] = $error;
 
         return $this;
     }

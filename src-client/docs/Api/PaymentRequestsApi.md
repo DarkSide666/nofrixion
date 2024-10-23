@@ -12,7 +12,6 @@ All URIs are relative to https://api-sandbox.nofrixion.com, except if the operat
 | [**deletePaymentRequest()**](PaymentRequestsApi.md#deletePaymentRequest) | **DELETE** /api/v1/paymentrequests/{id} | Deletes a payment request, along with its keys and addresses, if there&#39;s  no payment event associated with it. |
 | [**deleteTokenisedCard()**](PaymentRequestsApi.md#deleteTokenisedCard) | **DELETE** /api/v1/paymentrequests/card/customertokens/{id} | Deletes a single card token. |
 | [**getAllPaymentRequestsPaged()**](PaymentRequestsApi.md#getAllPaymentRequestsPaged) | **GET** /api/v1/paymentrequests | Gets a list of all payment requests. |
-| [**getDirectDebitForm()**](PaymentRequestsApi.md#getDirectDebitForm) | **GET** /api/v1/paymentrequests/{id}/directdebit/allinone | Serves a form to initiate a direct debit payment. |
 | [**getLightningInvoice()**](PaymentRequestsApi.md#getLightningInvoice) | **GET** /api/v1/paymentrequests/{id}/lightning/{partialAmount} | Gets a Bitcoin Lightning invoice for a payment request. |
 | [**getPaymentRequest()**](PaymentRequestsApi.md#getPaymentRequest) | **GET** /api/v1/paymentrequests/{id} | Gets a payment request. |
 | [**getPaymentRequestEvents()**](PaymentRequestsApi.md#getPaymentRequestEvents) | **GET** /api/v1/paymentrequests/{id}/events | Gets a payment requests&#39;s events. |
@@ -27,7 +26,6 @@ All URIs are relative to https://api-sandbox.nofrixion.com, except if the operat
 | [**setupCardPayerAuthentication()**](PaymentRequestsApi.md#setupCardPayerAuthentication) | **POST** /api/v1/paymentrequests/{id}/card/authenticationsetup | Set up payer authentication for a card payment. |
 | [**simulatePayByBankCallback()**](PaymentRequestsApi.md#simulatePayByBankCallback) | **PUT** /api/v1/paymentrequests/{id}/pisp/sandboxcallback | This action simulates a payment initiation callback from a bank to authorise a payment in a sandbox environment. |
 | [**submitCardPayment()**](PaymentRequestsApi.md#submitCardPayment) | **POST** /api/v1/paymentrequests/{id}/card | Submit a payment authorisation request to the card gateway. |
-| [**submitDirectDebit()**](PaymentRequestsApi.md#submitDirectDebit) | **POST** /api/v1/paymentrequests/{id}/directdebit/allinone | Processes information submitted through the direct debit payment form. |
 | [**submitDirectDebitForMandate()**](PaymentRequestsApi.md#submitDirectDebitForMandate) | **POST** /api/v1/paymentrequests/{id}/directdebit | Submits a Direct Debit payment attempt. |
 | [**submitPayByBank()**](PaymentRequestsApi.md#submitPayByBank) | **POST** /api/v1/paymentrequests/{id}/pisp | Submits a payment initiation request. |
 | [**submitTokenisedCardPayment()**](PaymentRequestsApi.md#submitTokenisedCardPayment) | **POST** /api/v1/paymentrequests/{id}/card/paywithtoken | Submits a payment request, using a tokenised card, to a payment gateway. |
@@ -722,65 +720,6 @@ try {
 
 - **Content-Type**: Not defined
 - **Accept**: `text/plain`, `application/json`, `text/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `getDirectDebitForm()`
-
-```php
-getDirectDebitForm($id)
-```
-
-Serves a form to initiate a direct debit payment.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: Bearer
-$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new Nofrixion\Client\Api\PaymentRequestsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$id = 'id_example'; // string | ID of the payment request to pay.
-
-try {
-    $apiInstance->getDirectDebitForm($id);
-} catch (Exception $e) {
-    echo 'Exception when calling PaymentRequestsApi->getDirectDebitForm: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| ID of the payment request to pay. | |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[Bearer](../../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
@@ -1689,99 +1628,6 @@ try {
 
 - **Content-Type**: `multipart/form-data`
 - **Accept**: `text/plain`, `application/json`, `text/json`
-
-[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
-[[Back to Model list]](../../README.md#models)
-[[Back to README]](../../README.md)
-
-## `submitDirectDebit()`
-
-```php
-submitDirectDebit($id, $merchant_id, $first_name, $last_name, $address_line1, $postal_code, $city, $country_code, $email_address, $currency, $amount, $countries, $address_line2, $iban, $account_number, $sort_code, $reference, $is_recurring)
-```
-
-Processes information submitted through the direct debit payment form.
-
-### Example
-
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-// Configure API key authorization: Bearer
-$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
-
-
-$apiInstance = new Nofrixion\Client\Api\PaymentRequestsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
-);
-$id = 'id_example'; // string | ID of the payment request to pay.
-$merchant_id = 'merchant_id_example'; // string | Merchant ID that this mandate is associated with.
-$first_name = 'first_name_example'; // string | Customer's first name.
-$last_name = 'last_name_example'; // string | Customer's last name.
-$address_line1 = 'address_line1_example'; // string | First line of the customer's address.
-$postal_code = 'postal_code_example'; // string | Customer's postal code.
-$city = 'city_example'; // string | Customer's city.
-$country_code = 'country_code_example'; // string | 2-character country code of the customer's bank account.
-$email_address = 'email_address_example'; // string | Customer's email address.
-$currency = 'currency_example'; // string | Currency of the mandate.
-$amount = 3.4; // float | Amount of the mandate.
-$countries = array(new \Nofrixion\Client\Model\\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCountry()); // \Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCountry[]
-$address_line2 = 'address_line2_example'; // string | Second line of the customer's address. Optional.
-$iban = 'iban_example'; // string | IBAN of the customer's bank account in case of EUR account.
-$account_number = 'account_number_example'; // string | Account number of the customer's bank account in case of GBP account.
-$sort_code = 'sort_code_example'; // string | Sort code of the customer's bank account in case of GBP account.
-$reference = 'reference_example'; // string | Field that you can use as reference.
-$is_recurring = True; // bool | Indicates whether this mandate is single-use or recurring.
-
-try {
-    $apiInstance->submitDirectDebit($id, $merchant_id, $first_name, $last_name, $address_line1, $postal_code, $city, $country_code, $email_address, $currency, $amount, $countries, $address_line2, $iban, $account_number, $sort_code, $reference, $is_recurring);
-} catch (Exception $e) {
-    echo 'Exception when calling PaymentRequestsApi->submitDirectDebit: ', $e->getMessage(), PHP_EOL;
-}
-```
-
-### Parameters
-
-| Name | Type | Description  | Notes |
-| ------------- | ------------- | ------------- | ------------- |
-| **id** | **string**| ID of the payment request to pay. | |
-| **merchant_id** | **string**| Merchant ID that this mandate is associated with. | |
-| **first_name** | **string**| Customer&#39;s first name. | |
-| **last_name** | **string**| Customer&#39;s last name. | |
-| **address_line1** | **string**| First line of the customer&#39;s address. | |
-| **postal_code** | **string**| Customer&#39;s postal code. | |
-| **city** | **string**| Customer&#39;s city. | |
-| **country_code** | **string**| 2-character country code of the customer&#39;s bank account. | |
-| **email_address** | **string**| Customer&#39;s email address. | |
-| **currency** | **string**| Currency of the mandate. | |
-| **amount** | **float**| Amount of the mandate. | |
-| **countries** | [**\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCountry[]**](../Model/\Nofrixion\Client\Model\NoFrixionBizBizModelsPaymentsCountry.md)|  | [optional] |
-| **address_line2** | **string**| Second line of the customer&#39;s address. Optional. | [optional] |
-| **iban** | **string**| IBAN of the customer&#39;s bank account in case of EUR account. | [optional] |
-| **account_number** | **string**| Account number of the customer&#39;s bank account in case of GBP account. | [optional] |
-| **sort_code** | **string**| Sort code of the customer&#39;s bank account in case of GBP account. | [optional] |
-| **reference** | **string**| Field that you can use as reference. | [optional] |
-| **is_recurring** | **bool**| Indicates whether this mandate is single-use or recurring. | [optional] |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[Bearer](../../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: `multipart/form-data`
-- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)
