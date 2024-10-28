@@ -111,7 +111,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'events' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutEvent[]',
         'rule' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleMinimal',
         'payment_rail' => 'string',
-        'nonce' => 'string'
+        'nonce' => 'string',
+        'payrun_invoices' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrunInvoice[]'
     ];
 
     /**
@@ -176,7 +177,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'events' => null,
         'rule' => null,
         'payment_rail' => null,
-        'nonce' => null
+        'nonce' => null,
+        'payrun_invoices' => null
     ];
 
     /**
@@ -239,7 +241,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'events' => true,
         'rule' => false,
         'payment_rail' => false,
-        'nonce' => true
+        'nonce' => true,
+        'payrun_invoices' => true
     ];
 
     /**
@@ -382,7 +385,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'events' => 'events',
         'rule' => 'rule',
         'payment_rail' => 'paymentRail',
-        'nonce' => 'nonce'
+        'nonce' => 'nonce',
+        'payrun_invoices' => 'payrunInvoices'
     ];
 
     /**
@@ -445,7 +449,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'events' => 'setEvents',
         'rule' => 'setRule',
         'payment_rail' => 'setPaymentRail',
-        'nonce' => 'setNonce'
+        'nonce' => 'setNonce',
+        'payrun_invoices' => 'setPayrunInvoices'
     ];
 
     /**
@@ -508,7 +513,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'events' => 'getEvents',
         'rule' => 'getRule',
         'payment_rail' => 'getPaymentRail',
-        'nonce' => 'getNonce'
+        'nonce' => 'getNonce',
+        'payrun_invoices' => 'getPayrunInvoices'
     ];
 
     /**
@@ -781,6 +787,7 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('rule', $data ?? [], null);
         $this->setIfExists('payment_rail', $data ?? [], null);
         $this->setIfExists('nonce', $data ?? [], null);
+        $this->setIfExists('payrun_invoices', $data ?? [], null);
     }
 
     /**
@@ -2651,6 +2658,40 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
             }
         }
         $this->container['nonce'] = $nonce;
+
+        return $this;
+    }
+
+    /**
+     * Gets payrun_invoices
+     *
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrunInvoice[]|null
+     */
+    public function getPayrunInvoices()
+    {
+        return $this->container['payrun_invoices'];
+    }
+
+    /**
+     * Sets payrun_invoices
+     *
+     * @param \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrunInvoice[]|null $payrun_invoices Collection of payrun invoices associated with the payout.  Will be empty if the payout is not associated with a payrun.
+     *
+     * @return self
+     */
+    public function setPayrunInvoices($payrun_invoices)
+    {
+        if (is_null($payrun_invoices)) {
+            array_push($this->openAPINullablesSetToNull, 'payrun_invoices');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('payrun_invoices', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['payrun_invoices'] = $payrun_invoices;
 
         return $this;
     }

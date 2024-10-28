@@ -185,6 +185,17 @@ Class | Method | HTTP request | Description
 *PayoutsApi* | [**submitBatchPayout**](docs/Api/PayoutsApi.md#submitbatchpayout) | **POST** /api/v1/payouts/batch/submit/{id} | Submits a batch payout for processing.
 *PayoutsApi* | [**submitPayout**](docs/Api/PayoutsApi.md#submitpayout) | **POST** /api/v1/payouts/submit/{id} | Submits a payout for processing.
 *PayoutsApi* | [**updatePayout**](docs/Api/PayoutsApi.md#updatepayout) | **PUT** /api/v1/payouts/{id} | Updates a payout record.
+*PayrunsApi* | [**archivePayrun**](docs/Api/PayrunsApi.md#archivepayrun) | **DELETE** /api/v1/payruns/{id}/archive | Archives a pay run, excluding it from most actions.
+*PayrunsApi* | [**cancelPayrun**](docs/Api/PayrunsApi.md#cancelpayrun) | **PUT** /api/v1/payruns/{id}/cancel | Cancels the schedule of a pay run and delete&#39;s all it&#39;s payouts.
+*PayrunsApi* | [**createPayrun**](docs/Api/PayrunsApi.md#createpayrun) | **POST** /api/v1/payruns/{merchantID} | Create a new Payrun from a list of invoices.
+*PayrunsApi* | [**deletePayrun**](docs/Api/PayrunsApi.md#deletepayrun) | **DELETE** /api/v1/payruns/{id} | Deletes a pay run, along with its invoices, if it&#39;s in a Draft state.
+*PayrunsApi* | [**getPayrun**](docs/Api/PayrunsApi.md#getpayrun) | **GET** /api/v1/payruns/{id} | Gets a single payrun.
+*PayrunsApi* | [**getPayrunsPaged**](docs/Api/PayrunsApi.md#getpayrunspaged) | **GET** /api/v1/payruns | Gets all payruns for a merchant.
+*PayrunsApi* | [**rejectPayrun**](docs/Api/PayrunsApi.md#rejectpayrun) | **PUT** /api/v1/payruns/{id}/reject | Rejects a payrun.
+*PayrunsApi* | [**requestPayrunAuthorisation**](docs/Api/PayrunsApi.md#requestpayrunauthorisation) | **POST** /api/v1/payruns/{id}/request-authorisation | Request authorisation from authorisers for this payrun.
+*PayrunsApi* | [**submitPayrun**](docs/Api/PayrunsApi.md#submitpayrun) | **POST** /api/v1/payruns/{id}/submit | Submits a payrun for processing.
+*PayrunsApi* | [**unarchivePayrun**](docs/Api/PayrunsApi.md#unarchivepayrun) | **PUT** /api/v1/payruns/{id}/unarchive | Restores an archived pay run, making it retrievable from most actions.
+*PayrunsApi* | [**updatePayrun**](docs/Api/PayrunsApi.md#updatepayrun) | **PUT** /api/v1/payruns/{id} | Updates a payrun.
 *ReportsApi* | [**getReportResult**](docs/Api/ReportsApi.md#getreportresult) | **GET** /api/v1/reports/{id}/result/{statementNumber} | Attempts to get the aggregated results of report execution. If the   report is still in progress an accepted response will be returned.
 *ReportsApi* | [**initiateReport**](docs/Api/ReportsApi.md#initiatereport) | **PUT** /api/v1/reports/{id}/initiate | Initiates the execution of a merchant report.
 *RulesApi* | [**createRule**](docs/Api/RulesApi.md#createrule) | **POST** /api/v1/rules | Creates a new rule for a MoneyMoov payment account.
@@ -216,6 +227,7 @@ Class | Method | HTTP request | Description
 - [NoFrixionBizBizModelsPagingMerchantDirectDebitMandatePageResponse](docs/Model/NoFrixionBizBizModelsPagingMerchantDirectDebitMandatePageResponse.md)
 - [NoFrixionBizBizModelsPagingPaymentRequestPageResponse](docs/Model/NoFrixionBizBizModelsPagingPaymentRequestPageResponse.md)
 - [NoFrixionBizBizModelsPagingPayoutPageResponse](docs/Model/NoFrixionBizBizModelsPagingPayoutPageResponse.md)
+- [NoFrixionBizBizModelsPagingPayrunPageResponse](docs/Model/NoFrixionBizBizModelsPagingPayrunPageResponse.md)
 - [NoFrixionBizBizModelsPagingRuleEventsPageResponse](docs/Model/NoFrixionBizBizModelsPagingRuleEventsPageResponse.md)
 - [NoFrixionBizBizModelsPagingRulesPageResponse](docs/Model/NoFrixionBizBizModelsPagingRulesPageResponse.md)
 - [NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse](docs/Model/NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse.md)
@@ -239,6 +251,7 @@ Class | Method | HTTP request | Description
 - [NoFrixionMoneyMoovModelsCounterpartyCreate](docs/Model/NoFrixionMoneyMoovModelsCounterpartyCreate.md)
 - [NoFrixionMoneyMoovModelsGenerateStatementRequest](docs/Model/NoFrixionMoneyMoovModelsGenerateStatementRequest.md)
 - [NoFrixionMoneyMoovModelsIPaymentResponse](docs/Model/NoFrixionMoneyMoovModelsIPaymentResponse.md)
+- [NoFrixionMoneyMoovModelsInvoicesInvoicePayment](docs/Model/NoFrixionMoneyMoovModelsInvoicesInvoicePayment.md)
 - [NoFrixionMoneyMoovModelsLastTransaction](docs/Model/NoFrixionMoneyMoovModelsLastTransaction.md)
 - [NoFrixionMoneyMoovModelsLightningInvoice](docs/Model/NoFrixionMoneyMoovModelsLightningInvoice.md)
 - [NoFrixionMoneyMoovModelsMandatesMandate](docs/Model/NoFrixionMoneyMoovModelsMandatesMandate.md)
@@ -302,6 +315,16 @@ Class | Method | HTTP request | Description
 - [NoFrixionMoneyMoovModelsPayoutReject](docs/Model/NoFrixionMoneyMoovModelsPayoutReject.md)
 - [NoFrixionMoneyMoovModelsPayoutUpdate](docs/Model/NoFrixionMoneyMoovModelsPayoutUpdate.md)
 - [NoFrixionMoneyMoovModelsPayoutsPayoutsCreateResponse](docs/Model/NoFrixionMoneyMoovModelsPayoutsPayoutsCreateResponse.md)
+- [NoFrixionMoneyMoovModelsPayrun](docs/Model/NoFrixionMoneyMoovModelsPayrun.md)
+- [NoFrixionMoneyMoovModelsPayrunApprove](docs/Model/NoFrixionMoneyMoovModelsPayrunApprove.md)
+- [NoFrixionMoneyMoovModelsPayrunAuthorisation](docs/Model/NoFrixionMoneyMoovModelsPayrunAuthorisation.md)
+- [NoFrixionMoneyMoovModelsPayrunCreate](docs/Model/NoFrixionMoneyMoovModelsPayrunCreate.md)
+- [NoFrixionMoneyMoovModelsPayrunEvent](docs/Model/NoFrixionMoneyMoovModelsPayrunEvent.md)
+- [NoFrixionMoneyMoovModelsPayrunInvoice](docs/Model/NoFrixionMoneyMoovModelsPayrunInvoice.md)
+- [NoFrixionMoneyMoovModelsPayrunPayment](docs/Model/NoFrixionMoneyMoovModelsPayrunPayment.md)
+- [NoFrixionMoneyMoovModelsPayrunReject](docs/Model/NoFrixionMoneyMoovModelsPayrunReject.md)
+- [NoFrixionMoneyMoovModelsPayrunUpdate](docs/Model/NoFrixionMoneyMoovModelsPayrunUpdate.md)
+- [NoFrixionMoneyMoovModelsPayrunUpdateSourceAccounts](docs/Model/NoFrixionMoneyMoovModelsPayrunUpdateSourceAccounts.md)
 - [NoFrixionMoneyMoovModelsReport](docs/Model/NoFrixionMoneyMoovModelsReport.md)
 - [NoFrixionMoneyMoovModelsReportResult](docs/Model/NoFrixionMoneyMoovModelsReportResult.md)
 - [NoFrixionMoneyMoovModelsRule](docs/Model/NoFrixionMoneyMoovModelsRule.md)

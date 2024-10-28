@@ -12,6 +12,7 @@ docs/Api/MetadataApi.md
 docs/Api/OpenBankingApi.md
 docs/Api/PaymentRequestsApi.md
 docs/Api/PayoutsApi.md
+docs/Api/PayrunsApi.md
 docs/Api/ReportsApi.md
 docs/Api/RulesApi.md
 docs/Api/TokensApi.md
@@ -23,6 +24,7 @@ docs/Model/MicrosoftAspNetCoreMvcProblemDetails.md
 docs/Model/NoFrixionBizBizModelsPagingMerchantDirectDebitMandatePageResponse.md
 docs/Model/NoFrixionBizBizModelsPagingPaymentRequestPageResponse.md
 docs/Model/NoFrixionBizBizModelsPagingPayoutPageResponse.md
+docs/Model/NoFrixionBizBizModelsPagingPayrunPageResponse.md
 docs/Model/NoFrixionBizBizModelsPagingRuleEventsPageResponse.md
 docs/Model/NoFrixionBizBizModelsPagingRulesPageResponse.md
 docs/Model/NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse.md
@@ -46,6 +48,7 @@ docs/Model/NoFrixionMoneyMoovModelsCounterparty.md
 docs/Model/NoFrixionMoneyMoovModelsCounterpartyCreate.md
 docs/Model/NoFrixionMoneyMoovModelsGenerateStatementRequest.md
 docs/Model/NoFrixionMoneyMoovModelsIPaymentResponse.md
+docs/Model/NoFrixionMoneyMoovModelsInvoicesInvoicePayment.md
 docs/Model/NoFrixionMoneyMoovModelsLastTransaction.md
 docs/Model/NoFrixionMoneyMoovModelsLightningInvoice.md
 docs/Model/NoFrixionMoneyMoovModelsMandatesMandate.md
@@ -109,6 +112,16 @@ docs/Model/NoFrixionMoneyMoovModelsPayoutMetrics.md
 docs/Model/NoFrixionMoneyMoovModelsPayoutReject.md
 docs/Model/NoFrixionMoneyMoovModelsPayoutUpdate.md
 docs/Model/NoFrixionMoneyMoovModelsPayoutsPayoutsCreateResponse.md
+docs/Model/NoFrixionMoneyMoovModelsPayrun.md
+docs/Model/NoFrixionMoneyMoovModelsPayrunApprove.md
+docs/Model/NoFrixionMoneyMoovModelsPayrunAuthorisation.md
+docs/Model/NoFrixionMoneyMoovModelsPayrunCreate.md
+docs/Model/NoFrixionMoneyMoovModelsPayrunEvent.md
+docs/Model/NoFrixionMoneyMoovModelsPayrunInvoice.md
+docs/Model/NoFrixionMoneyMoovModelsPayrunPayment.md
+docs/Model/NoFrixionMoneyMoovModelsPayrunReject.md
+docs/Model/NoFrixionMoneyMoovModelsPayrunUpdate.md
+docs/Model/NoFrixionMoneyMoovModelsPayrunUpdateSourceAccounts.md
 docs/Model/NoFrixionMoneyMoovModelsReport.md
 docs/Model/NoFrixionMoneyMoovModelsReportResult.md
 docs/Model/NoFrixionMoneyMoovModelsRule.md
@@ -142,6 +155,7 @@ lib/Api/MetadataApi.php
 lib/Api/OpenBankingApi.php
 lib/Api/PaymentRequestsApi.php
 lib/Api/PayoutsApi.php
+lib/Api/PayrunsApi.php
 lib/Api/ReportsApi.php
 lib/Api/RulesApi.php
 lib/Api/TokensApi.php
@@ -157,6 +171,7 @@ lib/Model/ModelInterface.php
 lib/Model/NoFrixionBizBizModelsPagingMerchantDirectDebitMandatePageResponse.php
 lib/Model/NoFrixionBizBizModelsPagingPaymentRequestPageResponse.php
 lib/Model/NoFrixionBizBizModelsPagingPayoutPageResponse.php
+lib/Model/NoFrixionBizBizModelsPagingPayrunPageResponse.php
 lib/Model/NoFrixionBizBizModelsPagingRuleEventsPageResponse.php
 lib/Model/NoFrixionBizBizModelsPagingRulesPageResponse.php
 lib/Model/NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponse.php
@@ -180,6 +195,7 @@ lib/Model/NoFrixionMoneyMoovModelsCounterparty.php
 lib/Model/NoFrixionMoneyMoovModelsCounterpartyCreate.php
 lib/Model/NoFrixionMoneyMoovModelsGenerateStatementRequest.php
 lib/Model/NoFrixionMoneyMoovModelsIPaymentResponse.php
+lib/Model/NoFrixionMoneyMoovModelsInvoicesInvoicePayment.php
 lib/Model/NoFrixionMoneyMoovModelsLastTransaction.php
 lib/Model/NoFrixionMoneyMoovModelsLightningInvoice.php
 lib/Model/NoFrixionMoneyMoovModelsMandatesMandate.php
@@ -243,6 +259,16 @@ lib/Model/NoFrixionMoneyMoovModelsPayoutMetrics.php
 lib/Model/NoFrixionMoneyMoovModelsPayoutReject.php
 lib/Model/NoFrixionMoneyMoovModelsPayoutUpdate.php
 lib/Model/NoFrixionMoneyMoovModelsPayoutsPayoutsCreateResponse.php
+lib/Model/NoFrixionMoneyMoovModelsPayrun.php
+lib/Model/NoFrixionMoneyMoovModelsPayrunApprove.php
+lib/Model/NoFrixionMoneyMoovModelsPayrunAuthorisation.php
+lib/Model/NoFrixionMoneyMoovModelsPayrunCreate.php
+lib/Model/NoFrixionMoneyMoovModelsPayrunEvent.php
+lib/Model/NoFrixionMoneyMoovModelsPayrunInvoice.php
+lib/Model/NoFrixionMoneyMoovModelsPayrunPayment.php
+lib/Model/NoFrixionMoneyMoovModelsPayrunReject.php
+lib/Model/NoFrixionMoneyMoovModelsPayrunUpdate.php
+lib/Model/NoFrixionMoneyMoovModelsPayrunUpdateSourceAccounts.php
 lib/Model/NoFrixionMoneyMoovModelsReport.php
 lib/Model/NoFrixionMoneyMoovModelsReportResult.php
 lib/Model/NoFrixionMoneyMoovModelsRule.php
@@ -277,6 +303,7 @@ test/Api/MetadataApiTest.php
 test/Api/OpenBankingApiTest.php
 test/Api/PaymentRequestsApiTest.php
 test/Api/PayoutsApiTest.php
+test/Api/PayrunsApiTest.php
 test/Api/ReportsApiTest.php
 test/Api/RulesApiTest.php
 test/Api/TokensApiTest.php
@@ -288,6 +315,7 @@ test/Model/MicrosoftAspNetCoreMvcProblemDetailsTest.php
 test/Model/NoFrixionBizBizModelsPagingMerchantDirectDebitMandatePageResponseTest.php
 test/Model/NoFrixionBizBizModelsPagingPaymentRequestPageResponseTest.php
 test/Model/NoFrixionBizBizModelsPagingPayoutPageResponseTest.php
+test/Model/NoFrixionBizBizModelsPagingPayrunPageResponseTest.php
 test/Model/NoFrixionBizBizModelsPagingRuleEventsPageResponseTest.php
 test/Model/NoFrixionBizBizModelsPagingRulesPageResponseTest.php
 test/Model/NoFrixionBizBizModelsPaymentsCardPayerAuthenticationSetupResponseTest.php
@@ -311,6 +339,7 @@ test/Model/NoFrixionMoneyMoovModelsCounterpartyCreateTest.php
 test/Model/NoFrixionMoneyMoovModelsCounterpartyTest.php
 test/Model/NoFrixionMoneyMoovModelsGenerateStatementRequestTest.php
 test/Model/NoFrixionMoneyMoovModelsIPaymentResponseTest.php
+test/Model/NoFrixionMoneyMoovModelsInvoicesInvoicePaymentTest.php
 test/Model/NoFrixionMoneyMoovModelsLastTransactionTest.php
 test/Model/NoFrixionMoneyMoovModelsLightningInvoiceTest.php
 test/Model/NoFrixionMoneyMoovModelsMandatesMandateCreateTest.php
@@ -374,6 +403,16 @@ test/Model/NoFrixionMoneyMoovModelsPayoutRejectTest.php
 test/Model/NoFrixionMoneyMoovModelsPayoutTest.php
 test/Model/NoFrixionMoneyMoovModelsPayoutUpdateTest.php
 test/Model/NoFrixionMoneyMoovModelsPayoutsPayoutsCreateResponseTest.php
+test/Model/NoFrixionMoneyMoovModelsPayrunApproveTest.php
+test/Model/NoFrixionMoneyMoovModelsPayrunAuthorisationTest.php
+test/Model/NoFrixionMoneyMoovModelsPayrunCreateTest.php
+test/Model/NoFrixionMoneyMoovModelsPayrunEventTest.php
+test/Model/NoFrixionMoneyMoovModelsPayrunInvoiceTest.php
+test/Model/NoFrixionMoneyMoovModelsPayrunPaymentTest.php
+test/Model/NoFrixionMoneyMoovModelsPayrunRejectTest.php
+test/Model/NoFrixionMoneyMoovModelsPayrunTest.php
+test/Model/NoFrixionMoneyMoovModelsPayrunUpdateSourceAccountsTest.php
+test/Model/NoFrixionMoneyMoovModelsPayrunUpdateTest.php
 test/Model/NoFrixionMoneyMoovModelsReportResultTest.php
 test/Model/NoFrixionMoneyMoovModelsReportTest.php
 test/Model/NoFrixionMoneyMoovModelsRuleCreateTest.php

@@ -59,5 +59,6 @@ Name | Type | Description | Notes
 **rule** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleMinimal**](NoFrixionMoneyMoovModelsRuleMinimal.md) |  | [optional]
 **payment_rail** | **string** | Optional field to indicate the payment rail to use for the payout. Currrently only  supports choosing between SEPA-CT and SEPA-INST for EUR payments. If not set, for a EUR  payment, the default behaviour is to attempt SEPA-INST and fallback to SEPA-CT if rejected. | [optional]
 **nonce** | **string** |  | [optional]
+**payrun_invoices** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrunInvoice[]**](NoFrixionMoneyMoovModelsPayrunInvoice.md) | Collection of payrun invoices associated with the payout.  Will be empty if the payout is not associated with a payrun. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
