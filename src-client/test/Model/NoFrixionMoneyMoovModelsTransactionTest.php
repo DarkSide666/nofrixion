@@ -240,4 +240,13 @@ class NoFrixionMoneyMoovModelsTransactionTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "tags"
+     */
+    public function testPropertyTags()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

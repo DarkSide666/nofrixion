@@ -32,6 +32,12 @@ class Environment
         self::LIVE => 'https://portal.nofrixion.com',
     ];
 
+    /** @var array of business servers used for each environment */
+    private static $portalServers = [
+        self::SANDBOX => 'https://business-sandbox.nofrixion.com',
+        self::LIVE => 'https://business.nofrixion.com',
+    ];
+
     /** @var self Environment instance */
     private static $instance = null;
 
@@ -69,6 +75,11 @@ class Environment
     public static function getPortalServer(): ?string
     {
         return self::$portalServers[self::getInstance()->getEnv()] ?? null;
+    }
+
+    public static function getBusinessServer(): ?string
+    {
+        return self::$businessServers[self::getInstance()->getEnv()] ?? null;
     }
 
     public static function reset(): void

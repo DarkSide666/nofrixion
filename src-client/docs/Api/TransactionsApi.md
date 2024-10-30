@@ -4,9 +4,72 @@ All URIs are relative to https://api-sandbox.nofrixion.com, except if the operat
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
+| [**addTags()**](TransactionsApi.md#addTags) | **POST** /api/v1/transactions/{transactionID}/tags | Adds merchant tags to a transaction. |
 | [**getTransactionsForAccountPaged()**](TransactionsApi.md#getTransactionsForAccountPaged) | **GET** /api/v1/transactions/{accountID} | Get a list of the transactions for a single payment account. |
 | [**getTransactionsPaged()**](TransactionsApi.md#getTransactionsPaged) | **GET** /api/v1/transactions | Get a list of the transactions for all payment accounts a user has access to. |
+| [**removeTag()**](TransactionsApi.md#removeTag) | **DELETE** /api/v1/transactions/{transactionID}/tag | Removes a tag from the transaction using the tag ID. |
 
+
+## `addTags()`
+
+```php
+addTags($transaction_id, $tags)
+```
+
+Adds merchant tags to a transaction.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Nofrixion\Client\Api\TransactionsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$transaction_id = 'transaction_id_example'; // string | The ID of the transaction to add tags.
+$tags = array('tags_example'); // string[] | The tags to add to the transaction.
+
+try {
+    $apiInstance->addTags($transaction_id, $tags);
+} catch (Exception $e) {
+    echo 'Exception when calling TransactionsApi->addTags: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **transaction_id** | **string**| The ID of the transaction to add tags. | |
+| **tags** | [**string[]**](../Model/string.md)| The tags to add to the transaction. | [optional] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/x-www-form-urlencoded`, `multipart/form-data`
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
 ## `getTransactionsForAccountPaged()`
 
@@ -145,6 +208,67 @@ try {
 
 - **Content-Type**: Not defined
 - **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `removeTag()`
+
+```php
+removeTag($transaction_id, $tag_id)
+```
+
+Removes a tag from the transaction using the tag ID.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Nofrixion\Client\Api\TransactionsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$transaction_id = 'transaction_id_example'; // string | The ID of the transaction to remove tag.
+$tag_id = 'tag_id_example'; // string | The ID of the tag to remove.
+
+try {
+    $apiInstance->removeTag($transaction_id, $tag_id);
+} catch (Exception $e) {
+    echo 'Exception when calling TransactionsApi->removeTag: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **transaction_id** | **string**| The ID of the transaction to remove tag. | |
+| **tag_id** | **string**| The ID of the tag to remove. | [optional] |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

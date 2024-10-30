@@ -22,5 +22,6 @@ Name | Type | Description | Notes
 **rule_id** | **string** | ID of the rule that resulted in the transaction. | [optional]
 **payout_id** | **string** | ID of the payout that resulted in the transaction. | [optional]
 **virtual_iban** | **string** | If set it indicates the  payin was to a virtual IBAN. | [optional]
+**tags** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTag[]**](NoFrixionMoneyMoovModelsTag.md) | An optional list of descriptive tags attached to the transaction. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

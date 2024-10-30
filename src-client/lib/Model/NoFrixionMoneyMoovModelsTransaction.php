@@ -74,7 +74,8 @@ class NoFrixionMoneyMoovModelsTransaction implements ModelInterface, ArrayAccess
         'balance' => 'float',
         'rule_id' => 'string',
         'payout_id' => 'string',
-        'virtual_iban' => 'string'
+        'virtual_iban' => 'string',
+        'tags' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTag[]'
     ];
 
     /**
@@ -102,7 +103,8 @@ class NoFrixionMoneyMoovModelsTransaction implements ModelInterface, ArrayAccess
         'balance' => 'double',
         'rule_id' => 'uuid',
         'payout_id' => 'uuid',
-        'virtual_iban' => null
+        'virtual_iban' => null,
+        'tags' => null
     ];
 
     /**
@@ -128,7 +130,8 @@ class NoFrixionMoneyMoovModelsTransaction implements ModelInterface, ArrayAccess
         'balance' => false,
         'rule_id' => true,
         'payout_id' => true,
-        'virtual_iban' => true
+        'virtual_iban' => true,
+        'tags' => true
     ];
 
     /**
@@ -234,7 +237,8 @@ class NoFrixionMoneyMoovModelsTransaction implements ModelInterface, ArrayAccess
         'balance' => 'balance',
         'rule_id' => 'ruleID',
         'payout_id' => 'payoutID',
-        'virtual_iban' => 'virtualIBAN'
+        'virtual_iban' => 'virtualIBAN',
+        'tags' => 'tags'
     ];
 
     /**
@@ -260,7 +264,8 @@ class NoFrixionMoneyMoovModelsTransaction implements ModelInterface, ArrayAccess
         'balance' => 'setBalance',
         'rule_id' => 'setRuleId',
         'payout_id' => 'setPayoutId',
-        'virtual_iban' => 'setVirtualIban'
+        'virtual_iban' => 'setVirtualIban',
+        'tags' => 'setTags'
     ];
 
     /**
@@ -286,7 +291,8 @@ class NoFrixionMoneyMoovModelsTransaction implements ModelInterface, ArrayAccess
         'balance' => 'getBalance',
         'rule_id' => 'getRuleId',
         'payout_id' => 'getPayoutId',
-        'virtual_iban' => 'getVirtualIban'
+        'virtual_iban' => 'getVirtualIban',
+        'tags' => 'getTags'
     ];
 
     /**
@@ -422,6 +428,7 @@ class NoFrixionMoneyMoovModelsTransaction implements ModelInterface, ArrayAccess
         $this->setIfExists('rule_id', $data ?? [], null);
         $this->setIfExists('payout_id', $data ?? [], null);
         $this->setIfExists('virtual_iban', $data ?? [], null);
+        $this->setIfExists('tags', $data ?? [], null);
     }
 
     /**
@@ -1042,6 +1049,40 @@ class NoFrixionMoneyMoovModelsTransaction implements ModelInterface, ArrayAccess
             }
         }
         $this->container['virtual_iban'] = $virtual_iban;
+
+        return $this;
+    }
+
+    /**
+     * Gets tags
+     *
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTag[]|null
+     */
+    public function getTags()
+    {
+        return $this->container['tags'];
+    }
+
+    /**
+     * Sets tags
+     *
+     * @param \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsTag[]|null $tags An optional list of descriptive tags attached to the transaction.
+     *
+     * @return self
+     */
+    public function setTags($tags)
+    {
+        if (is_null($tags)) {
+            array_push($this->openAPINullablesSetToNull, 'tags');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('tags', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['tags'] = $tags;
 
         return $this;
     }

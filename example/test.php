@@ -100,15 +100,8 @@ if ($_GET['create_payout'] ?? null) {
         'amount' => 123.45,
         'your_reference' => 'my ref #1',
         'their_reference' => 'their ref #2',
-        //'destination_account_id' => 'string',     // deprecated
-        //'destination_iban' => 'string',           // deprecated
-        //'destination_account_number' => 'string', // deprecated
-        //'destination_sort_code' => 'string',      // deprecated
-        //'destination_account_name' => 'string',   // deprecated
-        //'destination_account' => 'Client\Model\NoFrixionMoneyMoovModelsCounterpartyCreate',
         'destination' => new Client\Model\NoFrixionMoneyMoovModelsCounterpartyCreate([
             'account_id' => 'd6e00b83-271c-4566-97a2-cf2d608bff5f',
-            //'beneficiary_id' => 'string',
             'name' => 'Mr. Foo',
             //'email_address' => 'string',
             //'phone_number' => 'string',
@@ -125,15 +118,8 @@ if ($_GET['create_payout'] ?? null) {
         ]),
         //'invoice_id' => 'string',
         'allow_incomplete' => true,
-        //'tag_ids' => 'string[]',
         'scheduled' => false,
         //'schedule_date' => '\DateTime',
-        //'bitcoin_subtract_fee_from_amount' => 'bool',     // required ???
-        //'bitcoin_fee_sats_per_vbyte' => 'int',            // required ???
-        //'beneficiary_identifier_id' => 'string',          // deprecated
-        //'beneficiary_id' => 'string',
-        //'batch_payout_id' => 'string',
-        //'topup_payrun_id' => 'string',
         'payment_rail' => Client\Model\NoFrixionMoneyMoovModelsPayoutCreate::PAYMENT_RAIL__DEFAULT,
     ]);
 
@@ -147,8 +133,3 @@ if ($_GET['create_payout'] ?? null) {
     }
 
 }
-
-
-
-
-

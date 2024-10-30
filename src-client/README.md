@@ -207,8 +207,10 @@ Class | Method | HTTP request | Description
 *RulesApi* | [**updateRule**](docs/Api/RulesApi.md#updaterule) | **PUT** /api/v1/rules/{id} | Update an existing rule.
 *TokensApi* | [**createMerchantToken**](docs/Api/TokensApi.md#createmerchanttoken) | **POST** /api/v1/tokens | Creates a new merchant API token.
 *TokensApi* | [**deleteToken**](docs/Api/TokensApi.md#deletetoken) | **DELETE** /api/v1/tokens/{id} | Deletes a merchant API token.
+*TransactionsApi* | [**addTags**](docs/Api/TransactionsApi.md#addtags) | **POST** /api/v1/transactions/{transactionID}/tags | Adds merchant tags to a transaction.
 *TransactionsApi* | [**getTransactionsForAccountPaged**](docs/Api/TransactionsApi.md#gettransactionsforaccountpaged) | **GET** /api/v1/transactions/{accountID} | Get a list of the transactions for a single payment account.
 *TransactionsApi* | [**getTransactionsPaged**](docs/Api/TransactionsApi.md#gettransactionspaged) | **GET** /api/v1/transactions | Get a list of the transactions for all payment accounts a user has access to.
+*TransactionsApi* | [**removeTag**](docs/Api/TransactionsApi.md#removetag) | **DELETE** /api/v1/transactions/{transactionID}/tag | Removes a tag from the transaction using the tag ID.
 *UserApi* | [**getUser**](docs/Api/UserApi.md#getuser) | **GET** /api/v1/user | Get the profile for the authenticated user.
 *UserApi* | [**getUsers**](docs/Api/UserApi.md#getusers) | **GET** /api/v1/user/{merchantID}/users | Gets all users including invitees for a merchant.
 *UserApi* | [**updateUser**](docs/Api/UserApi.md#updateuser) | **PUT** /api/v1/user/{id} | Updates a user record and optionally accepts an invite to join a merchant.

@@ -72,6 +72,18 @@ class TransactionsApiTest extends TestCase
     }
 
     /**
+     * Test case for addTags
+     *
+     * Adds merchant tags to a transaction..
+     *
+     */
+    public function testAddTags()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getTransactionsForAccountPaged
      *
      * Get a list of the transactions for a single payment account..
@@ -90,6 +102,18 @@ class TransactionsApiTest extends TestCase
      *
      */
     public function testGetTransactionsPaged()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for removeTag
+     *
+     * Removes a tag from the transaction using the tag ID..
+     *
+     */
+    public function testRemoveTag()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
