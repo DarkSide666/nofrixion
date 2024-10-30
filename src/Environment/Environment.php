@@ -33,7 +33,7 @@ class Environment
     ];
 
     /** @var array of business servers used for each environment */
-    private static $portalServers = [
+    private static $businessServers = [
         self::SANDBOX => 'https://business-sandbox.nofrixion.com',
         self::LIVE => 'https://business.nofrixion.com',
     ];
