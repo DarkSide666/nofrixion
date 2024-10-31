@@ -138,7 +138,7 @@ void (empty response body)
 ## `createPayrun()`
 
 ```php
-createPayrun($merchant_id, $no_frixion_money_moov_models_payrun_create)
+createPayrun($merchant_id, $no_frixion_money_moov_models_payrun_create): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrun
 ```
 
 Create a new Payrun from a list of invoices.
@@ -166,7 +166,8 @@ $merchant_id = 'merchant_id_example'; // string | The merchant ID to create the 
 $no_frixion_money_moov_models_payrun_create = new \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrunCreate(); // \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrunCreate | The properties, including the list of invocies, for the PayRun.
 
 try {
-    $apiInstance->createPayrun($merchant_id, $no_frixion_money_moov_models_payrun_create);
+    $result = $apiInstance->createPayrun($merchant_id, $no_frixion_money_moov_models_payrun_create);
+    print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling PayrunsApi->createPayrun: ', $e->getMessage(), PHP_EOL;
 }
@@ -181,7 +182,7 @@ try {
 
 ### Return type
 
-void (empty response body)
+[**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrun**](../Model/NoFrixionMoneyMoovModelsPayrun.md)
 
 ### Authorization
 
@@ -190,7 +191,7 @@ void (empty response body)
 ### HTTP request headers
 
 - **Content-Type**: `application/json`
-- **Accept**: Not defined
+- **Accept**: `text/plain`, `application/json`, `text/json`
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
 [[Back to Model list]](../../README.md#models)

@@ -13,7 +13,7 @@ All URIs are relative to https://api-sandbox.nofrixion.com, except if the operat
 ## `addTags()`
 
 ```php
-addTags($transaction_id, $tags)
+addTags($transaction_id, $request_body)
 ```
 
 Adds merchant tags to a transaction.
@@ -38,10 +38,10 @@ $apiInstance = new Nofrixion\Client\Api\TransactionsApi(
     $config
 );
 $transaction_id = 'transaction_id_example'; // string | The ID of the transaction to add tags.
-$tags = array('tags_example'); // string[] | The tags to add to the transaction.
+$request_body = array('request_body_example'); // string[] | The tags to add to the transaction.
 
 try {
-    $apiInstance->addTags($transaction_id, $tags);
+    $apiInstance->addTags($transaction_id, $request_body);
 } catch (Exception $e) {
     echo 'Exception when calling TransactionsApi->addTags: ', $e->getMessage(), PHP_EOL;
 }
@@ -52,7 +52,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **transaction_id** | **string**| The ID of the transaction to add tags. | |
-| **tags** | [**string[]**](../Model/string.md)| The tags to add to the transaction. | [optional] |
+| **request_body** | [**string[]**](../Model/string.md)| The tags to add to the transaction. | [optional] |
 
 ### Return type
 
@@ -64,7 +64,7 @@ void (empty response body)
 
 ### HTTP request headers
 
-- **Content-Type**: `application/x-www-form-urlencoded`, `multipart/form-data`
+- **Content-Type**: `application/json`
 - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#endpoints)

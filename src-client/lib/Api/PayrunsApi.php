@@ -607,11 +607,12 @@ class PayrunsApi
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return void
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrun
      */
     public function createPayrun($merchant_id, $no_frixion_money_moov_models_payrun_create = null, string $contentType = self::contentTypes['createPayrun'][0])
     {
-        $this->createPayrunWithHttpInfo($merchant_id, $no_frixion_money_moov_models_payrun_create, $contentType);
+        list($response) = $this->createPayrunWithHttpInfo($merchant_id, $no_frixion_money_moov_models_payrun_create, $contentType);
+        return $response;
     }
 
     /**
@@ -625,7 +626,7 @@ class PayrunsApi
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrun, HTTP status code, HTTP response headers (array of strings)
      */
     public function createPayrunWithHttpInfo($merchant_id, $no_frixion_money_moov_models_payrun_create = null, string $contentType = self::contentTypes['createPayrun'][0])
     {
@@ -654,10 +655,87 @@ class PayrunsApi
             $statusCode = $response->getStatusCode();
 
 
-            return [null, $statusCode, $response->getHeaders()];
+            switch($statusCode) {
+                case 200:
+                    if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrun' === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ('\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrun' !== 'string') {
+                            try {
+                                $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                            } catch (\JsonException $exception) {
+                                throw new ApiException(
+                                    sprintf(
+                                        'Error JSON decoding server response (%s)',
+                                        $request->getUri()
+                                    ),
+                                    $statusCode,
+                                    $response->getHeaders(),
+                                    $content
+                                );
+                            }
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrun', []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+            }
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        (string) $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    (string) $response->getBody()
+                );
+            }
+
+            $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrun';
+            if ($returnType === '\SplFileObject') {
+                $content = $response->getBody(); //stream goes to serializer
+            } else {
+                $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    try {
+                        $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
+                    } catch (\JsonException $exception) {
+                        throw new ApiException(
+                            sprintf(
+                                'Error JSON decoding server response (%s)',
+                                $request->getUri()
+                            ),
+                            $statusCode,
+                            $response->getHeaders(),
+                            $content
+                        );
+                    }
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrun',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
             }
             throw $e;
         }
@@ -699,14 +777,27 @@ class PayrunsApi
      */
     public function createPayrunAsyncWithHttpInfo($merchant_id, $no_frixion_money_moov_models_payrun_create = null, string $contentType = self::contentTypes['createPayrun'][0])
     {
-        $returnType = '';
+        $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrun';
         $request = $this->createPayrunRequest($merchant_id, $no_frixion_money_moov_models_payrun_create, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
             ->then(
                 function ($response) use ($returnType) {
-                    return [null, $response->getStatusCode(), $response->getHeaders()];
+                    if ($returnType === '\SplFileObject') {
+                        $content = $response->getBody(); //stream goes to serializer
+                    } else {
+                        $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
                 },
                 function ($exception) {
                     $response = $exception->getResponse();
@@ -767,7 +858,7 @@ class PayrunsApi
 
 
         $headers = $this->headerSelector->selectHeaders(
-            [],
+            ['text/plain', 'application/json', 'text/json', ],
             $contentType,
             $multipart
         );

@@ -26,14 +26,20 @@ While it's generally not necessary to manually update the client API code, if yo
    Ensure you have [NPM](https://www.npmjs.com/get-npm) installed, then install the OpenAPI Generator CLI globally:
 
    ```bash
+   # install new
    npm install @openapitools/openapi-generator-cli -g
+   # or update existing
+   npm update @openapitools/openapi-generator-cli -g
    ```
 
 2. **Generate the Nofrixion\Client Code**
    Use the OpenAPI Generator to generate the client code from the Nofrixion API Swagger definition:
 
    ```bash
+   # generate from live API
    openapi-generator-cli generate -i https://api.nofrixion.com/swagger/v1/swagger.json -g php -o ./src-client -c src-client-config.json
+   # or generate from development API
+   openapi-generator-cli generate -i https://api-dev.nofrixion.com/swagger/v1/swagger.json -g php -o ./src-client -c src-client-config.json
    ```
 
 ## Client Documentation

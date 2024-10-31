@@ -72,8 +72,7 @@ class TransactionsApi
     /** @var string[] $contentTypes **/
     public const contentTypes = [
         'addTags' => [
-            'application/x-www-form-urlencoded',
-            'multipart/form-data',
+            'application/json',
         ],
         'getTransactionsForAccountPaged' => [
             'application/json',
@@ -138,16 +137,16 @@ class TransactionsApi
      * Adds merchant tags to a transaction.
      *
      * @param  string $transaction_id The ID of the transaction to add tags. (required)
-     * @param  string[] $tags The tags to add to the transaction. (optional)
+     * @param  string[] $request_body The tags to add to the transaction. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addTags'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function addTags($transaction_id, $tags = null, string $contentType = self::contentTypes['addTags'][0])
+    public function addTags($transaction_id, $request_body = null, string $contentType = self::contentTypes['addTags'][0])
     {
-        $this->addTagsWithHttpInfo($transaction_id, $tags, $contentType);
+        $this->addTagsWithHttpInfo($transaction_id, $request_body, $contentType);
     }
 
     /**
@@ -156,16 +155,16 @@ class TransactionsApi
      * Adds merchant tags to a transaction.
      *
      * @param  string $transaction_id The ID of the transaction to add tags. (required)
-     * @param  string[] $tags The tags to add to the transaction. (optional)
+     * @param  string[] $request_body The tags to add to the transaction. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addTags'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function addTagsWithHttpInfo($transaction_id, $tags = null, string $contentType = self::contentTypes['addTags'][0])
+    public function addTagsWithHttpInfo($transaction_id, $request_body = null, string $contentType = self::contentTypes['addTags'][0])
     {
-        $request = $this->addTagsRequest($transaction_id, $tags, $contentType);
+        $request = $this->addTagsRequest($transaction_id, $request_body, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -205,15 +204,15 @@ class TransactionsApi
      * Adds merchant tags to a transaction.
      *
      * @param  string $transaction_id The ID of the transaction to add tags. (required)
-     * @param  string[] $tags The tags to add to the transaction. (optional)
+     * @param  string[] $request_body The tags to add to the transaction. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addTags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addTagsAsync($transaction_id, $tags = null, string $contentType = self::contentTypes['addTags'][0])
+    public function addTagsAsync($transaction_id, $request_body = null, string $contentType = self::contentTypes['addTags'][0])
     {
-        return $this->addTagsAsyncWithHttpInfo($transaction_id, $tags, $contentType)
+        return $this->addTagsAsyncWithHttpInfo($transaction_id, $request_body, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -227,16 +226,16 @@ class TransactionsApi
      * Adds merchant tags to a transaction.
      *
      * @param  string $transaction_id The ID of the transaction to add tags. (required)
-     * @param  string[] $tags The tags to add to the transaction. (optional)
+     * @param  string[] $request_body The tags to add to the transaction. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addTags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function addTagsAsyncWithHttpInfo($transaction_id, $tags = null, string $contentType = self::contentTypes['addTags'][0])
+    public function addTagsAsyncWithHttpInfo($transaction_id, $request_body = null, string $contentType = self::contentTypes['addTags'][0])
     {
         $returnType = '';
-        $request = $this->addTagsRequest($transaction_id, $tags, $contentType);
+        $request = $this->addTagsRequest($transaction_id, $request_body, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -265,13 +264,13 @@ class TransactionsApi
      * Create request for operation 'addTags'
      *
      * @param  string $transaction_id The ID of the transaction to add tags. (required)
-     * @param  string[] $tags The tags to add to the transaction. (optional)
+     * @param  string[] $request_body The tags to add to the transaction. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['addTags'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function addTagsRequest($transaction_id, $tags = null, string $contentType = self::contentTypes['addTags'][0])
+    public function addTagsRequest($transaction_id, $request_body = null, string $contentType = self::contentTypes['addTags'][0])
     {
 
         // verify the required parameter 'transaction_id' is set
@@ -301,10 +300,6 @@ class TransactionsApi
             );
         }
 
-        // form params
-        if ($tags !== null) {
-            $formParams['tags'] = ObjectSerializer::toFormValue($tags);
-        }
 
         $headers = $this->headerSelector->selectHeaders(
             [],
@@ -313,7 +308,14 @@ class TransactionsApi
         );
 
         // for model (json/xml)
-        if (count($formParams) > 0) {
+        if (isset($request_body)) {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
+                $httpBody = \GuzzleHttp\Utils::jsonEncode(ObjectSerializer::sanitizeForSerialization($request_body));
+            } else {
+                $httpBody = $request_body;
+            }
+        } elseif (count($formParams) > 0) {
             if ($multipart) {
                 $multipartContents = [];
                 foreach ($formParams as $formParamName => $formParamValue) {
