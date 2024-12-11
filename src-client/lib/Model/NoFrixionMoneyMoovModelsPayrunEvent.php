@@ -265,6 +265,7 @@ class NoFrixionMoneyMoovModelsPayrunEvent implements ModelInterface, ArrayAccess
     public const TYPE_ARCHIVED = 'Archived';
     public const TYPE_UNARCHIVED = 'Unarchived';
     public const TYPE_CANCELLED = 'Cancelled';
+    public const TYPE_AUTHORISED = 'Authorised';
 
     /**
      * Gets allowable values of the enum
@@ -287,6 +288,7 @@ class NoFrixionMoneyMoovModelsPayrunEvent implements ModelInterface, ArrayAccess
             self::TYPE_ARCHIVED,
             self::TYPE_UNARCHIVED,
             self::TYPE_CANCELLED,
+            self::TYPE_AUTHORISED,
         ];
     }
 

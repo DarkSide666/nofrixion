@@ -75,7 +75,8 @@ class NoFrixionMoneyMoovModelsPayoutCreate implements ModelInterface, ArrayAcces
         'beneficiary_id' => 'string',
         'batch_payout_id' => 'string',
         'topup_payrun_id' => 'string',
-        'payment_rail' => 'string'
+        'payment_rail' => 'string',
+        'documents' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutDocumentCreate[]'
     ];
 
     /**
@@ -104,7 +105,8 @@ class NoFrixionMoneyMoovModelsPayoutCreate implements ModelInterface, ArrayAcces
         'beneficiary_id' => 'uuid',
         'batch_payout_id' => 'uuid',
         'topup_payrun_id' => 'uuid',
-        'payment_rail' => null
+        'payment_rail' => null,
+        'documents' => null
     ];
 
     /**
@@ -131,7 +133,8 @@ class NoFrixionMoneyMoovModelsPayoutCreate implements ModelInterface, ArrayAcces
         'beneficiary_id' => true,
         'batch_payout_id' => true,
         'topup_payrun_id' => true,
-        'payment_rail' => false
+        'payment_rail' => false,
+        'documents' => true
     ];
 
     /**
@@ -238,7 +241,8 @@ class NoFrixionMoneyMoovModelsPayoutCreate implements ModelInterface, ArrayAcces
         'beneficiary_id' => 'beneficiaryID',
         'batch_payout_id' => 'batchPayoutID',
         'topup_payrun_id' => 'topupPayrunID',
-        'payment_rail' => 'paymentRail'
+        'payment_rail' => 'paymentRail',
+        'documents' => 'documents'
     ];
 
     /**
@@ -265,7 +269,8 @@ class NoFrixionMoneyMoovModelsPayoutCreate implements ModelInterface, ArrayAcces
         'beneficiary_id' => 'setBeneficiaryId',
         'batch_payout_id' => 'setBatchPayoutId',
         'topup_payrun_id' => 'setTopupPayrunId',
-        'payment_rail' => 'setPaymentRail'
+        'payment_rail' => 'setPaymentRail',
+        'documents' => 'setDocuments'
     ];
 
     /**
@@ -292,7 +297,8 @@ class NoFrixionMoneyMoovModelsPayoutCreate implements ModelInterface, ArrayAcces
         'beneficiary_id' => 'getBeneficiaryId',
         'batch_payout_id' => 'getBatchPayoutId',
         'topup_payrun_id' => 'getTopupPayrunId',
-        'payment_rail' => 'getPaymentRail'
+        'payment_rail' => 'getPaymentRail',
+        'documents' => 'getDocuments'
     ];
 
     /**
@@ -430,6 +436,7 @@ class NoFrixionMoneyMoovModelsPayoutCreate implements ModelInterface, ArrayAcces
         $this->setIfExists('batch_payout_id', $data ?? [], null);
         $this->setIfExists('topup_payrun_id', $data ?? [], null);
         $this->setIfExists('payment_rail', $data ?? [], null);
+        $this->setIfExists('documents', $data ?? [], null);
     }
 
     /**
@@ -1115,6 +1122,40 @@ class NoFrixionMoneyMoovModelsPayoutCreate implements ModelInterface, ArrayAcces
             );
         }
         $this->container['payment_rail'] = $payment_rail;
+
+        return $this;
+    }
+
+    /**
+     * Gets documents
+     *
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutDocumentCreate[]|null
+     */
+    public function getDocuments()
+    {
+        return $this->container['documents'];
+    }
+
+    /**
+     * Sets documents
+     *
+     * @param \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutDocumentCreate[]|null $documents List of documents to attach to the payout. Optional.  Used for identifying or associating documents with the payout.
+     *
+     * @return self
+     */
+    public function setDocuments($documents)
+    {
+        if (is_null($documents)) {
+            array_push($this->openAPINullablesSetToNull, 'documents');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('documents', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['documents'] = $documents;
 
         return $this;
     }

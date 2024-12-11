@@ -82,8 +82,14 @@ class NoFrixionMoneyMoovModelsRule implements ModelInterface, ArrayAccess, \Json
         'last_executed_at' => '\DateTime',
         'last_run_at_transaction_date' => '\DateTime',
         'created_by' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser',
-        'authorised_by' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser',
-        'account' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount'
+        'authorisations' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsApproveAuthorisation[]',
+        'account' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount',
+        'authorisers_required_count' => 'int',
+        'authorisers_completed_count' => 'int',
+        'can_authorise' => 'bool',
+        'has_current_user_authorised' => 'bool',
+        'nonce' => 'string',
+        'authentication_methods' => 'string[]'
     ];
 
     /**
@@ -119,8 +125,14 @@ class NoFrixionMoneyMoovModelsRule implements ModelInterface, ArrayAccess, \Json
         'last_executed_at' => 'date-time',
         'last_run_at_transaction_date' => 'date-time',
         'created_by' => null,
-        'authorised_by' => null,
-        'account' => null
+        'authorisations' => null,
+        'account' => null,
+        'authorisers_required_count' => 'int32',
+        'authorisers_completed_count' => 'int32',
+        'can_authorise' => null,
+        'has_current_user_authorised' => null,
+        'nonce' => null,
+        'authentication_methods' => null
     ];
 
     /**
@@ -154,8 +166,14 @@ class NoFrixionMoneyMoovModelsRule implements ModelInterface, ArrayAccess, \Json
         'last_executed_at' => true,
         'last_run_at_transaction_date' => false,
         'created_by' => false,
-        'authorised_by' => false,
-        'account' => false
+        'authorisations' => true,
+        'account' => false,
+        'authorisers_required_count' => false,
+        'authorisers_completed_count' => false,
+        'can_authorise' => false,
+        'has_current_user_authorised' => false,
+        'nonce' => true,
+        'authentication_methods' => true
     ];
 
     /**
@@ -269,8 +287,14 @@ class NoFrixionMoneyMoovModelsRule implements ModelInterface, ArrayAccess, \Json
         'last_executed_at' => 'lastExecutedAt',
         'last_run_at_transaction_date' => 'lastRunAtTransactionDate',
         'created_by' => 'createdBy',
-        'authorised_by' => 'authorisedBy',
-        'account' => 'account'
+        'authorisations' => 'authorisations',
+        'account' => 'account',
+        'authorisers_required_count' => 'authorisersRequiredCount',
+        'authorisers_completed_count' => 'authorisersCompletedCount',
+        'can_authorise' => 'canAuthorise',
+        'has_current_user_authorised' => 'hasCurrentUserAuthorised',
+        'nonce' => 'nonce',
+        'authentication_methods' => 'authenticationMethods'
     ];
 
     /**
@@ -304,8 +328,14 @@ class NoFrixionMoneyMoovModelsRule implements ModelInterface, ArrayAccess, \Json
         'last_executed_at' => 'setLastExecutedAt',
         'last_run_at_transaction_date' => 'setLastRunAtTransactionDate',
         'created_by' => 'setCreatedBy',
-        'authorised_by' => 'setAuthorisedBy',
-        'account' => 'setAccount'
+        'authorisations' => 'setAuthorisations',
+        'account' => 'setAccount',
+        'authorisers_required_count' => 'setAuthorisersRequiredCount',
+        'authorisers_completed_count' => 'setAuthorisersCompletedCount',
+        'can_authorise' => 'setCanAuthorise',
+        'has_current_user_authorised' => 'setHasCurrentUserAuthorised',
+        'nonce' => 'setNonce',
+        'authentication_methods' => 'setAuthenticationMethods'
     ];
 
     /**
@@ -339,8 +369,14 @@ class NoFrixionMoneyMoovModelsRule implements ModelInterface, ArrayAccess, \Json
         'last_executed_at' => 'getLastExecutedAt',
         'last_run_at_transaction_date' => 'getLastRunAtTransactionDate',
         'created_by' => 'getCreatedBy',
-        'authorised_by' => 'getAuthorisedBy',
-        'account' => 'getAccount'
+        'authorisations' => 'getAuthorisations',
+        'account' => 'getAccount',
+        'authorisers_required_count' => 'getAuthorisersRequiredCount',
+        'authorisers_completed_count' => 'getAuthorisersCompletedCount',
+        'can_authorise' => 'getCanAuthorise',
+        'has_current_user_authorised' => 'getHasCurrentUserAuthorised',
+        'nonce' => 'getNonce',
+        'authentication_methods' => 'getAuthenticationMethods'
     ];
 
     /**
@@ -388,6 +424,9 @@ class NoFrixionMoneyMoovModelsRule implements ModelInterface, ArrayAccess, \Json
     public const STATUS_ACTIVE = 'Active';
     public const STATUS_DISABLED = 'Disabled';
     public const STATUS_FAILED = 'Failed';
+    public const AUTHENTICATION_METHODS_NONE = 'None';
+    public const AUTHENTICATION_METHODS_WEB_AUTHN = 'WebAuthn';
+    public const AUTHENTICATION_METHODS_ONE_TIME_PASSWORD = 'OneTimePassword';
 
     /**
      * Gets allowable values of the enum
@@ -401,6 +440,20 @@ class NoFrixionMoneyMoovModelsRule implements ModelInterface, ArrayAccess, \Json
             self::STATUS_ACTIVE,
             self::STATUS_DISABLED,
             self::STATUS_FAILED,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAuthenticationMethodsAllowableValues()
+    {
+        return [
+            self::AUTHENTICATION_METHODS_NONE,
+            self::AUTHENTICATION_METHODS_WEB_AUTHN,
+            self::AUTHENTICATION_METHODS_ONE_TIME_PASSWORD,
         ];
     }
 
@@ -444,8 +497,14 @@ class NoFrixionMoneyMoovModelsRule implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('last_executed_at', $data ?? [], null);
         $this->setIfExists('last_run_at_transaction_date', $data ?? [], null);
         $this->setIfExists('created_by', $data ?? [], null);
-        $this->setIfExists('authorised_by', $data ?? [], null);
+        $this->setIfExists('authorisations', $data ?? [], null);
         $this->setIfExists('account', $data ?? [], null);
+        $this->setIfExists('authorisers_required_count', $data ?? [], null);
+        $this->setIfExists('authorisers_completed_count', $data ?? [], null);
+        $this->setIfExists('can_authorise', $data ?? [], null);
+        $this->setIfExists('has_current_user_authorised', $data ?? [], null);
+        $this->setIfExists('nonce', $data ?? [], null);
+        $this->setIfExists('authentication_methods', $data ?? [], null);
     }
 
     /**
@@ -484,6 +543,9 @@ class NoFrixionMoneyMoovModelsRule implements ModelInterface, ArrayAccess, \Json
             );
         }
 
+        if ($this->container['nonce'] === null) {
+            $invalidProperties[] = "'nonce' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -1283,28 +1345,35 @@ class NoFrixionMoneyMoovModelsRule implements ModelInterface, ArrayAccess, \Json
     }
 
     /**
-     * Gets authorised_by
+     * Gets authorisations
      *
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser|null
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsApproveAuthorisation[]|null
      */
-    public function getAuthorisedBy()
+    public function getAuthorisations()
     {
-        return $this->container['authorised_by'];
+        return $this->container['authorisations'];
     }
 
     /**
-     * Sets authorised_by
+     * Sets authorisations
      *
-     * @param \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser|null $authorised_by authorised_by
+     * @param \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsApproveAuthorisation[]|null $authorisations A list of the users who have successfully authorised the latest version of the rule and when.
      *
      * @return self
      */
-    public function setAuthorisedBy($authorised_by)
+    public function setAuthorisations($authorisations)
     {
-        if (is_null($authorised_by)) {
-            throw new \InvalidArgumentException('non-nullable authorised_by cannot be null');
+        if (is_null($authorisations)) {
+            array_push($this->openAPINullablesSetToNull, 'authorisations');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('authorisations', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['authorised_by'] = $authorised_by;
+        $this->container['authorisations'] = $authorisations;
 
         return $this;
     }
@@ -1332,6 +1401,191 @@ class NoFrixionMoneyMoovModelsRule implements ModelInterface, ArrayAccess, \Json
             throw new \InvalidArgumentException('non-nullable account cannot be null');
         }
         $this->container['account'] = $account;
+
+        return $this;
+    }
+
+    /**
+     * Gets authorisers_required_count
+     *
+     * @return int|null
+     */
+    public function getAuthorisersRequiredCount()
+    {
+        return $this->container['authorisers_required_count'];
+    }
+
+    /**
+     * Sets authorisers_required_count
+     *
+     * @param int|null $authorisers_required_count The number of authorisers required for this rule.
+     *
+     * @return self
+     */
+    public function setAuthorisersRequiredCount($authorisers_required_count)
+    {
+        if (is_null($authorisers_required_count)) {
+            throw new \InvalidArgumentException('non-nullable authorisers_required_count cannot be null');
+        }
+        $this->container['authorisers_required_count'] = $authorisers_required_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets authorisers_completed_count
+     *
+     * @return int|null
+     */
+    public function getAuthorisersCompletedCount()
+    {
+        return $this->container['authorisers_completed_count'];
+    }
+
+    /**
+     * Sets authorisers_completed_count
+     *
+     * @param int|null $authorisers_completed_count The number of distinct authorisers that have authorised the rule.
+     *
+     * @return self
+     */
+    public function setAuthorisersCompletedCount($authorisers_completed_count)
+    {
+        if (is_null($authorisers_completed_count)) {
+            throw new \InvalidArgumentException('non-nullable authorisers_completed_count cannot be null');
+        }
+        $this->container['authorisers_completed_count'] = $authorisers_completed_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets can_authorise
+     *
+     * @return bool|null
+     */
+    public function getCanAuthorise()
+    {
+        return $this->container['can_authorise'];
+    }
+
+    /**
+     * Sets can_authorise
+     *
+     * @param bool|null $can_authorise True if the rule can be authorised by the user who loaded it.
+     *
+     * @return self
+     */
+    public function setCanAuthorise($can_authorise)
+    {
+        if (is_null($can_authorise)) {
+            throw new \InvalidArgumentException('non-nullable can_authorise cannot be null');
+        }
+        $this->container['can_authorise'] = $can_authorise;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_current_user_authorised
+     *
+     * @return bool|null
+     */
+    public function getHasCurrentUserAuthorised()
+    {
+        return $this->container['has_current_user_authorised'];
+    }
+
+    /**
+     * Sets has_current_user_authorised
+     *
+     * @param bool|null $has_current_user_authorised True if the current user has authorised.
+     *
+     * @return self
+     */
+    public function setHasCurrentUserAuthorised($has_current_user_authorised)
+    {
+        if (is_null($has_current_user_authorised)) {
+            throw new \InvalidArgumentException('non-nullable has_current_user_authorised cannot be null');
+        }
+        $this->container['has_current_user_authorised'] = $has_current_user_authorised;
+
+        return $this;
+    }
+
+    /**
+     * Gets nonce
+     *
+     * @return string
+     */
+    public function getNonce()
+    {
+        return $this->container['nonce'];
+    }
+
+    /**
+     * Sets nonce
+     *
+     * @param string $nonce nonce
+     *
+     * @return self
+     */
+    public function setNonce($nonce)
+    {
+        if (is_null($nonce)) {
+            array_push($this->openAPINullablesSetToNull, 'nonce');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('nonce', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['nonce'] = $nonce;
+
+        return $this;
+    }
+
+    /**
+     * Gets authentication_methods
+     *
+     * @return string[]|null
+     */
+    public function getAuthenticationMethods()
+    {
+        return $this->container['authentication_methods'];
+    }
+
+    /**
+     * Sets authentication_methods
+     *
+     * @param string[]|null $authentication_methods A list of authentication types allowed to authorise the payout.
+     *
+     * @return self
+     */
+    public function setAuthenticationMethods($authentication_methods)
+    {
+        if (is_null($authentication_methods)) {
+            array_push($this->openAPINullablesSetToNull, 'authentication_methods');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('authentication_methods', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getAuthenticationMethodsAllowableValues();
+        if (!is_null($authentication_methods) && array_diff($authentication_methods, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'authentication_methods', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['authentication_methods'] = $authentication_methods;
 
         return $this;
     }

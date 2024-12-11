@@ -1,11 +1,10 @@
-# # NoFrixionMoneyMoovModelsUserMinimal
+# # NoFrixionMoneyMoovModelsApproveAuthorisation
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **string** |  | [optional]
-**name** | **string** |  | [optional]
-**email_address** | **string** |  | [optional]
+**user** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser**](NoFrixionMoneyMoovModelsUser.md) |  | [optional]
+**timestamp** | **\DateTime** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

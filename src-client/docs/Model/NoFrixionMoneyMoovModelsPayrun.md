@@ -22,5 +22,10 @@ Name | Type | Description | Notes
 **is_archived** | **bool** |  | [optional]
 **can_edit** | **bool** |  | [optional] [readonly]
 **can_delete** | **bool** |  | [optional] [readonly]
+**authorisers_required_count** | **int** | The number of authorisers required for this payrun. Is determined by business settings  on the source account and/or merchant. | [optional]
+**authorisers_completed_count** | **int** | The number of distinct authorisers that have authorised the payrun. | [optional]
+**can_authorise** | **bool** | True if the payrun can be authorised by the user who loaded it. | [optional]
+**has_current_user_authorised** | **bool** | True if the payrun was loaded for a user and that user has already authorised the latest version of the payrun. | [optional]
+**authorisations** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsApproveAuthorisation[]**](NoFrixionMoneyMoovModelsApproveAuthorisation.md) | A list of the users who have successfully authorised the latest version of the payrun and when. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

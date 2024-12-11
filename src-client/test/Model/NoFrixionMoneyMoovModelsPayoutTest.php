@@ -503,9 +503,18 @@ class NoFrixionMoneyMoovModelsPayoutTest extends TestCase
     }
 
     /**
-     * Test attribute "authorised_by"
+     * Test attribute "authorisations"
      */
-    public function testPropertyAuthorisedBy()
+    public function testPropertyAuthorisations()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "authentication_methods"
+     */
+    public function testPropertyAuthenticationMethods()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -575,9 +584,9 @@ class NoFrixionMoneyMoovModelsPayoutTest extends TestCase
     }
 
     /**
-     * Test attribute "payrun_invoices"
+     * Test attribute "documents"
      */
-    public function testPropertyPayrunInvoices()
+    public function testPropertyDocuments()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

@@ -192,6 +192,18 @@ class PayoutsApiTest extends TestCase
     }
 
     /**
+     * Test case for getPayoutProof
+     *
+     * Generates a proof of payment PDF document with the details of a payout..
+     *
+     */
+    public function testGetPayoutProof()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test case for getPayoutStatus
      *
      * Gets a single payout status from..
@@ -234,6 +246,18 @@ class PayoutsApiTest extends TestCase
      *
      */
     public function testSendPayout()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for sendToBeneficiary
+     *
+     * Creates and submits a payout to a pre-authorised beneficiary..
+     *
+     */
+    public function testSendToBeneficiary()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

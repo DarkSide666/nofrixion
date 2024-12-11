@@ -107,9 +107,9 @@ class NoFrixionMoneyMoovModelsPayrunInvoiceTest extends TestCase
     }
 
     /**
-     * Test attribute "reference"
+     * Test attribute "invoice_reference"
      */
-    public function testPropertyReference()
+    public function testPropertyInvoiceReference()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -281,6 +281,33 @@ class NoFrixionMoneyMoovModelsPayrunInvoiceTest extends TestCase
      * Test attribute "is_enabled"
      */
     public function testPropertyIsEnabled()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "payment_reference"
+     */
+    public function testPropertyPaymentReference()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "external_invoice_id"
+     */
+    public function testPropertyExternalInvoiceId()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "external_invoice_provider"
+     */
+    public function testPropertyExternalInvoiceProvider()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

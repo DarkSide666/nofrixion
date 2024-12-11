@@ -104,7 +104,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'can_authorise' => 'bool',
         'can_update' => 'bool',
         'has_current_user_authorised' => 'bool',
-        'authorised_by' => 'string[]',
+        'authorisations' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsApproveAuthorisation[]',
+        'authentication_methods' => 'string[]',
         'payrun_name' => 'string',
         'beneficiary' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary',
         'payment_processor' => 'string',
@@ -112,7 +113,7 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'rule' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleMinimal',
         'payment_rail' => 'string',
         'nonce' => 'string',
-        'payrun_invoices' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrunInvoice[]'
+        'documents' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutDocument[]'
     ];
 
     /**
@@ -170,7 +171,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'can_authorise' => null,
         'can_update' => null,
         'has_current_user_authorised' => null,
-        'authorised_by' => null,
+        'authorisations' => null,
+        'authentication_methods' => null,
         'payrun_name' => null,
         'beneficiary' => null,
         'payment_processor' => null,
@@ -178,7 +180,7 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'rule' => null,
         'payment_rail' => null,
         'nonce' => null,
-        'payrun_invoices' => null
+        'documents' => null
     ];
 
     /**
@@ -234,7 +236,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'can_authorise' => false,
         'can_update' => false,
         'has_current_user_authorised' => false,
-        'authorised_by' => true,
+        'authorisations' => true,
+        'authentication_methods' => true,
         'payrun_name' => true,
         'beneficiary' => false,
         'payment_processor' => false,
@@ -242,7 +245,7 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'rule' => false,
         'payment_rail' => false,
         'nonce' => true,
-        'payrun_invoices' => true
+        'documents' => true
     ];
 
     /**
@@ -378,7 +381,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'can_authorise' => 'canAuthorise',
         'can_update' => 'canUpdate',
         'has_current_user_authorised' => 'hasCurrentUserAuthorised',
-        'authorised_by' => 'authorisedBy',
+        'authorisations' => 'authorisations',
+        'authentication_methods' => 'authenticationMethods',
         'payrun_name' => 'payrunName',
         'beneficiary' => 'beneficiary',
         'payment_processor' => 'paymentProcessor',
@@ -386,7 +390,7 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'rule' => 'rule',
         'payment_rail' => 'paymentRail',
         'nonce' => 'nonce',
-        'payrun_invoices' => 'payrunInvoices'
+        'documents' => 'documents'
     ];
 
     /**
@@ -442,7 +446,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'can_authorise' => 'setCanAuthorise',
         'can_update' => 'setCanUpdate',
         'has_current_user_authorised' => 'setHasCurrentUserAuthorised',
-        'authorised_by' => 'setAuthorisedBy',
+        'authorisations' => 'setAuthorisations',
+        'authentication_methods' => 'setAuthenticationMethods',
         'payrun_name' => 'setPayrunName',
         'beneficiary' => 'setBeneficiary',
         'payment_processor' => 'setPaymentProcessor',
@@ -450,7 +455,7 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'rule' => 'setRule',
         'payment_rail' => 'setPaymentRail',
         'nonce' => 'setNonce',
-        'payrun_invoices' => 'setPayrunInvoices'
+        'documents' => 'setDocuments'
     ];
 
     /**
@@ -506,7 +511,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'can_authorise' => 'getCanAuthorise',
         'can_update' => 'getCanUpdate',
         'has_current_user_authorised' => 'getHasCurrentUserAuthorised',
-        'authorised_by' => 'getAuthorisedBy',
+        'authorisations' => 'getAuthorisations',
+        'authentication_methods' => 'getAuthenticationMethods',
         'payrun_name' => 'getPayrunName',
         'beneficiary' => 'getBeneficiary',
         'payment_processor' => 'getPaymentProcessor',
@@ -514,7 +520,7 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         'rule' => 'getRule',
         'payment_rail' => 'getPaymentRail',
         'nonce' => 'getNonce',
-        'payrun_invoices' => 'getPayrunInvoices'
+        'documents' => 'getDocuments'
     ];
 
     /**
@@ -583,6 +589,9 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
     public const CURRENT_USER_ROLE_USER = 'User';
     public const CURRENT_USER_ROLE_APPROVER = 'Approver';
     public const CURRENT_USER_ROLE_ADMIN_APPROVER = 'AdminApprover';
+    public const AUTHENTICATION_METHODS_NONE = 'None';
+    public const AUTHENTICATION_METHODS_WEB_AUTHN = 'WebAuthn';
+    public const AUTHENTICATION_METHODS_ONE_TIME_PASSWORD = 'OneTimePassword';
     public const PAYMENT_PROCESSOR_NONE = 'None';
     public const PAYMENT_PROCESSOR_CYBER_SOURCE = 'CyberSource';
     public const PAYMENT_PROCESSOR_CHECKOUT = 'Checkout';
@@ -671,6 +680,20 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
             self::CURRENT_USER_ROLE_USER,
             self::CURRENT_USER_ROLE_APPROVER,
             self::CURRENT_USER_ROLE_ADMIN_APPROVER,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAuthenticationMethodsAllowableValues()
+    {
+        return [
+            self::AUTHENTICATION_METHODS_NONE,
+            self::AUTHENTICATION_METHODS_WEB_AUTHN,
+            self::AUTHENTICATION_METHODS_ONE_TIME_PASSWORD,
         ];
     }
 
@@ -779,7 +802,8 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('can_authorise', $data ?? [], null);
         $this->setIfExists('can_update', $data ?? [], null);
         $this->setIfExists('has_current_user_authorised', $data ?? [], null);
-        $this->setIfExists('authorised_by', $data ?? [], null);
+        $this->setIfExists('authorisations', $data ?? [], null);
+        $this->setIfExists('authentication_methods', $data ?? [], null);
         $this->setIfExists('payrun_name', $data ?? [], null);
         $this->setIfExists('beneficiary', $data ?? [], null);
         $this->setIfExists('payment_processor', $data ?? [], null);
@@ -787,7 +811,7 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('rule', $data ?? [], null);
         $this->setIfExists('payment_rail', $data ?? [], null);
         $this->setIfExists('nonce', $data ?? [], null);
-        $this->setIfExists('payrun_invoices', $data ?? [], null);
+        $this->setIfExists('documents', $data ?? [], null);
     }
 
     /**
@@ -2399,35 +2423,78 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
     }
 
     /**
-     * Gets authorised_by
+     * Gets authorisations
      *
-     * @return string[]|null
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsApproveAuthorisation[]|null
      */
-    public function getAuthorisedBy()
+    public function getAuthorisations()
     {
-        return $this->container['authorised_by'];
+        return $this->container['authorisations'];
     }
 
     /**
-     * Sets authorised_by
+     * Sets authorisations
      *
-     * @param string[]|null $authorised_by A list of the email addresses of all the users who have usccessfully authorised the latest version of the payout.
+     * @param \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsApproveAuthorisation[]|null $authorisations A list of the users who have successfully authorised the latest version of the payout and when.
      *
      * @return self
      */
-    public function setAuthorisedBy($authorised_by)
+    public function setAuthorisations($authorisations)
     {
-        if (is_null($authorised_by)) {
-            array_push($this->openAPINullablesSetToNull, 'authorised_by');
+        if (is_null($authorisations)) {
+            array_push($this->openAPINullablesSetToNull, 'authorisations');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('authorised_by', $nullablesSetToNull);
+            $index = array_search('authorisations', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['authorised_by'] = $authorised_by;
+        $this->container['authorisations'] = $authorisations;
+
+        return $this;
+    }
+
+    /**
+     * Gets authentication_methods
+     *
+     * @return string[]|null
+     */
+    public function getAuthenticationMethods()
+    {
+        return $this->container['authentication_methods'];
+    }
+
+    /**
+     * Sets authentication_methods
+     *
+     * @param string[]|null $authentication_methods A list of authentication types allowed to authorise the payout.
+     *
+     * @return self
+     */
+    public function setAuthenticationMethods($authentication_methods)
+    {
+        if (is_null($authentication_methods)) {
+            array_push($this->openAPINullablesSetToNull, 'authentication_methods');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('authentication_methods', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getAuthenticationMethodsAllowableValues();
+        if (!is_null($authentication_methods) && array_diff($authentication_methods, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'authentication_methods', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['authentication_methods'] = $authentication_methods;
 
         return $this;
     }
@@ -2663,35 +2730,35 @@ class NoFrixionMoneyMoovModelsPayout implements ModelInterface, ArrayAccess, \Js
     }
 
     /**
-     * Gets payrun_invoices
+     * Gets documents
      *
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrunInvoice[]|null
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutDocument[]|null
      */
-    public function getPayrunInvoices()
+    public function getDocuments()
     {
-        return $this->container['payrun_invoices'];
+        return $this->container['documents'];
     }
 
     /**
-     * Sets payrun_invoices
+     * Sets documents
      *
-     * @param \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrunInvoice[]|null $payrun_invoices Collection of payrun invoices associated with the payout.  Will be empty if the payout is not associated with a payrun.
+     * @param \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutDocument[]|null $documents Documents associated with the payout.
      *
      * @return self
      */
-    public function setPayrunInvoices($payrun_invoices)
+    public function setDocuments($documents)
     {
-        if (is_null($payrun_invoices)) {
-            array_push($this->openAPINullablesSetToNull, 'payrun_invoices');
+        if (is_null($documents)) {
+            array_push($this->openAPINullablesSetToNull, 'documents');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('payrun_invoices', $nullablesSetToNull);
+            $index = array_search('documents', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['payrun_invoices'] = $payrun_invoices;
+        $this->container['documents'] = $documents;
 
         return $this;
     }

@@ -64,12 +64,13 @@ class NoFrixionMoneyMoovModelsBeneficiary implements ModelInterface, ArrayAccess
         'destination' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCounterparty',
         'approval_callback_url' => 'string',
         'is_enabled' => 'bool',
-        'authorised_by' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserMinimal[]',
+        'authorisations' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsApproveAuthorisation[]',
         'can_authorise' => 'bool',
         'can_update' => 'bool',
         'has_current_user_authorised' => 'bool',
         'authorisers_required_count' => 'int',
         'authorisers_completed_count' => 'int',
+        'authentication_methods' => 'string[]',
         'created_by_email_address' => 'string',
         'nonce' => 'string',
         'inserted' => '\DateTime',
@@ -95,12 +96,13 @@ class NoFrixionMoneyMoovModelsBeneficiary implements ModelInterface, ArrayAccess
         'destination' => null,
         'approval_callback_url' => null,
         'is_enabled' => null,
-        'authorised_by' => null,
+        'authorisations' => null,
         'can_authorise' => null,
         'can_update' => null,
         'has_current_user_authorised' => null,
         'authorisers_required_count' => 'int32',
         'authorisers_completed_count' => 'int32',
+        'authentication_methods' => null,
         'created_by_email_address' => null,
         'nonce' => null,
         'inserted' => 'date-time',
@@ -124,12 +126,13 @@ class NoFrixionMoneyMoovModelsBeneficiary implements ModelInterface, ArrayAccess
         'destination' => false,
         'approval_callback_url' => true,
         'is_enabled' => false,
-        'authorised_by' => true,
+        'authorisations' => true,
         'can_authorise' => false,
         'can_update' => false,
         'has_current_user_authorised' => false,
         'authorisers_required_count' => false,
         'authorisers_completed_count' => false,
+        'authentication_methods' => true,
         'created_by_email_address' => true,
         'nonce' => true,
         'inserted' => false,
@@ -233,12 +236,13 @@ class NoFrixionMoneyMoovModelsBeneficiary implements ModelInterface, ArrayAccess
         'destination' => 'destination',
         'approval_callback_url' => 'approvalCallbackUrl',
         'is_enabled' => 'isEnabled',
-        'authorised_by' => 'authorisedBy',
+        'authorisations' => 'authorisations',
         'can_authorise' => 'canAuthorise',
         'can_update' => 'canUpdate',
         'has_current_user_authorised' => 'hasCurrentUserAuthorised',
         'authorisers_required_count' => 'authorisersRequiredCount',
         'authorisers_completed_count' => 'authorisersCompletedCount',
+        'authentication_methods' => 'authenticationMethods',
         'created_by_email_address' => 'createdByEmailAddress',
         'nonce' => 'nonce',
         'inserted' => 'inserted',
@@ -262,12 +266,13 @@ class NoFrixionMoneyMoovModelsBeneficiary implements ModelInterface, ArrayAccess
         'destination' => 'setDestination',
         'approval_callback_url' => 'setApprovalCallbackUrl',
         'is_enabled' => 'setIsEnabled',
-        'authorised_by' => 'setAuthorisedBy',
+        'authorisations' => 'setAuthorisations',
         'can_authorise' => 'setCanAuthorise',
         'can_update' => 'setCanUpdate',
         'has_current_user_authorised' => 'setHasCurrentUserAuthorised',
         'authorisers_required_count' => 'setAuthorisersRequiredCount',
         'authorisers_completed_count' => 'setAuthorisersCompletedCount',
+        'authentication_methods' => 'setAuthenticationMethods',
         'created_by_email_address' => 'setCreatedByEmailAddress',
         'nonce' => 'setNonce',
         'inserted' => 'setInserted',
@@ -291,12 +296,13 @@ class NoFrixionMoneyMoovModelsBeneficiary implements ModelInterface, ArrayAccess
         'destination' => 'getDestination',
         'approval_callback_url' => 'getApprovalCallbackUrl',
         'is_enabled' => 'getIsEnabled',
-        'authorised_by' => 'getAuthorisedBy',
+        'authorisations' => 'getAuthorisations',
         'can_authorise' => 'getCanAuthorise',
         'can_update' => 'getCanUpdate',
         'has_current_user_authorised' => 'getHasCurrentUserAuthorised',
         'authorisers_required_count' => 'getAuthorisersRequiredCount',
         'authorisers_completed_count' => 'getAuthorisersCompletedCount',
+        'authentication_methods' => 'getAuthenticationMethods',
         'created_by_email_address' => 'getCreatedByEmailAddress',
         'nonce' => 'getNonce',
         'inserted' => 'getInserted',
@@ -352,6 +358,9 @@ class NoFrixionMoneyMoovModelsBeneficiary implements ModelInterface, ArrayAccess
     public const CURRENCY_GBP = 'GBP';
     public const CURRENCY_EUR = 'EUR';
     public const CURRENCY_BTC = 'BTC';
+    public const AUTHENTICATION_METHODS_NONE = 'None';
+    public const AUTHENTICATION_METHODS_WEB_AUTHN = 'WebAuthn';
+    public const AUTHENTICATION_METHODS_ONE_TIME_PASSWORD = 'OneTimePassword';
 
     /**
      * Gets allowable values of the enum
@@ -365,6 +374,20 @@ class NoFrixionMoneyMoovModelsBeneficiary implements ModelInterface, ArrayAccess
             self::CURRENCY_GBP,
             self::CURRENCY_EUR,
             self::CURRENCY_BTC,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAuthenticationMethodsAllowableValues()
+    {
+        return [
+            self::AUTHENTICATION_METHODS_NONE,
+            self::AUTHENTICATION_METHODS_WEB_AUTHN,
+            self::AUTHENTICATION_METHODS_ONE_TIME_PASSWORD,
         ];
     }
 
@@ -390,12 +413,13 @@ class NoFrixionMoneyMoovModelsBeneficiary implements ModelInterface, ArrayAccess
         $this->setIfExists('destination', $data ?? [], null);
         $this->setIfExists('approval_callback_url', $data ?? [], null);
         $this->setIfExists('is_enabled', $data ?? [], null);
-        $this->setIfExists('authorised_by', $data ?? [], null);
+        $this->setIfExists('authorisations', $data ?? [], null);
         $this->setIfExists('can_authorise', $data ?? [], null);
         $this->setIfExists('can_update', $data ?? [], null);
         $this->setIfExists('has_current_user_authorised', $data ?? [], null);
         $this->setIfExists('authorisers_required_count', $data ?? [], null);
         $this->setIfExists('authorisers_completed_count', $data ?? [], null);
+        $this->setIfExists('authentication_methods', $data ?? [], null);
         $this->setIfExists('created_by_email_address', $data ?? [], null);
         $this->setIfExists('nonce', $data ?? [], null);
         $this->setIfExists('inserted', $data ?? [], null);
@@ -679,35 +703,35 @@ class NoFrixionMoneyMoovModelsBeneficiary implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets authorised_by
+     * Gets authorisations
      *
-     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserMinimal[]|null
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsApproveAuthorisation[]|null
      */
-    public function getAuthorisedBy()
+    public function getAuthorisations()
     {
-        return $this->container['authorised_by'];
+        return $this->container['authorisations'];
     }
 
     /**
-     * Sets authorised_by
+     * Sets authorisations
      *
-     * @param \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserMinimal[]|null $authorised_by A list of users who have successfully authorised the latest version of the beneficiary.
+     * @param \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsApproveAuthorisation[]|null $authorisations A list of users who have successfully authorised the latest version of the beneficiary.
      *
      * @return self
      */
-    public function setAuthorisedBy($authorised_by)
+    public function setAuthorisations($authorisations)
     {
-        if (is_null($authorised_by)) {
-            array_push($this->openAPINullablesSetToNull, 'authorised_by');
+        if (is_null($authorisations)) {
+            array_push($this->openAPINullablesSetToNull, 'authorisations');
         } else {
             $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('authorised_by', $nullablesSetToNull);
+            $index = array_search('authorisations', $nullablesSetToNull);
             if ($index !== FALSE) {
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $this->container['authorised_by'] = $authorised_by;
+        $this->container['authorisations'] = $authorisations;
 
         return $this;
     }
@@ -843,6 +867,49 @@ class NoFrixionMoneyMoovModelsBeneficiary implements ModelInterface, ArrayAccess
             throw new \InvalidArgumentException('non-nullable authorisers_completed_count cannot be null');
         }
         $this->container['authorisers_completed_count'] = $authorisers_completed_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets authentication_methods
+     *
+     * @return string[]|null
+     */
+    public function getAuthenticationMethods()
+    {
+        return $this->container['authentication_methods'];
+    }
+
+    /**
+     * Sets authentication_methods
+     *
+     * @param string[]|null $authentication_methods A list of authentication types allowed to authorise the payout.
+     *
+     * @return self
+     */
+    public function setAuthenticationMethods($authentication_methods)
+    {
+        if (is_null($authentication_methods)) {
+            array_push($this->openAPINullablesSetToNull, 'authentication_methods');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('authentication_methods', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getAuthenticationMethodsAllowableValues();
+        if (!is_null($authentication_methods) && array_diff($authentication_methods, $allowedValues)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'authentication_methods', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['authentication_methods'] = $authentication_methods;
 
         return $this;
     }

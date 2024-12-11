@@ -924,16 +924,16 @@ class OpenBankingApi
      *
      * Deletes a single open banking consent.
      *
-     * @param  string $consent_id The ID of the consent to delete. (required)
+     * @param  string $id The ID of the consent to delete. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteConsent'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingConsent
      */
-    public function deleteConsent($consent_id, string $contentType = self::contentTypes['deleteConsent'][0])
+    public function deleteConsent($id, string $contentType = self::contentTypes['deleteConsent'][0])
     {
-        list($response) = $this->deleteConsentWithHttpInfo($consent_id, $contentType);
+        list($response) = $this->deleteConsentWithHttpInfo($id, $contentType);
         return $response;
     }
 
@@ -942,16 +942,16 @@ class OpenBankingApi
      *
      * Deletes a single open banking consent.
      *
-     * @param  string $consent_id The ID of the consent to delete. (required)
+     * @param  string $id The ID of the consent to delete. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteConsent'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingConsent, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteConsentWithHttpInfo($consent_id, string $contentType = self::contentTypes['deleteConsent'][0])
+    public function deleteConsentWithHttpInfo($id, string $contentType = self::contentTypes['deleteConsent'][0])
     {
-        $request = $this->deleteConsentRequest($consent_id, $contentType);
+        $request = $this->deleteConsentRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1067,15 +1067,15 @@ class OpenBankingApi
      *
      * Deletes a single open banking consent.
      *
-     * @param  string $consent_id The ID of the consent to delete. (required)
+     * @param  string $id The ID of the consent to delete. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteConsent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteConsentAsync($consent_id, string $contentType = self::contentTypes['deleteConsent'][0])
+    public function deleteConsentAsync($id, string $contentType = self::contentTypes['deleteConsent'][0])
     {
-        return $this->deleteConsentAsyncWithHttpInfo($consent_id, $contentType)
+        return $this->deleteConsentAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1088,16 +1088,16 @@ class OpenBankingApi
      *
      * Deletes a single open banking consent.
      *
-     * @param  string $consent_id The ID of the consent to delete. (required)
+     * @param  string $id The ID of the consent to delete. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteConsent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteConsentAsyncWithHttpInfo($consent_id, string $contentType = self::contentTypes['deleteConsent'][0])
+    public function deleteConsentAsyncWithHttpInfo($id, string $contentType = self::contentTypes['deleteConsent'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingConsent';
-        $request = $this->deleteConsentRequest($consent_id, $contentType);
+        $request = $this->deleteConsentRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1138,24 +1138,24 @@ class OpenBankingApi
     /**
      * Create request for operation 'deleteConsent'
      *
-     * @param  string $consent_id The ID of the consent to delete. (required)
+     * @param  string $id The ID of the consent to delete. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteConsent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteConsentRequest($consent_id, string $contentType = self::contentTypes['deleteConsent'][0])
+    public function deleteConsentRequest($id, string $contentType = self::contentTypes['deleteConsent'][0])
     {
 
-        // verify the required parameter 'consent_id' is set
-        if ($consent_id === null || (is_array($consent_id) && count($consent_id) === 0)) {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $consent_id when calling deleteConsent'
+                'Missing the required parameter $id when calling deleteConsent'
             );
         }
 
 
-        $resourcePath = '/api/v1/openbanking/consents/{consentID}';
+        $resourcePath = '/api/v1/openbanking/consents/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1165,10 +1165,10 @@ class OpenBankingApi
 
 
         // path params
-        if ($consent_id !== null) {
+        if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'consentID' . '}',
-                ObjectSerializer::toPathValue($consent_id),
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
@@ -1237,7 +1237,7 @@ class OpenBankingApi
      *
      * Retrieves transactions from financial institution.
      *
-     * @param  string $consent_id The ConsentTokenID is the reference id to the token. (required)
+     * @param  string $id The ConsentTokenID is the reference id to the token. (required)
      * @param  string $account_id The id of the account where transactions are retrieved. (required)
      * @param  int $offset Optional, offset the transactions by offset number. (optional)
      * @param  int $limit Optional, limit per amount of transactions. (optional)
@@ -1250,9 +1250,9 @@ class OpenBankingApi
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingTransaction[]
      */
-    public function getConnectedAccountTransactions($consent_id, $account_id, $offset = null, $limit = null, $transaction_from = null, $transaction_to = null, $sort_inserted_ascending = null, string $contentType = self::contentTypes['getConnectedAccountTransactions'][0])
+    public function getConnectedAccountTransactions($id, $account_id, $offset = null, $limit = null, $transaction_from = null, $transaction_to = null, $sort_inserted_ascending = null, string $contentType = self::contentTypes['getConnectedAccountTransactions'][0])
     {
-        list($response) = $this->getConnectedAccountTransactionsWithHttpInfo($consent_id, $account_id, $offset, $limit, $transaction_from, $transaction_to, $sort_inserted_ascending, $contentType);
+        list($response) = $this->getConnectedAccountTransactionsWithHttpInfo($id, $account_id, $offset, $limit, $transaction_from, $transaction_to, $sort_inserted_ascending, $contentType);
         return $response;
     }
 
@@ -1261,7 +1261,7 @@ class OpenBankingApi
      *
      * Retrieves transactions from financial institution.
      *
-     * @param  string $consent_id The ConsentTokenID is the reference id to the token. (required)
+     * @param  string $id The ConsentTokenID is the reference id to the token. (required)
      * @param  string $account_id The id of the account where transactions are retrieved. (required)
      * @param  int $offset Optional, offset the transactions by offset number. (optional)
      * @param  int $limit Optional, limit per amount of transactions. (optional)
@@ -1274,9 +1274,9 @@ class OpenBankingApi
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingTransaction[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function getConnectedAccountTransactionsWithHttpInfo($consent_id, $account_id, $offset = null, $limit = null, $transaction_from = null, $transaction_to = null, $sort_inserted_ascending = null, string $contentType = self::contentTypes['getConnectedAccountTransactions'][0])
+    public function getConnectedAccountTransactionsWithHttpInfo($id, $account_id, $offset = null, $limit = null, $transaction_from = null, $transaction_to = null, $sort_inserted_ascending = null, string $contentType = self::contentTypes['getConnectedAccountTransactions'][0])
     {
-        $request = $this->getConnectedAccountTransactionsRequest($consent_id, $account_id, $offset, $limit, $transaction_from, $transaction_to, $sort_inserted_ascending, $contentType);
+        $request = $this->getConnectedAccountTransactionsRequest($id, $account_id, $offset, $limit, $transaction_from, $transaction_to, $sort_inserted_ascending, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1392,7 +1392,7 @@ class OpenBankingApi
      *
      * Retrieves transactions from financial institution.
      *
-     * @param  string $consent_id The ConsentTokenID is the reference id to the token. (required)
+     * @param  string $id The ConsentTokenID is the reference id to the token. (required)
      * @param  string $account_id The id of the account where transactions are retrieved. (required)
      * @param  int $offset Optional, offset the transactions by offset number. (optional)
      * @param  int $limit Optional, limit per amount of transactions. (optional)
@@ -1404,9 +1404,9 @@ class OpenBankingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getConnectedAccountTransactionsAsync($consent_id, $account_id, $offset = null, $limit = null, $transaction_from = null, $transaction_to = null, $sort_inserted_ascending = null, string $contentType = self::contentTypes['getConnectedAccountTransactions'][0])
+    public function getConnectedAccountTransactionsAsync($id, $account_id, $offset = null, $limit = null, $transaction_from = null, $transaction_to = null, $sort_inserted_ascending = null, string $contentType = self::contentTypes['getConnectedAccountTransactions'][0])
     {
-        return $this->getConnectedAccountTransactionsAsyncWithHttpInfo($consent_id, $account_id, $offset, $limit, $transaction_from, $transaction_to, $sort_inserted_ascending, $contentType)
+        return $this->getConnectedAccountTransactionsAsyncWithHttpInfo($id, $account_id, $offset, $limit, $transaction_from, $transaction_to, $sort_inserted_ascending, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1419,7 +1419,7 @@ class OpenBankingApi
      *
      * Retrieves transactions from financial institution.
      *
-     * @param  string $consent_id The ConsentTokenID is the reference id to the token. (required)
+     * @param  string $id The ConsentTokenID is the reference id to the token. (required)
      * @param  string $account_id The id of the account where transactions are retrieved. (required)
      * @param  int $offset Optional, offset the transactions by offset number. (optional)
      * @param  int $limit Optional, limit per amount of transactions. (optional)
@@ -1431,10 +1431,10 @@ class OpenBankingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getConnectedAccountTransactionsAsyncWithHttpInfo($consent_id, $account_id, $offset = null, $limit = null, $transaction_from = null, $transaction_to = null, $sort_inserted_ascending = null, string $contentType = self::contentTypes['getConnectedAccountTransactions'][0])
+    public function getConnectedAccountTransactionsAsyncWithHttpInfo($id, $account_id, $offset = null, $limit = null, $transaction_from = null, $transaction_to = null, $sort_inserted_ascending = null, string $contentType = self::contentTypes['getConnectedAccountTransactions'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingTransaction[]';
-        $request = $this->getConnectedAccountTransactionsRequest($consent_id, $account_id, $offset, $limit, $transaction_from, $transaction_to, $sort_inserted_ascending, $contentType);
+        $request = $this->getConnectedAccountTransactionsRequest($id, $account_id, $offset, $limit, $transaction_from, $transaction_to, $sort_inserted_ascending, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1475,7 +1475,7 @@ class OpenBankingApi
     /**
      * Create request for operation 'getConnectedAccountTransactions'
      *
-     * @param  string $consent_id The ConsentTokenID is the reference id to the token. (required)
+     * @param  string $id The ConsentTokenID is the reference id to the token. (required)
      * @param  string $account_id The id of the account where transactions are retrieved. (required)
      * @param  int $offset Optional, offset the transactions by offset number. (optional)
      * @param  int $limit Optional, limit per amount of transactions. (optional)
@@ -1487,13 +1487,13 @@ class OpenBankingApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getConnectedAccountTransactionsRequest($consent_id, $account_id, $offset = null, $limit = null, $transaction_from = null, $transaction_to = null, $sort_inserted_ascending = null, string $contentType = self::contentTypes['getConnectedAccountTransactions'][0])
+    public function getConnectedAccountTransactionsRequest($id, $account_id, $offset = null, $limit = null, $transaction_from = null, $transaction_to = null, $sort_inserted_ascending = null, string $contentType = self::contentTypes['getConnectedAccountTransactions'][0])
     {
 
-        // verify the required parameter 'consent_id' is set
-        if ($consent_id === null || (is_array($consent_id) && count($consent_id) === 0)) {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $consent_id when calling getConnectedAccountTransactions'
+                'Missing the required parameter $id when calling getConnectedAccountTransactions'
             );
         }
 
@@ -1510,7 +1510,7 @@ class OpenBankingApi
 
 
 
-        $resourcePath = '/api/v1/openbanking/transactions/{consentID}/{accountID}';
+        $resourcePath = '/api/v1/openbanking/transactions/{id}/{accountID}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1565,10 +1565,10 @@ class OpenBankingApi
 
 
         // path params
-        if ($consent_id !== null) {
+        if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'consentID' . '}',
-                ObjectSerializer::toPathValue($consent_id),
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
@@ -1645,16 +1645,16 @@ class OpenBankingApi
      *
      * Retrieves list of accounts from financial institution.
      *
-     * @param  string $consent_id The ConsentTokenID is the reference id to the token. (required)
+     * @param  string $id The ConsentTokenID is the reference id to the token. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConnectedAccounts'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingAccount[]
      */
-    public function getConnectedAccounts($consent_id, string $contentType = self::contentTypes['getConnectedAccounts'][0])
+    public function getConnectedAccounts($id, string $contentType = self::contentTypes['getConnectedAccounts'][0])
     {
-        list($response) = $this->getConnectedAccountsWithHttpInfo($consent_id, $contentType);
+        list($response) = $this->getConnectedAccountsWithHttpInfo($id, $contentType);
         return $response;
     }
 
@@ -1663,16 +1663,16 @@ class OpenBankingApi
      *
      * Retrieves list of accounts from financial institution.
      *
-     * @param  string $consent_id The ConsentTokenID is the reference id to the token. (required)
+     * @param  string $id The ConsentTokenID is the reference id to the token. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConnectedAccounts'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingAccount[], HTTP status code, HTTP response headers (array of strings)
      */
-    public function getConnectedAccountsWithHttpInfo($consent_id, string $contentType = self::contentTypes['getConnectedAccounts'][0])
+    public function getConnectedAccountsWithHttpInfo($id, string $contentType = self::contentTypes['getConnectedAccounts'][0])
     {
-        $request = $this->getConnectedAccountsRequest($consent_id, $contentType);
+        $request = $this->getConnectedAccountsRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1788,15 +1788,15 @@ class OpenBankingApi
      *
      * Retrieves list of accounts from financial institution.
      *
-     * @param  string $consent_id The ConsentTokenID is the reference id to the token. (required)
+     * @param  string $id The ConsentTokenID is the reference id to the token. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConnectedAccounts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getConnectedAccountsAsync($consent_id, string $contentType = self::contentTypes['getConnectedAccounts'][0])
+    public function getConnectedAccountsAsync($id, string $contentType = self::contentTypes['getConnectedAccounts'][0])
     {
-        return $this->getConnectedAccountsAsyncWithHttpInfo($consent_id, $contentType)
+        return $this->getConnectedAccountsAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1809,16 +1809,16 @@ class OpenBankingApi
      *
      * Retrieves list of accounts from financial institution.
      *
-     * @param  string $consent_id The ConsentTokenID is the reference id to the token. (required)
+     * @param  string $id The ConsentTokenID is the reference id to the token. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConnectedAccounts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getConnectedAccountsAsyncWithHttpInfo($consent_id, string $contentType = self::contentTypes['getConnectedAccounts'][0])
+    public function getConnectedAccountsAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getConnectedAccounts'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingAccount[]';
-        $request = $this->getConnectedAccountsRequest($consent_id, $contentType);
+        $request = $this->getConnectedAccountsRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1859,24 +1859,24 @@ class OpenBankingApi
     /**
      * Create request for operation 'getConnectedAccounts'
      *
-     * @param  string $consent_id The ConsentTokenID is the reference id to the token. (required)
+     * @param  string $id The ConsentTokenID is the reference id to the token. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConnectedAccounts'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getConnectedAccountsRequest($consent_id, string $contentType = self::contentTypes['getConnectedAccounts'][0])
+    public function getConnectedAccountsRequest($id, string $contentType = self::contentTypes['getConnectedAccounts'][0])
     {
 
-        // verify the required parameter 'consent_id' is set
-        if ($consent_id === null || (is_array($consent_id) && count($consent_id) === 0)) {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $consent_id when calling getConnectedAccounts'
+                'Missing the required parameter $id when calling getConnectedAccounts'
             );
         }
 
 
-        $resourcePath = '/api/v1/openbanking/accounts/{consentID}';
+        $resourcePath = '/api/v1/openbanking/accounts/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -1886,10 +1886,10 @@ class OpenBankingApi
 
 
         // path params
-        if ($consent_id !== null) {
+        if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'consentID' . '}',
-                ObjectSerializer::toPathValue($consent_id),
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
@@ -1958,16 +1958,16 @@ class OpenBankingApi
      *
      * Retrieve a single open banking consent.
      *
-     * @param  string $consent_id The ID of the consent to retrieve. (required)
+     * @param  string $id The ID of the consent to retrieve. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConsent'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingConsent
      */
-    public function getConsent($consent_id, string $contentType = self::contentTypes['getConsent'][0])
+    public function getConsent($id, string $contentType = self::contentTypes['getConsent'][0])
     {
-        list($response) = $this->getConsentWithHttpInfo($consent_id, $contentType);
+        list($response) = $this->getConsentWithHttpInfo($id, $contentType);
         return $response;
     }
 
@@ -1976,16 +1976,16 @@ class OpenBankingApi
      *
      * Retrieve a single open banking consent.
      *
-     * @param  string $consent_id The ID of the consent to retrieve. (required)
+     * @param  string $id The ID of the consent to retrieve. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConsent'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingConsent, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getConsentWithHttpInfo($consent_id, string $contentType = self::contentTypes['getConsent'][0])
+    public function getConsentWithHttpInfo($id, string $contentType = self::contentTypes['getConsent'][0])
     {
-        $request = $this->getConsentRequest($consent_id, $contentType);
+        $request = $this->getConsentRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2101,15 +2101,15 @@ class OpenBankingApi
      *
      * Retrieve a single open banking consent.
      *
-     * @param  string $consent_id The ID of the consent to retrieve. (required)
+     * @param  string $id The ID of the consent to retrieve. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConsent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getConsentAsync($consent_id, string $contentType = self::contentTypes['getConsent'][0])
+    public function getConsentAsync($id, string $contentType = self::contentTypes['getConsent'][0])
     {
-        return $this->getConsentAsyncWithHttpInfo($consent_id, $contentType)
+        return $this->getConsentAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2122,16 +2122,16 @@ class OpenBankingApi
      *
      * Retrieve a single open banking consent.
      *
-     * @param  string $consent_id The ID of the consent to retrieve. (required)
+     * @param  string $id The ID of the consent to retrieve. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConsent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getConsentAsyncWithHttpInfo($consent_id, string $contentType = self::contentTypes['getConsent'][0])
+    public function getConsentAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getConsent'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingConsent';
-        $request = $this->getConsentRequest($consent_id, $contentType);
+        $request = $this->getConsentRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2172,24 +2172,24 @@ class OpenBankingApi
     /**
      * Create request for operation 'getConsent'
      *
-     * @param  string $consent_id The ID of the consent to retrieve. (required)
+     * @param  string $id The ID of the consent to retrieve. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getConsent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getConsentRequest($consent_id, string $contentType = self::contentTypes['getConsent'][0])
+    public function getConsentRequest($id, string $contentType = self::contentTypes['getConsent'][0])
     {
 
-        // verify the required parameter 'consent_id' is set
-        if ($consent_id === null || (is_array($consent_id) && count($consent_id) === 0)) {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $consent_id when calling getConsent'
+                'Missing the required parameter $id when calling getConsent'
             );
         }
 
 
-        $resourcePath = '/api/v1/openbanking/consents/{consentID}';
+        $resourcePath = '/api/v1/openbanking/consents/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2199,10 +2199,10 @@ class OpenBankingApi
 
 
         // path params
-        if ($consent_id !== null) {
+        if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'consentID' . '}',
-                ObjectSerializer::toPathValue($consent_id),
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }
@@ -2604,16 +2604,16 @@ class OpenBankingApi
      *
      * Creates a new authorisation to a financial institution based on a consent that has   already been authorised.
      *
-     * @param  string $consent_id The ID of the consent to base the new authorisation on. (required)
+     * @param  string $id The ID of the consent to base the new authorisation on. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reauthoriseConsent'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingConsentResponse
      */
-    public function reauthoriseConsent($consent_id, string $contentType = self::contentTypes['reauthoriseConsent'][0])
+    public function reauthoriseConsent($id, string $contentType = self::contentTypes['reauthoriseConsent'][0])
     {
-        list($response) = $this->reauthoriseConsentWithHttpInfo($consent_id, $contentType);
+        list($response) = $this->reauthoriseConsentWithHttpInfo($id, $contentType);
         return $response;
     }
 
@@ -2622,16 +2622,16 @@ class OpenBankingApi
      *
      * Creates a new authorisation to a financial institution based on a consent that has   already been authorised.
      *
-     * @param  string $consent_id The ID of the consent to base the new authorisation on. (required)
+     * @param  string $id The ID of the consent to base the new authorisation on. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reauthoriseConsent'] to see the possible values for this operation
      *
      * @throws \Nofrixion\Client\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingConsentResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function reauthoriseConsentWithHttpInfo($consent_id, string $contentType = self::contentTypes['reauthoriseConsent'][0])
+    public function reauthoriseConsentWithHttpInfo($id, string $contentType = self::contentTypes['reauthoriseConsent'][0])
     {
-        $request = $this->reauthoriseConsentRequest($consent_id, $contentType);
+        $request = $this->reauthoriseConsentRequest($id, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2747,15 +2747,15 @@ class OpenBankingApi
      *
      * Creates a new authorisation to a financial institution based on a consent that has   already been authorised.
      *
-     * @param  string $consent_id The ID of the consent to base the new authorisation on. (required)
+     * @param  string $id The ID of the consent to base the new authorisation on. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reauthoriseConsent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reauthoriseConsentAsync($consent_id, string $contentType = self::contentTypes['reauthoriseConsent'][0])
+    public function reauthoriseConsentAsync($id, string $contentType = self::contentTypes['reauthoriseConsent'][0])
     {
-        return $this->reauthoriseConsentAsyncWithHttpInfo($consent_id, $contentType)
+        return $this->reauthoriseConsentAsyncWithHttpInfo($id, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2768,16 +2768,16 @@ class OpenBankingApi
      *
      * Creates a new authorisation to a financial institution based on a consent that has   already been authorised.
      *
-     * @param  string $consent_id The ID of the consent to base the new authorisation on. (required)
+     * @param  string $id The ID of the consent to base the new authorisation on. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reauthoriseConsent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function reauthoriseConsentAsyncWithHttpInfo($consent_id, string $contentType = self::contentTypes['reauthoriseConsent'][0])
+    public function reauthoriseConsentAsyncWithHttpInfo($id, string $contentType = self::contentTypes['reauthoriseConsent'][0])
     {
         $returnType = '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingConsentResponse';
-        $request = $this->reauthoriseConsentRequest($consent_id, $contentType);
+        $request = $this->reauthoriseConsentRequest($id, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2818,24 +2818,24 @@ class OpenBankingApi
     /**
      * Create request for operation 'reauthoriseConsent'
      *
-     * @param  string $consent_id The ID of the consent to base the new authorisation on. (required)
+     * @param  string $id The ID of the consent to base the new authorisation on. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['reauthoriseConsent'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function reauthoriseConsentRequest($consent_id, string $contentType = self::contentTypes['reauthoriseConsent'][0])
+    public function reauthoriseConsentRequest($id, string $contentType = self::contentTypes['reauthoriseConsent'][0])
     {
 
-        // verify the required parameter 'consent_id' is set
-        if ($consent_id === null || (is_array($consent_id) && count($consent_id) === 0)) {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $consent_id when calling reauthoriseConsent'
+                'Missing the required parameter $id when calling reauthoriseConsent'
             );
         }
 
 
-        $resourcePath = '/api/v1/openbanking/consents/{consentID}';
+        $resourcePath = '/api/v1/openbanking/consents/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -2845,10 +2845,10 @@ class OpenBankingApi
 
 
         // path params
-        if ($consent_id !== null) {
+        if ($id !== null) {
             $resourcePath = str_replace(
-                '{' . 'consentID' . '}',
-                ObjectSerializer::toPathValue($consent_id),
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
                 $resourcePath
             );
         }

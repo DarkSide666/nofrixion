@@ -130,15 +130,18 @@ Class | Method | HTTP request | Description
 *MetadataApi* | [**version**](docs/Api/MetadataApi.md#version) | **GET** /api/v1/metadata/version | Gets the current version of the MoneyMoov API.
 *MetadataApi* | [**whoAmI**](docs/Api/MetadataApi.md#whoami) | **GET** /api/v1/metadata/whoami | Returns the profile of the requesting user.
 *MetadataApi* | [**whoAmIMerchant**](docs/Api/MetadataApi.md#whoamimerchant) | **GET** /api/v1/metadata/whoamimerchant | Returns the name of the merchant that authentication token was issued for.
+*MetadataApi* | [**whoAmIMerchantSigned**](docs/Api/MetadataApi.md#whoamimerchantsigned) | **GET** /api/v1/metadata/whoamimerchantsigned | Returns the name of a merchant that signed merchant token request was authenticated for.
+*MetadataApi* | [**whoAmIMerchantWhitelist**](docs/Api/MetadataApi.md#whoamimerchantwhitelist) | **GET** /api/v1/metadata/whoamimerchantwhitelist | Returns the name of the merchant that IP address whitelisted merchants token was issued for.
+*MetadataApi* | [**whoAmITrustedApplication**](docs/Api/MetadataApi.md#whoamitrustedapplication) | **GET** /api/v1/metadata/whoamitrustedapp | Returns the name of the trusted third party application user the request was authenticated for.
 *OpenBankingApi* | [**createConsent**](docs/Api/OpenBankingApi.md#createconsent) | **POST** /api/v1/openbanking/consents | Creates a consent thats used to initiate an authorisation to a financial institution.
 *OpenBankingApi* | [**deleteAllConsents**](docs/Api/OpenBankingApi.md#deleteallconsents) | **DELETE** /api/v1/openbanking/consents/{merchantID}/{email} | Delete all the open banking consents for a single user.
 *OpenBankingApi* | [**deleteConnectedAccount**](docs/Api/OpenBankingApi.md#deleteconnectedaccount) | **DELETE** /api/v1/openbanking/account/{accountID} | Deletes the specified connected account and all associated transactions.
-*OpenBankingApi* | [**deleteConsent**](docs/Api/OpenBankingApi.md#deleteconsent) | **DELETE** /api/v1/openbanking/consents/{consentID} | Deletes a single open banking consent.
-*OpenBankingApi* | [**getConnectedAccountTransactions**](docs/Api/OpenBankingApi.md#getconnectedaccounttransactions) | **GET** /api/v1/openbanking/transactions/{consentID}/{accountID} | Retrieves transactions from financial institution.
-*OpenBankingApi* | [**getConnectedAccounts**](docs/Api/OpenBankingApi.md#getconnectedaccounts) | **GET** /api/v1/openbanking/accounts/{consentID} | Retrieves list of accounts from financial institution.
-*OpenBankingApi* | [**getConsent**](docs/Api/OpenBankingApi.md#getconsent) | **GET** /api/v1/openbanking/consents/{consentID} | Retrieve a single open banking consent.
+*OpenBankingApi* | [**deleteConsent**](docs/Api/OpenBankingApi.md#deleteconsent) | **DELETE** /api/v1/openbanking/consents/{id} | Deletes a single open banking consent.
+*OpenBankingApi* | [**getConnectedAccountTransactions**](docs/Api/OpenBankingApi.md#getconnectedaccounttransactions) | **GET** /api/v1/openbanking/transactions/{id}/{accountID} | Retrieves transactions from financial institution.
+*OpenBankingApi* | [**getConnectedAccounts**](docs/Api/OpenBankingApi.md#getconnectedaccounts) | **GET** /api/v1/openbanking/accounts/{id} | Retrieves list of accounts from financial institution.
+*OpenBankingApi* | [**getConsent**](docs/Api/OpenBankingApi.md#getconsent) | **GET** /api/v1/openbanking/consents/{id} | Retrieve a single open banking consent.
 *OpenBankingApi* | [**getConsents**](docs/Api/OpenBankingApi.md#getconsents) | **GET** /api/v1/openbanking/consents/{merchantID}/{email} | Retrieve all the open banking consents for a single user.
-*OpenBankingApi* | [**reauthoriseConsent**](docs/Api/OpenBankingApi.md#reauthoriseconsent) | **PATCH** /api/v1/openbanking/consents/{consentID} | Creates a new authorisation to a financial institution based on a consent that has   already been authorised.
+*OpenBankingApi* | [**reauthoriseConsent**](docs/Api/OpenBankingApi.md#reauthoriseconsent) | **PATCH** /api/v1/openbanking/consents/{id} | Creates a new authorisation to a financial institution based on a consent that has   already been authorised.
 *OpenBankingApi* | [**synchroniseConnectedAccount**](docs/Api/OpenBankingApi.md#synchroniseconnectedaccount) | **POST** /api/v1/openbanking/account/{accountID}/synchronise | Attempts to synchronise the balance and transactions of a connected account.
 *PaymentRequestsApi* | [**captureCardPayment**](docs/Api/PaymentRequestsApi.md#capturecardpayment) | **POST** /api/v1/paymentrequests/{id}/card/capture | Submits a request to capture a previously authorised card payment.
 *PaymentRequestsApi* | [**createAndPayPaymentRequest**](docs/Api/PaymentRequestsApi.md#createandpaypaymentrequest) | **POST** /api/v1/paymentrequests/payondemand | Creates a payment request record and processes the payment.
@@ -178,10 +181,12 @@ Class | Method | HTTP request | Description
 *PayoutsApi* | [**getPayout**](docs/Api/PayoutsApi.md#getpayout) | **GET** /api/v1/payouts/{id} | Gets a single payout.
 *PayoutsApi* | [**getPayoutForInvoice**](docs/Api/PayoutsApi.md#getpayoutforinvoice) | **GET** /api/v1/payouts/getbyinvoiceid/{invoiceID} | Gets a payout by its invoice ID.
 *PayoutsApi* | [**getPayoutMetrics**](docs/Api/PayoutsApi.md#getpayoutmetrics) | **GET** /api/v1/payouts/metrics | Gets a list of all payout metrics for a specific merchant.
+*PayoutsApi* | [**getPayoutProof**](docs/Api/PayoutsApi.md#getpayoutproof) | **GET** /api/v1/payouts/{id}/proof | Generates a proof of payment PDF document with the details of a payout.
 *PayoutsApi* | [**getPayoutStatus**](docs/Api/PayoutsApi.md#getpayoutstatus) | **GET** /api/v1/payouts/status/{id} | Gets a single payout status from.
 *PayoutsApi* | [**getPayoutsPaged**](docs/Api/PayoutsApi.md#getpayoutspaged) | **GET** /api/v1/payouts | Gets a list of all payouts for a specific merchant.
 *PayoutsApi* | [**rejectPayout**](docs/Api/PayoutsApi.md#rejectpayout) | **PUT** /api/v1/payouts/reject/{id} | Rejects the authorisation for a payout.
 *PayoutsApi* | [**sendPayout**](docs/Api/PayoutsApi.md#sendpayout) | **POST** /api/v1/payouts/send | Creates and submits a payout for a trusted caller.
+*PayoutsApi* | [**sendToBeneficiary**](docs/Api/PayoutsApi.md#sendtobeneficiary) | **POST** /api/v1/payouts/sendbeneficiary | Creates and submits a payout to a pre-authorised beneficiary.
 *PayoutsApi* | [**submitBatchPayout**](docs/Api/PayoutsApi.md#submitbatchpayout) | **POST** /api/v1/payouts/batch/submit/{id} | Submits a batch payout for processing.
 *PayoutsApi* | [**submitPayout**](docs/Api/PayoutsApi.md#submitpayout) | **POST** /api/v1/payouts/submit/{id} | Submits a payout for processing.
 *PayoutsApi* | [**updatePayout**](docs/Api/PayoutsApi.md#updatepayout) | **PUT** /api/v1/payouts/{id} | Updates a payout record.
@@ -208,6 +213,7 @@ Class | Method | HTTP request | Description
 *TokensApi* | [**createMerchantToken**](docs/Api/TokensApi.md#createmerchanttoken) | **POST** /api/v1/tokens | Creates a new merchant API token.
 *TokensApi* | [**deleteToken**](docs/Api/TokensApi.md#deletetoken) | **DELETE** /api/v1/tokens/{id} | Deletes a merchant API token.
 *TransactionsApi* | [**addTags**](docs/Api/TransactionsApi.md#addtags) | **POST** /api/v1/transactions/{transactionID}/tags | Adds merchant tags to a transaction.
+*TransactionsApi* | [**getTransactionProof**](docs/Api/TransactionsApi.md#gettransactionproof) | **GET** /api/v1/transactions/{id}/proof | Generates a proof of payment PDF document with the details of a transaction.
 *TransactionsApi* | [**getTransactionsForAccountPaged**](docs/Api/TransactionsApi.md#gettransactionsforaccountpaged) | **GET** /api/v1/transactions/{accountID} | Get a list of the transactions for a single payment account.
 *TransactionsApi* | [**getTransactionsPaged**](docs/Api/TransactionsApi.md#gettransactionspaged) | **GET** /api/v1/transactions | Get a list of the transactions for all payment accounts a user has access to.
 *TransactionsApi* | [**removeTag**](docs/Api/TransactionsApi.md#removetag) | **DELETE** /api/v1/transactions/{transactionID}/tag | Removes a tag from the transaction using the tag ID.
@@ -239,6 +245,7 @@ Class | Method | HTTP request | Description
 - [NoFrixionMoneyMoovModelsAccountIdentifier](docs/Model/NoFrixionMoneyMoovModelsAccountIdentifier.md)
 - [NoFrixionMoneyMoovModelsAccountIdentifierCreate](docs/Model/NoFrixionMoneyMoovModelsAccountIdentifierCreate.md)
 - [NoFrixionMoneyMoovModelsAccountUpdate](docs/Model/NoFrixionMoneyMoovModelsAccountUpdate.md)
+- [NoFrixionMoneyMoovModelsApproveAuthorisation](docs/Model/NoFrixionMoneyMoovModelsApproveAuthorisation.md)
 - [NoFrixionMoneyMoovModelsBatchPayout](docs/Model/NoFrixionMoneyMoovModelsBatchPayout.md)
 - [NoFrixionMoneyMoovModelsBeneficiary](docs/Model/NoFrixionMoneyMoovModelsBeneficiary.md)
 - [NoFrixionMoneyMoovModelsBeneficiaryCreate](docs/Model/NoFrixionMoneyMoovModelsBeneficiaryCreate.md)
@@ -312,6 +319,8 @@ Class | Method | HTTP request | Description
 - [NoFrixionMoneyMoovModelsPaymentRequestsPaymentRequestAuthorization](docs/Model/NoFrixionMoneyMoovModelsPaymentRequestsPaymentRequestAuthorization.md)
 - [NoFrixionMoneyMoovModelsPayout](docs/Model/NoFrixionMoneyMoovModelsPayout.md)
 - [NoFrixionMoneyMoovModelsPayoutCreate](docs/Model/NoFrixionMoneyMoovModelsPayoutCreate.md)
+- [NoFrixionMoneyMoovModelsPayoutDocument](docs/Model/NoFrixionMoneyMoovModelsPayoutDocument.md)
+- [NoFrixionMoneyMoovModelsPayoutDocumentCreate](docs/Model/NoFrixionMoneyMoovModelsPayoutDocumentCreate.md)
 - [NoFrixionMoneyMoovModelsPayoutEvent](docs/Model/NoFrixionMoneyMoovModelsPayoutEvent.md)
 - [NoFrixionMoneyMoovModelsPayoutMetrics](docs/Model/NoFrixionMoneyMoovModelsPayoutMetrics.md)
 - [NoFrixionMoneyMoovModelsPayoutReject](docs/Model/NoFrixionMoneyMoovModelsPayoutReject.md)
@@ -344,7 +353,6 @@ Class | Method | HTTP request | Description
 - [NoFrixionMoneyMoovModelsUser](docs/Model/NoFrixionMoneyMoovModelsUser.md)
 - [NoFrixionMoneyMoovModelsUserInvite](docs/Model/NoFrixionMoneyMoovModelsUserInvite.md)
 - [NoFrixionMoneyMoovModelsUserInviteCreate](docs/Model/NoFrixionMoneyMoovModelsUserInviteCreate.md)
-- [NoFrixionMoneyMoovModelsUserMinimal](docs/Model/NoFrixionMoneyMoovModelsUserMinimal.md)
 - [NoFrixionMoneyMoovModelsUserRole](docs/Model/NoFrixionMoneyMoovModelsUserRole.md)
 - [NoFrixionMoneyMoovModelsUserRoleCreate](docs/Model/NoFrixionMoneyMoovModelsUserRoleCreate.md)
 - [NoFrixionMoneyMoovModelsUserRolePermissions](docs/Model/NoFrixionMoneyMoovModelsUserRolePermissions.md)

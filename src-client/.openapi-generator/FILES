@@ -34,6 +34,7 @@ docs/Model/NoFrixionMoneyMoovApiFeaturesPayoutsFailedPayout.md
 docs/Model/NoFrixionMoneyMoovModelsAccountIdentifier.md
 docs/Model/NoFrixionMoneyMoovModelsAccountIdentifierCreate.md
 docs/Model/NoFrixionMoneyMoovModelsAccountUpdate.md
+docs/Model/NoFrixionMoneyMoovModelsApproveAuthorisation.md
 docs/Model/NoFrixionMoneyMoovModelsBatchPayout.md
 docs/Model/NoFrixionMoneyMoovModelsBeneficiary.md
 docs/Model/NoFrixionMoneyMoovModelsBeneficiaryCreate.md
@@ -107,6 +108,8 @@ docs/Model/NoFrixionMoneyMoovModelsPaymentRequestUpdate.md
 docs/Model/NoFrixionMoneyMoovModelsPaymentRequestsPaymentRequestAuthorization.md
 docs/Model/NoFrixionMoneyMoovModelsPayout.md
 docs/Model/NoFrixionMoneyMoovModelsPayoutCreate.md
+docs/Model/NoFrixionMoneyMoovModelsPayoutDocument.md
+docs/Model/NoFrixionMoneyMoovModelsPayoutDocumentCreate.md
 docs/Model/NoFrixionMoneyMoovModelsPayoutEvent.md
 docs/Model/NoFrixionMoneyMoovModelsPayoutMetrics.md
 docs/Model/NoFrixionMoneyMoovModelsPayoutReject.md
@@ -139,7 +142,6 @@ docs/Model/NoFrixionMoneyMoovModelsTribeLoad.md
 docs/Model/NoFrixionMoneyMoovModelsUser.md
 docs/Model/NoFrixionMoneyMoovModelsUserInvite.md
 docs/Model/NoFrixionMoneyMoovModelsUserInviteCreate.md
-docs/Model/NoFrixionMoneyMoovModelsUserMinimal.md
 docs/Model/NoFrixionMoneyMoovModelsUserRole.md
 docs/Model/NoFrixionMoneyMoovModelsUserRoleCreate.md
 docs/Model/NoFrixionMoneyMoovModelsUserRolePermissions.md
@@ -181,6 +183,7 @@ lib/Model/NoFrixionMoneyMoovApiFeaturesPayoutsFailedPayout.php
 lib/Model/NoFrixionMoneyMoovModelsAccountIdentifier.php
 lib/Model/NoFrixionMoneyMoovModelsAccountIdentifierCreate.php
 lib/Model/NoFrixionMoneyMoovModelsAccountUpdate.php
+lib/Model/NoFrixionMoneyMoovModelsApproveAuthorisation.php
 lib/Model/NoFrixionMoneyMoovModelsBatchPayout.php
 lib/Model/NoFrixionMoneyMoovModelsBeneficiary.php
 lib/Model/NoFrixionMoneyMoovModelsBeneficiaryCreate.php
@@ -254,6 +257,8 @@ lib/Model/NoFrixionMoneyMoovModelsPaymentRequestUpdate.php
 lib/Model/NoFrixionMoneyMoovModelsPaymentRequestsPaymentRequestAuthorization.php
 lib/Model/NoFrixionMoneyMoovModelsPayout.php
 lib/Model/NoFrixionMoneyMoovModelsPayoutCreate.php
+lib/Model/NoFrixionMoneyMoovModelsPayoutDocument.php
+lib/Model/NoFrixionMoneyMoovModelsPayoutDocumentCreate.php
 lib/Model/NoFrixionMoneyMoovModelsPayoutEvent.php
 lib/Model/NoFrixionMoneyMoovModelsPayoutMetrics.php
 lib/Model/NoFrixionMoneyMoovModelsPayoutReject.php
@@ -286,7 +291,6 @@ lib/Model/NoFrixionMoneyMoovModelsTribeLoad.php
 lib/Model/NoFrixionMoneyMoovModelsUser.php
 lib/Model/NoFrixionMoneyMoovModelsUserInvite.php
 lib/Model/NoFrixionMoneyMoovModelsUserInviteCreate.php
-lib/Model/NoFrixionMoneyMoovModelsUserMinimal.php
 lib/Model/NoFrixionMoneyMoovModelsUserRole.php
 lib/Model/NoFrixionMoneyMoovModelsUserRoleCreate.php
 lib/Model/NoFrixionMoneyMoovModelsUserRolePermissions.php
@@ -325,6 +329,7 @@ test/Model/NoFrixionMoneyMoovApiFeaturesPayoutsFailedPayoutTest.php
 test/Model/NoFrixionMoneyMoovModelsAccountIdentifierCreateTest.php
 test/Model/NoFrixionMoneyMoovModelsAccountIdentifierTest.php
 test/Model/NoFrixionMoneyMoovModelsAccountUpdateTest.php
+test/Model/NoFrixionMoneyMoovModelsApproveAuthorisationTest.php
 test/Model/NoFrixionMoneyMoovModelsBatchPayoutTest.php
 test/Model/NoFrixionMoneyMoovModelsBeneficiaryCreateTest.php
 test/Model/NoFrixionMoneyMoovModelsBeneficiaryEventTest.php
@@ -397,6 +402,8 @@ test/Model/NoFrixionMoneyMoovModelsPaymentRequestTest.php
 test/Model/NoFrixionMoneyMoovModelsPaymentRequestUpdateTest.php
 test/Model/NoFrixionMoneyMoovModelsPaymentRequestsPaymentRequestAuthorizationTest.php
 test/Model/NoFrixionMoneyMoovModelsPayoutCreateTest.php
+test/Model/NoFrixionMoneyMoovModelsPayoutDocumentCreateTest.php
+test/Model/NoFrixionMoneyMoovModelsPayoutDocumentTest.php
 test/Model/NoFrixionMoneyMoovModelsPayoutEventTest.php
 test/Model/NoFrixionMoneyMoovModelsPayoutMetricsTest.php
 test/Model/NoFrixionMoneyMoovModelsPayoutRejectTest.php
@@ -429,7 +436,6 @@ test/Model/NoFrixionMoneyMoovModelsTransactionTest.php
 test/Model/NoFrixionMoneyMoovModelsTribeLoadTest.php
 test/Model/NoFrixionMoneyMoovModelsUserInviteCreateTest.php
 test/Model/NoFrixionMoneyMoovModelsUserInviteTest.php
-test/Model/NoFrixionMoneyMoovModelsUserMinimalTest.php
 test/Model/NoFrixionMoneyMoovModelsUserRoleCreateTest.php
 test/Model/NoFrixionMoneyMoovModelsUserRolePermissionsTest.php
 test/Model/NoFrixionMoneyMoovModelsUserRoleTest.php

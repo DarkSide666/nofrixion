@@ -51,7 +51,8 @@ Name | Type | Description | Notes
 **can_authorise** | **bool** | True if the payout can be authorised by the user who loaded it. | [optional]
 **can_update** | **bool** | True if the payout can be updated by the user who loaded it. | [optional]
 **has_current_user_authorised** | **bool** | True if the payout was loaded for a user and that user has already authorised the latest version of the payout. | [optional]
-**authorised_by** | **string[]** | A list of the email addresses of all the users who have usccessfully authorised the latest version of the payout. | [optional]
+**authorisations** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsApproveAuthorisation[]**](NoFrixionMoneyMoovModelsApproveAuthorisation.md) | A list of the users who have successfully authorised the latest version of the payout and when. | [optional]
+**authentication_methods** | **string[]** | A list of authentication types allowed to authorise the payout. | [optional]
 **payrun_name** | **string** | The name of the payrun that this payout is associated with. | [optional]
 **beneficiary** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsBeneficiary**](NoFrixionMoneyMoovModelsBeneficiary.md) |  | [optional]
 **payment_processor** | **string** | The usptream payment processor for the payout. | [optional]
@@ -59,6 +60,6 @@ Name | Type | Description | Notes
 **rule** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleMinimal**](NoFrixionMoneyMoovModelsRuleMinimal.md) |  | [optional]
 **payment_rail** | **string** | Optional field to indicate the payment rail to use for the payout. Currrently only  supports choosing between SEPA-CT and SEPA-INST for EUR payments. If not set, for a EUR  payment, the default behaviour is to attempt SEPA-INST and fallback to SEPA-CT if rejected. | [optional]
 **nonce** | **string** |  | [optional]
-**payrun_invoices** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrunInvoice[]**](NoFrixionMoneyMoovModelsPayrunInvoice.md) | Collection of payrun invoices associated with the payout.  Will be empty if the payout is not associated with a payrun. | [optional]
+**documents** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutDocument[]**](NoFrixionMoneyMoovModelsPayoutDocument.md) | Documents associated with the payout. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

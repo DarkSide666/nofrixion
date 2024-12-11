@@ -89,6 +89,15 @@ class NoFrixionMoneyMoovModelsBatchPayoutTest extends TestCase
     }
 
     /**
+     * Test attribute "approve_url"
+     */
+    public function testPropertyApproveUrl()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "payouts"
      */
     public function testPropertyPayouts()

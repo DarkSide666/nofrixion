@@ -74,7 +74,12 @@ class NoFrixionMoneyMoovModelsPayrun implements ModelInterface, ArrayAccess, \Js
         'payments' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayrunPayment[]',
         'is_archived' => 'bool',
         'can_edit' => 'bool',
-        'can_delete' => 'bool'
+        'can_delete' => 'bool',
+        'authorisers_required_count' => 'int',
+        'authorisers_completed_count' => 'int',
+        'can_authorise' => 'bool',
+        'has_current_user_authorised' => 'bool',
+        'authorisations' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsApproveAuthorisation[]'
     ];
 
     /**
@@ -102,7 +107,12 @@ class NoFrixionMoneyMoovModelsPayrun implements ModelInterface, ArrayAccess, \Js
         'payments' => null,
         'is_archived' => null,
         'can_edit' => null,
-        'can_delete' => null
+        'can_delete' => null,
+        'authorisers_required_count' => 'int32',
+        'authorisers_completed_count' => 'int32',
+        'can_authorise' => null,
+        'has_current_user_authorised' => null,
+        'authorisations' => null
     ];
 
     /**
@@ -128,7 +138,12 @@ class NoFrixionMoneyMoovModelsPayrun implements ModelInterface, ArrayAccess, \Js
         'payments' => true,
         'is_archived' => false,
         'can_edit' => false,
-        'can_delete' => false
+        'can_delete' => false,
+        'authorisers_required_count' => false,
+        'authorisers_completed_count' => false,
+        'can_authorise' => false,
+        'has_current_user_authorised' => false,
+        'authorisations' => true
     ];
 
     /**
@@ -234,7 +249,12 @@ class NoFrixionMoneyMoovModelsPayrun implements ModelInterface, ArrayAccess, \Js
         'payments' => 'payments',
         'is_archived' => 'isArchived',
         'can_edit' => 'canEdit',
-        'can_delete' => 'canDelete'
+        'can_delete' => 'canDelete',
+        'authorisers_required_count' => 'authorisersRequiredCount',
+        'authorisers_completed_count' => 'authorisersCompletedCount',
+        'can_authorise' => 'canAuthorise',
+        'has_current_user_authorised' => 'hasCurrentUserAuthorised',
+        'authorisations' => 'authorisations'
     ];
 
     /**
@@ -260,7 +280,12 @@ class NoFrixionMoneyMoovModelsPayrun implements ModelInterface, ArrayAccess, \Js
         'payments' => 'setPayments',
         'is_archived' => 'setIsArchived',
         'can_edit' => 'setCanEdit',
-        'can_delete' => 'setCanDelete'
+        'can_delete' => 'setCanDelete',
+        'authorisers_required_count' => 'setAuthorisersRequiredCount',
+        'authorisers_completed_count' => 'setAuthorisersCompletedCount',
+        'can_authorise' => 'setCanAuthorise',
+        'has_current_user_authorised' => 'setHasCurrentUserAuthorised',
+        'authorisations' => 'setAuthorisations'
     ];
 
     /**
@@ -286,7 +311,12 @@ class NoFrixionMoneyMoovModelsPayrun implements ModelInterface, ArrayAccess, \Js
         'payments' => 'getPayments',
         'is_archived' => 'getIsArchived',
         'can_edit' => 'getCanEdit',
-        'can_delete' => 'getCanDelete'
+        'can_delete' => 'getCanDelete',
+        'authorisers_required_count' => 'getAuthorisersRequiredCount',
+        'authorisers_completed_count' => 'getAuthorisersCompletedCount',
+        'can_authorise' => 'getCanAuthorise',
+        'has_current_user_authorised' => 'getHasCurrentUserAuthorised',
+        'authorisations' => 'getAuthorisations'
     ];
 
     /**
@@ -393,6 +423,11 @@ class NoFrixionMoneyMoovModelsPayrun implements ModelInterface, ArrayAccess, \Js
         $this->setIfExists('is_archived', $data ?? [], null);
         $this->setIfExists('can_edit', $data ?? [], null);
         $this->setIfExists('can_delete', $data ?? [], null);
+        $this->setIfExists('authorisers_required_count', $data ?? [], null);
+        $this->setIfExists('authorisers_completed_count', $data ?? [], null);
+        $this->setIfExists('can_authorise', $data ?? [], null);
+        $this->setIfExists('has_current_user_authorised', $data ?? [], null);
+        $this->setIfExists('authorisations', $data ?? [], null);
     }
 
     /**
@@ -994,6 +1029,148 @@ class NoFrixionMoneyMoovModelsPayrun implements ModelInterface, ArrayAccess, \Js
             throw new \InvalidArgumentException('non-nullable can_delete cannot be null');
         }
         $this->container['can_delete'] = $can_delete;
+
+        return $this;
+    }
+
+    /**
+     * Gets authorisers_required_count
+     *
+     * @return int|null
+     */
+    public function getAuthorisersRequiredCount()
+    {
+        return $this->container['authorisers_required_count'];
+    }
+
+    /**
+     * Sets authorisers_required_count
+     *
+     * @param int|null $authorisers_required_count The number of authorisers required for this payrun. Is determined by business settings  on the source account and/or merchant.
+     *
+     * @return self
+     */
+    public function setAuthorisersRequiredCount($authorisers_required_count)
+    {
+        if (is_null($authorisers_required_count)) {
+            throw new \InvalidArgumentException('non-nullable authorisers_required_count cannot be null');
+        }
+        $this->container['authorisers_required_count'] = $authorisers_required_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets authorisers_completed_count
+     *
+     * @return int|null
+     */
+    public function getAuthorisersCompletedCount()
+    {
+        return $this->container['authorisers_completed_count'];
+    }
+
+    /**
+     * Sets authorisers_completed_count
+     *
+     * @param int|null $authorisers_completed_count The number of distinct authorisers that have authorised the payrun.
+     *
+     * @return self
+     */
+    public function setAuthorisersCompletedCount($authorisers_completed_count)
+    {
+        if (is_null($authorisers_completed_count)) {
+            throw new \InvalidArgumentException('non-nullable authorisers_completed_count cannot be null');
+        }
+        $this->container['authorisers_completed_count'] = $authorisers_completed_count;
+
+        return $this;
+    }
+
+    /**
+     * Gets can_authorise
+     *
+     * @return bool|null
+     */
+    public function getCanAuthorise()
+    {
+        return $this->container['can_authorise'];
+    }
+
+    /**
+     * Sets can_authorise
+     *
+     * @param bool|null $can_authorise True if the payrun can be authorised by the user who loaded it.
+     *
+     * @return self
+     */
+    public function setCanAuthorise($can_authorise)
+    {
+        if (is_null($can_authorise)) {
+            throw new \InvalidArgumentException('non-nullable can_authorise cannot be null');
+        }
+        $this->container['can_authorise'] = $can_authorise;
+
+        return $this;
+    }
+
+    /**
+     * Gets has_current_user_authorised
+     *
+     * @return bool|null
+     */
+    public function getHasCurrentUserAuthorised()
+    {
+        return $this->container['has_current_user_authorised'];
+    }
+
+    /**
+     * Sets has_current_user_authorised
+     *
+     * @param bool|null $has_current_user_authorised True if the payrun was loaded for a user and that user has already authorised the latest version of the payrun.
+     *
+     * @return self
+     */
+    public function setHasCurrentUserAuthorised($has_current_user_authorised)
+    {
+        if (is_null($has_current_user_authorised)) {
+            throw new \InvalidArgumentException('non-nullable has_current_user_authorised cannot be null');
+        }
+        $this->container['has_current_user_authorised'] = $has_current_user_authorised;
+
+        return $this;
+    }
+
+    /**
+     * Gets authorisations
+     *
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsApproveAuthorisation[]|null
+     */
+    public function getAuthorisations()
+    {
+        return $this->container['authorisations'];
+    }
+
+    /**
+     * Sets authorisations
+     *
+     * @param \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsApproveAuthorisation[]|null $authorisations A list of the users who have successfully authorised the latest version of the payrun and when.
+     *
+     * @return self
+     */
+    public function setAuthorisations($authorisations)
+    {
+        if (is_null($authorisations)) {
+            array_push($this->openAPINullablesSetToNull, 'authorisations');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('authorisations', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['authorisations'] = $authorisations;
 
         return $this;
     }

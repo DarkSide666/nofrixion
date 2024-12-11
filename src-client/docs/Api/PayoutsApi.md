@@ -14,10 +14,12 @@ All URIs are relative to https://api-sandbox.nofrixion.com, except if the operat
 | [**getPayout()**](PayoutsApi.md#getPayout) | **GET** /api/v1/payouts/{id} | Gets a single payout. |
 | [**getPayoutForInvoice()**](PayoutsApi.md#getPayoutForInvoice) | **GET** /api/v1/payouts/getbyinvoiceid/{invoiceID} | Gets a payout by its invoice ID. |
 | [**getPayoutMetrics()**](PayoutsApi.md#getPayoutMetrics) | **GET** /api/v1/payouts/metrics | Gets a list of all payout metrics for a specific merchant. |
+| [**getPayoutProof()**](PayoutsApi.md#getPayoutProof) | **GET** /api/v1/payouts/{id}/proof | Generates a proof of payment PDF document with the details of a payout. |
 | [**getPayoutStatus()**](PayoutsApi.md#getPayoutStatus) | **GET** /api/v1/payouts/status/{id} | Gets a single payout status from. |
 | [**getPayoutsPaged()**](PayoutsApi.md#getPayoutsPaged) | **GET** /api/v1/payouts | Gets a list of all payouts for a specific merchant. |
 | [**rejectPayout()**](PayoutsApi.md#rejectPayout) | **PUT** /api/v1/payouts/reject/{id} | Rejects the authorisation for a payout. |
 | [**sendPayout()**](PayoutsApi.md#sendPayout) | **POST** /api/v1/payouts/send | Creates and submits a payout for a trusted caller. |
+| [**sendToBeneficiary()**](PayoutsApi.md#sendToBeneficiary) | **POST** /api/v1/payouts/sendbeneficiary | Creates and submits a payout to a pre-authorised beneficiary. |
 | [**submitBatchPayout()**](PayoutsApi.md#submitBatchPayout) | **POST** /api/v1/payouts/batch/submit/{id} | Submits a batch payout for processing. |
 | [**submitPayout()**](PayoutsApi.md#submitPayout) | **POST** /api/v1/payouts/submit/{id} | Submits a payout for processing. |
 | [**updatePayout()**](PayoutsApi.md#updatePayout) | **PUT** /api/v1/payouts/{id} | Updates a payout record. |
@@ -639,6 +641,65 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getPayoutProof()`
+
+```php
+getPayoutProof($id)
+```
+
+Generates a proof of payment PDF document with the details of a payout.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Nofrixion\Client\Api\PayoutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$id = 'id_example'; // string | ID of the payout.
+
+try {
+    $apiInstance->getPayoutProof($id);
+} catch (Exception $e) {
+    echo 'Exception when calling PayoutsApi->getPayoutProof: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **id** | **string**| ID of the payout. | |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
 ## `getPayoutStatus()`
 
 ```php
@@ -889,6 +950,68 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **no_frixion_money_moov_models_payout_create** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate**](../Model/NoFrixionMoneyMoovModelsPayoutCreate.md)| The object containing the details of the payout to create and submit. | [optional] |
+
+### Return type
+
+[**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout**](../Model/NoFrixionMoneyMoovModelsPayout.md)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: `application/json`
+- **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `sendToBeneficiary()`
+
+```php
+sendToBeneficiary($no_frixion_money_moov_models_payout_create): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout
+```
+
+Creates and submits a payout to a pre-authorised beneficiary.
+
+Access to this endpoint is restricted to merchant tokens using a digital signature and IP address whitelist.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Nofrixion\Client\Api\PayoutsApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$no_frixion_money_moov_models_payout_create = new \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate(); // \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate | The object containing the details of the payout to create and submit. The payout              will only be accepted if the destination is set as a beneficairy ID.
+
+try {
+    $result = $apiInstance->sendToBeneficiary($no_frixion_money_moov_models_payout_create);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling PayoutsApi->sendToBeneficiary: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **no_frixion_money_moov_models_payout_create** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayoutCreate**](../Model/NoFrixionMoneyMoovModelsPayoutCreate.md)| The object containing the details of the payout to create and submit. The payout              will only be accepted if the destination is set as a beneficairy ID. | [optional] |
 
 ### Return type
 

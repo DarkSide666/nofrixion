@@ -240,4 +240,49 @@ class NoFrixionMoneyMoovModelsPayrunTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "authorisers_required_count"
+     */
+    public function testPropertyAuthorisersRequiredCount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "authorisers_completed_count"
+     */
+    public function testPropertyAuthorisersCompletedCount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "can_authorise"
+     */
+    public function testPropertyCanAuthorise()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "has_current_user_authorised"
+     */
+    public function testPropertyHasCurrentUserAuthorised()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "authorisations"
+     */
+    public function testPropertyAuthorisations()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

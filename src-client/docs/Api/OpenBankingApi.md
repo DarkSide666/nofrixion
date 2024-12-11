@@ -7,12 +7,12 @@ All URIs are relative to https://api-sandbox.nofrixion.com, except if the operat
 | [**createConsent()**](OpenBankingApi.md#createConsent) | **POST** /api/v1/openbanking/consents | Creates a consent thats used to initiate an authorisation to a financial institution. |
 | [**deleteAllConsents()**](OpenBankingApi.md#deleteAllConsents) | **DELETE** /api/v1/openbanking/consents/{merchantID}/{email} | Delete all the open banking consents for a single user. |
 | [**deleteConnectedAccount()**](OpenBankingApi.md#deleteConnectedAccount) | **DELETE** /api/v1/openbanking/account/{accountID} | Deletes the specified connected account and all associated transactions. |
-| [**deleteConsent()**](OpenBankingApi.md#deleteConsent) | **DELETE** /api/v1/openbanking/consents/{consentID} | Deletes a single open banking consent. |
-| [**getConnectedAccountTransactions()**](OpenBankingApi.md#getConnectedAccountTransactions) | **GET** /api/v1/openbanking/transactions/{consentID}/{accountID} | Retrieves transactions from financial institution. |
-| [**getConnectedAccounts()**](OpenBankingApi.md#getConnectedAccounts) | **GET** /api/v1/openbanking/accounts/{consentID} | Retrieves list of accounts from financial institution. |
-| [**getConsent()**](OpenBankingApi.md#getConsent) | **GET** /api/v1/openbanking/consents/{consentID} | Retrieve a single open banking consent. |
+| [**deleteConsent()**](OpenBankingApi.md#deleteConsent) | **DELETE** /api/v1/openbanking/consents/{id} | Deletes a single open banking consent. |
+| [**getConnectedAccountTransactions()**](OpenBankingApi.md#getConnectedAccountTransactions) | **GET** /api/v1/openbanking/transactions/{id}/{accountID} | Retrieves transactions from financial institution. |
+| [**getConnectedAccounts()**](OpenBankingApi.md#getConnectedAccounts) | **GET** /api/v1/openbanking/accounts/{id} | Retrieves list of accounts from financial institution. |
+| [**getConsent()**](OpenBankingApi.md#getConsent) | **GET** /api/v1/openbanking/consents/{id} | Retrieve a single open banking consent. |
 | [**getConsents()**](OpenBankingApi.md#getConsents) | **GET** /api/v1/openbanking/consents/{merchantID}/{email} | Retrieve all the open banking consents for a single user. |
-| [**reauthoriseConsent()**](OpenBankingApi.md#reauthoriseConsent) | **PATCH** /api/v1/openbanking/consents/{consentID} | Creates a new authorisation to a financial institution based on a consent that has   already been authorised. |
+| [**reauthoriseConsent()**](OpenBankingApi.md#reauthoriseConsent) | **PATCH** /api/v1/openbanking/consents/{id} | Creates a new authorisation to a financial institution based on a consent that has   already been authorised. |
 | [**synchroniseConnectedAccount()**](OpenBankingApi.md#synchroniseConnectedAccount) | **POST** /api/v1/openbanking/account/{accountID}/synchronise | Attempts to synchronise the balance and transactions of a connected account. |
 
 
@@ -199,7 +199,7 @@ void (empty response body)
 ## `deleteConsent()`
 
 ```php
-deleteConsent($consent_id): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingConsent
+deleteConsent($id): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingConsent
 ```
 
 Deletes a single open banking consent.
@@ -223,10 +223,10 @@ $apiInstance = new Nofrixion\Client\Api\OpenBankingApi(
     new GuzzleHttp\Client(),
     $config
 );
-$consent_id = 'consent_id_example'; // string | The ID of the consent to delete.
+$id = 'id_example'; // string | The ID of the consent to delete.
 
 try {
-    $result = $apiInstance->deleteConsent($consent_id);
+    $result = $apiInstance->deleteConsent($id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OpenBankingApi->deleteConsent: ', $e->getMessage(), PHP_EOL;
@@ -237,7 +237,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **consent_id** | **string**| The ID of the consent to delete. | |
+| **id** | **string**| The ID of the consent to delete. | |
 
 ### Return type
 
@@ -259,7 +259,7 @@ try {
 ## `getConnectedAccountTransactions()`
 
 ```php
-getConnectedAccountTransactions($consent_id, $account_id, $offset, $limit, $transaction_from, $transaction_to, $sort_inserted_ascending): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingTransaction[]
+getConnectedAccountTransactions($id, $account_id, $offset, $limit, $transaction_from, $transaction_to, $sort_inserted_ascending): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingTransaction[]
 ```
 
 Retrieves transactions from financial institution.
@@ -283,7 +283,7 @@ $apiInstance = new Nofrixion\Client\Api\OpenBankingApi(
     new GuzzleHttp\Client(),
     $config
 );
-$consent_id = 'consent_id_example'; // string | The ConsentTokenID is the reference id to the token.
+$id = 'id_example'; // string | The ConsentTokenID is the reference id to the token.
 $account_id = 'account_id_example'; // string | The id of the account where transactions are retrieved.
 $offset = 56; // int | Optional, offset the transactions by offset number.
 $limit = 56; // int | Optional, limit per amount of transactions.
@@ -292,7 +292,7 @@ $transaction_to = new \DateTime("2013-10-20T19:20:30+01:00"); // \DateTime | Opt
 $sort_inserted_ascending = True; // bool | Default sort order is inserted descending (latest first). Set to true to sort by               inserted ascending (earliest first).
 
 try {
-    $result = $apiInstance->getConnectedAccountTransactions($consent_id, $account_id, $offset, $limit, $transaction_from, $transaction_to, $sort_inserted_ascending);
+    $result = $apiInstance->getConnectedAccountTransactions($id, $account_id, $offset, $limit, $transaction_from, $transaction_to, $sort_inserted_ascending);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OpenBankingApi->getConnectedAccountTransactions: ', $e->getMessage(), PHP_EOL;
@@ -303,7 +303,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **consent_id** | **string**| The ConsentTokenID is the reference id to the token. | |
+| **id** | **string**| The ConsentTokenID is the reference id to the token. | |
 | **account_id** | **string**| The id of the account where transactions are retrieved. | |
 | **offset** | **int**| Optional, offset the transactions by offset number. | [optional] |
 | **limit** | **int**| Optional, limit per amount of transactions. | [optional] |
@@ -331,7 +331,7 @@ try {
 ## `getConnectedAccounts()`
 
 ```php
-getConnectedAccounts($consent_id): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingAccount[]
+getConnectedAccounts($id): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingAccount[]
 ```
 
 Retrieves list of accounts from financial institution.
@@ -355,10 +355,10 @@ $apiInstance = new Nofrixion\Client\Api\OpenBankingApi(
     new GuzzleHttp\Client(),
     $config
 );
-$consent_id = 'consent_id_example'; // string | The ConsentTokenID is the reference id to the token.
+$id = 'id_example'; // string | The ConsentTokenID is the reference id to the token.
 
 try {
-    $result = $apiInstance->getConnectedAccounts($consent_id);
+    $result = $apiInstance->getConnectedAccounts($id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OpenBankingApi->getConnectedAccounts: ', $e->getMessage(), PHP_EOL;
@@ -369,7 +369,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **consent_id** | **string**| The ConsentTokenID is the reference id to the token. | |
+| **id** | **string**| The ConsentTokenID is the reference id to the token. | |
 
 ### Return type
 
@@ -391,7 +391,7 @@ try {
 ## `getConsent()`
 
 ```php
-getConsent($consent_id): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingConsent
+getConsent($id): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingConsent
 ```
 
 Retrieve a single open banking consent.
@@ -415,10 +415,10 @@ $apiInstance = new Nofrixion\Client\Api\OpenBankingApi(
     new GuzzleHttp\Client(),
     $config
 );
-$consent_id = 'consent_id_example'; // string | The ID of the consent to retrieve.
+$id = 'id_example'; // string | The ID of the consent to retrieve.
 
 try {
-    $result = $apiInstance->getConsent($consent_id);
+    $result = $apiInstance->getConsent($id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OpenBankingApi->getConsent: ', $e->getMessage(), PHP_EOL;
@@ -429,7 +429,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **consent_id** | **string**| The ID of the consent to retrieve. | |
+| **id** | **string**| The ID of the consent to retrieve. | |
 
 ### Return type
 
@@ -513,7 +513,7 @@ try {
 ## `reauthoriseConsent()`
 
 ```php
-reauthoriseConsent($consent_id): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingConsentResponse
+reauthoriseConsent($id): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsOpenBankingConsentResponse
 ```
 
 Creates a new authorisation to a financial institution based on a consent that has   already been authorised.
@@ -537,10 +537,10 @@ $apiInstance = new Nofrixion\Client\Api\OpenBankingApi(
     new GuzzleHttp\Client(),
     $config
 );
-$consent_id = 'consent_id_example'; // string | The ID of the consent to base the new authorisation on.
+$id = 'id_example'; // string | The ID of the consent to base the new authorisation on.
 
 try {
-    $result = $apiInstance->reauthoriseConsent($consent_id);
+    $result = $apiInstance->reauthoriseConsent($id);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling OpenBankingApi->reauthoriseConsent: ', $e->getMessage(), PHP_EOL;
@@ -551,7 +551,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **consent_id** | **string**| The ID of the consent to base the new authorisation on. | |
+| **id** | **string**| The ID of the consent to base the new authorisation on. | |
 
 ### Return type
 

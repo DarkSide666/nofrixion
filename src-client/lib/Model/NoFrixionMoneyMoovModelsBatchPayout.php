@@ -58,6 +58,7 @@ class NoFrixionMoneyMoovModelsBatchPayout implements ModelInterface, ArrayAccess
       */
     protected static $openAPITypes = [
         'id' => 'string',
+        'approve_url' => 'string',
         'payouts' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPayout[]'
     ];
 
@@ -70,6 +71,7 @@ class NoFrixionMoneyMoovModelsBatchPayout implements ModelInterface, ArrayAccess
       */
     protected static $openAPIFormats = [
         'id' => 'uuid',
+        'approve_url' => null,
         'payouts' => null
     ];
 
@@ -80,6 +82,7 @@ class NoFrixionMoneyMoovModelsBatchPayout implements ModelInterface, ArrayAccess
       */
     protected static array $openAPINullables = [
         'id' => false,
+        'approve_url' => true,
         'payouts' => true
     ];
 
@@ -170,6 +173,7 @@ class NoFrixionMoneyMoovModelsBatchPayout implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'id' => 'id',
+        'approve_url' => 'approveUrl',
         'payouts' => 'payouts'
     ];
 
@@ -180,6 +184,7 @@ class NoFrixionMoneyMoovModelsBatchPayout implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'id' => 'setId',
+        'approve_url' => 'setApproveUrl',
         'payouts' => 'setPayouts'
     ];
 
@@ -190,6 +195,7 @@ class NoFrixionMoneyMoovModelsBatchPayout implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'id' => 'getId',
+        'approve_url' => 'getApproveUrl',
         'payouts' => 'getPayouts'
     ];
 
@@ -251,6 +257,7 @@ class NoFrixionMoneyMoovModelsBatchPayout implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('approve_url', $data ?? [], null);
         $this->setIfExists('payouts', $data ?? [], null);
     }
 
@@ -319,6 +326,40 @@ class NoFrixionMoneyMoovModelsBatchPayout implements ModelInterface, ArrayAccess
             throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
         $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets approve_url
+     *
+     * @return string|null
+     */
+    public function getApproveUrl()
+    {
+        return $this->container['approve_url'];
+    }
+
+    /**
+     * Sets approve_url
+     *
+     * @param string|null $approve_url This field is used when returning a batch payout record to a client. If set it holds the URL  the user needs to visit in order to complete a strong authentication check in order to approve   the batch payouts.
+     *
+     * @return self
+     */
+    public function setApproveUrl($approve_url)
+    {
+        if (is_null($approve_url)) {
+            array_push($this->openAPINullablesSetToNull, 'approve_url');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('approve_url', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['approve_url'] = $approve_url;
 
         return $this;
     }

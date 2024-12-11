@@ -143,9 +143,9 @@ class NoFrixionMoneyMoovModelsBeneficiaryTest extends TestCase
     }
 
     /**
-     * Test attribute "authorised_by"
+     * Test attribute "authorisations"
      */
-    public function testPropertyAuthorisedBy()
+    public function testPropertyAuthorisations()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -191,6 +191,15 @@ class NoFrixionMoneyMoovModelsBeneficiaryTest extends TestCase
      * Test attribute "authorisers_completed_count"
      */
     public function testPropertyAuthorisersCompletedCount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "authentication_methods"
+     */
+    public function testPropertyAuthenticationMethods()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

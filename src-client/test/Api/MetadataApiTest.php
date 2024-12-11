@@ -142,4 +142,40 @@ class MetadataApiTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test case for whoAmIMerchantSigned
+     *
+     * Returns the name of a merchant that signed merchant token request was authenticated for..
+     *
+     */
+    public function testWhoAmIMerchantSigned()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for whoAmIMerchantWhitelist
+     *
+     * Returns the name of the merchant that IP address whitelisted merchants token was issued for..
+     *
+     */
+    public function testWhoAmIMerchantWhitelist()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test case for whoAmITrustedApplication
+     *
+     * Returns the name of the trusted third party application user the request was authenticated for..
+     *
+     */
+    public function testWhoAmITrustedApplication()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

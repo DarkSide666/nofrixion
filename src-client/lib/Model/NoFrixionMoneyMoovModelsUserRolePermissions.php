@@ -57,8 +57,8 @@ class NoFrixionMoneyMoovModelsUserRolePermissions implements ModelInterface, Arr
       * @var string[]
       */
     protected static $openAPITypes = [
-        'merchant_permissions' => 'array<string,string>',
-        'account_permissions' => 'array<string,string>'
+        'merchant_permissions' => 'array<string,string[]>',
+        'account_permissions' => 'array<string,string[]>'
     ];
 
     /**
@@ -234,134 +234,6 @@ class NoFrixionMoneyMoovModelsUserRolePermissions implements ModelInterface, Arr
         return self::$openAPIModelName;
     }
 
-    public const MERCHANT_PERMISSIONS_NONE = 'None';
-    public const MERCHANT_PERMISSIONS_CAN_CREATE_ACCOUNTS = 'CanCreateAccounts';
-    public const MERCHANT_PERMISSIONS_CAN_ARCHIVE_ACCOUNTS = 'CanArchiveAccounts';
-    public const MERCHANT_PERMISSIONS_CAN_VIEW_BENEFICIARIES = 'CanViewBeneficiaries';
-    public const MERCHANT_PERMISSIONS_CAN_DELETE_BENEFICIARIES = 'CanDeleteBeneficiaries';
-    public const MERCHANT_PERMISSIONS_CAN_EDIT_BENEFICIARIES = 'CanEditBeneficiaries';
-    public const MERCHANT_PERMISSIONS_CAN_CREATE_BENEFICIARIES = 'CanCreateBeneficiaries';
-    public const MERCHANT_PERMISSIONS_CAN_AUTHORISE_BENEFICIARIES = 'CanAuthoriseBeneficiaries';
-    public const MERCHANT_PERMISSIONS_CAN_VIEW_TOKENS = 'CanViewTokens';
-    public const MERCHANT_PERMISSIONS_CAN_CREATE_TOKENS = 'CanCreateTokens';
-    public const MERCHANT_PERMISSIONS_CAN_DELETE_TOKENS = 'CanDeleteTokens';
-    public const MERCHANT_PERMISSIONS_CAN_CREATE_PAYRUNS = 'CanCreatePayruns';
-    public const MERCHANT_PERMISSIONS_CAN_VIEW_PAYRUNS = 'CanViewPayruns';
-    public const MERCHANT_PERMISSIONS_CAN_EDIT_PAYRUNS = 'CanEditPayruns';
-    public const MERCHANT_PERMISSIONS_CAN_APPROVE_PAYRUNS = 'CanApprovePayruns';
-    public const MERCHANT_PERMISSIONS_CAN_DELETE_PAYRUNS = 'CanDeletePayruns';
-    public const MERCHANT_PERMISSIONS_CAN_VIEW_USER_ROLES = 'CanViewUserRoles';
-    public const MERCHANT_PERMISSIONS_CAN_DELETE_USER_ROLES = 'CanDeleteUserRoles';
-    public const MERCHANT_PERMISSIONS_CAN_ASSIGN_USER_ROLES = 'CanAssignUserRoles';
-    public const MERCHANT_PERMISSIONS_CAN_VIEW_USERS = 'CanViewUsers';
-    public const MERCHANT_PERMISSIONS_CAN_VIEW_WEBHOOKS = 'CanViewWebhooks';
-    public const MERCHANT_PERMISSIONS_CAN_CREATE_WEBHOOKS = 'CanCreateWebhooks';
-    public const MERCHANT_PERMISSIONS_CAN_DELETE_WEBHOOKS = 'CanDeleteWebhooks';
-    public const MERCHANT_PERMISSIONS_CAN_VIEW_MERCHANT = 'CanViewMerchant';
-    public const MERCHANT_PERMISSIONS_CAN_UPDATE_MERCHANT = 'CanUpdateMerchant';
-    public const MERCHANT_PERMISSIONS_CAN_CREATE_PAYMENT_REQUESTS = 'CanCreatePaymentRequests';
-    public const MERCHANT_PERMISSIONS_CAN_VIEW_PAYMENT_REQUESTS = 'CanViewPaymentRequests';
-    public const MERCHANT_PERMISSIONS_CAN_UPDATE_PAYMENT_REQUESTS = 'CanUpdatePaymentRequests';
-    public const MERCHANT_PERMISSIONS_CAN_VIEW_MANDATES = 'CanViewMandates';
-    public const MERCHANT_PERMISSIONS_CAN_CREATE_MANDATES = 'CanCreateMandates';
-    public const MERCHANT_PERMISSIONS_CAN_VIEW_ROLES = 'CanViewRoles';
-    public const MERCHANT_PERMISSIONS_CAN_CREATE_ROLES = 'CanCreateRoles';
-    public const MERCHANT_PERMISSIONS_CAN_EDIT_ROLES = 'CanEditRoles';
-    public const MERCHANT_PERMISSIONS_CAN_CREATE_REPORTS = 'CanCreateReports';
-    public const MERCHANT_PERMISSIONS_CAN_VIEW_REPORTS = 'CanViewReports';
-    public const ACCOUNT_PERMISSIONS_NONE = 'None';
-    public const ACCOUNT_PERMISSIONS_CAN_VIEW_PAYOUTS = 'CanViewPayouts';
-    public const ACCOUNT_PERMISSIONS_CAN_CREATE_PAYOUTS = 'CanCreatePayouts';
-    public const ACCOUNT_PERMISSIONS_CAN_EDIT_PAYOUTS = 'CanEditPayouts';
-    public const ACCOUNT_PERMISSIONS_CAN_DELETE_PAYOUTS = 'CanDeletePayouts';
-    public const ACCOUNT_PERMISSIONS_CAN_AUTHORISE_PAYOUTS = 'CanAuthorisePayouts';
-    public const ACCOUNT_PERMISSIONS_CAN_REJECT_PAYOUTS = 'CanRejectPayouts';
-    public const ACCOUNT_PERMISSIONS_CAN_CREATE_BATCH_PAYOUTS = 'CanCreateBatchPayouts';
-    public const ACCOUNT_PERMISSIONS_CAN_VIEW_ACCOUNT = 'CanViewAccount';
-    public const ACCOUNT_PERMISSIONS_CAN_UPDATE_ACCOUNT = 'CanUpdateAccount';
-    public const ACCOUNT_PERMISSIONS_CAN_VIEW_RULES = 'CanViewRules';
-    public const ACCOUNT_PERMISSIONS_CAN_CREATE_RULES = 'CanCreateRules';
-    public const ACCOUNT_PERMISSIONS_CAN_EDIT_RULES = 'CanEditRules';
-    public const ACCOUNT_PERMISSIONS_CAN_DELETE_RULES = 'CanDeleteRules';
-    public const ACCOUNT_PERMISSIONS_CAN_AUTHORISE_RULES = 'CanAuthoriseRules';
-    public const ACCOUNT_PERMISSIONS_CAN_VIEW_TRANSACTIONS = 'CanViewTransactions';
-    public const ACCOUNT_PERMISSIONS_CAN_CREATE_STATEMENTS = 'CanCreateStatements';
-    public const ACCOUNT_PERMISSIONS_CAN_VIEW_STATEMENTS = 'CanViewStatements';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getMerchantPermissionsAllowableValues()
-    {
-        return [
-            self::MERCHANT_PERMISSIONS_NONE,
-            self::MERCHANT_PERMISSIONS_CAN_CREATE_ACCOUNTS,
-            self::MERCHANT_PERMISSIONS_CAN_ARCHIVE_ACCOUNTS,
-            self::MERCHANT_PERMISSIONS_CAN_VIEW_BENEFICIARIES,
-            self::MERCHANT_PERMISSIONS_CAN_DELETE_BENEFICIARIES,
-            self::MERCHANT_PERMISSIONS_CAN_EDIT_BENEFICIARIES,
-            self::MERCHANT_PERMISSIONS_CAN_CREATE_BENEFICIARIES,
-            self::MERCHANT_PERMISSIONS_CAN_AUTHORISE_BENEFICIARIES,
-            self::MERCHANT_PERMISSIONS_CAN_VIEW_TOKENS,
-            self::MERCHANT_PERMISSIONS_CAN_CREATE_TOKENS,
-            self::MERCHANT_PERMISSIONS_CAN_DELETE_TOKENS,
-            self::MERCHANT_PERMISSIONS_CAN_CREATE_PAYRUNS,
-            self::MERCHANT_PERMISSIONS_CAN_VIEW_PAYRUNS,
-            self::MERCHANT_PERMISSIONS_CAN_EDIT_PAYRUNS,
-            self::MERCHANT_PERMISSIONS_CAN_APPROVE_PAYRUNS,
-            self::MERCHANT_PERMISSIONS_CAN_DELETE_PAYRUNS,
-            self::MERCHANT_PERMISSIONS_CAN_VIEW_USER_ROLES,
-            self::MERCHANT_PERMISSIONS_CAN_DELETE_USER_ROLES,
-            self::MERCHANT_PERMISSIONS_CAN_ASSIGN_USER_ROLES,
-            self::MERCHANT_PERMISSIONS_CAN_VIEW_USERS,
-            self::MERCHANT_PERMISSIONS_CAN_VIEW_WEBHOOKS,
-            self::MERCHANT_PERMISSIONS_CAN_CREATE_WEBHOOKS,
-            self::MERCHANT_PERMISSIONS_CAN_DELETE_WEBHOOKS,
-            self::MERCHANT_PERMISSIONS_CAN_VIEW_MERCHANT,
-            self::MERCHANT_PERMISSIONS_CAN_UPDATE_MERCHANT,
-            self::MERCHANT_PERMISSIONS_CAN_CREATE_PAYMENT_REQUESTS,
-            self::MERCHANT_PERMISSIONS_CAN_VIEW_PAYMENT_REQUESTS,
-            self::MERCHANT_PERMISSIONS_CAN_UPDATE_PAYMENT_REQUESTS,
-            self::MERCHANT_PERMISSIONS_CAN_VIEW_MANDATES,
-            self::MERCHANT_PERMISSIONS_CAN_CREATE_MANDATES,
-            self::MERCHANT_PERMISSIONS_CAN_VIEW_ROLES,
-            self::MERCHANT_PERMISSIONS_CAN_CREATE_ROLES,
-            self::MERCHANT_PERMISSIONS_CAN_EDIT_ROLES,
-            self::MERCHANT_PERMISSIONS_CAN_CREATE_REPORTS,
-            self::MERCHANT_PERMISSIONS_CAN_VIEW_REPORTS,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getAccountPermissionsAllowableValues()
-    {
-        return [
-            self::ACCOUNT_PERMISSIONS_NONE,
-            self::ACCOUNT_PERMISSIONS_CAN_VIEW_PAYOUTS,
-            self::ACCOUNT_PERMISSIONS_CAN_CREATE_PAYOUTS,
-            self::ACCOUNT_PERMISSIONS_CAN_EDIT_PAYOUTS,
-            self::ACCOUNT_PERMISSIONS_CAN_DELETE_PAYOUTS,
-            self::ACCOUNT_PERMISSIONS_CAN_AUTHORISE_PAYOUTS,
-            self::ACCOUNT_PERMISSIONS_CAN_REJECT_PAYOUTS,
-            self::ACCOUNT_PERMISSIONS_CAN_CREATE_BATCH_PAYOUTS,
-            self::ACCOUNT_PERMISSIONS_CAN_VIEW_ACCOUNT,
-            self::ACCOUNT_PERMISSIONS_CAN_UPDATE_ACCOUNT,
-            self::ACCOUNT_PERMISSIONS_CAN_VIEW_RULES,
-            self::ACCOUNT_PERMISSIONS_CAN_CREATE_RULES,
-            self::ACCOUNT_PERMISSIONS_CAN_EDIT_RULES,
-            self::ACCOUNT_PERMISSIONS_CAN_DELETE_RULES,
-            self::ACCOUNT_PERMISSIONS_CAN_AUTHORISE_RULES,
-            self::ACCOUNT_PERMISSIONS_CAN_VIEW_TRANSACTIONS,
-            self::ACCOUNT_PERMISSIONS_CAN_CREATE_STATEMENTS,
-            self::ACCOUNT_PERMISSIONS_CAN_VIEW_STATEMENTS,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -427,7 +299,7 @@ class NoFrixionMoneyMoovModelsUserRolePermissions implements ModelInterface, Arr
     /**
      * Gets merchant_permissions
      *
-     * @return array<string,string>|null
+     * @return array<string,string[]>|null
      */
     public function getMerchantPermissions()
     {
@@ -437,7 +309,7 @@ class NoFrixionMoneyMoovModelsUserRolePermissions implements ModelInterface, Arr
     /**
      * Sets merchant_permissions
      *
-     * @param array<string,string>|null $merchant_permissions merchant_permissions
+     * @param array<string,string[]>|null $merchant_permissions merchant_permissions
      *
      * @return self
      */
@@ -453,15 +325,6 @@ class NoFrixionMoneyMoovModelsUserRolePermissions implements ModelInterface, Arr
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
         }
-        $allowedValues = $this->getMerchantPermissionsAllowableValues();
-        if (!is_null($merchant_permissions) && array_diff($merchant_permissions, $allowedValues)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'merchant_permissions', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
         $this->container['merchant_permissions'] = $merchant_permissions;
 
         return $this;
@@ -470,7 +333,7 @@ class NoFrixionMoneyMoovModelsUserRolePermissions implements ModelInterface, Arr
     /**
      * Gets account_permissions
      *
-     * @return array<string,string>|null
+     * @return array<string,string[]>|null
      */
     public function getAccountPermissions()
     {
@@ -480,7 +343,7 @@ class NoFrixionMoneyMoovModelsUserRolePermissions implements ModelInterface, Arr
     /**
      * Sets account_permissions
      *
-     * @param array<string,string>|null $account_permissions account_permissions
+     * @param array<string,string[]>|null $account_permissions account_permissions
      *
      * @return self
      */
@@ -495,15 +358,6 @@ class NoFrixionMoneyMoovModelsUserRolePermissions implements ModelInterface, Arr
                 unset($nullablesSetToNull[$index]);
                 $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
             }
-        }
-        $allowedValues = $this->getAccountPermissionsAllowableValues();
-        if (!is_null($account_permissions) && array_diff($account_permissions, $allowedValues)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'account_permissions', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['account_permissions'] = $account_permissions;
 

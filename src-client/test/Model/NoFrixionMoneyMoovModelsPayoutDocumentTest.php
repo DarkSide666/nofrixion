@@ -1,6 +1,6 @@
 <?php
 /**
- * NoFrixionMoneyMoovModelsUserMinimalTest
+ * NoFrixionMoneyMoovModelsPayoutDocumentTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace Nofrixion\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * NoFrixionMoneyMoovModelsUserMinimalTest Class Doc Comment
+ * NoFrixionMoneyMoovModelsPayoutDocumentTest Class Doc Comment
  *
  * @category    Class
- * @description NoFrixionMoneyMoovModelsUserMinimal
+ * @description Used for returning a payout document.
  * @package     Nofrixion\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class NoFrixionMoneyMoovModelsUserMinimalTest extends TestCase
+class NoFrixionMoneyMoovModelsPayoutDocumentTest extends TestCase
 {
 
     /**
@@ -71,9 +71,9 @@ class NoFrixionMoneyMoovModelsUserMinimalTest extends TestCase
     }
 
     /**
-     * Test "NoFrixionMoneyMoovModelsUserMinimal"
+     * Test "NoFrixionMoneyMoovModelsPayoutDocument"
      */
-    public function testNoFrixionMoneyMoovModelsUserMinimal()
+    public function testNoFrixionMoneyMoovModelsPayoutDocument()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
@@ -89,18 +89,63 @@ class NoFrixionMoneyMoovModelsUserMinimalTest extends TestCase
     }
 
     /**
-     * Test attribute "name"
+     * Test attribute "inserted"
      */
-    public function testPropertyName()
+    public function testPropertyInserted()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "email_address"
+     * Test attribute "document_type"
      */
-    public function testPropertyEmailAddress()
+    public function testPropertyDocumentType()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "title"
+     */
+    public function testPropertyTitle()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "description"
+     */
+    public function testPropertyDescription()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "currency"
+     */
+    public function testPropertyCurrency()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "amount"
+     */
+    public function testPropertyAmount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "external_id"
+     */
+    public function testPropertyExternalId()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

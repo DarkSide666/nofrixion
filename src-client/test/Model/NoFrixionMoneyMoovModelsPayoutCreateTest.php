@@ -249,4 +249,13 @@ class NoFrixionMoneyMoovModelsPayoutCreateTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "documents"
+     */
+    public function testPropertyDocuments()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

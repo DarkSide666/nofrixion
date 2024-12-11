@@ -141,4 +141,49 @@ class NoFrixionMoneyMoovModelsMerchantTokenTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "is_enabled"
+     */
+    public function testPropertyIsEnabled()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "shared_secret_algorithm"
+     */
+    public function testPropertySharedSecretAlgorithm()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "shared_secret_base64"
+     */
+    public function testPropertySharedSecretBase64()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "request_signature_version"
+     */
+    public function testPropertyRequestSignatureVersion()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "expires_at"
+     */
+    public function testPropertyExpiresAt()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

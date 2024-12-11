@@ -1,6 +1,6 @@
 <?php
 /**
- * NoFrixionMoneyMoovModelsUserMinimal
+ * NoFrixionMoneyMoovModelsApproveAuthorisation
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \Nofrixion\Client\ObjectSerializer;
 
 /**
- * NoFrixionMoneyMoovModelsUserMinimal Class Doc Comment
+ * NoFrixionMoneyMoovModelsApproveAuthorisation Class Doc Comment
  *
  * @category Class
  * @package  Nofrixion\Client
@@ -40,7 +40,7 @@ use \Nofrixion\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class NoFrixionMoneyMoovModelsUserMinimal implements ModelInterface, ArrayAccess, \JsonSerializable
+class NoFrixionMoneyMoovModelsApproveAuthorisation implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class NoFrixionMoneyMoovModelsUserMinimal implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'NoFrixion.MoneyMoov.Models.UserMinimal';
+    protected static $openAPIModelName = 'NoFrixion.MoneyMoov.Models.Approve.Authorisation';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +57,8 @@ class NoFrixionMoneyMoovModelsUserMinimal implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'name' => 'string',
-        'email_address' => 'string'
+        'user' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser',
+        'timestamp' => '\DateTime'
     ];
 
     /**
@@ -70,9 +69,8 @@ class NoFrixionMoneyMoovModelsUserMinimal implements ModelInterface, ArrayAccess
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => 'uuid',
-        'name' => null,
-        'email_address' => null
+        'user' => null,
+        'timestamp' => 'date-time'
     ];
 
     /**
@@ -81,9 +79,8 @@ class NoFrixionMoneyMoovModelsUserMinimal implements ModelInterface, ArrayAccess
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
-        'name' => true,
-        'email_address' => true
+        'user' => false,
+        'timestamp' => false
     ];
 
     /**
@@ -172,9 +169,8 @@ class NoFrixionMoneyMoovModelsUserMinimal implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'name' => 'name',
-        'email_address' => 'emailAddress'
+        'user' => 'user',
+        'timestamp' => 'timestamp'
     ];
 
     /**
@@ -183,9 +179,8 @@ class NoFrixionMoneyMoovModelsUserMinimal implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'name' => 'setName',
-        'email_address' => 'setEmailAddress'
+        'user' => 'setUser',
+        'timestamp' => 'setTimestamp'
     ];
 
     /**
@@ -194,9 +189,8 @@ class NoFrixionMoneyMoovModelsUserMinimal implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'name' => 'getName',
-        'email_address' => 'getEmailAddress'
+        'user' => 'getUser',
+        'timestamp' => 'getTimestamp'
     ];
 
     /**
@@ -256,9 +250,8 @@ class NoFrixionMoneyMoovModelsUserMinimal implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('email_address', $data ?? [], null);
+        $this->setIfExists('user', $data ?? [], null);
+        $this->setIfExists('timestamp', $data ?? [], null);
     }
 
     /**
@@ -304,96 +297,55 @@ class NoFrixionMoneyMoovModelsUserMinimal implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets id
+     * Gets user
      *
-     * @return string|null
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser|null
      */
-    public function getId()
+    public function getUser()
     {
-        return $this->container['id'];
+        return $this->container['user'];
     }
 
     /**
-     * Sets id
+     * Sets user
      *
-     * @param string|null $id id
+     * @param \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser|null $user user
      *
      * @return self
      */
-    public function setId($id)
+    public function setUser($user)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($user)) {
+            throw new \InvalidArgumentException('non-nullable user cannot be null');
         }
-        $this->container['id'] = $id;
+        $this->container['user'] = $user;
 
         return $this;
     }
 
     /**
-     * Gets name
+     * Gets timestamp
      *
-     * @return string|null
+     * @return \DateTime|null
      */
-    public function getName()
+    public function getTimestamp()
     {
-        return $this->container['name'];
+        return $this->container['timestamp'];
     }
 
     /**
-     * Sets name
+     * Sets timestamp
      *
-     * @param string|null $name name
+     * @param \DateTime|null $timestamp timestamp
      *
      * @return self
      */
-    public function setName($name)
+    public function setTimestamp($timestamp)
     {
-        if (is_null($name)) {
-            array_push($this->openAPINullablesSetToNull, 'name');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('name', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($timestamp)) {
+            throw new \InvalidArgumentException('non-nullable timestamp cannot be null');
         }
-        $this->container['name'] = $name;
-
-        return $this;
-    }
-
-    /**
-     * Gets email_address
-     *
-     * @return string|null
-     */
-    public function getEmailAddress()
-    {
-        return $this->container['email_address'];
-    }
-
-    /**
-     * Sets email_address
-     *
-     * @param string|null $email_address email_address
-     *
-     * @return self
-     */
-    public function setEmailAddress($email_address)
-    {
-        if (is_null($email_address)) {
-            array_push($this->openAPINullablesSetToNull, 'email_address');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('email_address', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['email_address'] = $email_address;
+        $this->container['timestamp'] = $timestamp;
 
         return $this;
     }

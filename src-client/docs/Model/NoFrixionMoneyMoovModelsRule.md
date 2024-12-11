@@ -29,7 +29,13 @@ Name | Type | Description | Notes
 **last_executed_at** | **\DateTime** |  | [optional]
 **last_run_at_transaction_date** | **\DateTime** | The most recent transaction date when the rule was last run. | [optional]
 **created_by** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser**](NoFrixionMoneyMoovModelsUser.md) |  | [optional]
-**authorised_by** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser**](NoFrixionMoneyMoovModelsUser.md) |  | [optional]
+**authorisations** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsApproveAuthorisation[]**](NoFrixionMoneyMoovModelsApproveAuthorisation.md) | A list of the users who have successfully authorised the latest version of the rule and when. | [optional]
 **account** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount**](NoFrixionMoneyMoovModelsPaymentAccount.md) |  | [optional]
+**authorisers_required_count** | **int** | The number of authorisers required for this rule. | [optional]
+**authorisers_completed_count** | **int** | The number of distinct authorisers that have authorised the rule. | [optional]
+**can_authorise** | **bool** | True if the rule can be authorised by the user who loaded it. | [optional]
+**has_current_user_authorised** | **bool** | True if the current user has authorised. | [optional]
+**nonce** | **string** |  |
+**authentication_methods** | **string[]** | A list of authentication types allowed to authorise the payout. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

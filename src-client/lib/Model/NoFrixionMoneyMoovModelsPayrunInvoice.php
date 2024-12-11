@@ -60,7 +60,7 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'id' => 'string',
         'pay_run_id' => 'string',
         'name' => 'string',
-        'reference' => 'string',
+        'invoice_reference' => 'string',
         'payment_terms' => 'string',
         'date' => '\DateTime',
         'due_date' => '\DateTime',
@@ -79,7 +79,10 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'remittance_email' => 'string',
         'xero_invoice_id' => 'string',
         'invoice_payments' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsInvoicesInvoicePayment[]',
-        'is_enabled' => 'bool'
+        'is_enabled' => 'bool',
+        'payment_reference' => 'string',
+        'external_invoice_id' => 'string',
+        'external_invoice_provider' => 'string'
     ];
 
     /**
@@ -93,7 +96,7 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'id' => 'uuid',
         'pay_run_id' => 'uuid',
         'name' => null,
-        'reference' => null,
+        'invoice_reference' => null,
         'payment_terms' => null,
         'date' => 'date-time',
         'due_date' => 'date-time',
@@ -112,7 +115,10 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'remittance_email' => 'email',
         'xero_invoice_id' => 'uuid',
         'invoice_payments' => null,
-        'is_enabled' => null
+        'is_enabled' => null,
+        'payment_reference' => null,
+        'external_invoice_id' => null,
+        'external_invoice_provider' => null
     ];
 
     /**
@@ -124,7 +130,7 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'id' => false,
         'pay_run_id' => false,
         'name' => true,
-        'reference' => true,
+        'invoice_reference' => false,
         'payment_terms' => true,
         'date' => false,
         'due_date' => false,
@@ -143,7 +149,10 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'remittance_email' => true,
         'xero_invoice_id' => true,
         'invoice_payments' => true,
-        'is_enabled' => false
+        'is_enabled' => false,
+        'payment_reference' => true,
+        'external_invoice_id' => true,
+        'external_invoice_provider' => true
     ];
 
     /**
@@ -235,7 +244,7 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'id' => 'id',
         'pay_run_id' => 'payRunID',
         'name' => 'name',
-        'reference' => 'reference',
+        'invoice_reference' => 'invoiceReference',
         'payment_terms' => 'paymentTerms',
         'date' => 'date',
         'due_date' => 'dueDate',
@@ -254,7 +263,10 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'remittance_email' => 'remittanceEmail',
         'xero_invoice_id' => 'xeroInvoiceID',
         'invoice_payments' => 'invoicePayments',
-        'is_enabled' => 'isEnabled'
+        'is_enabled' => 'isEnabled',
+        'payment_reference' => 'paymentReference',
+        'external_invoice_id' => 'externalInvoiceID',
+        'external_invoice_provider' => 'externalInvoiceProvider'
     ];
 
     /**
@@ -266,7 +278,7 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'id' => 'setId',
         'pay_run_id' => 'setPayRunId',
         'name' => 'setName',
-        'reference' => 'setReference',
+        'invoice_reference' => 'setInvoiceReference',
         'payment_terms' => 'setPaymentTerms',
         'date' => 'setDate',
         'due_date' => 'setDueDate',
@@ -285,7 +297,10 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'remittance_email' => 'setRemittanceEmail',
         'xero_invoice_id' => 'setXeroInvoiceId',
         'invoice_payments' => 'setInvoicePayments',
-        'is_enabled' => 'setIsEnabled'
+        'is_enabled' => 'setIsEnabled',
+        'payment_reference' => 'setPaymentReference',
+        'external_invoice_id' => 'setExternalInvoiceId',
+        'external_invoice_provider' => 'setExternalInvoiceProvider'
     ];
 
     /**
@@ -297,7 +312,7 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'id' => 'getId',
         'pay_run_id' => 'getPayRunId',
         'name' => 'getName',
-        'reference' => 'getReference',
+        'invoice_reference' => 'getInvoiceReference',
         'payment_terms' => 'getPaymentTerms',
         'date' => 'getDate',
         'due_date' => 'getDueDate',
@@ -316,7 +331,10 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'remittance_email' => 'getRemittanceEmail',
         'xero_invoice_id' => 'getXeroInvoiceId',
         'invoice_payments' => 'getInvoicePayments',
-        'is_enabled' => 'getIsEnabled'
+        'is_enabled' => 'getIsEnabled',
+        'payment_reference' => 'getPaymentReference',
+        'external_invoice_id' => 'getExternalInvoiceId',
+        'external_invoice_provider' => 'getExternalInvoiceProvider'
     ];
 
     /**
@@ -398,7 +416,7 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('pay_run_id', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('reference', $data ?? [], null);
+        $this->setIfExists('invoice_reference', $data ?? [], null);
         $this->setIfExists('payment_terms', $data ?? [], null);
         $this->setIfExists('date', $data ?? [], null);
         $this->setIfExists('due_date', $data ?? [], null);
@@ -418,6 +436,9 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         $this->setIfExists('xero_invoice_id', $data ?? [], null);
         $this->setIfExists('invoice_payments', $data ?? [], null);
         $this->setIfExists('is_enabled', $data ?? [], null);
+        $this->setIfExists('payment_reference', $data ?? [], null);
+        $this->setIfExists('external_invoice_id', $data ?? [], null);
+        $this->setIfExists('external_invoice_provider', $data ?? [], null);
     }
 
     /**
@@ -447,9 +468,13 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
     {
         $invalidProperties = [];
 
-        if ($this->container['reference'] === null) {
-            $invalidProperties[] = "'reference' can't be null";
+        if ($this->container['invoice_reference'] === null) {
+            $invalidProperties[] = "'invoice_reference' can't be null";
         }
+        if ((mb_strlen($this->container['invoice_reference']) < 1)) {
+            $invalidProperties[] = "invalid value for 'invoice_reference', the character length must be bigger than or equal to 1.";
+        }
+
         if ($this->container['destination_account_name'] === null) {
             $invalidProperties[] = "'destination_account_name' can't be null";
         }
@@ -472,6 +497,10 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         if ($this->container['total_amount'] === null) {
             $invalidProperties[] = "'total_amount' can't be null";
         }
+        if (!is_null($this->container['payment_reference']) && (mb_strlen($this->container['payment_reference']) > 18)) {
+            $invalidProperties[] = "invalid value for 'payment_reference', the character length must be smaller than or equal to 18.";
+        }
+
         return $invalidProperties;
     }
 
@@ -576,35 +605,33 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
     }
 
     /**
-     * Gets reference
+     * Gets invoice_reference
      *
      * @return string
      */
-    public function getReference()
+    public function getInvoiceReference()
     {
-        return $this->container['reference'];
+        return $this->container['invoice_reference'];
     }
 
     /**
-     * Sets reference
+     * Sets invoice_reference
      *
-     * @param string $reference reference
+     * @param string $invoice_reference invoice_reference
      *
      * @return self
      */
-    public function setReference($reference)
+    public function setInvoiceReference($invoice_reference)
     {
-        if (is_null($reference)) {
-            array_push($this->openAPINullablesSetToNull, 'reference');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('reference', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
+        if (is_null($invoice_reference)) {
+            throw new \InvalidArgumentException('non-nullable invoice_reference cannot be null');
         }
-        $this->container['reference'] = $reference;
+
+        if ((mb_strlen($invoice_reference) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $invoice_reference when calling NoFrixionMoneyMoovModelsPayrunInvoice., must be bigger than or equal to 1.');
+        }
+
+        $this->container['invoice_reference'] = $invoice_reference;
 
         return $this;
     }
@@ -1217,6 +1244,112 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
             throw new \InvalidArgumentException('non-nullable is_enabled cannot be null');
         }
         $this->container['is_enabled'] = $is_enabled;
+
+        return $this;
+    }
+
+    /**
+     * Gets payment_reference
+     *
+     * @return string|null
+     */
+    public function getPaymentReference()
+    {
+        return $this->container['payment_reference'];
+    }
+
+    /**
+     * Sets payment_reference
+     *
+     * @param string|null $payment_reference Represents the reference used in the payout created for this invoice.  For a single destination (e.g., multiple invoices with the same IBAN),  the PaymentReference should remain consistent across all invoices.  If the PaymentReference is not set, one will be generated automatically.
+     *
+     * @return self
+     */
+    public function setPaymentReference($payment_reference)
+    {
+        if (is_null($payment_reference)) {
+            array_push($this->openAPINullablesSetToNull, 'payment_reference');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('payment_reference', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        if (!is_null($payment_reference) && (mb_strlen($payment_reference) > 18)) {
+            throw new \InvalidArgumentException('invalid length for $payment_reference when calling NoFrixionMoneyMoovModelsPayrunInvoice., must be smaller than or equal to 18.');
+        }
+
+        $this->container['payment_reference'] = $payment_reference;
+
+        return $this;
+    }
+
+    /**
+     * Gets external_invoice_id
+     *
+     * @return string|null
+     */
+    public function getExternalInvoiceId()
+    {
+        return $this->container['external_invoice_id'];
+    }
+
+    /**
+     * Sets external_invoice_id
+     *
+     * @param string|null $external_invoice_id If this invoice was created from an external invoice, this will be the ID of the external invoice.
+     *
+     * @return self
+     */
+    public function setExternalInvoiceId($external_invoice_id)
+    {
+        if (is_null($external_invoice_id)) {
+            array_push($this->openAPINullablesSetToNull, 'external_invoice_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('external_invoice_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['external_invoice_id'] = $external_invoice_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets external_invoice_provider
+     *
+     * @return string|null
+     */
+    public function getExternalInvoiceProvider()
+    {
+        return $this->container['external_invoice_provider'];
+    }
+
+    /**
+     * Sets external_invoice_provider
+     *
+     * @param string|null $external_invoice_provider If this invoice was created from an external invoice, this will be the provider of the external invoice.  E.g., \"Xero\", \"QuickBooks\", etc.
+     *
+     * @return self
+     */
+    public function setExternalInvoiceProvider($external_invoice_provider)
+    {
+        if (is_null($external_invoice_provider)) {
+            array_push($this->openAPINullablesSetToNull, 'external_invoice_provider');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('external_invoice_provider', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['external_invoice_provider'] = $external_invoice_provider;
 
         return $this;
     }

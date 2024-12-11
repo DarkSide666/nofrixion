@@ -10,6 +10,9 @@ All URIs are relative to https://api-sandbox.nofrixion.com, except if the operat
 | [**version()**](MetadataApi.md#version) | **GET** /api/v1/metadata/version | Gets the current version of the MoneyMoov API. |
 | [**whoAmI()**](MetadataApi.md#whoAmI) | **GET** /api/v1/metadata/whoami | Returns the profile of the requesting user. |
 | [**whoAmIMerchant()**](MetadataApi.md#whoAmIMerchant) | **GET** /api/v1/metadata/whoamimerchant | Returns the name of the merchant that authentication token was issued for. |
+| [**whoAmIMerchantSigned()**](MetadataApi.md#whoAmIMerchantSigned) | **GET** /api/v1/metadata/whoamimerchantsigned | Returns the name of a merchant that signed merchant token request was authenticated for. |
+| [**whoAmIMerchantWhitelist()**](MetadataApi.md#whoAmIMerchantWhitelist) | **GET** /api/v1/metadata/whoamimerchantwhitelist | Returns the name of the merchant that IP address whitelisted merchants token was issued for. |
+| [**whoAmITrustedApplication()**](MetadataApi.md#whoAmITrustedApplication) | **GET** /api/v1/metadata/whoamitrustedapp | Returns the name of the trusted third party application user the request was authenticated for. |
 
 
 ## `getBitcoinBlockHeight()`
@@ -349,6 +352,177 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMerchant**](../Model/NoFrixionMoneyMoovModelsMerchant.md)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `whoAmIMerchantSigned()`
+
+```php
+whoAmIMerchantSigned(): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMerchant
+```
+
+Returns the name of a merchant that signed merchant token request was authenticated for.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Nofrixion\Client\Api\MetadataApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $result = $apiInstance->whoAmIMerchantSigned();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling MetadataApi->whoAmIMerchantSigned: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMerchant**](../Model/NoFrixionMoneyMoovModelsMerchant.md)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `whoAmIMerchantWhitelist()`
+
+```php
+whoAmIMerchantWhitelist(): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMerchant
+```
+
+Returns the name of the merchant that IP address whitelisted merchants token was issued for.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Nofrixion\Client\Api\MetadataApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $result = $apiInstance->whoAmIMerchantWhitelist();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling MetadataApi->whoAmIMerchantWhitelist: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsMerchant**](../Model/NoFrixionMoneyMoovModelsMerchant.md)
+
+### Authorization
+
+[Bearer](../../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: `text/plain`, `application/json`, `text/json`
+
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
+
+## `whoAmITrustedApplication()`
+
+```php
+whoAmITrustedApplication(): \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser
+```
+
+Returns the name of the trusted third party application user the request was authenticated for.
+
+### Example
+
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+
+// Configure API key authorization: Bearer
+$config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Nofrixion\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+
+$apiInstance = new Nofrixion\Client\Api\MetadataApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+try {
+    $result = $apiInstance->whoAmITrustedApplication();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling MetadataApi->whoAmITrustedApplication: ', $e->getMessage(), PHP_EOL;
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser**](../Model/NoFrixionMoneyMoovModelsUser.md)
 
 ### Authorization
 

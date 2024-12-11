@@ -1,6 +1,6 @@
 <?php
 /**
- * NoFrixionMoneyMoovModelsTokenAdd
+ * NoFrixionMoneyMoovModelsPayoutDocumentCreate
  *
  * PHP version 7.4
  *
@@ -32,15 +32,16 @@ use \ArrayAccess;
 use \Nofrixion\Client\ObjectSerializer;
 
 /**
- * NoFrixionMoneyMoovModelsTokenAdd Class Doc Comment
+ * NoFrixionMoneyMoovModelsPayoutDocumentCreate Class Doc Comment
  *
  * @category Class
+ * @description Document associated with a payout.
  * @package  Nofrixion\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class NoFrixionMoneyMoovModelsTokenAdd implements ModelInterface, ArrayAccess, \JsonSerializable
+class NoFrixionMoneyMoovModelsPayoutDocumentCreate implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class NoFrixionMoneyMoovModelsTokenAdd implements ModelInterface, ArrayAccess, \
       *
       * @var string
       */
-    protected static $openAPIModelName = 'NoFrixion.MoneyMoov.Models.TokenAdd';
+    protected static $openAPIModelName = 'NoFrixion.MoneyMoov.Models.PayoutDocumentCreate';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,10 +58,12 @@ class NoFrixionMoneyMoovModelsTokenAdd implements ModelInterface, ArrayAccess, \
       * @var string[]
       */
     protected static $openAPITypes = [
-        'merchant_id' => 'string',
+        'document_type' => 'string',
+        'title' => 'string',
         'description' => 'string',
-        'hmac_algorithm' => 'string',
-        'permissions' => 'string'
+        'currency' => 'string',
+        'amount' => 'float',
+        'external_id' => 'string'
     ];
 
     /**
@@ -71,10 +74,12 @@ class NoFrixionMoneyMoovModelsTokenAdd implements ModelInterface, ArrayAccess, \
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'merchant_id' => 'uuid',
+        'document_type' => null,
+        'title' => null,
         'description' => null,
-        'hmac_algorithm' => null,
-        'permissions' => null
+        'currency' => null,
+        'amount' => 'double',
+        'external_id' => null
     ];
 
     /**
@@ -83,10 +88,12 @@ class NoFrixionMoneyMoovModelsTokenAdd implements ModelInterface, ArrayAccess, \
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'merchant_id' => false,
-        'description' => false,
-        'hmac_algorithm' => false,
-        'permissions' => false
+        'document_type' => false,
+        'title' => false,
+        'description' => true,
+        'currency' => true,
+        'amount' => true,
+        'external_id' => true
     ];
 
     /**
@@ -175,10 +182,12 @@ class NoFrixionMoneyMoovModelsTokenAdd implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $attributeMap = [
-        'merchant_id' => 'merchantID',
+        'document_type' => 'documentType',
+        'title' => 'title',
         'description' => 'description',
-        'hmac_algorithm' => 'hmacAlgorithm',
-        'permissions' => 'permissions'
+        'currency' => 'currency',
+        'amount' => 'amount',
+        'external_id' => 'externalID'
     ];
 
     /**
@@ -187,10 +196,12 @@ class NoFrixionMoneyMoovModelsTokenAdd implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $setters = [
-        'merchant_id' => 'setMerchantId',
+        'document_type' => 'setDocumentType',
+        'title' => 'setTitle',
         'description' => 'setDescription',
-        'hmac_algorithm' => 'setHmacAlgorithm',
-        'permissions' => 'setPermissions'
+        'currency' => 'setCurrency',
+        'amount' => 'setAmount',
+        'external_id' => 'setExternalId'
     ];
 
     /**
@@ -199,10 +210,12 @@ class NoFrixionMoneyMoovModelsTokenAdd implements ModelInterface, ArrayAccess, \
      * @var string[]
      */
     protected static $getters = [
-        'merchant_id' => 'getMerchantId',
+        'document_type' => 'getDocumentType',
+        'title' => 'getTitle',
         'description' => 'getDescription',
-        'hmac_algorithm' => 'getHmacAlgorithm',
-        'permissions' => 'getPermissions'
+        'currency' => 'getCurrency',
+        'amount' => 'getAmount',
+        'external_id' => 'getExternalId'
     ];
 
     /**
@@ -246,46 +259,25 @@ class NoFrixionMoneyMoovModelsTokenAdd implements ModelInterface, ArrayAccess, \
         return self::$openAPIModelName;
     }
 
-    public const HMAC_ALGORITHM_NONE = 'None';
-    public const HMAC_ALGORITHM_HMAC_SHA1 = 'HMAC_SHA1';
-    public const HMAC_ALGORITHM_HMAC_SHA256 = 'HMAC_SHA256';
-    public const HMAC_ALGORITHM_HMAC_SHA384 = 'HMAC_SHA384';
-    public const HMAC_ALGORITHM_HMAC_SHA512 = 'HMAC_SHA512';
-    public const PERMISSIONS_DENY = 'Deny';
-    public const PERMISSIONS_CREATE_PAYMENT_REQUEST = 'CreatePaymentRequest';
-    public const PERMISSIONS_EDIT_PAYMENT_REQUEST = 'EditPaymentRequest';
-    public const PERMISSIONS_DELETE_PAYMENT_REQUEST = 'DeletePaymentRequest';
-    public const PERMISSIONS_CREATE_RULE = 'CreateRule';
-    public const PERMISSIONS_EDIT_RULE = 'EditRule';
-    public const PERMISSIONS_DELETE_RULE = 'DeleteRule';
-    public const PERMISSIONS_CREATE_PAYOUT = 'CreatePayout';
-    public const PERMISSIONS_EDIT_PAYOUT = 'EditPayout';
-    public const PERMISSIONS_DELETE_PAYOUT = 'DeletePayout';
-    public const PERMISSIONS_CREATE_REPORT = 'CreateReport';
-    public const PERMISSIONS_EDIT_REPORT = 'EditReport';
-    public const PERMISSIONS_DELETE_REPORT = 'DeleteReport';
-    public const PERMISSIONS_EXECUTE_REPORT = 'ExecuteReport';
-    public const PERMISSIONS_CREATE_PAYMENT_ACCOUNT = 'CreatePaymentAccount';
-    public const PERMISSIONS_EDIT_PAYMENT_ACCOUNT = 'EditPaymentAccount';
-    public const PERMISSIONS_TRUSTED_SUBMIT_PAYOUT = 'TrustedSubmitPayout';
-    public const PERMISSIONS_OPEN_BANKING_ACCOUNT_INFORMATION = 'OpenBankingAccountInformation';
-    public const PERMISSIONS_CREATE_DIRECT_DEBIT_MANDATE = 'CreateDirectDebitMandate';
-    public const PERMISSIONS_SUBMIT_DIRECT_DEBIT_PAYMENT = 'SubmitDirectDebitPayment';
-    public const PERMISSIONS_VIEW_TRANSACTIONS = 'ViewTransactions';
+    public const DOCUMENT_TYPE_OTHER = 'Other';
+    public const DOCUMENT_TYPE_INVOICE = 'Invoice';
+    public const DOCUMENT_TYPE_PURCHASE_ORDER = 'PurchaseOrder';
+    public const CURRENCY_NONE = 'NONE';
+    public const CURRENCY_GBP = 'GBP';
+    public const CURRENCY_EUR = 'EUR';
+    public const CURRENCY_BTC = 'BTC';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getHmacAlgorithmAllowableValues()
+    public function getDocumentTypeAllowableValues()
     {
         return [
-            self::HMAC_ALGORITHM_NONE,
-            self::HMAC_ALGORITHM_HMAC_SHA1,
-            self::HMAC_ALGORITHM_HMAC_SHA256,
-            self::HMAC_ALGORITHM_HMAC_SHA384,
-            self::HMAC_ALGORITHM_HMAC_SHA512,
+            self::DOCUMENT_TYPE_OTHER,
+            self::DOCUMENT_TYPE_INVOICE,
+            self::DOCUMENT_TYPE_PURCHASE_ORDER,
         ];
     }
 
@@ -294,30 +286,13 @@ class NoFrixionMoneyMoovModelsTokenAdd implements ModelInterface, ArrayAccess, \
      *
      * @return string[]
      */
-    public function getPermissionsAllowableValues()
+    public function getCurrencyAllowableValues()
     {
         return [
-            self::PERMISSIONS_DENY,
-            self::PERMISSIONS_CREATE_PAYMENT_REQUEST,
-            self::PERMISSIONS_EDIT_PAYMENT_REQUEST,
-            self::PERMISSIONS_DELETE_PAYMENT_REQUEST,
-            self::PERMISSIONS_CREATE_RULE,
-            self::PERMISSIONS_EDIT_RULE,
-            self::PERMISSIONS_DELETE_RULE,
-            self::PERMISSIONS_CREATE_PAYOUT,
-            self::PERMISSIONS_EDIT_PAYOUT,
-            self::PERMISSIONS_DELETE_PAYOUT,
-            self::PERMISSIONS_CREATE_REPORT,
-            self::PERMISSIONS_EDIT_REPORT,
-            self::PERMISSIONS_DELETE_REPORT,
-            self::PERMISSIONS_EXECUTE_REPORT,
-            self::PERMISSIONS_CREATE_PAYMENT_ACCOUNT,
-            self::PERMISSIONS_EDIT_PAYMENT_ACCOUNT,
-            self::PERMISSIONS_TRUSTED_SUBMIT_PAYOUT,
-            self::PERMISSIONS_OPEN_BANKING_ACCOUNT_INFORMATION,
-            self::PERMISSIONS_CREATE_DIRECT_DEBIT_MANDATE,
-            self::PERMISSIONS_SUBMIT_DIRECT_DEBIT_PAYMENT,
-            self::PERMISSIONS_VIEW_TRANSACTIONS,
+            self::CURRENCY_NONE,
+            self::CURRENCY_GBP,
+            self::CURRENCY_EUR,
+            self::CURRENCY_BTC,
         ];
     }
 
@@ -336,10 +311,12 @@ class NoFrixionMoneyMoovModelsTokenAdd implements ModelInterface, ArrayAccess, \
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('merchant_id', $data ?? [], null);
+        $this->setIfExists('document_type', $data ?? [], null);
+        $this->setIfExists('title', $data ?? [], null);
         $this->setIfExists('description', $data ?? [], null);
-        $this->setIfExists('hmac_algorithm', $data ?? [], null);
-        $this->setIfExists('permissions', $data ?? [], null);
+        $this->setIfExists('currency', $data ?? [], null);
+        $this->setIfExists('amount', $data ?? [], null);
+        $this->setIfExists('external_id', $data ?? [], null);
     }
 
     /**
@@ -369,32 +346,44 @@ class NoFrixionMoneyMoovModelsTokenAdd implements ModelInterface, ArrayAccess, \
     {
         $invalidProperties = [];
 
-        if ($this->container['merchant_id'] === null) {
-            $invalidProperties[] = "'merchant_id' can't be null";
+        if ($this->container['document_type'] === null) {
+            $invalidProperties[] = "'document_type' can't be null";
         }
-        if ($this->container['description'] === null) {
-            $invalidProperties[] = "'description' can't be null";
-        }
-        if ((mb_strlen($this->container['description']) < 1)) {
-            $invalidProperties[] = "invalid value for 'description', the character length must be bigger than or equal to 1.";
-        }
-
-        $allowedValues = $this->getHmacAlgorithmAllowableValues();
-        if (!is_null($this->container['hmac_algorithm']) && !in_array($this->container['hmac_algorithm'], $allowedValues, true)) {
+        $allowedValues = $this->getDocumentTypeAllowableValues();
+        if (!is_null($this->container['document_type']) && !in_array($this->container['document_type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'hmac_algorithm', must be one of '%s'",
-                $this->container['hmac_algorithm'],
+                "invalid value '%s' for 'document_type', must be one of '%s'",
+                $this->container['document_type'],
                 implode("', '", $allowedValues)
             );
         }
 
-        $allowedValues = $this->getPermissionsAllowableValues();
-        if (!is_null($this->container['permissions']) && !in_array($this->container['permissions'], $allowedValues, true)) {
+        if ($this->container['title'] === null) {
+            $invalidProperties[] = "'title' can't be null";
+        }
+        if ((mb_strlen($this->container['title']) > 128)) {
+            $invalidProperties[] = "invalid value for 'title', the character length must be smaller than or equal to 128.";
+        }
+
+        if ((mb_strlen($this->container['title']) < 1)) {
+            $invalidProperties[] = "invalid value for 'title', the character length must be bigger than or equal to 1.";
+        }
+
+        if (!is_null($this->container['description']) && (mb_strlen($this->container['description']) > 256)) {
+            $invalidProperties[] = "invalid value for 'description', the character length must be smaller than or equal to 256.";
+        }
+
+        $allowedValues = $this->getCurrencyAllowableValues();
+        if (!is_null($this->container['currency']) && !in_array($this->container['currency'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'permissions', must be one of '%s'",
-                $this->container['permissions'],
+                "invalid value '%s' for 'currency', must be one of '%s'",
+                $this->container['currency'],
                 implode("', '", $allowedValues)
             );
+        }
+
+        if (!is_null($this->container['external_id']) && (mb_strlen($this->container['external_id']) > 128)) {
+            $invalidProperties[] = "invalid value for 'external_id', the character length must be smaller than or equal to 128.";
         }
 
         return $invalidProperties;
@@ -413,28 +402,72 @@ class NoFrixionMoneyMoovModelsTokenAdd implements ModelInterface, ArrayAccess, \
 
 
     /**
-     * Gets merchant_id
+     * Gets document_type
      *
      * @return string
      */
-    public function getMerchantId()
+    public function getDocumentType()
     {
-        return $this->container['merchant_id'];
+        return $this->container['document_type'];
     }
 
     /**
-     * Sets merchant_id
+     * Sets document_type
      *
-     * @param string $merchant_id The merchant id to add to the token
+     * @param string $document_type Type of the document.
      *
      * @return self
      */
-    public function setMerchantId($merchant_id)
+    public function setDocumentType($document_type)
     {
-        if (is_null($merchant_id)) {
-            throw new \InvalidArgumentException('non-nullable merchant_id cannot be null');
+        if (is_null($document_type)) {
+            throw new \InvalidArgumentException('non-nullable document_type cannot be null');
         }
-        $this->container['merchant_id'] = $merchant_id;
+        $allowedValues = $this->getDocumentTypeAllowableValues();
+        if (!in_array($document_type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'document_type', must be one of '%s'",
+                    $document_type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['document_type'] = $document_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->container['title'];
+    }
+
+    /**
+     * Sets title
+     *
+     * @param string $title Used to identify the document.
+     *
+     * @return self
+     */
+    public function setTitle($title)
+    {
+        if (is_null($title)) {
+            throw new \InvalidArgumentException('non-nullable title cannot be null');
+        }
+        if ((mb_strlen($title) > 128)) {
+            throw new \InvalidArgumentException('invalid length for $title when calling NoFrixionMoneyMoovModelsPayoutDocumentCreate., must be smaller than or equal to 128.');
+        }
+        if ((mb_strlen($title) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $title when calling NoFrixionMoneyMoovModelsPayoutDocumentCreate., must be bigger than or equal to 1.');
+        }
+
+        $this->container['title'] = $title;
 
         return $this;
     }
@@ -442,7 +475,7 @@ class NoFrixionMoneyMoovModelsTokenAdd implements ModelInterface, ArrayAccess, \
     /**
      * Gets description
      *
-     * @return string
+     * @return string|null
      */
     public function getDescription()
     {
@@ -452,18 +485,24 @@ class NoFrixionMoneyMoovModelsTokenAdd implements ModelInterface, ArrayAccess, \
     /**
      * Sets description
      *
-     * @param string $description Token description
+     * @param string|null $description Additional information about the document. Optional.
      *
      * @return self
      */
     public function setDescription($description)
     {
         if (is_null($description)) {
-            throw new \InvalidArgumentException('non-nullable description cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'description');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('description', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-
-        if ((mb_strlen($description) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $description when calling NoFrixionMoneyMoovModelsTokenAdd., must be bigger than or equal to 1.');
+        if (!is_null($description) && (mb_strlen($description) > 256)) {
+            throw new \InvalidArgumentException('invalid length for $description when calling NoFrixionMoneyMoovModelsPayoutDocumentCreate., must be smaller than or equal to 256.');
         }
 
         $this->container['description'] = $description;
@@ -472,75 +511,117 @@ class NoFrixionMoneyMoovModelsTokenAdd implements ModelInterface, ArrayAccess, \
     }
 
     /**
-     * Gets hmac_algorithm
+     * Gets currency
      *
      * @return string|null
      */
-    public function getHmacAlgorithm()
+    public function getCurrency()
     {
-        return $this->container['hmac_algorithm'];
+        return $this->container['currency'];
     }
 
     /**
-     * Sets hmac_algorithm
+     * Sets currency
      *
-     * @param string|null $hmac_algorithm Optional shared secret algorithm to use for HMAC authentication. If set a shared secret will be   returned when the token is intially created but not on any subsequent retrievals.
+     * @param string|null $currency Currency of the document, if applicable. Optional.
      *
      * @return self
      */
-    public function setHmacAlgorithm($hmac_algorithm)
+    public function setCurrency($currency)
     {
-        if (is_null($hmac_algorithm)) {
-            throw new \InvalidArgumentException('non-nullable hmac_algorithm cannot be null');
+        if (is_null($currency)) {
+            array_push($this->openAPINullablesSetToNull, 'currency');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('currency', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $allowedValues = $this->getHmacAlgorithmAllowableValues();
-        if (!in_array($hmac_algorithm, $allowedValues, true)) {
+        $allowedValues = $this->getCurrencyAllowableValues();
+        if (!is_null($currency) && !in_array($currency, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'hmac_algorithm', must be one of '%s'",
-                    $hmac_algorithm,
+                    "Invalid value '%s' for 'currency', must be one of '%s'",
+                    $currency,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['hmac_algorithm'] = $hmac_algorithm;
+        $this->container['currency'] = $currency;
 
         return $this;
     }
 
     /**
-     * Gets permissions
+     * Gets amount
      *
-     * @return string|null
+     * @return float|null
      */
-    public function getPermissions()
+    public function getAmount()
     {
-        return $this->container['permissions'];
+        return $this->container['amount'];
     }
 
     /**
-     * Sets permissions
+     * Sets amount
      *
-     * @param string|null $permissions permissions
+     * @param float|null $amount Amount of the document, if applicable. Optional.
      *
      * @return self
      */
-    public function setPermissions($permissions)
+    public function setAmount($amount)
     {
-        if (is_null($permissions)) {
-            throw new \InvalidArgumentException('non-nullable permissions cannot be null');
+        if (is_null($amount)) {
+            array_push($this->openAPINullablesSetToNull, 'amount');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('amount', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $allowedValues = $this->getPermissionsAllowableValues();
-        if (!in_array($permissions, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'permissions', must be one of '%s'",
-                    $permissions,
-                    implode("', '", $allowedValues)
-                )
-            );
+        $this->container['amount'] = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Gets external_id
+     *
+     * @return string|null
+     */
+    public function getExternalId()
+    {
+        return $this->container['external_id'];
+    }
+
+    /**
+     * Sets external_id
+     *
+     * @param string|null $external_id Allows to associate an external ID to the document. Optional.
+     *
+     * @return self
+     */
+    public function setExternalId($external_id)
+    {
+        if (is_null($external_id)) {
+            array_push($this->openAPINullablesSetToNull, 'external_id');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('external_id', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
-        $this->container['permissions'] = $permissions;
+        if (!is_null($external_id) && (mb_strlen($external_id) > 128)) {
+            throw new \InvalidArgumentException('invalid length for $external_id when calling NoFrixionMoneyMoovModelsPayoutDocumentCreate., must be smaller than or equal to 128.');
+        }
+
+        $this->container['external_id'] = $external_id;
 
         return $this;
     }

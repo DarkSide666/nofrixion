@@ -1,6 +1,6 @@
 <?php
 /**
- * NoFrixionMoneyMoovModelsTokenAddTest
+ * NoFrixionMoneyMoovModelsApproveAuthorisationTest
  *
  * PHP version 7.4
  *
@@ -31,15 +31,15 @@ namespace Nofrixion\Client\Test\Model;
 use PHPUnit\Framework\TestCase;
 
 /**
- * NoFrixionMoneyMoovModelsTokenAddTest Class Doc Comment
+ * NoFrixionMoneyMoovModelsApproveAuthorisationTest Class Doc Comment
  *
  * @category    Class
- * @description NoFrixionMoneyMoovModelsTokenAdd
+ * @description NoFrixionMoneyMoovModelsApproveAuthorisation
  * @package     Nofrixion\Client
  * @author      OpenAPI Generator team
  * @link        https://openapi-generator.tech
  */
-class NoFrixionMoneyMoovModelsTokenAddTest extends TestCase
+class NoFrixionMoneyMoovModelsApproveAuthorisationTest extends TestCase
 {
 
     /**
@@ -71,45 +71,27 @@ class NoFrixionMoneyMoovModelsTokenAddTest extends TestCase
     }
 
     /**
-     * Test "NoFrixionMoneyMoovModelsTokenAdd"
+     * Test "NoFrixionMoneyMoovModelsApproveAuthorisation"
      */
-    public function testNoFrixionMoneyMoovModelsTokenAdd()
+    public function testNoFrixionMoneyMoovModelsApproveAuthorisation()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "merchant_id"
+     * Test attribute "user"
      */
-    public function testPropertyMerchantId()
+    public function testPropertyUser()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test attribute "description"
+     * Test attribute "timestamp"
      */
-    public function testPropertyDescription()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "hmac_algorithm"
-     */
-    public function testPropertyHmacAlgorithm()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "permissions"
-     */
-    public function testPropertyPermissions()
+    public function testPropertyTimestamp()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

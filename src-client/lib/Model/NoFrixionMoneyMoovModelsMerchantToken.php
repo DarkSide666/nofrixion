@@ -63,7 +63,12 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
         'permissions' => 'string',
         'inserted' => '\DateTime',
         'last_updated' => '\DateTime',
-        'token' => 'string'
+        'token' => 'string',
+        'is_enabled' => 'bool',
+        'shared_secret_algorithm' => 'string',
+        'shared_secret_base64' => 'string',
+        'request_signature_version' => 'int',
+        'expires_at' => '\DateTime'
     ];
 
     /**
@@ -80,7 +85,12 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
         'permissions' => null,
         'inserted' => 'date-time',
         'last_updated' => 'date-time',
-        'token' => null
+        'token' => null,
+        'is_enabled' => null,
+        'shared_secret_algorithm' => null,
+        'shared_secret_base64' => null,
+        'request_signature_version' => 'int32',
+        'expires_at' => 'date-time'
     ];
 
     /**
@@ -95,7 +105,12 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
         'permissions' => false,
         'inserted' => false,
         'last_updated' => false,
-        'token' => true
+        'token' => true,
+        'is_enabled' => false,
+        'shared_secret_algorithm' => false,
+        'shared_secret_base64' => true,
+        'request_signature_version' => false,
+        'expires_at' => true
     ];
 
     /**
@@ -190,7 +205,12 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
         'permissions' => 'permissions',
         'inserted' => 'inserted',
         'last_updated' => 'lastUpdated',
-        'token' => 'token'
+        'token' => 'token',
+        'is_enabled' => 'isEnabled',
+        'shared_secret_algorithm' => 'sharedSecretAlgorithm',
+        'shared_secret_base64' => 'sharedSecretBase64',
+        'request_signature_version' => 'requestSignatureVersion',
+        'expires_at' => 'expiresAt'
     ];
 
     /**
@@ -205,7 +225,12 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
         'permissions' => 'setPermissions',
         'inserted' => 'setInserted',
         'last_updated' => 'setLastUpdated',
-        'token' => 'setToken'
+        'token' => 'setToken',
+        'is_enabled' => 'setIsEnabled',
+        'shared_secret_algorithm' => 'setSharedSecretAlgorithm',
+        'shared_secret_base64' => 'setSharedSecretBase64',
+        'request_signature_version' => 'setRequestSignatureVersion',
+        'expires_at' => 'setExpiresAt'
     ];
 
     /**
@@ -220,7 +245,12 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
         'permissions' => 'getPermissions',
         'inserted' => 'getInserted',
         'last_updated' => 'getLastUpdated',
-        'token' => 'getToken'
+        'token' => 'getToken',
+        'is_enabled' => 'getIsEnabled',
+        'shared_secret_algorithm' => 'getSharedSecretAlgorithm',
+        'shared_secret_base64' => 'getSharedSecretBase64',
+        'request_signature_version' => 'getRequestSignatureVersion',
+        'expires_at' => 'getExpiresAt'
     ];
 
     /**
@@ -284,6 +314,12 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
     public const PERMISSIONS_OPEN_BANKING_ACCOUNT_INFORMATION = 'OpenBankingAccountInformation';
     public const PERMISSIONS_CREATE_DIRECT_DEBIT_MANDATE = 'CreateDirectDebitMandate';
     public const PERMISSIONS_SUBMIT_DIRECT_DEBIT_PAYMENT = 'SubmitDirectDebitPayment';
+    public const PERMISSIONS_VIEW_TRANSACTIONS = 'ViewTransactions';
+    public const SHARED_SECRET_ALGORITHM_NONE = 'None';
+    public const SHARED_SECRET_ALGORITHM_HMAC_SHA1 = 'HMAC_SHA1';
+    public const SHARED_SECRET_ALGORITHM_HMAC_SHA256 = 'HMAC_SHA256';
+    public const SHARED_SECRET_ALGORITHM_HMAC_SHA384 = 'HMAC_SHA384';
+    public const SHARED_SECRET_ALGORITHM_HMAC_SHA512 = 'HMAC_SHA512';
 
     /**
      * Gets allowable values of the enum
@@ -313,6 +349,23 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
             self::PERMISSIONS_OPEN_BANKING_ACCOUNT_INFORMATION,
             self::PERMISSIONS_CREATE_DIRECT_DEBIT_MANDATE,
             self::PERMISSIONS_SUBMIT_DIRECT_DEBIT_PAYMENT,
+            self::PERMISSIONS_VIEW_TRANSACTIONS,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getSharedSecretAlgorithmAllowableValues()
+    {
+        return [
+            self::SHARED_SECRET_ALGORITHM_NONE,
+            self::SHARED_SECRET_ALGORITHM_HMAC_SHA1,
+            self::SHARED_SECRET_ALGORITHM_HMAC_SHA256,
+            self::SHARED_SECRET_ALGORITHM_HMAC_SHA384,
+            self::SHARED_SECRET_ALGORITHM_HMAC_SHA512,
         ];
     }
 
@@ -338,6 +391,11 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
         $this->setIfExists('inserted', $data ?? [], null);
         $this->setIfExists('last_updated', $data ?? [], null);
         $this->setIfExists('token', $data ?? [], null);
+        $this->setIfExists('is_enabled', $data ?? [], null);
+        $this->setIfExists('shared_secret_algorithm', $data ?? [], null);
+        $this->setIfExists('shared_secret_base64', $data ?? [], null);
+        $this->setIfExists('request_signature_version', $data ?? [], null);
+        $this->setIfExists('expires_at', $data ?? [], null);
     }
 
     /**
@@ -372,6 +430,15 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'permissions', must be one of '%s'",
                 $this->container['permissions'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getSharedSecretAlgorithmAllowableValues();
+        if (!is_null($this->container['shared_secret_algorithm']) && !in_array($this->container['shared_secret_algorithm'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'shared_secret_algorithm', must be one of '%s'",
+                $this->container['shared_secret_algorithm'],
                 implode("', '", $allowedValues)
             );
         }
@@ -600,6 +667,165 @@ class NoFrixionMoneyMoovModelsMerchantToken implements ModelInterface, ArrayAcce
             }
         }
         $this->container['token'] = $token;
+
+        return $this;
+    }
+
+    /**
+     * Gets is_enabled
+     *
+     * @return bool|null
+     */
+    public function getIsEnabled()
+    {
+        return $this->container['is_enabled'];
+    }
+
+    /**
+     * Sets is_enabled
+     *
+     * @param bool|null $is_enabled If set to false the merchant token will not be accepted to authorise a request.
+     *
+     * @return self
+     */
+    public function setIsEnabled($is_enabled)
+    {
+        if (is_null($is_enabled)) {
+            throw new \InvalidArgumentException('non-nullable is_enabled cannot be null');
+        }
+        $this->container['is_enabled'] = $is_enabled;
+
+        return $this;
+    }
+
+    /**
+     * Gets shared_secret_algorithm
+     *
+     * @return string|null
+     */
+    public function getSharedSecretAlgorithm()
+    {
+        return $this->container['shared_secret_algorithm'];
+    }
+
+    /**
+     * Sets shared_secret_algorithm
+     *
+     * @param string|null $shared_secret_algorithm Optional shared secret algorithm to use for HMAC authentication.
+     *
+     * @return self
+     */
+    public function setSharedSecretAlgorithm($shared_secret_algorithm)
+    {
+        if (is_null($shared_secret_algorithm)) {
+            throw new \InvalidArgumentException('non-nullable shared_secret_algorithm cannot be null');
+        }
+        $allowedValues = $this->getSharedSecretAlgorithmAllowableValues();
+        if (!in_array($shared_secret_algorithm, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'shared_secret_algorithm', must be one of '%s'",
+                    $shared_secret_algorithm,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['shared_secret_algorithm'] = $shared_secret_algorithm;
+
+        return $this;
+    }
+
+    /**
+     * Gets shared_secret_base64
+     *
+     * @return string|null
+     */
+    public function getSharedSecretBase64()
+    {
+        return $this->container['shared_secret_base64'];
+    }
+
+    /**
+     * Sets shared_secret_base64
+     *
+     * @param string|null $shared_secret_base64 The base 64 encoded shared secret that is used for request authentication with an HMAC.  Note this property will ONLY be set when the token is initially created. It is not possible  to retrieve the secret afterwards. If it is lost a new token should be created.
+     *
+     * @return self
+     */
+    public function setSharedSecretBase64($shared_secret_base64)
+    {
+        if (is_null($shared_secret_base64)) {
+            array_push($this->openAPINullablesSetToNull, 'shared_secret_base64');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('shared_secret_base64', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['shared_secret_base64'] = $shared_secret_base64;
+
+        return $this;
+    }
+
+    /**
+     * Gets request_signature_version
+     *
+     * @return int|null
+     */
+    public function getRequestSignatureVersion()
+    {
+        return $this->container['request_signature_version'];
+    }
+
+    /**
+     * Sets request_signature_version
+     *
+     * @param int|null $request_signature_version Represent the version of the overall merchant token. This field is to allow the secret and public key mechanisms to  vary over time. For example if the HTTP header fields to include in the algorithms change this version will faciliatate  keeping track of which signature versions a particular merchant token is using.
+     *
+     * @return self
+     */
+    public function setRequestSignatureVersion($request_signature_version)
+    {
+        if (is_null($request_signature_version)) {
+            throw new \InvalidArgumentException('non-nullable request_signature_version cannot be null');
+        }
+        $this->container['request_signature_version'] = $request_signature_version;
+
+        return $this;
+    }
+
+    /**
+     * Gets expires_at
+     *
+     * @return \DateTime|null
+     */
+    public function getExpiresAt()
+    {
+        return $this->container['expires_at'];
+    }
+
+    /**
+     * Sets expires_at
+     *
+     * @param \DateTime|null $expires_at Optional. If set indicates the merchant token is not valid after the specified expiry date.
+     *
+     * @return self
+     */
+    public function setExpiresAt($expires_at)
+    {
+        if (is_null($expires_at)) {
+            array_push($this->openAPINullablesSetToNull, 'expires_at');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('expires_at', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['expires_at'] = $expires_at;
 
         return $this;
     }
