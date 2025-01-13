@@ -152,36 +152,9 @@ class NoFrixionMoneyMoovModelsPayrunInvoiceTest extends TestCase
     }
 
     /**
-     * Test attribute "destination_account_name"
+     * Test attribute "destination"
      */
-    public function testPropertyDestinationAccountName()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "destination_iban"
-     */
-    public function testPropertyDestinationIban()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "destination_account_number"
-     */
-    public function testPropertyDestinationAccountNumber()
-    {
-        // TODO: implement
-        self::markTestIncomplete('Not implemented');
-    }
-
-    /**
-     * Test attribute "destination_sort_code"
-     */
-    public function testPropertyDestinationSortCode()
+    public function testPropertyDestination()
     {
         // TODO: implement
         self::markTestIncomplete('Not implemented');

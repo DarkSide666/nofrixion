@@ -65,10 +65,7 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'date' => '\DateTime',
         'due_date' => '\DateTime',
         'contact' => 'string',
-        'destination_account_name' => 'string',
-        'destination_iban' => 'string',
-        'destination_account_number' => 'string',
-        'destination_sort_code' => 'string',
+        'destination' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCounterparty',
         'currency' => 'string',
         'discounts' => 'float',
         'taxes' => 'float',
@@ -101,10 +98,7 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'date' => 'date-time',
         'due_date' => 'date-time',
         'contact' => null,
-        'destination_account_name' => null,
-        'destination_iban' => null,
-        'destination_account_number' => null,
-        'destination_sort_code' => null,
+        'destination' => null,
         'currency' => null,
         'discounts' => 'double',
         'taxes' => 'double',
@@ -135,10 +129,7 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'date' => false,
         'due_date' => false,
         'contact' => true,
-        'destination_account_name' => false,
-        'destination_iban' => true,
-        'destination_account_number' => true,
-        'destination_sort_code' => true,
+        'destination' => false,
         'currency' => false,
         'discounts' => true,
         'taxes' => true,
@@ -249,10 +240,7 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'date' => 'date',
         'due_date' => 'dueDate',
         'contact' => 'contact',
-        'destination_account_name' => 'destinationAccountName',
-        'destination_iban' => 'destinationIban',
-        'destination_account_number' => 'destinationAccountNumber',
-        'destination_sort_code' => 'destinationSortCode',
+        'destination' => 'destination',
         'currency' => 'currency',
         'discounts' => 'discounts',
         'taxes' => 'taxes',
@@ -283,10 +271,7 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'date' => 'setDate',
         'due_date' => 'setDueDate',
         'contact' => 'setContact',
-        'destination_account_name' => 'setDestinationAccountName',
-        'destination_iban' => 'setDestinationIban',
-        'destination_account_number' => 'setDestinationAccountNumber',
-        'destination_sort_code' => 'setDestinationSortCode',
+        'destination' => 'setDestination',
         'currency' => 'setCurrency',
         'discounts' => 'setDiscounts',
         'taxes' => 'setTaxes',
@@ -317,10 +302,7 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         'date' => 'getDate',
         'due_date' => 'getDueDate',
         'contact' => 'getContact',
-        'destination_account_name' => 'getDestinationAccountName',
-        'destination_iban' => 'getDestinationIban',
-        'destination_account_number' => 'getDestinationAccountNumber',
-        'destination_sort_code' => 'getDestinationSortCode',
+        'destination' => 'getDestination',
         'currency' => 'getCurrency',
         'discounts' => 'getDiscounts',
         'taxes' => 'getTaxes',
@@ -421,10 +403,7 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         $this->setIfExists('date', $data ?? [], null);
         $this->setIfExists('due_date', $data ?? [], null);
         $this->setIfExists('contact', $data ?? [], null);
-        $this->setIfExists('destination_account_name', $data ?? [], null);
-        $this->setIfExists('destination_iban', $data ?? [], null);
-        $this->setIfExists('destination_account_number', $data ?? [], null);
-        $this->setIfExists('destination_sort_code', $data ?? [], null);
+        $this->setIfExists('destination', $data ?? [], null);
         $this->setIfExists('currency', $data ?? [], null);
         $this->setIfExists('discounts', $data ?? [], null);
         $this->setIfExists('taxes', $data ?? [], null);
@@ -473,13 +452,6 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
         }
         if ((mb_strlen($this->container['invoice_reference']) < 1)) {
             $invalidProperties[] = "invalid value for 'invoice_reference', the character length must be bigger than or equal to 1.";
-        }
-
-        if ($this->container['destination_account_name'] === null) {
-            $invalidProperties[] = "'destination_account_name' can't be null";
-        }
-        if ((mb_strlen($this->container['destination_account_name']) < 1)) {
-            $invalidProperties[] = "invalid value for 'destination_account_name', the character length must be bigger than or equal to 1.";
         }
 
         if ($this->container['currency'] === null) {
@@ -759,135 +731,28 @@ class NoFrixionMoneyMoovModelsPayrunInvoice implements ModelInterface, ArrayAcce
     }
 
     /**
-     * Gets destination_account_name
+     * Gets destination
      *
-     * @return string
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCounterparty|null
      */
-    public function getDestinationAccountName()
+    public function getDestination()
     {
-        return $this->container['destination_account_name'];
+        return $this->container['destination'];
     }
 
     /**
-     * Sets destination_account_name
+     * Sets destination
      *
-     * @param string $destination_account_name destination_account_name
+     * @param \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCounterparty|null $destination destination
      *
      * @return self
      */
-    public function setDestinationAccountName($destination_account_name)
+    public function setDestination($destination)
     {
-        if (is_null($destination_account_name)) {
-            throw new \InvalidArgumentException('non-nullable destination_account_name cannot be null');
+        if (is_null($destination)) {
+            throw new \InvalidArgumentException('non-nullable destination cannot be null');
         }
-
-        if ((mb_strlen($destination_account_name) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $destination_account_name when calling NoFrixionMoneyMoovModelsPayrunInvoice., must be bigger than or equal to 1.');
-        }
-
-        $this->container['destination_account_name'] = $destination_account_name;
-
-        return $this;
-    }
-
-    /**
-     * Gets destination_iban
-     *
-     * @return string|null
-     */
-    public function getDestinationIban()
-    {
-        return $this->container['destination_iban'];
-    }
-
-    /**
-     * Sets destination_iban
-     *
-     * @param string|null $destination_iban destination_iban
-     *
-     * @return self
-     */
-    public function setDestinationIban($destination_iban)
-    {
-        if (is_null($destination_iban)) {
-            array_push($this->openAPINullablesSetToNull, 'destination_iban');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('destination_iban', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['destination_iban'] = $destination_iban;
-
-        return $this;
-    }
-
-    /**
-     * Gets destination_account_number
-     *
-     * @return string|null
-     */
-    public function getDestinationAccountNumber()
-    {
-        return $this->container['destination_account_number'];
-    }
-
-    /**
-     * Sets destination_account_number
-     *
-     * @param string|null $destination_account_number destination_account_number
-     *
-     * @return self
-     */
-    public function setDestinationAccountNumber($destination_account_number)
-    {
-        if (is_null($destination_account_number)) {
-            array_push($this->openAPINullablesSetToNull, 'destination_account_number');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('destination_account_number', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['destination_account_number'] = $destination_account_number;
-
-        return $this;
-    }
-
-    /**
-     * Gets destination_sort_code
-     *
-     * @return string|null
-     */
-    public function getDestinationSortCode()
-    {
-        return $this->container['destination_sort_code'];
-    }
-
-    /**
-     * Sets destination_sort_code
-     *
-     * @param string|null $destination_sort_code destination_sort_code
-     *
-     * @return self
-     */
-    public function setDestinationSortCode($destination_sort_code)
-    {
-        if (is_null($destination_sort_code)) {
-            array_push($this->openAPINullablesSetToNull, 'destination_sort_code');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('destination_sort_code', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['destination_sort_code'] = $destination_sort_code;
+        $this->container['destination'] = $destination;
 
         return $this;
     }

@@ -348,4 +348,13 @@ class NoFrixionMoneyMoovModelsPaymentAccountTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "supplier_sepa_instant_status"
+     */
+    public function testPropertySupplierSepaInstantStatus()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

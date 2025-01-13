@@ -548,6 +548,15 @@ class NoFrixionMoneyMoovModelsPaymentRequestTest extends TestCase
     }
 
     /**
+     * Test attribute "destination_account"
+     */
+    public function testPropertyDestinationAccount()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "customer_name"
      */
     public function testPropertyCustomerName()

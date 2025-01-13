@@ -56,6 +56,7 @@ Name | Type | Description | Notes
 **merchant_token_description** | **string** | Description of the merchant token in case the Payment request was created using a merchant token. | [optional]
 **formatted_amount** | **string** |  | [optional] [readonly]
 **lightning_invoice_expires_at** | **\DateTime** | Date and time of expiration of the lightning invoice. | [optional]
+**destination_account** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount**](NoFrixionMoneyMoovModelsPaymentAccount.md) |  | [optional]
 **customer_name** | **string** |  | [optional] [readonly]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

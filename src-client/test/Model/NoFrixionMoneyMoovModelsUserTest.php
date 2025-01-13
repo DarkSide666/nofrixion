@@ -150,4 +150,13 @@ class NoFrixionMoneyMoovModelsUserTest extends TestCase
         // TODO: implement
         self::markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "role_names_formatted"
+     */
+    public function testPropertyRoleNamesFormatted()
+    {
+        // TODO: implement
+        self::markTestIncomplete('Not implemented');
+    }
 }

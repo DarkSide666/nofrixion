@@ -109,6 +109,7 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'merchant_token_description' => 'string',
         'formatted_amount' => 'string',
         'lightning_invoice_expires_at' => '\DateTime',
+        'destination_account' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount',
         'customer_name' => 'string'
     ];
 
@@ -172,6 +173,7 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'merchant_token_description' => null,
         'formatted_amount' => null,
         'lightning_invoice_expires_at' => 'date-time',
+        'destination_account' => null,
         'customer_name' => null
     ];
 
@@ -233,6 +235,7 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'merchant_token_description' => true,
         'formatted_amount' => true,
         'lightning_invoice_expires_at' => true,
+        'destination_account' => false,
         'customer_name' => true
     ];
 
@@ -374,6 +377,7 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'merchant_token_description' => 'merchantTokenDescription',
         'formatted_amount' => 'formattedAmount',
         'lightning_invoice_expires_at' => 'lightningInvoiceExpiresAt',
+        'destination_account' => 'destinationAccount',
         'customer_name' => 'customerName'
     ];
 
@@ -435,6 +439,7 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'merchant_token_description' => 'setMerchantTokenDescription',
         'formatted_amount' => 'setFormattedAmount',
         'lightning_invoice_expires_at' => 'setLightningInvoiceExpiresAt',
+        'destination_account' => 'setDestinationAccount',
         'customer_name' => 'setCustomerName'
     ];
 
@@ -496,6 +501,7 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         'merchant_token_description' => 'getMerchantTokenDescription',
         'formatted_amount' => 'getFormattedAmount',
         'lightning_invoice_expires_at' => 'getLightningInvoiceExpiresAt',
+        'destination_account' => 'getDestinationAccount',
         'customer_name' => 'getCustomerName'
     ];
 
@@ -754,6 +760,7 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
         $this->setIfExists('merchant_token_description', $data ?? [], null);
         $this->setIfExists('formatted_amount', $data ?? [], null);
         $this->setIfExists('lightning_invoice_expires_at', $data ?? [], null);
+        $this->setIfExists('destination_account', $data ?? [], null);
         $this->setIfExists('customer_name', $data ?? [], null);
     }
 
@@ -2520,6 +2527,33 @@ class NoFrixionMoneyMoovModelsPaymentRequest implements ModelInterface, ArrayAcc
             }
         }
         $this->container['lightning_invoice_expires_at'] = $lightning_invoice_expires_at;
+
+        return $this;
+    }
+
+    /**
+     * Gets destination_account
+     *
+     * @return \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount|null
+     */
+    public function getDestinationAccount()
+    {
+        return $this->container['destination_account'];
+    }
+
+    /**
+     * Sets destination_account
+     *
+     * @param \Nofrixion\Client\Model\NoFrixionMoneyMoovModelsPaymentAccount|null $destination_account destination_account
+     *
+     * @return self
+     */
+    public function setDestinationAccount($destination_account)
+    {
+        if (is_null($destination_account)) {
+            throw new \InvalidArgumentException('non-nullable destination_account cannot be null');
+        }
+        $this->container['destination_account'] = $destination_account;
 
         return $this;
     }

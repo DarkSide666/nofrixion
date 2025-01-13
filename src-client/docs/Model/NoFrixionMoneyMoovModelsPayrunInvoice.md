@@ -12,10 +12,7 @@ Name | Type | Description | Notes
 **date** | **\DateTime** |  | [optional]
 **due_date** | **\DateTime** |  | [optional]
 **contact** | **string** |  | [optional]
-**destination_account_name** | **string** |  |
-**destination_iban** | **string** |  | [optional]
-**destination_account_number** | **string** |  | [optional]
-**destination_sort_code** | **string** |  | [optional]
+**destination** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsCounterparty**](NoFrixionMoneyMoovModelsCounterparty.md) |  | [optional]
 **currency** | **string** |  |
 **discounts** | **float** |  | [optional]
 **taxes** | **float** |  | [optional]

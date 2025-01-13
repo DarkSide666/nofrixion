@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **two_factor_enabled** | **bool** |  | [optional]
 **passkey_added** | **bool** |  | [optional]
 **permissions** | [**\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserRolePermissions**](NoFrixionMoneyMoovModelsUserRolePermissions.md) |  | [optional]
+**role_names_formatted** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

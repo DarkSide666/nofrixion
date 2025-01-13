@@ -64,7 +64,8 @@ class NoFrixionMoneyMoovModelsUser implements ModelInterface, ArrayAccess, \Json
         'roles' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserRole[]',
         'two_factor_enabled' => 'bool',
         'passkey_added' => 'bool',
-        'permissions' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserRolePermissions'
+        'permissions' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUserRolePermissions',
+        'role_names_formatted' => 'string'
     ];
 
     /**
@@ -82,7 +83,8 @@ class NoFrixionMoneyMoovModelsUser implements ModelInterface, ArrayAccess, \Json
         'roles' => null,
         'two_factor_enabled' => null,
         'passkey_added' => null,
-        'permissions' => null
+        'permissions' => null,
+        'role_names_formatted' => null
     ];
 
     /**
@@ -98,7 +100,8 @@ class NoFrixionMoneyMoovModelsUser implements ModelInterface, ArrayAccess, \Json
         'roles' => true,
         'two_factor_enabled' => false,
         'passkey_added' => false,
-        'permissions' => false
+        'permissions' => false,
+        'role_names_formatted' => true
     ];
 
     /**
@@ -194,7 +197,8 @@ class NoFrixionMoneyMoovModelsUser implements ModelInterface, ArrayAccess, \Json
         'roles' => 'roles',
         'two_factor_enabled' => 'twoFactorEnabled',
         'passkey_added' => 'passkeyAdded',
-        'permissions' => 'permissions'
+        'permissions' => 'permissions',
+        'role_names_formatted' => 'roleNamesFormatted'
     ];
 
     /**
@@ -210,7 +214,8 @@ class NoFrixionMoneyMoovModelsUser implements ModelInterface, ArrayAccess, \Json
         'roles' => 'setRoles',
         'two_factor_enabled' => 'setTwoFactorEnabled',
         'passkey_added' => 'setPasskeyAdded',
-        'permissions' => 'setPermissions'
+        'permissions' => 'setPermissions',
+        'role_names_formatted' => 'setRoleNamesFormatted'
     ];
 
     /**
@@ -226,7 +231,8 @@ class NoFrixionMoneyMoovModelsUser implements ModelInterface, ArrayAccess, \Json
         'roles' => 'getRoles',
         'two_factor_enabled' => 'getTwoFactorEnabled',
         'passkey_added' => 'getPasskeyAdded',
-        'permissions' => 'getPermissions'
+        'permissions' => 'getPermissions',
+        'role_names_formatted' => 'getRoleNamesFormatted'
     ];
 
     /**
@@ -294,6 +300,7 @@ class NoFrixionMoneyMoovModelsUser implements ModelInterface, ArrayAccess, \Json
         $this->setIfExists('two_factor_enabled', $data ?? [], null);
         $this->setIfExists('passkey_added', $data ?? [], null);
         $this->setIfExists('permissions', $data ?? [], null);
+        $this->setIfExists('role_names_formatted', $data ?? [], null);
     }
 
     /**
@@ -593,6 +600,40 @@ class NoFrixionMoneyMoovModelsUser implements ModelInterface, ArrayAccess, \Json
             throw new \InvalidArgumentException('non-nullable permissions cannot be null');
         }
         $this->container['permissions'] = $permissions;
+
+        return $this;
+    }
+
+    /**
+     * Gets role_names_formatted
+     *
+     * @return string|null
+     */
+    public function getRoleNamesFormatted()
+    {
+        return $this->container['role_names_formatted'];
+    }
+
+    /**
+     * Sets role_names_formatted
+     *
+     * @param string|null $role_names_formatted role_names_formatted
+     *
+     * @return self
+     */
+    public function setRoleNamesFormatted($role_names_formatted)
+    {
+        if (is_null($role_names_formatted)) {
+            array_push($this->openAPINullablesSetToNull, 'role_names_formatted');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('role_names_formatted', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['role_names_formatted'] = $role_names_formatted;
 
         return $this;
     }

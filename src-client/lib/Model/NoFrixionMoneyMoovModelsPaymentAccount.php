@@ -86,7 +86,8 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'created_by' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsUser',
         'default_payment_rail' => 'string',
         'rules' => '\Nofrixion\Client\Model\NoFrixionMoneyMoovModelsRuleMinimal[]',
-        'is_archived' => 'bool'
+        'is_archived' => 'bool',
+        'supplier_sepa_instant_status' => 'string'
     ];
 
     /**
@@ -126,7 +127,8 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'created_by' => null,
         'default_payment_rail' => null,
         'rules' => null,
-        'is_archived' => null
+        'is_archived' => null,
+        'supplier_sepa_instant_status' => null
     ];
 
     /**
@@ -164,7 +166,8 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'created_by' => false,
         'default_payment_rail' => false,
         'rules' => true,
-        'is_archived' => false
+        'is_archived' => false,
+        'supplier_sepa_instant_status' => true
     ];
 
     /**
@@ -282,7 +285,8 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'created_by' => 'createdBy',
         'default_payment_rail' => 'defaultPaymentRail',
         'rules' => 'rules',
-        'is_archived' => 'isArchived'
+        'is_archived' => 'isArchived',
+        'supplier_sepa_instant_status' => 'supplierSepaInstantStatus'
     ];
 
     /**
@@ -320,7 +324,8 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'created_by' => 'setCreatedBy',
         'default_payment_rail' => 'setDefaultPaymentRail',
         'rules' => 'setRules',
-        'is_archived' => 'setIsArchived'
+        'is_archived' => 'setIsArchived',
+        'supplier_sepa_instant_status' => 'setSupplierSepaInstantStatus'
     ];
 
     /**
@@ -358,7 +363,8 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         'created_by' => 'getCreatedBy',
         'default_payment_rail' => 'getDefaultPaymentRail',
         'rules' => 'getRules',
-        'is_archived' => 'getIsArchived'
+        'is_archived' => 'getIsArchived',
+        'supplier_sepa_instant_status' => 'getSupplierSepaInstantStatus'
     ];
 
     /**
@@ -436,6 +442,10 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
     public const DEFAULT_PAYMENT_RAIL_SEPA_CT = 'SEPA_CT';
     public const DEFAULT_PAYMENT_RAIL_SEPA_INST = 'SEPA_INST';
     public const DEFAULT_PAYMENT_RAIL_TARGET2 = 'TARGET2';
+    public const SUPPLIER_SEPA_INSTANT_STATUS_NONE = 'None';
+    public const SUPPLIER_SEPA_INSTANT_STATUS_IN_PROGRESS = 'InProgress';
+    public const SUPPLIER_SEPA_INSTANT_STATUS_ENABLED = 'Enabled';
+    public const SUPPLIER_SEPA_INSTANT_STATUS_DISABLED = 'Disabled';
 
     /**
      * Gets allowable values of the enum
@@ -527,6 +537,21 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
     }
 
     /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getSupplierSepaInstantStatusAllowableValues()
+    {
+        return [
+            self::SUPPLIER_SEPA_INSTANT_STATUS_NONE,
+            self::SUPPLIER_SEPA_INSTANT_STATUS_IN_PROGRESS,
+            self::SUPPLIER_SEPA_INSTANT_STATUS_ENABLED,
+            self::SUPPLIER_SEPA_INSTANT_STATUS_DISABLED,
+        ];
+    }
+
+    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -571,6 +596,7 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
         $this->setIfExists('default_payment_rail', $data ?? [], null);
         $this->setIfExists('rules', $data ?? [], null);
         $this->setIfExists('is_archived', $data ?? [], null);
+        $this->setIfExists('supplier_sepa_instant_status', $data ?? [], null);
     }
 
     /**
@@ -641,6 +667,15 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
             $invalidProperties[] = sprintf(
                 "invalid value '%s' for 'default_payment_rail', must be one of '%s'",
                 $this->container['default_payment_rail'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getSupplierSepaInstantStatusAllowableValues();
+        if (!is_null($this->container['supplier_sepa_instant_status']) && !in_array($this->container['supplier_sepa_instant_status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'supplier_sepa_instant_status', must be one of '%s'",
+                $this->container['supplier_sepa_instant_status'],
                 implode("', '", $allowedValues)
             );
         }
@@ -1607,6 +1642,50 @@ class NoFrixionMoneyMoovModelsPaymentAccount implements ModelInterface, ArrayAcc
             throw new \InvalidArgumentException('non-nullable is_archived cannot be null');
         }
         $this->container['is_archived'] = $is_archived;
+
+        return $this;
+    }
+
+    /**
+     * Gets supplier_sepa_instant_status
+     *
+     * @return string|null
+     */
+    public function getSupplierSepaInstantStatus()
+    {
+        return $this->container['supplier_sepa_instant_status'];
+    }
+
+    /**
+     * Sets supplier_sepa_instant_status
+     *
+     * @param string|null $supplier_sepa_instant_status Indicates the status of the SEPA Instant payment rail for this account.
+     *
+     * @return self
+     */
+    public function setSupplierSepaInstantStatus($supplier_sepa_instant_status)
+    {
+        if (is_null($supplier_sepa_instant_status)) {
+            array_push($this->openAPINullablesSetToNull, 'supplier_sepa_instant_status');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('supplier_sepa_instant_status', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $allowedValues = $this->getSupplierSepaInstantStatusAllowableValues();
+        if (!is_null($supplier_sepa_instant_status) && !in_array($supplier_sepa_instant_status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'supplier_sepa_instant_status', must be one of '%s'",
+                    $supplier_sepa_instant_status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['supplier_sepa_instant_status'] = $supplier_sepa_instant_status;
 
         return $this;
     }
